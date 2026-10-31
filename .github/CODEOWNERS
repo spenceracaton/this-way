@@ -1,0 +1,7 @@
+# Changes to the production trust boundary require Spencer's review.
+/.github/workflows/ @spenceracaton
+/scripts/release.mjs @spenceracaton
+/scripts/require-success.mjs @spenceracaton
+/package.json @spenceracaton
+/package-lock.json @spenceracaton
+/wrangler.jsonc @spenceracaton

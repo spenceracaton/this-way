@@ -1,0 +1,25 @@
+{
+  "sourceCommit": "73338cbae5d85cc1e4751ee7fe00a5a1b6ae9fb3",
+  "inspectedFiles": {
+    "public/neighborhoods/crescent-lake/review-map.svg": "4fee339056946132a15682f7e9fac2e302096194f6f28e95907cb89d9468b222",
+    "public/neighborhoods/crescent-lake/map-data.json": "9449faa8446ee3290a35c3a3828d1b7b0a303c4b04b70e8221a5bacc9cffc80d",
+    "lib/neighborhood-maps.json": "c3ab9b6475838bb944e5e9a5fa092dcb0d5bd33f51d2256cd67e97af848739a2"
+  },
+  "assetChanges": [
+    "Retained source road, park, lake and core-mask paths and street labels.",
+    "Removed blur filter and unused water pattern; no Halloween symbols or application code imported.",
+    "Set viewBox to the retained bounds; kept the original dim nearby geography."
+  ],
+  "coreMaskPathSha256": "f33abb01f087ac1eced6b460aa9168e832585595f666e7fbe2248eebef3c65cc",
+  "lakePathSha256": "b86f5daec45144be49d8a30f7efbc4dd6abf73599d53a35afc9d2d9de0a0f8e9",
+  "referenceAnchors": "Expected points were recorded from original SVG road path vertices; geographic coordinates are retained from the corresponding OSM ways.",
+  "geographySubset": "Retained the four reference road ways, Crescent Lake water polygon, attribution and original service-coverage description; no address or listing data.",
+  "rasterArtwork": {
+    "path": "public/assets/crescent-lake.webp",
+    "source": "public/assets/crescent-lake.svg",
+    "width": 3840,
+    "height": 4080,
+    "encoding": "lossless WebP",
+    "sha256": "10cbacf4911e6377b64a1b068b93fa1b370c9d03a16278fd171e5736179e62bc"
+  }
+}

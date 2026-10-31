@@ -1,0 +1,22 @@
+{
+  "id": "crescent-lake",
+  "name": "Crescent Lake",
+  "projection": {
+    "lngOrigin": -82.6426313,
+    "latOrigin": 27.788011400000002,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 88357.9456203593,
+    "yScale": 99875.76429323205
+  },
+  "bounds": {
+    "left": 20,
+    "right": 980,
+    "top": 20,
+    "bottom": 1040
+  },
+  "width": 1000,
+  "height": 1060,
+  "artwork": "./assets/crescent-lake.svg",
+  "rasterArtwork": "./assets/crescent-lake.webp"
+}

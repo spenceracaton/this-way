@@ -1,0 +1,166 @@
+name: Map checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+env:
+  WRANGLER_SEND_METRICS: 'false'
+concurrency:
+  group: checks-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      artifact-id: ${{ steps.release.outputs.artifact-id }}
+      artifact-digest: ${{ steps.release.outputs.artifact-digest }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run release:prepare
+      - run: npx wrangler deploy --dry-run --config release/wrangler.jsonc
+      - run: npm run release:verify
+      - id: release
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: checked-release
+          path: release/
+          retention-days: 7
+      - name: Record frozen artifact
+        env:
+          ARTIFACT_ID: ${{ steps.release.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.release.outputs.artifact-digest }}
+        run: |
+          test -n "$ARTIFACT_ID"
+          test -n "$ARTIFACT_DIGEST"
+          {
+            echo '### Frozen release artifact'
+            echo
+            echo "Artifact ID: \`$ARTIFACT_ID\`"
+            echo
+            echo "Transport digest: \`$ARTIFACT_DIGEST\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  browser:
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: desktop-chromium
+            browser: chromium
+          - project: phone-webkit
+            browser: webkit
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.validate.outputs.artifact-id }}
+          path: release/
+      - run: npm run release:verify
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npx playwright test --project=${{ matrix.project }}
+        env:
+          STATIC_ROOT: release/public
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ failure() }}
+        with:
+          name: browser-results-${{ matrix.project }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  pr-gate:
+    needs: [validate, browser]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Require every validation job to succeed
+        run: node scripts/require-success.mjs "$VALIDATE_RESULT" "$BROWSER_RESULT"
+        env:
+          VALIDATE_RESULT: ${{ needs.validate.result }}
+          BROWSER_RESULT: ${{ needs.browser.result }}
+
+  deploy-production:
+    needs: [validate, pr-gate]
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.pr-gate.result == 'success' && vars.PRODUCTION_PUBLISHING_PAUSED == 'false' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      deployments: write
+    concurrency:
+      group: this-way-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: production
+      url: https://this-way.spencercaton.workers.dev
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.validate.outputs.artifact-id }}
+          path: release/
+      - run: npm run release:verify
+      - name: Recheck release admission under the production lock
+        env:
+          PUBLISHING_PAUSED: ${{ vars.PRODUCTION_PUBLISHING_PAUSED }}
+        run: |
+          test "$PUBLISHING_PAUSED" = 'false'
+          git fetch --no-tags origin main
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+      - name: Publish frozen artifact
+        run: node scripts/release.mjs deploy
+        env:
+          ARTIFACT_ID: ${{ needs.validate.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ needs.validate.outputs.artifact-digest }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - run: npx playwright install --with-deps chromium
+      - name: Verify production behavior
+        run: npm run test:production
+        env:
+          PRODUCTION_URL: https://this-way.spencercaton.workers.dev
+      - name: Finalize verified receipt
+        run: node scripts/release.mjs finalize
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ always() && !cancelled() }}
+        with:
+          name: production-receipt
+          path: release-results/
+          retention-days: 90
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ failure() }}
+        with:
+          name: production-browser-results
+          path: |
+            playwright-production-report/
+            test-results-production/
+          if-no-files-found: ignore
+          retention-days: 7

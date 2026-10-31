@@ -1,0 +1,69 @@
+name: Roll back production
+on:
+  workflow_dispatch:
+    inputs:
+      version_id:
+        description: Previously deployed Cloudflare version UUID from a receipt
+        type: string
+        required: true
+      expected_deployment_id:
+        description: Cloudflare deployment UUID expected to be active
+        type: string
+        required: true
+      reason:
+        description: Why production is being rolled back
+        type: string
+        required: true
+permissions:
+  contents: read
+  deployments: write
+env:
+  WRANGLER_SEND_METRICS: 'false'
+jobs:
+  rollback:
+    if: ${{ github.ref == 'refs/heads/main' && vars.PRODUCTION_PUBLISHING_PAUSED == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: this-way-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: production
+      url: https://this-way.spencercaton.workers.dev
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Roll back expected production deployment
+        run: node scripts/release.mjs rollback
+        env:
+          ROLLBACK_VERSION: ${{ inputs.version_id }}
+          EXPECTED_CURRENT_DEPLOYMENT: ${{ inputs.expected_deployment_id }}
+          ROLLBACK_REASON: ${{ inputs.reason }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - run: npx playwright install --with-deps chromium
+      - name: Verify restored production behavior
+        run: npm run test:production
+        env:
+          PRODUCTION_URL: https://this-way.spencercaton.workers.dev
+      - name: Finalize verified receipt
+        run: node scripts/release.mjs finalize
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ always() && !cancelled() }}
+        with:
+          name: rollback-receipt
+          path: release-results/
+          retention-days: 90
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ failure() }}
+        with:
+          name: rollback-browser-results
+          path: |
+            playwright-production-report/
+            test-results-production/
+          if-no-files-found: ignore
+          retention-days: 7

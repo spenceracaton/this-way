@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A clean, illustrated neighborhood map for finding seasonal displays.">
+  <title>This Way · Old Northeast</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./vendor/leaflet/leaflet.js" defer></script>
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="This Way map">
+      <span class="wordmark-name">this way</span><span class="wordmark-arrow" aria-hidden="true">↗</span>
+    </a>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <a href="./" aria-current="page">Map</a>
+    </nav>
+    <span class="future-action" aria-label="Add a display, coming later"><span aria-hidden="true">＋</span> Add a display <small>Soon</small></span>
+  </header>
+
+  <main class="map-shell">
+    <section class="map-panel" aria-labelledby="map-title">
+      <h1 id="map-title" class="visually-hidden">Old Northeast</h1>
+      <div class="map-toolbar">
+        <label class="neighborhood-control" for="neighborhood-select">
+          <span class="location-mark" aria-hidden="true">⌖</span>
+          <span class="visually-hidden">Explore a neighborhood</span>
+          <select id="neighborhood-select" aria-label="Explore a neighborhood">
+            <option value="old-northeast">Old Northeast</option>
+            <option value="crescent-lake">Crescent Lake</option>
+          </select>
+        </label>
+        <span id="sample-count" class="sample-count">4 sample locations</span>
+      </div>
+
+      <nav id="artwork-diagnostic" aria-label="Artwork comparison" hidden>
+        <strong>Artwork test: <span id="diagnostic-mode"></span></strong>
+        <a href="?diagnostic=1&artwork=full" data-mode="full">Full SVG</a>
+        <a href="?diagnostic=1&artwork=raster" data-mode="raster">Rasterized artwork</a>
+        <a href="?diagnostic=1&artwork=simple" data-mode="simple">Plain rectangle</a>
+        <p>Compare Full SVG with Rasterized artwork: pinch to zoom, then pan immediately. Repeat with a one-second pause. Bounds, pins, and gestures are unchanged.</p>
+      </nav>
+
+      <div class="canvas">
+        <div id="map" tabindex="0" role="region" aria-label="Interactive Old Northeast reference map. Arrow keys pan, plus and minus zoom, Home resets." aria-busy="true"></div>
+        <p id="loading">Loading the map…</p>
+        <button id="reset" class="reset-button" type="button" disabled><span aria-hidden="true">↺</span> Reset view</button>
+        <span class="map-caption">Drag to wander · tap a sample</span>
+
+        <aside class="references" aria-labelledby="references-title">
+          <div class="references-heading">
+            <div><span class="eyebrow">MAP STUDY</span><h2 id="references-title">Sample points</h2></div>
+            <span>Not live displays</span>
+          </div>
+          <div id="reference-list"></div>
+        </aside>
+
+        <div id="selection" class="selection" data-selected="" role="status" aria-live="polite">
+          <span id="selected-label" class="selected-badge">↗</span>
+          <div><strong id="selected-name">Choose a sample pin</strong><p id="selected-note">Select a pin on the map or from the sample list.</p></div>
+          <span id="camera-status">Overview</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Map prototype · sample locations only</span>
+    <span>Illustrated geography + Leaflet interaction</span>
+  </footer>
+</body>
+</html>

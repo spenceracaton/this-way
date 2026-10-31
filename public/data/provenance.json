@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "73338cbae5d85cc1e4751ee7fe00a5a1b6ae9fb3",
+  "inspectedFiles": {
+    "public/review-map.svg": "c0d1b3a91751f2624e76528886be8278fe2960246c695fb1ad407b82ff8daa4c",
+    "public/map-data.json": "0e61eea7e542123915a752a63e9977d116a67a67127de98d152d5af9c2bb4ae7",
+    "lib/neighborhood-buffers/old-northeast.mjs": "aa15f82bdb4d6b58fa5aa95463d6a7f00aa334bc3962b51fae3e4691d2881d39",
+    "lib/neighborhoods.mjs": "24466a3c160a45b197ea32641f1b148271813024ba2ae074bd9a55f584d0dcb8",
+    "lib/old-northeast-edge.json": "c5fa5b56a5715667acf2338c21fb782b18f487430248db202e4128d302b3b924",
+    "public/app.js": "71d433a7dfd826cf49452564283586462d2dc61e70a613f17935daee7ad26034",
+    "public/map-ios-effects.js": "0fdd5debaadceb9a6d968e2c108fbb255fefcb87bc620feb91244947ed0a33d3"
+  },
+  "assetChanges": [
+    "Removed unused Halloween symbol definitions and empty decoration groups.",
+    "Did not import app.js or its injected ghosts, pumpkins, bats, marker art or listeners.",
+    "Preserved the original geographic paths, coordinate scale, core mask and nearby mask.",
+    "Used unblurred vector masks and omitted paper/water texture for this prototype on all devices.",
+    "Framed the SVG to the existing nearby-area bounds."
+  ],
+  "coreMaskPathSha256": "c58c7ad3c799ab7d268a7ec27a4e1af750387937ded0bef7e7eed33a519d721e",
+  "leafletVersion": "1.9.4",
+  "leafletJsSRI": "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=",
+  "leafletCssSRI": "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+}
