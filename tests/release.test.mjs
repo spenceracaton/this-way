@@ -60,6 +60,12 @@ test('rollback requires an explicitly previously deployed version, not current o
 });
 
 test('production receipt remains pending until browser verification finalizes it', async t => {
+  const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+  delete process.env.GITHUB_STEP_SUMMARY;
+  t.after(() => {
+    if (summaryPath === undefined) delete process.env.GITHUB_STEP_SUMMARY;
+    else process.env.GITHUB_STEP_SUMMARY = summaryPath;
+  });
   const root = await mkdtemp(path.join(tmpdir(), 'this-way-receipt-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   await writeFile(path.join(root, 'receipt.json'), JSON.stringify({
