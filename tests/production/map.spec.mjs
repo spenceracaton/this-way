@@ -26,6 +26,6 @@ test('the expected release serves both neighborhood maps', async ({ page, reques
   await expect(page.locator('.map-pin')).toHaveCount(4);
   expect(await page.locator('img#neighborhood-artwork').evaluate(image => [image.naturalWidth, image.naturalHeight]))
     .toEqual([3840, 4080]);
-  await page.locator('#reference-list button').filter({ hasText: '18th Avenue & 5th Street' }).click();
-  await expect(page.locator('#selected-name')).toHaveText('18th Avenue & 5th Street');
+  await page.locator('#reference-list button').filter({ hasText: '1930 Crescent Lake Dr N' }).click();
+  await expect(page.locator('#selected-name')).toHaveText('1930 Crescent Lake Dr N');
 });
