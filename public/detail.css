@@ -59,7 +59,7 @@
 #detail-address a{display:inline-block;vertical-align:top;min-height:0;padding-top:4px;font-size:14px;color:var(--muted)}
 .house-copy p{margin:0}
 .house-copy p:empty{display:none}
-#detail-address:empty + #selected-note:not(:empty){margin-top:8px}
+#selected-note:not(:empty){margin-top:8px}
 .house-copy ul{display:flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:8px 0 0}
 .house-copy li{background:#e9dfce;border-radius:4px;padding:3px 7px;font-size:12px}
 .house-pane:has(#display-photos[hidden]) h2{padding-right:44px}
