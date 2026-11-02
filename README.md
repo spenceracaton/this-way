@@ -1,6 +1,6 @@
 # This Way map prototype
 
-One isolated Old Northeast map, using reused illustrated geography and Leaflet 1.9.4. This is a local candidate for the Christmas successor, not a deployment or a replacement for Fright This Way.
+Two neighborhood maps, Old Northeast and Crescent Lake, using reused illustrated geography and Leaflet 1.9.4. This is a local candidate for the Christmas successor, not a deployment or a replacement for Fright This Way.
 
 ## Run
 
@@ -52,7 +52,7 @@ performance, touch gesture behavior, deployment, or compatibility of a second ma
 ## What this proves so far
 
 - A standard map engine can display this neighborhood's illustrated SVG and its original core/nearby masks.
-- Four reference pins preserve the original affine geographic projection and align with independently retained road anchors. Measured desktop rendering error was below one screen pixel at the initial view.
+- Each map has four numbered address samples that align with independently recorded public map markers. The original OSM road anchors remain checked as geography fixtures. Measured desktop rendering error was below one screen pixel at the initial view.
 - Desktop Chromium browser checks exercised mouse selection, zoom, drag panning, native keyboard panning, reset, Enter selection, and Escape clearing.
 - A narrow iframe using the same app showed four pins, selection, zoom/reset controls, and no horizontal page overflow. Its 390px frame had 375px of content width after the browser scrollbar.
 - The neutral SVG retains the geographic paths and two original masks. The core mask path is fingerprint-checked against the inspected source. The rendered coastal reference was visually inspected.
@@ -74,7 +74,7 @@ This is a promising fit for one map. It is not a claim that Leaflet will require
 | `public/coordinates.mjs` | Pure coordinate conversion and SVG-to-map axis orientation |
 | `public/map-view.mjs` | Leaflet setup, artwork, markers, selection callbacks, reset and resize |
 | `public/app.mjs` | Load local files and connect the map to the small reference interface |
-| `public/sample-pins.mjs` | Four public road reference points and independent expected anchors |
+| `public/sample-pins.mjs` | Four public Old Northeast address samples and independent expected anchors |
 | `public/assets/old-northeast.svg` | Editable neutral artwork, including the core and nearby masks |
 | `public/data/neighborhood.json` | This map's bounds, projection and original illustrative boundary |
 | `public/data/geography.json` | Attributed original road geometry used to verify reference coordinates |
@@ -95,7 +95,7 @@ The prototype uses unblurred vector masks and omits paper/water texture across d
 
 SVG coordinates increase downward; Leaflet's simple-map y axis increases upward. The adapter maps an artwork point `(x, y)` to `[-y, x]`. It does not substitute Web Mercator or treat artwork pixels as real latitude/longitude. An illustrated boundary is not a verified legal membership boundary.
 
-The four pins are public road vertices, not decorated properties or claims of Christmas participation. Original OSM geometry and independent artwork anchors supply the reference checks.
+The eight sample pins use publicly displayed 2026 Fright This Way street addresses and map marker coordinates, checked November 2, 2026. They are location references, not claims of Christmas participation. Display titles and photos in this prototype are illustrative. The map and cards label these as samples. Original OSM road vertices remain independent geography fixtures in the Node tests; public marker positions supply the address alignment checks.
 
 ## Next acceptance step
 
