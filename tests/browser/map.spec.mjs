@@ -382,3 +382,50 @@ test('address-only details keep the heading clear and heart state survives reloa
   await expect(page.locator('#detail-heart')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#detail-heart .heart-count')).toHaveText('1');
 });
+
+test('mobile detail sheets keep media, controls and attribution clear', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phones use the bottom sheet.');
+  await page.evaluate(() => document.fonts.ready);
+  const sheet = page.locator('#selection');
+  const attribution = page.locator('.leaflet-control-attribution');
+  const zoom = page.locator('.leaflet-control-zoom');
+  const clearOfSheet = async () => {
+    await expect.poll(async () => {
+      const card = await sheet.boundingBox();
+      const credit = await attribution.boundingBox();
+      return card.y - (credit.y + credit.height);
+    }).toBeGreaterThanOrEqual(6);
+    const card = await sheet.boundingBox();
+    const zoomBox = await zoom.boundingBox();
+    expect(zoomBox.y + zoomBox.height).toBeLessThanOrEqual(card.y - 4);
+    const share = await sheet.locator('#detail-share').boundingBox();
+    const hit = await page.evaluate(({ x, y }) => document.elementFromPoint(x, y)?.closest('button')?.id,
+      { x: share.x + share.width / 2, y: share.y + share.height / 2 });
+    expect(hit).toBe('detail-share');
+  };
+
+  await page.locator('#reference-list button').first().click();
+  const frame = await sheet.locator('#display-photos .photo-frame').boundingBox();
+  expect(frame.width).toBeLessThanOrEqual(300);
+  expect(frame.width / frame.height).toBeGreaterThan(1.45);
+  expect(frame.width / frame.height).toBeLessThan(1.55);
+  await clearOfSheet();
+
+  await sheet.getByRole('button', { name: 'Close display details' }).click();
+  await page.locator('#reference-list button').nth(2).click();
+  const pill = await sheet.locator('#detail-tags li').boundingBox();
+  const body = await sheet.locator('.house-body').boundingBox();
+  expect(pill.y + pill.height).toBeLessThanOrEqual(body.y + body.height + 1);
+  await clearOfSheet();
+
+  await sheet.getByRole('button', { name: 'Close display details' }).click();
+  await page.locator('#reference-list button').last().click();
+  const card = await sheet.boundingBox();
+  const heading = await sheet.locator('#detail-title').boundingBox();
+  const note = await sheet.locator('#selected-note').boundingBox();
+  const footer = await sheet.locator('.house-actions').boundingBox();
+  expect(heading.x - card.x).toBeGreaterThanOrEqual(18);
+  expect(heading.y - card.y).toBeGreaterThanOrEqual(18);
+  expect(footer.y - (note.y + note.height)).toBeGreaterThanOrEqual(18);
+  await clearOfSheet();
+});

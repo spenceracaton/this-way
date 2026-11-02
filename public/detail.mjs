@@ -48,6 +48,7 @@ export function createDetail({ close, neighborhood }) {
   const desktop = matchMedia('(min-width:721px)');
   let anchor;
   function position() {
+    canvas.style.setProperty('--house-height', pane.hidden ? '0px' : pane.offsetHeight + 'px');
     if (!desktop.matches || pane.hidden || !anchor) return;
     const inset = 8;
     const gap = 28;
@@ -73,7 +74,7 @@ export function createDetail({ close, neighborhood }) {
     byId('share-url').hidden = true;
     const host = byId('display-photos');
     host.replaceChildren();
-    if (!pin) return;
+    if (!pin) { position(); return; }
     returnFocus = opener || document.querySelector('[data-pin="' + CSS.escape(pin.id) + '"]');
     const data = (neighborhood === 'old-northeast' && samples[pin.id]) || {};
     const address = document.createElement('a');
@@ -104,6 +105,7 @@ export function createDetail({ close, neighborhood }) {
     let liked = false;
     try { liked = localStorage.getItem(heartKey()) === 'true'; } catch {}
     setHeart(liked);
+    position();
    }
   return {select, setAnchor(point) { anchor = point; position(); }};
 }

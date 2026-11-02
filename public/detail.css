@@ -54,7 +54,7 @@
 /* Extend the heading tap area without adding space before the note. */
 .house-copy h2 a{display:inline-block;vertical-align:top;position:relative;min-height:0}
 .house-copy h2 a::before{content:'';position:absolute;inset:-8px 0 -9px}
-.house-copy a::after{content:'↗';font:14px sans-serif;margin-left:5px}
+.house-copy a::after{content:'↗︎';font:14px sans-serif;margin-left:5px}
 /* Secondary address links size to their text so the description follows closely. */
 #detail-address a{display:inline-block;vertical-align:top;min-height:0;padding-top:4px;font-size:14px;color:var(--muted)}
 .house-copy p{margin:0}
@@ -95,8 +95,12 @@
 .photo-lightbox .photo-frame{background:var(--photo-viewer)}
 @media(max-width:720px){
  .canvas:has(.house-pane:not([hidden])) .references{visibility:hidden}
- .house-pane{top:auto;left:0;bottom:0;width:100%;border:1px solid var(--ink);border-bottom:0;border-radius:16px 16px 0 0;box-shadow:none}
- .house-copy{padding:8px 12px 12px}
- #display-photos .photo-frame{height:min(40cqh,21svh,178px)}
+ .house-pane{z-index:1100;top:auto;left:0;bottom:0;width:100%;border:1px solid var(--ink);border-bottom:0;border-radius:16px 16px 0 0;box-shadow:none}
+ .house-copy{padding:20px 20px 22px}
+ .house-pane:has(#display-photos:not([hidden])) .house-copy{padding-top:12px}
+ #display-photos{width:min(280px,calc(100% - 40px));margin:12px auto 0}
+ #display-photos .photo-frame{height:auto;aspect-ratio:3/2}
+ #display-photos .photo-controls{height:44px}
+ #display-photos .photo-controls button{width:44px;height:44px}
  .canvas{container-type:size}
 }

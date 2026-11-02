@@ -134,5 +134,7 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   .selection[data-selected=""] { transform:translateY(10px); }
   #camera-status { display:none; }
   .leaflet-control-attribution { font-size:7px!important; max-width:73%; }
+  .canvas:has(.house-pane:not([hidden])) .leaflet-bottom.leaflet-right { bottom:calc(var(--house-height, 0px) + 8px); }
+  #artwork-diagnostic[hidden] ~ .canvas:has(.house-pane:not([hidden])) .leaflet-control-zoom { margin:67px 128px 0 0!important; }
   footer { padding:0 15px; font-size:8px; }
 }
