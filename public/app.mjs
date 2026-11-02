@@ -18,8 +18,8 @@ async function start() {
   document.title = `This Way · ${neighborhood.name}`;
   $('#map-title').textContent = neighborhood.name;
   $('#neighborhood-select').value = neighborhood.id;
-  $('#sample-count').textContent = `${samplePins.length} sample locations`;
-  $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} reference map. Arrow keys pan, plus and minus zoom, Home resets.`);
+  $('#sample-count').textContent = `${samplePins.length} sample addresses`;
+  $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} sample address map. Arrow keys pan, plus and minus zoom, Home resets.`);
   $('#neighborhood-select').addEventListener('change', event => {
     const params = new URLSearchParams(location.search);
     params.set('neighborhood', event.target.value);
