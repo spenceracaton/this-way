@@ -358,7 +358,9 @@ test('address-only details keep the heading clear and heart state survives reloa
   const note = sheet.locator('#selected-note');
   const titleBox = await heading.boundingBox();
   const noteBox = await note.boundingBox();
-  expect(noteBox.y - (titleBox.y + titleBox.height)).toBeGreaterThanOrEqual(6);
+  const gap = noteBox.y - (titleBox.y + titleBox.height);
+  expect(gap).toBeGreaterThanOrEqual(6);
+  expect(gap).toBeLessThanOrEqual(10);
   const heart = sheet.locator('#detail-heart');
   await expect(heart.locator('svg.paper-heart')).toBeVisible();
   await expect(heart.locator('.heart-count')).toHaveText('0');
