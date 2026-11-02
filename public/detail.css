@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/dm-sans-468d56b6b25b05b7.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/fraunces-88e17be075f1be50.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+.house-pane,.photo-lightbox{
+  --ink:#39283e;--cream:#f6efdd;--paper:#eee5ce;--orange:#d9854e;--muted:#665861;--line:#cfc2b4;
+  /* Text accent and quiet list-row states; decorative orange stays unchanged. */
+  --accent-ink:#bf420f;
+  /* Approved A: plum neighborhood UI, with the existing orange reserved for the logo. */
+  --neighborhood-accent:#49354f;--neighborhood-selected:#e9e0e6;
+  --surface-row-hover:color-mix(in srgb,var(--ink) 3%,transparent);
+  --surface-row-active:color-mix(in srgb,var(--ink) 6%,transparent);
+  --font-body:'DM Sans',sans-serif;--font-display:'Fraunces',Georgia,serif;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;
+  --space-card-top:21px;--space-card-inline:22px;
+  --action-primary:var(--ink);--action-primary-hover:#59405d;--action-on-primary:var(--cream);
+  --action-secondary:transparent;--action-secondary-hover:#e9decb;--action-secondary-ink:var(--ink);--action-secondary-border:#bda7ab;
+  --radius-control:7px 9px 7px 8px;--shadow-action:2px 3px 0 #beaaaf;
+  --surface-card:#faf3e3;--border-card:#b9a5b2;--radius-card:8px 9px 6px 7px;--shadow-card:3px 4px 0 #ded0c1;
+  --focus-color:#bd663f;--focus-width:3px;--focus-offset:4px;
+  --focus-color-compact:#9e694c;--focus-width-compact:2px;--focus-offset-compact:3px;
+  --disabled-opacity:.55;--pressed-brightness:.94;
+  /* Photo-media variant only: public cards, enlarged viewers and owner previews.
+     Keep regular paper surfaces and action hierarchy unchanged. */
+  --photo-mat:var(--surface-card);--photo-viewer:#17151a;--photo-image-shadow:0 2px 6px #160c1d40,0 0 0 1px #fff5e11f;
+  --photo-control-rest:color-mix(in srgb,var(--ink) 78%,transparent);
+  --photo-control-active:color-mix(in srgb,var(--ink) 98%,transparent);
+  --photo-control-ink:var(--cream);--photo-control-border:color-mix(in srgb,var(--cream) 35%,transparent);
+  --photo-control-shadow:0 2px 7px #160c1d40;
+  --photo-dot-rest:#ffffff80;--photo-dot-active:#fff;--photo-dot-shadow:0 1px 3px #000b,0 0 1px #0009;
+  --photo-backdrop:#241b29dd;
+  --photo-loading:linear-gradient(135deg,#75687455,#a390a033);
+  --photo-loading-border:#fff5e133;--photo-loading-fill:#fff5e10a;
+}
+.house-pane[hidden], .house-pane [hidden]{display:none}
+.house-pane{position:absolute;z-index:880;bottom:26px;right:16px;width:min(390px,95%);max-height:70%;display:flex;flex-direction:column;background:var(--surface-card);color:var(--ink);border:1px solid var(--border-card);border-radius:var(--radius-card);box-shadow:var(--shadow-card);font:15px/1.45 var(--font-body)}
+.house-body{min-height:0;overflow:auto;overscroll-behavior:contain}
+.house-copy{padding:10px 16px 6px;overflow-wrap:anywhere}
+.house-copy h2{font:600 24px/1.14 var(--font-display);margin:0}
+.house-copy a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-underline-offset:3px}
+.house-copy a::after{content:'↗';font:14px sans-serif;margin-left:5px}
+.house-copy p{margin:3px 0 6px}
+.house-copy ul{display:flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:6px 0}
+.house-copy li{background:#e9dfce;border-radius:4px;padding:3px 7px;font-size:12px}
+.house-pane:has(#display-photos[hidden]) h2{padding-right:44px}
+.house-pane #detail-close{position:absolute;z-index:4;right:4px;top:4px;width:44px;height:44px;padding:0;border:0;background:transparent;color:var(--ink);font:25px/1 var(--font-body)}
+#detail-close::first-line{background:var(--surface-card)}
+.house-pane #detail-close span{display:inline-grid;place-items:center;width:27px;height:27px;background:var(--surface-card);border-radius:5px}
+.house-actions{display:flex;align-items:center;justify-content:space-between;gap:3px;border-top:1px solid var(--line);padding:0 10px}
+.house-actions button{min-height:44px;min-width:44px;border:0;background:transparent;color:inherit;font:500 13px var(--font-body)}
+.house-actions button:disabled{color:var(--muted);opacity:.64}
+.house-actions button:enabled:hover{text-decoration:underline}
+.house-actions #detail-heart{font-size:23px}
+.house-pane :focus-visible{outline:3px solid var(--focus-color);outline-offset:-3px}
+#display-photos{margin:7px 7px 0}
+#display-photos .photo-frame{height:min(242px,25svh);background:var(--surface-card);border:1px solid var(--ink)}
+#display-photos .photo-layer img[style]{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;box-shadow:none}
+#display-photos .photo-controls{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:#39283ead;border-radius:16px;height:26px}
+.photo-lightbox .photo-frame{background:var(--photo-viewer)}
+@media(max-width:720px){
+ .canvas:has(.house-pane:not([hidden])) .references{visibility:hidden}
+ .house-pane{bottom:0;right:0;width:100%;border:1px solid var(--ink);border-bottom:0;border-radius:16px 16px 0 0;box-shadow:none}
+ .house-copy{padding:6px 12px}
+ #display-photos .photo-frame{height:min(40cqh,21svh,178px)}
+ .canvas{container-type:size}
+}
