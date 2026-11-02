@@ -1,25 +1,25 @@
 import { test, expect } from '@playwright/test';
 
-// Retained artwork anchors, independently recorded from the original road geometry.
+// Public map marker anchors, independently recorded from the rendered Fright This Way map.
 // Never derive these expectations from the projection or Leaflet under test.
 const oldNortheast = {
   bounds: { left: 30, right: 835, top: 15, bottom: 1072 },
   raster: [3220, 4228],
   anchors: [
-    { label: 'A', x: 378.61, y: 824.39 },
-    { label: 'B', x: 600.85, y: 680.32 },
-    { label: 'C', x: 473.24, y: 393.42 },
-    { label: 'D', x: 421.90, y: 527.82 }
+    { label: 'A', x: 372.40174, y: 816.4476 },
+    { label: 'B', x: 604.46772, y: 551.869055 },
+    { label: 'C', x: 359.89314, y: 426.28013 },
+    { label: 'D', x: 269.92438, y: 517.501645 }
   ]
 };
 const crescentLake = {
   bounds: { left: 20, right: 980, top: 20, bottom: 1040 },
   raster: [3840, 4080],
   anchors: [
-    { label: 'A', x: 186.55, y: 201.74 },
-    { label: 'B', x: 725.27, y: 451.79 },
-    { label: 'C', x: 500.86, y: 892.41 },
-    { label: 'D', x: 231.60, y: 667.46 }
+    { label: 'A', x: 212.664369, y: 345.589749 },
+    { label: 'B', x: 477.209655, y: 295.294091 },
+    { label: 'C', x: 667.069610, y: 913.782129 },
+    { label: 'D', x: 331.669314, y: 737.272753 }
   ]
 };
 const anchors = oldNortheast.anchors;
@@ -92,7 +92,7 @@ test('browser rasterizes the core shoreline and nearby-area hole correctly', asy
 
 test('pointer and keyboard selection keep map, list and details synchronized', async ({ page, isMobile }) => {
   const a = pin(page, 'A'), b = pin(page, 'B'), c = pin(page, 'C');
-  const listA = page.locator('#reference-list button').filter({ hasText: '9th Avenue' });
+  const listA = page.locator('#reference-list button').filter({ hasText: '255 9th Ave NE' });
   await listA.click();
   await expect(a).toHaveAttribute('aria-pressed', 'true');
   await expect(listA).toHaveAttribute('aria-pressed', 'true');
@@ -103,9 +103,9 @@ test('pointer and keyboard selection keep map, list and details synchronized', a
   await expect(a).toHaveAttribute('aria-pressed', 'false');
   await expect(listA).toHaveAttribute('aria-pressed', 'false');
   await expect(page.locator('#selected-label')).toHaveText('B');
-  await expect(page.locator('#selected-name')).toHaveText('North Shore Drive');
-  await expect(page.locator('#selected-note')).toHaveText('Coastal reference · near the shoreline');
-  await expect(page.locator('#reference-list button').filter({ hasText: 'North Shore Drive' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#selected-name')).toHaveText('805 17th Ave NE');
+  await expect(page.locator('#selected-note')).toHaveText('Sample address · not a live Christmas listing');
+  await expect(page.locator('#reference-list button').filter({ hasText: '805 17th Ave NE' })).toHaveAttribute('aria-pressed', 'true');
   await c.focus();
   await page.keyboard.press('Enter');
   await expect(c).toHaveAttribute('aria-pressed', 'true');
@@ -146,7 +146,7 @@ test('zoom, drag and keyboard pan preserve alignment; reset and Home restore ove
   await checkAlignment(page);
   // A valid pan may move B outside the clipped map, especially on the phone.
   // The reference list is the supported way to select a location offscreen.
-  await page.locator('#reference-list button').filter({ hasText: 'North Shore Drive' }).click();
+  await page.locator('#reference-list button').filter({ hasText: '805 17th Ave NE' }).click();
   await expect(page.locator('#selected-label')).toHaveText('B');
   await page.getByRole('button', { name: 'Reset view' }).click();
   await expect(camera).toHaveText(initialStatus);
@@ -191,8 +191,8 @@ test('Crescent Lake uses its own raster, coordinates and selectable reference po
     .toEqual(crescentLake.raster);
   await checkAlignment(page, crescentLake);
   expect((await pin(page, 'C').boundingBox()).y).toBeGreaterThan((await pin(page, 'A').boundingBox()).y);
-  await page.locator('#reference-list button').filter({ hasText: '18th Avenue & 5th Street' }).click();
-  await expect(page.locator('#selected-name')).toHaveText('18th Avenue & 5th Street');
+  await page.locator('#reference-list button').filter({ hasText: '1930 Crescent Lake Dr N' }).click();
+  await expect(page.locator('#selected-name')).toHaveText('1930 Crescent Lake Dr N');
   await expect(pin(page, 'B')).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
   await checkAlignment(page, crescentLake);
@@ -322,7 +322,7 @@ test('photo-first details support browsing, enlargement and address fallback', a
   expect(longAddress.y + longAddress.height).toBeLessThanOrEqual(body.y + body.height + 1);
   await sheet.getByRole('button', { name: 'Close display details' }).click();
   await page.locator('#reference-list button').nth(1).click();
-  await expect(sheet.getByRole('heading', { name: /North Shore Drive/ })).toBeVisible();
+  await expect(sheet.getByRole('heading', { name: /805 17th Ave NE/ })).toBeVisible();
   await expect(sheet.locator('#display-photos')).toBeHidden();
 });
 
