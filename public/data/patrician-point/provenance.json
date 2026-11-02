@@ -1,0 +1,39 @@
+{
+  "id": "patrician-point",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "70ef9e7dbbb63781b9a8be72f72e04b8cdedef34f038c656d10bc2c8db8f85a4",
+    "map-data.json": "ab06b8ca770ddd37e5feae75550ab53aafb55852e524ba03d22aba4650bb5440",
+    "buffer.mjs": "125418251d91baa573d22e30d52bc468b062808e3e48fe89938ba191f95c77d7"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-98 15 1078 1030",
+  "coreMaskGeometrySha256": "a3c266cbec7d3a6f2828ee96e2b0821c4497f0f3123748053ea06178d73e1a4d",
+  "nearbyMaskGeometrySha256": "7cf592006e88bb230c792268145e602f5ba3f504614f685f0700721d65c1a484",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/patrician-point.webp",
+    "width": 3072,
+    "height": 2935,
+    "encoding": "lossless WebP",
+    "sourceSha256": "f1fa35fcdefe400ef8c45bbcdfbafc4cdb37b234271cb5f4aa7c2495a2382120",
+    "sha256": "79d3c1862e1b2943b56c05d393716e0376d4547009451bd03eda106d31fcec8b",
+    "bytes": 149534,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

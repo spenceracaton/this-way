@@ -1,0 +1,39 @@
+{
+  "id": "ridgewood-groves",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "d113630f49c9f3812d94c74955468e8f2330db99df8b8e4218d768bda173a7b4",
+    "map-data.json": "6a66307a648e50f7cd316bda3915e2f6870643184b10360e22085125cc7fa0cf",
+    "buffer.mjs": "193a5f60690df2c87a71b3e7b394aa82b2e98d20aa6b801fa2b02971a503cba8"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -17 960 1094",
+  "coreMaskGeometrySha256": "c00465f9b86245c7bc58bdfe75172c4caba080c3b65ad239398ed1f8d6d30e9e",
+  "nearbyMaskGeometrySha256": "699f923923d75b1248cfb86f723bc9320228002331d2a0f4876fb4678c05f7a6",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/ridgewood-groves.webp",
+    "width": 2696,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "e47be9c0e8b948b834184f86df6d12d61ff73aee73c34d20183f9be29091346a",
+    "sha256": "644eff4d531f598c31b44a2ed5e5782eafe09e60f62068d1d564ea357b26a818",
+    "bytes": 454864,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "harris-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "c46276a8b7d456c92d502e044734013f5ff0f3c4f465b7c1acbbf1f952359967",
+    "map-data.json": "725d05582d67defc97f1985cd6398e05b7db0ada16562e3e53d885c7fc54e776",
+    "buffer.mjs": "a4126440402860afbe59df709904e952fe358b8e1d9151306736580cbe9ff49d"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-12 -58 1024 1176",
+  "coreMaskGeometrySha256": "14cc2e64b680d2eecb07f31ed24e13b6bac4baa2fae29dfde8b84cdc12e72f80",
+  "nearbyMaskGeometrySha256": "aea95afb772d613c6cfe6b8291c810b7c21824a83921912504b0037abcfde4b4",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/harris-park.webp",
+    "width": 2675,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "902cc84617cb0ee01404830d3b98b931c6f7e9e060322d7d01cf2fb4d24e3e75",
+    "sha256": "cd6a8751d72d005dffa335be8e4c2d40a068ee9be131e25930e015efee9eb6e0",
+    "bytes": 171168,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "childs-park-road-1",
+    "osmType": "way",
+    "osmId": "1445376344",
+    "sourceGeographic": {
+      "lng": -82.6815156,
+      "lat": 27.7555495
+    },
+    "expectedSourcePoint": [
+      802.73,
+      663.53
+    ],
+    "matchErrorPx": 5e-05
+  },
+  {
+    "id": "childs-park-road-2",
+    "osmType": "way",
+    "osmId": "137383266",
+    "sourceGeographic": {
+      "lng": -82.6991739,
+      "lat": 27.7555763
+    },
+    "expectedSourcePoint": [
+      143.89,
+      662.4
+    ],
+    "matchErrorPx": 0.000117
+  },
+  {
+    "id": "childs-park-road-3",
+    "osmType": "way",
+    "osmId": "11232046",
+    "sourceGeographic": {
+      "lng": -82.6998142,
+      "lat": 27.7661176
+    },
+    "expectedSourcePoint": [
+      120.0,
+      217.95
+    ],
+    "matchErrorPx": 0.000151
+  },
+  {
+    "id": "childs-park-road-4",
+    "osmType": "way",
+    "osmId": "11254781",
+    "sourceGeographic": {
+      "lng": -82.6970694,
+      "lat": 27.7596019
+    },
+    "expectedSourcePoint": [
+      222.41,
+      492.67
+    ],
+    "matchErrorPx": 0.000226
+  }
+]

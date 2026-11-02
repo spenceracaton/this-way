@@ -1,0 +1,58 @@
+[
+  {
+    "id": "maximo-road-1",
+    "osmType": "way",
+    "osmId": "11247593",
+    "sourceGeographic": {
+      "lng": -82.6870908,
+      "lat": 27.7203866
+    },
+    "expectedSourcePoint": [
+      433.51,
+      617.97
+    ],
+    "matchErrorPx": 0.000602
+  },
+  {
+    "id": "maximo-road-2",
+    "osmType": "way",
+    "osmId": "11248061",
+    "sourceGeographic": {
+      "lng": -82.6852857,
+      "lat": 27.7232129
+    },
+    "expectedSourcePoint": [
+      537.33,
+      434.34
+    ],
+    "matchErrorPx": 0.000628
+  },
+  {
+    "id": "maximo-road-3",
+    "osmType": "way",
+    "osmId": "83861388",
+    "sourceGeographic": {
+      "lng": -82.6779416,
+      "lat": 27.7191162
+    },
+    "expectedSourcePoint": [
+      959.72,
+      700.51
+    ],
+    "matchErrorPx": 0.000639
+  },
+  {
+    "id": "maximo-road-4",
+    "osmType": "way",
+    "osmId": "842097312",
+    "sourceGeographic": {
+      "lng": -82.6897098,
+      "lat": 27.7152744
+    },
+    "expectedSourcePoint": [
+      282.88,
+      950.12
+    ],
+    "matchErrorPx": 0.000683
+  }
+]

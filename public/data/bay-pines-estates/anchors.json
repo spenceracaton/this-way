@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bay-pines-estates-road-1",
+    "osmType": "way",
+    "osmId": "11243542",
+    "sourceGeographic": {
+      "lng": -82.778753,
+      "lat": 27.826887
+    },
+    "expectedSourcePoint": [
+      328.84,
+      225.5
+    ],
+    "matchErrorPx": 0.000263
+  },
+  {
+    "id": "bay-pines-estates-road-2",
+    "osmType": "way",
+    "osmId": "11238088",
+    "sourceGeographic": {
+      "lng": -82.780125,
+      "lat": 27.82931
+    },
+    "expectedSourcePoint": [
+      252.13,
+      72.32
+    ],
+    "matchErrorPx": 0.00037
+  },
+  {
+    "id": "bay-pines-estates-road-3",
+    "osmType": "way",
+    "osmId": "11245518",
+    "sourceGeographic": {
+      "lng": -82.772901,
+      "lat": 27.828698
+    },
+    "expectedSourcePoint": [
+      656.03,
+      111.01
+    ],
+    "matchErrorPx": 0.000597
+  },
+  {
+    "id": "bay-pines-estates-road-4",
+    "osmType": "way",
+    "osmId": "11252950",
+    "sourceGeographic": {
+      "lng": -82.7729384,
+      "lat": 27.8221169
+    },
+    "expectedSourcePoint": [
+      653.94,
+      527.06
+    ],
+    "matchErrorPx": 0.000623
+  }
+]

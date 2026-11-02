@@ -1,0 +1,58 @@
+[
+  {
+    "id": "cross-bayou-estates-road-1",
+    "osmType": "way",
+    "osmId": "11242698",
+    "sourceGeographic": {
+      "lng": -82.7531735,
+      "lat": 27.8540153
+    },
+    "expectedSourcePoint": [
+      893.96,
+      191.07
+    ],
+    "matchErrorPx": 0.000326
+  },
+  {
+    "id": "cross-bayou-estates-road-2",
+    "osmType": "way",
+    "osmId": "11234933",
+    "sourceGeographic": {
+      "lng": -82.7581936,
+      "lat": 27.8459947
+    },
+    "expectedSourcePoint": [
+      519.31,
+      868.06
+    ],
+    "matchErrorPx": 0.000639
+  },
+  {
+    "id": "cross-bayou-estates-road-3",
+    "osmType": "way",
+    "osmId": "11256097",
+    "sourceGeographic": {
+      "lng": -82.7522074,
+      "lat": 27.8498847
+    },
+    "expectedSourcePoint": [
+      966.06,
+      539.72
+    ],
+    "matchErrorPx": 0.000643
+  },
+  {
+    "id": "cross-bayou-estates-road-4",
+    "osmType": "way",
+    "osmId": "11257148",
+    "sourceGeographic": {
+      "lng": -82.7556449,
+      "lat": 27.8509397
+    },
+    "expectedSourcePoint": [
+      709.52,
+      450.67
+    ],
+    "matchErrorPx": 0.000645
+  }
+]

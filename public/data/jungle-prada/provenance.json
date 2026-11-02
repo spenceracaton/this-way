@@ -1,0 +1,39 @@
+{
+  "id": "jungle-prada",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "c039e547d6b233b812bf8420749623c31deff2b752973e28807b3a8f20f50990",
+    "map-data.json": "414de5ece445764df1803db80c572611e11f7ccf584241fa7fdcbeec5386aafd",
+    "buffer.mjs": "b78a605b06f10f1cade3f68476d63fd24b6d7f234859e5ba2c984f177098725a"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -16 960 1091",
+  "coreMaskGeometrySha256": "0a9cf933b91906e30cbf650fdc5b624ed1e69cac7bd716d2039ec0e19dec1bad",
+  "nearbyMaskGeometrySha256": "5d8546b5afd195548442f47d4f0db013711732eb5b20a0a018b27b9efc43543d",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/jungle-prada.webp",
+    "width": 2703,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "401c8870cf65a4638f92c1d9cd17f06ec11159a1d50d59dca02b5adb3122a1c4",
+    "sha256": "b49efeca9b2edd0aa629681921efa94ed80c04f009991b34df0f20a180e75044",
+    "bytes": 311192,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

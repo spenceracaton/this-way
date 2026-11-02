@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ridgewood-groves-road-1",
+    "osmType": "way",
+    "osmId": "1052114034",
+    "sourceGeographic": {
+      "lng": -82.797429,
+      "lat": 27.836921
+    },
+    "expectedSourcePoint": [
+      700.73,
+      896.68
+    ],
+    "matchErrorPx": 0.00025
+  },
+  {
+    "id": "ridgewood-groves-road-2",
+    "osmType": "way",
+    "osmId": "1120934008",
+    "sourceGeographic": {
+      "lng": -82.7985857,
+      "lat": 27.8422435
+    },
+    "expectedSourcePoint": [
+      643.85,
+      600.68
+    ],
+    "matchErrorPx": 0.000263
+  },
+  {
+    "id": "ridgewood-groves-road-3",
+    "osmType": "way",
+    "osmId": "644960478",
+    "sourceGeographic": {
+      "lng": -82.7952305,
+      "lat": 27.8415442
+    },
+    "expectedSourcePoint": [
+      808.84,
+      639.57
+    ],
+    "matchErrorPx": 0.000334
+  },
+  {
+    "id": "ridgewood-groves-road-4",
+    "osmType": "way",
+    "osmId": "11234498",
+    "sourceGeographic": {
+      "lng": -82.8081191,
+      "lat": 27.8434139
+    },
+    "expectedSourcePoint": [
+      175.05,
+      535.59
+    ],
+    "matchErrorPx": 0.000336
+  }
+]

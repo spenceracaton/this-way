@@ -1,0 +1,58 @@
+[
+  {
+    "id": "greater-woodlawn-road-1",
+    "osmType": "way",
+    "osmId": "478979123",
+    "sourceGeographic": {
+      "lng": -82.6498002,
+      "lat": 27.7916746
+    },
+    "expectedSourcePoint": [
+      597.09,
+      948.44
+    ],
+    "matchErrorPx": 0.000254
+  },
+  {
+    "id": "greater-woodlawn-road-2",
+    "osmType": "way",
+    "osmId": "11252042",
+    "sourceGeographic": {
+      "lng": -82.6540326,
+      "lat": 27.799326
+    },
+    "expectedSourcePoint": [
+      207.81,
+      152.9
+    ],
+    "matchErrorPx": 0.000263
+  },
+  {
+    "id": "greater-woodlawn-road-3",
+    "osmType": "way",
+    "osmId": "1348631889",
+    "sourceGeographic": {
+      "lng": -82.6507287,
+      "lat": 27.7957168
+    },
+    "expectedSourcePoint": [
+      511.69,
+      528.16
+    ],
+    "matchErrorPx": 0.000373
+  },
+  {
+    "id": "greater-woodlawn-road-4",
+    "osmType": "way",
+    "osmId": "1413007506",
+    "sourceGeographic": {
+      "lng": -82.6467343,
+      "lat": 27.7971714
+    },
+    "expectedSourcePoint": [
+      879.08,
+      376.92
+    ],
+    "matchErrorPx": 0.00045
+  }
+]

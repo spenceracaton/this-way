@@ -1,0 +1,58 @@
+[
+  {
+    "id": "wildwood-heights-road-1",
+    "osmType": "way",
+    "osmId": "482164406",
+    "sourceGeographic": {
+      "lng": -82.6638166,
+      "lat": 27.7610962
+    },
+    "expectedSourcePoint": [
+      801.27,
+      276.83
+    ],
+    "matchErrorPx": 4.9e-05
+  },
+  {
+    "id": "wildwood-heights-road-2",
+    "osmType": "way",
+    "osmId": "11233850",
+    "sourceGeographic": {
+      "lng": -82.6622911,
+      "lat": 27.759286
+    },
+    "expectedSourcePoint": [
+      942.64,
+      466.4
+    ],
+    "matchErrorPx": 0.000136
+  },
+  {
+    "id": "wildwood-heights-road-3",
+    "osmType": "way",
+    "osmId": "11244709",
+    "sourceGeographic": {
+      "lng": -82.6670846,
+      "lat": 27.7622692
+    },
+    "expectedSourcePoint": [
+      498.42,
+      153.99
+    ],
+    "matchErrorPx": 0.000268
+  },
+  {
+    "id": "wildwood-heights-road-4",
+    "osmType": "way",
+    "osmId": "11262567",
+    "sourceGeographic": {
+      "lng": -82.6660175,
+      "lat": 27.7607617
+    },
+    "expectedSourcePoint": [
+      597.31,
+      311.86
+    ],
+    "matchErrorPx": 0.000291
+  }
+]

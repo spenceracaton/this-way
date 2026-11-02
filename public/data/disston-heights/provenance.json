@@ -1,0 +1,39 @@
+{
+  "id": "disston-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "2de969b2ba57a45bf75d1b37ae5466c81b3d901d49170bc210367f4f33e75b04",
+    "map-data.json": "bb06fdfbcf6c7fa42521c0ae6148d845550184dfb4e2c70af54a873b0e5a412d",
+    "buffer.mjs": "43fc7896515ab171452a53787da782731bad97183e656c0bfab733dc882c6bad"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "40db2a8cbe66f725f6ce8d1d59826439863efe44fbc3c5b0564e588909d3efb6",
+  "nearbyMaskGeometrySha256": "e879a76378465f2e99291966f05dcdd066124dd060e045e9be2ad71e85b10fd6",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/disston-heights.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "1940f2583264b3b68c55d07eaaacf75a8059353d6e91d8bfc0c761cb558cac6f",
+    "sha256": "b5e9f0ebe228a5bf7e4b9e0ffe5c96a15b9da7d4df43f19ba137cd5e17e32a79",
+    "bytes": 611888,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

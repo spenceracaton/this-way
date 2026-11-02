@@ -1,0 +1,39 @@
+{
+  "id": "palmetto-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "6a4107c010d8d3121fc688e1372699faa0f9211872ba625f91dd7dbb0530f8be",
+    "map-data.json": "dab8fe553e702ffed486585cc53459288f2ef7a0a37ee2aa36ed315ccbe9cc70",
+    "buffer.mjs": "e441814ca456856ea4349635c435b1542ed5331d77c5ae1352bdece09b0041ea"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-11 20 1022 1020",
+  "coreMaskGeometrySha256": "6c7f7155fd8acf6b6eb53376e37c329014f8a3dad7479463bd3dc10628547677",
+  "nearbyMaskGeometrySha256": "00e57b19aa6e09095fed6c0be70069969f1d86a6574b6b260012259ae80a50e8",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/palmetto-park.webp",
+    "width": 3072,
+    "height": 3066,
+    "encoding": "lossless WebP",
+    "sourceSha256": "89ed4289c931974f257f1d1b2ca43e078a2606646e73b9f9bafc691232776b6c",
+    "sha256": "4dee537455e9b65ef036a30092fdc55c6e385f107e54ae6c928e067b7c83324d",
+    "bytes": 340432,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

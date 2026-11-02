@@ -1,0 +1,39 @@
+{
+  "id": "fruitland-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "4fd594fc36fd948b39b9c171e92136c05800bb73da560956c857d1e729d5ff0a",
+    "map-data.json": "60b7e8ff7bae4913d0679483b841ab2b2f9f7d2a665a614643449c6a10f1c4f3",
+    "buffer.mjs": "51f687083b9aa64349f2a3ae7f7a069419286f81a13f0e8a6017d2e9f34511cf"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-265 -207 1529 1474",
+  "coreMaskGeometrySha256": "4e15202d439b8e7899f3db5006806a22a939785d2afbfb17de8fcc2bc6d21091",
+  "nearbyMaskGeometrySha256": "65c310676c6f67343675f8152dcc94d52e91baa540ece7e67d837032dbf2f567",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/fruitland-heights.webp",
+    "width": 3072,
+    "height": 2961,
+    "encoding": "lossless WebP",
+    "sourceSha256": "d82c9685c85ca275b1d6f145cf2a536936375be6da2e35ee804aa09cb2db73e5",
+    "sha256": "2bb9310efb248999413f03920cd6761536225b5fe4670527c591ef92586751e9",
+    "bytes": 185458,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "westminster-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "6088601d394f239173dcad9e3905f859ac665a3658357a62538874bbca6d3747",
+    "map-data.json": "a003721764fe0dabd8989ff07e9cfe09e2cc7fe00220602971388400b06c5ee8",
+    "buffer.mjs": "8ceb3022680e7b9249a5c77615805f6bf97a2f03139364f215f790262516b97f"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-42 20 1084 1020",
+  "coreMaskGeometrySha256": "e8baf081457005e68b03da110a18e864b87886261856a0563de7b9307a908c65",
+  "nearbyMaskGeometrySha256": "1d3041cd12dac7229f7aa7df8999fb9d56441046cc14cf980257b3444f00ea91",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/westminster-heights.webp",
+    "width": 3072,
+    "height": 2891,
+    "encoding": "lossless WebP",
+    "sourceSha256": "59275c3322c99ca77fb56fcf13a9a7ab8f81764feb4c30bc89dbd15e6050488d",
+    "sha256": "d30bfa9103387707c0a11fa9f67ebe0fb4ded9c15e9c89a9594ecc44af4d307f",
+    "bytes": 283692,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

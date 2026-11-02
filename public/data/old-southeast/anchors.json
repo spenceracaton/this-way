@@ -1,0 +1,58 @@
+[
+  {
+    "id": "old-southeast-road-1",
+    "osmType": "way",
+    "osmId": "11247969",
+    "sourceGeographic": {
+      "lng": -82.6354745,
+      "lat": 27.7495318
+    },
+    "expectedSourcePoint": [
+      378.9,
+      647.01
+    ],
+    "matchErrorPx": 0.000281
+  },
+  {
+    "id": "old-southeast-road-2",
+    "osmType": "way",
+    "osmId": "11237707",
+    "sourceGeographic": {
+      "lng": -82.6353809,
+      "lat": 27.7544817
+    },
+    "expectedSourcePoint": [
+      385.42,
+      257.38
+    ],
+    "matchErrorPx": 0.000307
+  },
+  {
+    "id": "old-southeast-road-3",
+    "osmType": "way",
+    "osmId": "11235884",
+    "sourceGeographic": {
+      "lng": -82.637643,
+      "lat": 27.745615
+    },
+    "expectedSourcePoint": [
+      227.84,
+      955.32
+    ],
+    "matchErrorPx": 0.000382
+  },
+  {
+    "id": "old-southeast-road-4",
+    "osmType": "way",
+    "osmId": "11248588",
+    "sourceGeographic": {
+      "lng": -82.633807,
+      "lat": 27.745739
+    },
+    "expectedSourcePoint": [
+      495.06,
+      945.56
+    ],
+    "matchErrorPx": 0.000517
+  }
+]

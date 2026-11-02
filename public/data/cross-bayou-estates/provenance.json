@@ -1,0 +1,39 @@
+{
+  "id": "cross-bayou-estates",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "c7869ffaf7b4df9a9462affa216a06837468ac6bd9b2b61b20e55202da06a564",
+    "map-data.json": "3b015eba120fda5349aa1a0731c032b6389a5b232096a6e242ecfd4c58c7770e",
+    "buffer.mjs": "13bd62f884dac0a5d6150874e65d8930e0a1878c7ea85cba0ce766e4421d7d62"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -69 960 1198",
+  "coreMaskGeometrySha256": "84fa84a6147780d579a074a9d66bcf81f51fc274229422a1f44b6f655f1a4d21",
+  "nearbyMaskGeometrySha256": "53c28c7caa4edcfd5325bae617b81371d12c00a17fe475bfb70c71b69164c340",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/cross-bayou-estates.webp",
+    "width": 2462,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "e4520e649c3a84f08808ca736dec7aa579acbba14e77890987df594aa0f3ef70",
+    "sha256": "631021d1f4c12823dee3e0e98ebdc32a092ddc93cea65c0b408e63b7ccd2e39e",
+    "bytes": 345486,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

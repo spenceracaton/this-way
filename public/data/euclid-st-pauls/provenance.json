@@ -1,0 +1,39 @@
+{
+  "id": "euclid-st-pauls",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "0350cebbd00d82c906aab022f75420530bcb1b91247a674fd6b9a9fe7bf260d0",
+    "map-data.json": "03f4fb94e4d9ead95d08f85381154960fd0c3036b354ab1566212d570881581d",
+    "buffer.mjs": "68073355f2ef517b3d057932d669fc74d961947f92b99c3e45b6e60a52fd5f79"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -52 960 1164",
+  "coreMaskGeometrySha256": "adb4febcabc572424c402d6e4d38567e839a50e7e332f4e295c484b9e457c9cf",
+  "nearbyMaskGeometrySha256": "766a18d581db7a6c7b911c485ea00bf2bb3e8cddacc257e17041e009e9435649",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/euclid-st-pauls.webp",
+    "width": 2534,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "ec6b16d66fac17e9d54b9f8c231cb6407e6240477688d6e7a16db9b42d99d2d0",
+    "sha256": "d312e141169558a31377a26b5768ba8f2536458a770b34b097a77e9f3602aba9",
+    "bytes": 299162,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

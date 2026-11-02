@@ -1,0 +1,39 @@
+{
+  "id": "five-points",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "330a7c38d77ad619fec0afdbcb1073f1be44d69aea0a45835f9374a6f28bea5a",
+    "map-data.json": "f8109554d22a51eb0da2fa9e1697b7b84e444b0677ab7c70222489fba550e1eb",
+    "buffer.mjs": "381e3c926701df14dd808a8c27306beee7d0d8d3204d987e879783c97050434c"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-108 -88 1216 1236",
+  "coreMaskGeometrySha256": "75b81042f2134461e3ee8d634955555f0e50a9031d67ae250ad107a3186bbcc6",
+  "nearbyMaskGeometrySha256": "0076a8c563559dd60ce847d65f6cd6d2c31aea95eeb7f66c39eef41ff0fa8171",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/five-points.webp",
+    "width": 3022,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "97358ca4c907869da7efaa881b4972ed8da99fd8e5c1b6160e2378e8622843bc",
+    "sha256": "93dd22dbcff4a55025be6e692f17f728b856f06c468bd3625402d85be22ddded",
+    "bytes": 327822,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

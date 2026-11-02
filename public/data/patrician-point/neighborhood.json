@@ -1,0 +1,60 @@
+{
+  "id": "patrician-point",
+  "name": "Patrician Point",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": -98,
+    "right": 980,
+    "top": 15,
+    "bottom": 1045
+  },
+  "projection": {
+    "lngOrigin": -82.61345,
+    "latOrigin": 27.809829999999998,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 88992.97423876489,
+    "yScale": 100613.76940771309
+  },
+  "artwork": "./assets/neighborhoods/patrician-point.svg",
+  "rasterArtwork": "./assets/neighborhoods/patrician-point.webp",
+  "coreBoundary": [
+    [
+      120.00000000000006,
+      824.79834436452
+    ],
+    [
+      580.093676815018,
+      826.8106197525981
+    ],
+    [
+      880.0,
+      635.6444578780313
+    ],
+    [
+      878.2201405146598,
+      235.20165563512256
+    ],
+    [
+      285.52693208479195,
+      233.18938024704448
+    ],
+    [
+      121.7798594853403,
+      492.7729053191257
+    ]
+  ],
+  "overviewBounds": {
+    "left": 120.00000000000006,
+    "right": 880.0,
+    "top": 233.18938024704448,
+    "bottom": 826.8106197525981
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+}

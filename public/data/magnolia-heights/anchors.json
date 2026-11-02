@@ -1,0 +1,58 @@
+[
+  {
+    "id": "magnolia-heights-road-1",
+    "osmType": "way",
+    "osmId": "1369968939",
+    "sourceGeographic": {
+      "lng": -82.6472991,
+      "lat": 27.8029976
+    },
+    "expectedSourcePoint": [
+      828.52,
+      528.78
+    ],
+    "matchErrorPx": 0.000192
+  },
+  {
+    "id": "magnolia-heights-road-2",
+    "osmType": "way",
+    "osmId": "11243663",
+    "sourceGeographic": {
+      "lng": -82.6514579,
+      "lat": 27.8024759
+    },
+    "expectedSourcePoint": [
+      446.55,
+      582.95
+    ],
+    "matchErrorPx": 0.00034
+  },
+  {
+    "id": "magnolia-heights-road-3",
+    "osmType": "way",
+    "osmId": "11234724",
+    "sourceGeographic": {
+      "lng": -82.6462137,
+      "lat": 27.7984554
+    },
+    "expectedSourcePoint": [
+      928.21,
+      1000.41
+    ],
+    "matchErrorPx": 0.000516
+  },
+  {
+    "id": "magnolia-heights-road-4",
+    "osmType": "way",
+    "osmId": "1306720946",
+    "sourceGeographic": {
+      "lng": -82.6550146,
+      "lat": 27.8072396
+    },
+    "expectedSourcePoint": [
+      119.88,
+      88.32
+    ],
+    "matchErrorPx": 0.000608
+  }
+]

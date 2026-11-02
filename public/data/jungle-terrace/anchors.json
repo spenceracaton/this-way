@@ -1,0 +1,58 @@
+[
+  {
+    "id": "jungle-terrace-road-1",
+    "osmType": "way",
+    "osmId": "800684144",
+    "sourceGeographic": {
+      "lng": -82.7561855,
+      "lat": 27.8107698
+    },
+    "expectedSourcePoint": [
+      231.76,
+      265.89
+    ],
+    "matchErrorPx": 0.000123
+  },
+  {
+    "id": "jungle-terrace-road-2",
+    "osmType": "way",
+    "osmId": "192012793",
+    "sourceGeographic": {
+      "lng": -82.7391998,
+      "lat": 27.7917711
+    },
+    "expectedSourcePoint": [
+      630.19,
+      769.69
+    ],
+    "matchErrorPx": 0.000137
+  },
+  {
+    "id": "jungle-terrace-road-3",
+    "osmType": "way",
+    "osmId": "1418283071",
+    "sourceGeographic": {
+      "lng": -82.7538301,
+      "lat": 27.8036285
+    },
+    "expectedSourcePoint": [
+      287.01,
+      455.26
+    ],
+    "matchErrorPx": 0.000143
+  },
+  {
+    "id": "jungle-terrace-road-4",
+    "osmType": "way",
+    "osmId": "11237128",
+    "sourceGeographic": {
+      "lng": -82.7381937,
+      "lat": 27.800922
+    },
+    "expectedSourcePoint": [
+      653.79,
+      527.03
+    ],
+    "matchErrorPx": 0.000249
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "methodist-town-road-1",
+    "osmType": "way",
+    "osmId": "725209961",
+    "sourceGeographic": {
+      "lng": -82.6517784,
+      "lat": 27.7739583
+    },
+    "expectedSourcePoint": [
+      403.62,
+      559.71
+    ],
+    "matchErrorPx": 7.1e-05
+  },
+  {
+    "id": "methodist-town-road-2",
+    "osmType": "way",
+    "osmId": "634841922",
+    "sourceGeographic": {
+      "lng": -82.6485085,
+      "lat": 27.7711462
+    },
+    "expectedSourcePoint": [
+      706.23,
+      853.84
+    ],
+    "matchErrorPx": 0.00016
+  },
+  {
+    "id": "methodist-town-road-3",
+    "osmType": "way",
+    "osmId": "501252182",
+    "sourceGeographic": {
+      "lng": -82.6554332,
+      "lat": 27.7765463
+    },
+    "expectedSourcePoint": [
+      65.39,
+      289.02
+    ],
+    "matchErrorPx": 0.000343
+  },
+  {
+    "id": "methodist-town-road-4",
+    "osmType": "way",
+    "osmId": "1253633268",
+    "sourceGeographic": {
+      "lng": -82.6461788,
+      "lat": 27.7766051
+    },
+    "expectedSourcePoint": [
+      921.83,
+      282.87
+    ],
+    "matchErrorPx": 0.000354
+  }
+]

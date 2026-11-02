@@ -1,0 +1,39 @@
+{
+  "id": "lake-euclid",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "77e84692f2831462691a919b672f568a08f98c6306e86e1b66e9398bb1eb7486",
+    "map-data.json": "572d804e7a5ed1986da50909d2704befbd0aca03553079dfb995b816833ece71",
+    "buffer.mjs": "79f5e4c90c54f291bd6511ddebda647804ee02383903bcba4fe7f7d200451acf"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-116 -117 1232 1294",
+  "coreMaskGeometrySha256": "fa2b0b25ddbd3b0025616f675d767a19bac8da8352feda94600e0e5718a1476b",
+  "nearbyMaskGeometrySha256": "c29b9b5d5d0a2250763bfc523cf7b01f98a1e589dec68495f15e1558fdd70859",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/lake-euclid.webp",
+    "width": 2925,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "0e3832bb4a3d6f8f50709cae2288b2aea9f9428f0744a84576ee11ab153ab054",
+    "sha256": "e988c5e85327c3bf5f83407eb74e56a18be8822796b84d30d526fab074d0af78",
+    "bytes": 274032,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

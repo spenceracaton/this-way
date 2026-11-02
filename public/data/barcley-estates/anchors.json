@@ -1,0 +1,58 @@
+[
+  {
+    "id": "barcley-estates-road-1",
+    "osmType": "way",
+    "osmId": "11252057",
+    "sourceGeographic": {
+      "lng": -82.652673,
+      "lat": 27.852073
+    },
+    "expectedSourcePoint": [
+      330.29,
+      530.64
+    ],
+    "matchErrorPx": 0.000798
+  },
+  {
+    "id": "barcley-estates-road-2",
+    "osmType": "way",
+    "osmId": "11226105",
+    "sourceGeographic": {
+      "lng": -82.6552975,
+      "lat": 27.8555898
+    },
+    "expectedSourcePoint": [
+      30.6,
+      76.44
+    ],
+    "matchErrorPx": 0.001078
+  },
+  {
+    "id": "barcley-estates-road-3",
+    "osmType": "way",
+    "osmId": "11232115",
+    "sourceGeographic": {
+      "lng": -82.648687,
+      "lat": 27.852073
+    },
+    "expectedSourcePoint": [
+      785.45,
+      530.64
+    ],
+    "matchErrorPx": 0.001109
+  },
+  {
+    "id": "barcley-estates-road-4",
+    "osmType": "way",
+    "osmId": "11251412",
+    "sourceGeographic": {
+      "lng": -82.6500127,
+      "lat": 27.8490865
+    },
+    "expectedSourcePoint": [
+      634.07,
+      916.35
+    ],
+    "matchErrorPx": 0.001161
+  }
+]

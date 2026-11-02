@@ -1,0 +1,39 @@
+{
+  "id": "allendale-oaks",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "ba798dd5f55155d651f3dfc113be9f8ef572d9df9d5e391c4c540d84015627c2",
+    "map-data.json": "ab53bc27b311eff7a0e74c770b8f1e53deb9eb533d3c8bab22426f201226e980",
+    "buffer.mjs": "01fbf0af965894c333a68d68289e143ee5b82e6b7055d3e1c318e987733d9522"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-107 -35 1214 1130",
+  "coreMaskGeometrySha256": "31827ae318756fdc3d24a3c34bd4a8e9fb7149bf719b5da19f4d666433d6e5d4",
+  "nearbyMaskGeometrySha256": "ca20d9e91985ad80a8807843f80352193e56f2cb18a553439f0dfa7e4c2f7210",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/allendale-oaks.webp",
+    "width": 3072,
+    "height": 2859,
+    "encoding": "lossless WebP",
+    "sourceSha256": "ac1c394bf93fbf7e88be63c25a1421128aa81911d933765ee7422c4fd4f1f604",
+    "sha256": "65b3e01f6c4b728dcc40ab1c949dfc27820723ade3239a00f40ae161f041c5c3",
+    "bytes": 300984,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

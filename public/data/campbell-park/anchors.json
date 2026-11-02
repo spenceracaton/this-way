@@ -1,0 +1,58 @@
+[
+  {
+    "id": "campbell-park-road-1",
+    "osmType": "way",
+    "osmId": "1253749647",
+    "sourceGeographic": {
+      "lng": -82.645874,
+      "lat": 27.7649282
+    },
+    "expectedSourcePoint": [
+      947.63,
+      275.63
+    ],
+    "matchErrorPx": 0.00042
+  },
+  {
+    "id": "campbell-park-road-2",
+    "osmType": "way",
+    "osmId": "1115075861",
+    "sourceGeographic": {
+      "lng": -82.6497776,
+      "lat": 27.767015
+    },
+    "expectedSourcePoint": [
+      586.63,
+      57.54
+    ],
+    "matchErrorPx": 0.000559
+  },
+  {
+    "id": "campbell-park-road-3",
+    "osmType": "way",
+    "osmId": "11249261",
+    "sourceGeographic": {
+      "lng": -82.6479029,
+      "lat": 27.7630386
+    },
+    "expectedSourcePoint": [
+      760.0,
+      473.11
+    ],
+    "matchErrorPx": 0.000617
+  },
+  {
+    "id": "campbell-park-road-4",
+    "osmType": "way",
+    "osmId": "11249261",
+    "sourceGeographic": {
+      "lng": -82.6540137,
+      "lat": 27.7629457
+    },
+    "expectedSourcePoint": [
+      194.88,
+      482.82
+    ],
+    "matchErrorPx": 0.000714
+  }
+]

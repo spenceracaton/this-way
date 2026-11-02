@@ -1,0 +1,56 @@
+{
+  "id": "crescent-heights",
+  "name": "Crescent Heights",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": -106,
+    "right": 1106,
+    "top": -80,
+    "bottom": 1140
+  },
+  "projection": {
+    "lngOrigin": -82.6426409,
+    "latOrigin": 27.795738975,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 92734.94887369857,
+    "yScale": 104830.77943964287
+  },
+  "artwork": "./assets/neighborhoods/crescent-heights.svg",
+  "rasterArtwork": "./assets/neighborhoods/crescent-heights.webp",
+  "coreBoundary": [
+    [
+      121.3261097692357,
+      913.908659694245
+    ],
+    [
+      880.0,
+      909.746877750645
+    ],
+    [
+      877.3848744415116,
+      146.09134030538257
+    ],
+    [
+      119.99999999999994,
+      150.24788071032174
+    ],
+    [
+      121.3261097692357,
+      913.908659694245
+    ]
+  ],
+  "overviewBounds": {
+    "left": 119.99999999999994,
+    "right": 880.0,
+    "top": 146.09134030538257,
+    "bottom": 913.908659694245
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+}

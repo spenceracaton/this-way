@@ -1,0 +1,58 @@
+[
+  {
+    "id": "perkins-road-1",
+    "osmType": "way",
+    "osmId": "137383286",
+    "sourceGeographic": {
+      "lng": -82.671133,
+      "lat": 27.7524453
+    },
+    "expectedSourcePoint": [
+      122.8,
+      677.91
+    ],
+    "matchErrorPx": 0.000481
+  },
+  {
+    "id": "perkins-road-2",
+    "osmType": "way",
+    "osmId": "29417299",
+    "sourceGeographic": {
+      "lng": -82.6659415,
+      "lat": 27.7581156
+    },
+    "expectedSourcePoint": [
+      604.11,
+      83.87
+    ],
+    "matchErrorPx": 0.000484
+  },
+  {
+    "id": "perkins-road-3",
+    "osmType": "way",
+    "osmId": "11243058",
+    "sourceGeographic": {
+      "lng": -82.6692,
+      "lat": 27.7583736
+    },
+    "expectedSourcePoint": [
+      302.01,
+      56.84
+    ],
+    "matchErrorPx": 0.000799
+  },
+  {
+    "id": "perkins-road-4",
+    "osmType": "way",
+    "osmId": "11259227",
+    "sourceGeographic": {
+      "lng": -82.6634404,
+      "lat": 27.754971
+    },
+    "expectedSourcePoint": [
+      835.99,
+      413.31
+    ],
+    "matchErrorPx": 0.000918
+  }
+]

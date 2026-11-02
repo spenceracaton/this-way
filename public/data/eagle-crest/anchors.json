@@ -1,0 +1,58 @@
+[
+  {
+    "id": "eagle-crest-road-1",
+    "osmType": "way",
+    "osmId": "86792770",
+    "sourceGeographic": {
+      "lng": -82.7284914,
+      "lat": 27.7739372
+    },
+    "expectedSourcePoint": [
+      426.51,
+      714.69
+    ],
+    "matchErrorPx": 0.000231
+  },
+  {
+    "id": "eagle-crest-road-2",
+    "osmType": "way",
+    "osmId": "11233814",
+    "sourceGeographic": {
+      "lng": -82.716312,
+      "lat": 27.786519
+    },
+    "expectedSourcePoint": [
+      816.66,
+      259.15
+    ],
+    "matchErrorPx": 0.00032
+  },
+  {
+    "id": "eagle-crest-road-3",
+    "osmType": "way",
+    "osmId": "644594867",
+    "sourceGeographic": {
+      "lng": -82.7215974,
+      "lat": 27.7808186
+    },
+    "expectedSourcePoint": [
+      647.35,
+      465.54
+    ],
+    "matchErrorPx": 0.000332
+  },
+  {
+    "id": "eagle-crest-road-4",
+    "osmType": "way",
+    "osmId": "1000462644",
+    "sourceGeographic": {
+      "lng": -82.7271191,
+      "lat": 27.7823106
+    },
+    "expectedSourcePoint": [
+      470.47,
+      411.52
+    ],
+    "matchErrorPx": 0.000337
+  }
+]

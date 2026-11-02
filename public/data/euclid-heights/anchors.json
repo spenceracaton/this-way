@@ -1,0 +1,58 @@
+[
+  {
+    "id": "euclid-heights-road-1",
+    "osmType": "way",
+    "osmId": "11258961",
+    "sourceGeographic": {
+      "lng": -82.6526189,
+      "lat": 27.8131316
+    },
+    "expectedSourcePoint": [
+      344.84,
+      988.09
+    ],
+    "matchErrorPx": 1.7e-05
+  },
+  {
+    "id": "euclid-heights-road-2",
+    "osmType": "way",
+    "osmId": "11257417",
+    "sourceGeographic": {
+      "lng": -82.6558517,
+      "lat": 27.8133406
+    },
+    "expectedSourcePoint": [
+      47.7,
+      966.37
+    ],
+    "matchErrorPx": 0.00046
+  },
+  {
+    "id": "euclid-heights-road-3",
+    "osmType": "way",
+    "osmId": "11247531",
+    "sourceGeographic": {
+      "lng": -82.6470005,
+      "lat": 27.820069
+    },
+    "expectedSourcePoint": [
+      861.25,
+      267.13
+    ],
+    "matchErrorPx": 0.000659
+  },
+  {
+    "id": "euclid-heights-road-4",
+    "osmType": "way",
+    "osmId": "11259557",
+    "sourceGeographic": {
+      "lng": -82.6526165,
+      "lat": 27.8202882
+    },
+    "expectedSourcePoint": [
+      345.06,
+      244.35
+    ],
+    "matchErrorPx": 0.000729
+  }
+]

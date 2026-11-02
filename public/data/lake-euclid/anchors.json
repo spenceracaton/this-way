@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lake-euclid-road-1",
+    "osmType": "way",
+    "osmId": "11257051",
+    "sourceGeographic": {
+      "lng": -82.6581937,
+      "lat": 27.7992493
+    },
+    "expectedSourcePoint": [
+      561.32,
+      127.08
+    ],
+    "matchErrorPx": 0.000237
+  },
+  {
+    "id": "lake-euclid-road-2",
+    "osmType": "way",
+    "osmId": "11238036",
+    "sourceGeographic": {
+      "lng": -82.661956,
+      "lat": 27.7992874
+    },
+    "expectedSourcePoint": [
+      191.85,
+      122.85
+    ],
+    "matchErrorPx": 0.000301
+  },
+  {
+    "id": "lake-euclid-road-3",
+    "osmType": "way",
+    "osmId": "149488612",
+    "sourceGeographic": {
+      "lng": -82.6544372,
+      "lat": 27.7911727
+    },
+    "expectedSourcePoint": [
+      930.22,
+      1023.68
+    ],
+    "matchErrorPx": 0.000504
+  },
+  {
+    "id": "lake-euclid-road-4",
+    "osmType": "way",
+    "osmId": "11255498",
+    "sourceGeographic": {
+      "lng": -82.659118,
+      "lat": 27.7997751
+    },
+    "expectedSourcePoint": [
+      470.55,
+      68.71
+    ],
+    "matchErrorPx": 0.000685
+  }
+]

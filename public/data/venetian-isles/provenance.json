@@ -1,0 +1,39 @@
+{
+  "id": "venetian-isles",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "7d950490d2b004132d2df60b276ab4a644de828314d2d00a7d3abd4c3f1f3a26",
+    "map-data.json": "ad573837c7f5150dfd82095c4e6657515173a2d62f6d46903e2b8ed2a34350fd",
+    "buffer.mjs": "5715e3cc92d1db654c4180a630c131618abfcc0b78951ee875cf05ac20d75dfb"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-29 20 1009 1020",
+  "coreMaskGeometrySha256": "8351303ebf158d28fa56342df81a6175640571b24ad0d69db4f431c27753f5f9",
+  "nearbyMaskGeometrySha256": "6dbdfa50acea90077a4961ef6203da24e2c2f709c9eb25b43667abb07f93376c",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/venetian-isles.webp",
+    "width": 3039,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "e565ef0ffff8b2227f7a22c92370a38c5dd0e2b8f74855521e5be16c91b51e36",
+    "sha256": "d7f61133e1fb0504a3db2338483d1a2288eaa53597ec1e606b46884dd74931f0",
+    "bytes": 454188,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

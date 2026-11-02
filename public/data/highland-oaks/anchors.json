@@ -1,0 +1,58 @@
+[
+  {
+    "id": "highland-oaks-road-1",
+    "osmType": "way",
+    "osmId": "137383284",
+    "sourceGeographic": {
+      "lng": -82.6629358,
+      "lat": 27.7480843
+    },
+    "expectedSourcePoint": [
+      880.0,
+      476.1
+    ],
+    "matchErrorPx": 0.000106
+  },
+  {
+    "id": "highland-oaks-road-2",
+    "osmType": "way",
+    "osmId": "137383281",
+    "sourceGeographic": {
+      "lng": -82.6628826,
+      "lat": 27.7425115
+    },
+    "expectedSourcePoint": [
+      883.28,
+      864.33
+    ],
+    "matchErrorPx": 0.000181
+  },
+  {
+    "id": "highland-oaks-road-3",
+    "osmType": "way",
+    "osmId": "644594720",
+    "sourceGeographic": {
+      "lng": -82.6752639,
+      "lat": 27.7524311
+    },
+    "expectedSourcePoint": [
+      119.92,
+      173.28
+    ],
+    "matchErrorPx": 0.000238
+  },
+  {
+    "id": "highland-oaks-road-4",
+    "osmType": "way",
+    "osmId": "41001824",
+    "sourceGeographic": {
+      "lng": -82.6633966,
+      "lat": 27.7409183
+    },
+    "expectedSourcePoint": [
+      851.59,
+      975.32
+    ],
+    "matchErrorPx": 0.000398
+  }
+]

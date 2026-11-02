@@ -1,0 +1,58 @@
+[
+  {
+    "id": "jungle-prada-road-1",
+    "osmType": "way",
+    "osmId": "11232475",
+    "sourceGeographic": {
+      "lng": -82.7453341,
+      "lat": 27.7836424
+    },
+    "expectedSourcePoint": [
+      743.59,
+      593.88
+    ],
+    "matchErrorPx": 0.000449
+  },
+  {
+    "id": "jungle-prada-road-2",
+    "osmType": "way",
+    "osmId": "11237003",
+    "sourceGeographic": {
+      "lng": -82.753156,
+      "lat": 27.7899466
+    },
+    "expectedSourcePoint": [
+      366.05,
+      249.94
+    ],
+    "matchErrorPx": 0.000627
+  },
+  {
+    "id": "jungle-prada-road-3",
+    "osmType": "way",
+    "osmId": "11254646",
+    "sourceGeographic": {
+      "lng": -82.741552,
+      "lat": 27.7867221
+    },
+    "expectedSourcePoint": [
+      926.14,
+      425.86
+    ],
+    "matchErrorPx": 0.000747
+  },
+  {
+    "id": "jungle-prada-road-4",
+    "osmType": "way",
+    "osmId": "11256486",
+    "sourceGeographic": {
+      "lng": -82.7533522,
+      "lat": 27.7937309
+    },
+    "expectedSourcePoint": [
+      356.58,
+      43.48
+    ],
+    "matchErrorPx": 0.000827
+  }
+]

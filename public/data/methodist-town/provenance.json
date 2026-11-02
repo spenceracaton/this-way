@@ -1,0 +1,39 @@
+{
+  "id": "methodist-town",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "e1b99171d5224deea5c77f40d2fead26ba5991277479071fe970002f2326d502",
+    "map-data.json": "a1ebf9613c2c1e81d07140ebdf69b84bb74a14225c981248961c1518d61adeea",
+    "buffer.mjs": "dccf02977794845cc7e62ce6654b6b2b37d211cdb0252291289c71aa26909a36"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-106 20 1212 1020",
+  "coreMaskGeometrySha256": "469e3f76e0ee87a337fc83dcddc60b3b2dea16ac5263e779a9b31ee9b8c8fe9d",
+  "nearbyMaskGeometrySha256": "949a49f8d3d92b64e1da2d5341f16b9dd6c94abbd9fac02f12e7662e11446bfd",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/methodist-town.webp",
+    "width": 3072,
+    "height": 2585,
+    "encoding": "lossless WebP",
+    "sourceSha256": "08435e2bd34cb45a6da92d6f05d47437bedb8d7e5742cb9bedaac7a62836e5bd",
+    "sha256": "fb7ca9802315958f44d0b09756bf91b4f27ecc6938471f5ea8291e6316f830ae",
+    "bytes": 236680,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

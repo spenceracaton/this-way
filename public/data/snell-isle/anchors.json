@@ -1,0 +1,58 @@
+[
+  {
+    "id": "snell-isle-road-1",
+    "osmType": "way",
+    "osmId": "221150805",
+    "sourceGeographic": {
+      "lng": -82.624577,
+      "lat": 27.7857393
+    },
+    "expectedSourcePoint": [
+      328.54,
+      889.5
+    ],
+    "matchErrorPx": 0.000193
+  },
+  {
+    "id": "snell-isle-road-2",
+    "osmType": "way",
+    "osmId": "11247397",
+    "sourceGeographic": {
+      "lng": -82.6209466,
+      "lat": 27.7926374
+    },
+    "expectedSourcePoint": [
+      434.25,
+      662.44
+    ],
+    "matchErrorPx": 0.000251
+  },
+  {
+    "id": "snell-isle-road-3",
+    "osmType": "way",
+    "osmId": "47274807",
+    "sourceGeographic": {
+      "lng": -82.6232177,
+      "lat": 27.8002856
+    },
+    "expectedSourcePoint": [
+      368.12,
+      410.69
+    ],
+    "matchErrorPx": 0.000253
+  },
+  {
+    "id": "snell-isle-road-4",
+    "osmType": "way",
+    "osmId": "11248367",
+    "sourceGeographic": {
+      "lng": -82.6328911,
+      "lat": 27.784892
+    },
+    "expectedSourcePoint": [
+      86.45,
+      917.39
+    ],
+    "matchErrorPx": 0.0003
+  }
+]

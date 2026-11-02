@@ -1,0 +1,39 @@
+{
+  "id": "campbell-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "8987c6aabca58b44a881550eded2fcf5be9c1c7d3e495b335388818c513afa8f",
+    "map-data.json": "84e51c21e2bc3a59bdf2d7e5fdcfad950f6597e6e48abbce6e7be0ac182bff0c",
+    "buffer.mjs": "361f474ef33a12e289930337bba07d8b0e6202348868efe4d64fd68c2dc89a22"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-106 -27 1212 1114",
+  "coreMaskGeometrySha256": "76e2c9bbac1df29afc664f76fda457b5167796308228def669dffced20bf398e",
+  "nearbyMaskGeometrySha256": "76436e731ebe6af47e664c14a672d50763ef262ed6e0c134abf008fc4f798c69",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/campbell-park.webp",
+    "width": 3072,
+    "height": 2824,
+    "encoding": "lossless WebP",
+    "sourceSha256": "c128ddb8e8a6cb7bbd4229cab2d8ba5e06b4b813bda6272ade338d10bf9da75d",
+    "sha256": "a69bfbb45711646b7e8015681a369639041d817f460f9e6032b522fb06f314ee",
+    "bytes": 294016,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

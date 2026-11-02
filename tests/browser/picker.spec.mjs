@@ -13,7 +13,7 @@ test('picker search, current selection and dismissal preserve map context', asyn
   await expect(dialog(page).getByRole('heading', { name: 'Neighborhoods' })).toBeFocused();
   await expect(trigger(page)).toHaveAttribute('aria-expanded', 'true');
   await expect(dialog(page).getByRole('option', { selected: true })).toContainText('Old Northeast');
-  await expect(dialog(page).getByRole('option')).toHaveCount(2);
+  await expect(dialog(page).getByRole('option')).toHaveCount(59);
   await search(page).fill('CrEsCeNt-Lake');
   await expect(dialog(page).getByRole('option')).toHaveCount(1);
   await expect(dialog(page).getByRole('option')).toContainText('Crescent Lake');
@@ -39,6 +39,8 @@ test('picker keyboard selection preserves diagnostics and clears the previous sa
   await expect(dialog(page).getByRole('option').first()).toBeFocused();
   await page.keyboard.press('End');
   await expect(dialog(page).getByRole('option').last()).toBeFocused();
+  await search(page).fill('Crescent Lake');
+  await page.keyboard.press('ArrowDown');
   await page.keyboard.press('Enter');
   await expect(page).toHaveTitle('This Way · Crescent Lake');
   const params = new URL(page.url()).searchParams;

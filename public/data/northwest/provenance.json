@@ -1,0 +1,39 @@
+{
+  "id": "northwest",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "7806cc4785186cbb6c0cc2321351e74c426772bf573b5a5a7277c5cce2cffa57",
+    "map-data.json": "c8a457ee50da6046c5f0bd36da604f9dd812c8b69722e25cd2492e35556143f1",
+    "buffer.mjs": "b59efae9fe908b4e8fa12b8c68aeb01ff0281b1b8300bea040000d2db252cbec"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-13 20 1026 1020",
+  "coreMaskGeometrySha256": "4f5fef4ac301738cac3e0456876f15656050622da0a7835b8caf787ebe66575a",
+  "nearbyMaskGeometrySha256": "8d13be11cb54bc98ad7ef4a4b8bd62c22a243d5ddda6ed01ceb493eba13079ea",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/northwest.webp",
+    "width": 3072,
+    "height": 3054,
+    "encoding": "lossless WebP",
+    "sourceSha256": "3de9a20bdbb26201b95a8a51d9df5e3ec108515bd5b6b94f24d716c1f76834e4",
+    "sha256": "1823108ad7388f30f8ff59753c632b29d5a01cba4701e6f3c36ccb0a9715161e",
+    "bytes": 408592,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

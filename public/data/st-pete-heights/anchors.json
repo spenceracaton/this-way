@@ -1,0 +1,58 @@
+[
+  {
+    "id": "st-pete-heights-road-1",
+    "osmType": "way",
+    "osmId": "11254667",
+    "sourceGeographic": {
+      "lng": -82.6633434,
+      "lat": 27.8029227
+    },
+    "expectedSourcePoint": [
+      821.65,
+      526.99
+    ],
+    "matchErrorPx": 0.000139
+  },
+  {
+    "id": "st-pete-heights-road-2",
+    "osmType": "way",
+    "osmId": "11244608",
+    "sourceGeographic": {
+      "lng": -82.666793,
+      "lat": 27.8029076
+    },
+    "expectedSourcePoint": [
+      520.49,
+      528.48
+    ],
+    "matchErrorPx": 0.000363
+  },
+  {
+    "id": "st-pete-heights-road-3",
+    "osmType": "way",
+    "osmId": "228077085",
+    "sourceGeographic": {
+      "lng": -82.6643925,
+      "lat": 27.8065059
+    },
+    "expectedSourcePoint": [
+      730.06,
+      173.34
+    ],
+    "matchErrorPx": 0.000493
+  },
+  {
+    "id": "st-pete-heights-road-4",
+    "osmType": "way",
+    "osmId": "1253395134",
+    "sourceGeographic": {
+      "lng": -82.6686297,
+      "lat": 27.799255
+    },
+    "expectedSourcePoint": [
+      360.14,
+      888.98
+    ],
+    "matchErrorPx": 0.00084
+  }
+]

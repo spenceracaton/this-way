@@ -1,0 +1,58 @@
+[
+  {
+    "id": "allendale-oaks-road-1",
+    "osmType": "way",
+    "osmId": "11248045",
+    "sourceGeographic": {
+      "lng": -82.6462845,
+      "lat": 27.8052042
+    },
+    "expectedSourcePoint": [
+      168.25,
+      1021.77
+    ],
+    "matchErrorPx": 0.000345
+  },
+  {
+    "id": "allendale-oaks-road-2",
+    "osmType": "way",
+    "osmId": "11237025",
+    "sourceGeographic": {
+      "lng": -82.6467965,
+      "lat": 27.8139183
+    },
+    "expectedSourcePoint": [
+      120.42,
+      101.43
+    ],
+    "matchErrorPx": 0.000377
+  },
+  {
+    "id": "allendale-oaks-road-3",
+    "osmType": "way",
+    "osmId": "11250007",
+    "sourceGeographic": {
+      "lng": -82.6386897,
+      "lat": 27.8121479
+    },
+    "expectedSourcePoint": [
+      877.73,
+      288.41
+    ],
+    "matchErrorPx": 0.000846
+  },
+  {
+    "id": "allendale-oaks-road-4",
+    "osmType": "way",
+    "osmId": "1149901985",
+    "sourceGeographic": {
+      "lng": -82.6440776,
+      "lat": 27.8093539
+    },
+    "expectedSourcePoint": [
+      374.41,
+      583.5
+    ],
+    "matchErrorPx": 0.001013
+  }
+]

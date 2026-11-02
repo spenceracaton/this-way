@@ -84,6 +84,7 @@ button:focus-visible,select:focus-visible,a:focus-visible,#map:focus-visible { o
 .references-heading h2 { margin:0; font-family:Georgia,serif; font-size:17px; font-weight:400; }
 .references-heading>span { padding-bottom:2px; color:#888c81; font-size:8px; }
 #reference-list { display:grid; gap:4px; }
+.map-only #reference-list{font-size:12px;line-height:1.4}
 #reference-list button { display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:6px 7px; border:1px solid transparent; border-radius:6px; background:transparent; color:#4b5e51; text-align:left; font-size:11px; }
 #reference-list button:hover { background:#eeeee4; }
 #reference-list button[aria-pressed=true] { border-color:#b8c5b0; background:#e9eee0; color:var(--ink); }
@@ -125,6 +126,9 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   .references { left:12px; right:12px; top:auto; bottom:12px; width:auto; max-height:none; padding:9px 10px; }
   .references-heading { margin:0 0 6px; }
   .references-heading h2 { font-size:14px; }
+  .map-only .leaflet-bottom.leaflet-right{bottom:max(6px,env(safe-area-inset-bottom))}
+  .map-only .references{bottom:calc(var(--map-credit-height,24px) + max(6px,env(safe-area-inset-bottom)) + 8px)}
+  .map-only #reference-list{font-size:12px;line-height:1.4}
   #reference-list { display:flex; gap:5px; overflow-x:auto; scrollbar-width:none; }
   #reference-list::-webkit-scrollbar { display:none; }
   #reference-list button { flex:0 0 auto; width:auto; max-width:190px; padding:5px 8px; background:rgba(247,241,226,.72); }

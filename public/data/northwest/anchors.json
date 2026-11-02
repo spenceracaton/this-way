@@ -1,0 +1,58 @@
+[
+  {
+    "id": "northwest-road-1",
+    "osmType": "way",
+    "osmId": "11243438",
+    "sourceGeographic": {
+      "lng": -82.7199873,
+      "lat": 27.788835
+    },
+    "expectedSourcePoint": [
+      516.1,
+      850.34
+    ],
+    "matchErrorPx": 0.000242
+  },
+  {
+    "id": "northwest-road-2",
+    "osmType": "way",
+    "osmId": "11236999",
+    "sourceGeographic": {
+      "lng": -82.7296209,
+      "lat": 27.8027566
+    },
+    "expectedSourcePoint": [
+      65.35,
+      114.0
+    ],
+    "matchErrorPx": 0.000247
+  },
+  {
+    "id": "northwest-road-3",
+    "osmType": "way",
+    "osmId": "1353638146",
+    "sourceGeographic": {
+      "lng": -82.7277833,
+      "lat": 27.7907525
+    },
+    "expectedSourcePoint": [
+      151.33,
+      748.92
+    ],
+    "matchErrorPx": 0.000381
+  },
+  {
+    "id": "northwest-road-4",
+    "osmType": "way",
+    "osmId": "11249325",
+    "sourceGeographic": {
+      "lng": -82.721733,
+      "lat": 27.800962
+    },
+    "expectedSourcePoint": [
+      434.42,
+      208.92
+    ],
+    "matchErrorPx": 0.000406
+  }
+]

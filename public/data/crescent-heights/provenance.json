@@ -1,0 +1,39 @@
+{
+  "id": "crescent-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "12b59938949cf44cdac3bf55d86f3c5514b115acda6d8b5c746ade02b7757a16",
+    "map-data.json": "888d4c135d5041e96810dc719877b68d467fcffb22bc336acc6d062904b63a25",
+    "buffer.mjs": "d21f71da10354336715f62f9ae654b36114a74d0452203f584ed24aab738e0e6"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-106 -80 1212 1220",
+  "coreMaskGeometrySha256": "1a6cb0dc72faa3c9956e6081752d02eff6bbdbfba484ca7a779b2264e1ecf9ff",
+  "nearbyMaskGeometrySha256": "831457bf76e9f17cff835dcfe5e9b777e0ce0cdd8a59ccabcdf1959f560ef6dd",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/crescent-heights.webp",
+    "width": 3052,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "1099bd62933f90e87b73934eb92287291b9a090a4caac6bf1700bc98b23e0e4a",
+    "sha256": "71a041ae0bd6043abc379b255207f5a9024be089d59cdfce352c646f3f969169",
+    "bytes": 262044,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}
