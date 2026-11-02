@@ -2,8 +2,8 @@ import { mountGallery } from './gallery.mjs';
 
 // Sample displays are attached only to the Old Northeast study.
 const samples = {
-  a: { title: 'Pumpkin Lantern Walk', description: 'Lanterns light the garden path.', tags: ['Family friendly'], photos: ['lantern.svg', 'illustration-haunt.webp', 'illustration-treat.webp'] },
-  c: { title: 'The Little House of Ghosts at the End of the Pumpkin Trail', tags: ['Spooky'], photos: ['lantern.svg'] }
+  a: { title: 'Pumpkin Lantern Walk', description: 'Illustrative display details · not a live Christmas listing.', tags: ['Family friendly'], photos: ['lantern.svg', 'illustration-haunt.webp', 'illustration-treat.webp'] },
+  c: { title: 'The Little House of Ghosts at the End of the Pumpkin Trail', description: 'Illustrative display details · not a live Christmas listing.', tags: ['Spooky'], photos: ['lantern.svg'] }
 };
 
 export function createDetail({ close, neighborhood }) {
@@ -19,7 +19,7 @@ export function createDetail({ close, neighborhood }) {
     if (event.key === 'Escape') dismiss();
   });
   const heart = byId('detail-heart');
-  const heartKey = () => 'sample-heart:' + neighborhood + ':' + selected.id;
+  const heartKey = () => 'sample-heart:' + neighborhood + ':' + (selected.sourceUrl || selected.id);
   function setHeart(liked) {
     heart.setAttribute('aria-pressed', String(liked));
     heart.querySelector('.heart-count').textContent = liked ? '1' : '0';
