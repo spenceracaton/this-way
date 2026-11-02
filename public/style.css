@@ -114,7 +114,7 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   .future-action { min-height:40px; padding:0 11px; font-size:10px; }
   .future-action small { display:none; }
   .map-shell,.map-panel { min-height:calc(100svh - 64px); }
-  .canvas { height:calc(100svh - 64px); min-height:530px; }
+  .canvas { height:calc(100svh - 64px); min-height:0; }
   .map-toolbar { min-height:60px; padding:8px 15px; gap:9px; }
   #neighborhood-select { max-width:220px; font-size:17px; }
   .location-mark { font-size:19px; }
@@ -137,4 +137,10 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   .canvas:has(.house-pane:not([hidden])) .leaflet-bottom.leaflet-right { bottom:calc(var(--house-height, 0px) + 8px); }
   #artwork-diagnostic[hidden] ~ .canvas:has(.house-pane:not([hidden])) .leaflet-control-zoom { margin:67px 128px 0 0!important; }
   footer { padding:0 15px; font-size:8px; }
+}
+@media(max-width:720px) and (min-width:560px) and (max-height:480px){
+ .canvas:has(.house-pane:not([hidden])) .leaflet-top.leaflet-right{left:0;right:auto}
+ #artwork-diagnostic[hidden] ~ .canvas:has(.house-pane:not([hidden])) .leaflet-control-zoom{margin:67px 0 0 12px!important}
+ .canvas:has(.house-pane:not([hidden])) .reset-button{left:68px;right:auto}
+ .canvas:has(.house-pane:not([hidden])) .leaflet-bottom.leaflet-right{bottom:8px;left:0;right:auto;max-width:50%}
 }

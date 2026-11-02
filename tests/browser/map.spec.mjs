@@ -318,8 +318,8 @@ test('photo-first details support browsing, enlargement and address fallback', a
   await expect(sheet.getByRole('heading', { name: /Pumpkin Trail/ })).toBeVisible();
   await expect(sheet.getByRole('button', { name: 'Next photo' })).toHaveCount(0);
   const longAddress = await address.boundingBox();
-  expect(longAddress.height).toBeGreaterThanOrEqual(24);
-  expect(longAddress.height).toBeLessThanOrEqual(30);
+  expect(longAddress.height).toBeGreaterThanOrEqual(44);
+  expect(longAddress.height).toBeLessThanOrEqual(48);
   const note = await sheet.locator('#selected-note').boundingBox();
   const secondaryGap = note.y - (longAddress.y + longAddress.height);
   expect(secondaryGap).toBeGreaterThanOrEqual(6);
@@ -428,4 +428,103 @@ test('mobile detail sheets keep media, controls and attribution clear', async ({
   expect(heading.y - card.y).toBeGreaterThanOrEqual(18);
   expect(footer.y - (note.y + note.height)).toBeGreaterThanOrEqual(18);
   await clearOfSheet();
+});
+
+test('mobile selection keeps its marker clear of the sheet without locking map panning', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phones reserve map space above the bottom sheet.');
+  const clearMarker = async (id) => {
+    await expect.poll(async () => page.evaluate(id => {
+      const marker = document.querySelector(`.map-pin[data-pin="${id}"]`);
+      if (!marker) return false;
+      const box = marker.getBoundingClientRect();
+      const sheet = document.querySelector('#selection').getBoundingClientRect();
+      const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+      return box.bottom <= sheet.top - 8 && hit?.closest('.map-pin') === marker;
+    }, id)).toBe(true);
+  };
+  for (const sample of ['a', 'c', 'd']) {
+    await page.goto(`/?sample=${sample}`);
+    await expect(page.locator('#selection')).toHaveAttribute('data-selected', sample);
+    await page.evaluate(() => document.fonts.ready);
+    await clearMarker(sample);
+  }
+  await page.goto('/?sample=a');
+  await clearMarker('a');
+  await page.setViewportSize({ width: 390, height: 760 });
+  await clearMarker('a');
+  await page.setViewportSize({ width: 375, height: 568 });
+  await clearMarker('a');
+  const shortCard = await page.locator('#selection').boundingBox();
+  expect(shortCard.y + shortCard.height).toBeLessThanOrEqual(568);
+  await page.setViewportSize({ width: 390, height: 664 });
+  await clearMarker('a');
+  const before = await pin(page, 'A').boundingBox();
+  await page.locator('#map').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect.poll(async () => (await pin(page, 'A').boundingBox()).x).not.toBe(before.x);
+  await page.waitForTimeout(300);
+  const after = await pin(page, 'A').boundingBox();
+  // A settled user pan must not trigger the selection-reveal behavior again.
+  await page.waitForTimeout(250);
+  expect(Math.abs((await pin(page, 'A').boundingBox()).x - after.x)).toBeLessThan(2);
+  await page.locator('#detail-close').click();
+  await expect(page.locator('#selection')).toBeHidden();
+  await page.goto('/?neighborhood=crescent-lake&sample=c');
+  await clearMarker('c');
+  await page.getByRole('button', { name: 'Reset view' }).click();
+  await expect(page.locator('#selection')).toBeHidden();
+  await expect(page.locator('.map-pin.is-selected')).toHaveCount(0);
+});
+
+test('short-phone details keep actions visible and reveal all scrollable content', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Short phones constrain the bottom sheet.');
+  await page.setViewportSize({ width: 375, height: 568 });
+  for (const sample of ['a', 'c', 'd']) {
+    await page.goto(`/?sample=${sample}`);
+    const sheet = page.locator('#selection');
+    await expect(sheet).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const share = await sheet.locator('#detail-share').boundingBox();
+    expect(share.y + share.height).toBeLessThanOrEqual(568);
+    const address = await sheet.getByRole('link', { name: /Directions to/ }).boundingBox();
+    expect(address.height).toBeGreaterThanOrEqual(44);
+    const body = sheet.locator('.house-body');
+    const overflow = await body.evaluate(el => el.scrollHeight > el.clientHeight + 2);
+    await expect(sheet).toHaveAttribute('data-more-below', String(overflow));
+    // Exercise scrolling rather than relying on DOM presence below a clipped body.
+    await body.evaluate(el => { el.scrollTop = el.scrollHeight; });
+    await expect(sheet).toHaveAttribute('data-more-below', 'false');
+    const last = await sheet.locator(sample === 'd' ? '#selected-note' : '#detail-tags').boundingBox();
+    const viewport = await body.boundingBox();
+    expect(last.y).toBeGreaterThanOrEqual(viewport.y);
+    expect(viewport.y + viewport.height - last.y - last.height).toBeGreaterThanOrEqual(12);
+  }
+});
+
+
+test('mobile rotation keeps photo and address details clear of map controls', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phones use the responsive detail sheet.');
+  for (const sample of ['a', 'c', 'd']) {
+    await page.setViewportSize({ width: 390, height: 664 });
+    await page.goto(`/?sample=${sample}`);
+    await expect(page.locator('#selection')).toHaveAttribute('data-selected', sample);
+    await page.setViewportSize({ width: 664, height: 390 });
+    await expect.poll(async () => page.evaluate(id => {
+      const marker = document.querySelector(`.map-pin[data-pin="${id}"]`);
+      if (!marker) return false;
+      const box = marker.getBoundingClientRect();
+      return document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)?.closest('.map-pin') === marker;
+    }, sample)).toBe(true);
+    const sheet = await page.locator('#selection').boundingBox();
+    const zoom = await page.locator('.leaflet-control-zoom').boundingBox();
+    const footer = await page.locator('.house-actions').boundingBox();
+    expect(zoom.x + zoom.width).toBeLessThan(sheet.x);
+    expect(footer.y + footer.height).toBeLessThanOrEqual(390);
+    await page.setViewportSize({ width: 390, height: 664 });
+    await expect.poll(async () => page.evaluate(id => {
+      const marker = document.querySelector(`.map-pin[data-pin="${id}"]`);
+      const box = marker.getBoundingClientRect();
+      return document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)?.closest('.map-pin') === marker;
+    }, sample)).toBe(true);
+  }
 });

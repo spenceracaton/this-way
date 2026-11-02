@@ -80,9 +80,30 @@ async function start() {
   renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins: samplePins, artwork,
     onSelect: selectionChanged,
+    selectionInsets() {
+      const sheet = $('#selection');
+      if (!matchMedia('(max-width:720px)').matches || sheet.hidden) return;
+      const map = $('#map').getBoundingClientRect();
+      const card = sheet.getBoundingClientRect();
+      const toolbar = $('.map-toolbar').getBoundingClientRect();
+      const zoom = $('.leaflet-control-zoom').getBoundingClientRect();
+      // Wide, short screens use a side sheet to preserve useful map space.
+      if (card.left > map.left + 1) return { left: 32,
+        top: Math.max(toolbar.bottom, zoom.bottom) - map.top + 32,
+        right: map.right - card.left + 32, bottom: 32 };
+      // Leave a full marker and breathing room above the card, away from controls.
+      return { left: 32, top: toolbar.bottom - map.top + 32,
+        right: map.right - zoom.left + 32, bottom: map.bottom - card.top + 32 };
+    },
     onAnchorChange: point => renderDetail.setAnchor(point),
     onViewChange({ zoom }) { $('#camera-status').textContent = `View ${zoom.toFixed(2)}`; }
   });
+  // A card can grow after fonts/images load or after viewport rotation. Only
+  // layout changes reveal it again; ordinary user pan/zoom remains untouched.
+  const sheetResize = new ResizeObserver(() => view.revealSelection());
+  sheetResize.observe($('#selection'));
+  sheetResize.observe($('#map'));
+  matchMedia('(max-width:720px)').addEventListener('change', () => view.revealSelection());
   if (samplePins.some(pin => pin.id === query.get('sample'))) view.select(query.get('sample'));
   $('#reset').addEventListener('click', () => view.reset());
   $('#reset').disabled = false;

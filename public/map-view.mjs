@@ -1,7 +1,7 @@
 import { project, mapPoint, mapBounds } from './coordinates.mjs';
 
 // The complete renderer boundary. No data fetching, forms, storage, or detail-card DOM.
-export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, onViewChange, onAnchorChange }) {
+export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets }) {
   const bounds = L.latLngBounds(mapBounds(area.bounds));
   const map = L.map(element, {
     crs: L.CRS.Simple, minZoom: -4, maxZoom: 2,
@@ -21,6 +21,7 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
 
   let selected = null;
   const markers = new Map();
+  let sheetBounds = false;
   function select(id) {
     selected = id;
     for (const [key, marker] of markers) {
@@ -31,6 +32,25 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
     }
     onSelect(pins.find(pin => pin.id === id) || null);
     reportAnchor();
+    revealSelection();
+  }
+  function revealSelection() {
+    const marker = markers.get(selected);
+    const insets = marker && selectionInsets?.();
+    const needsSheetBounds = Boolean(insets);
+    if (needsSheetBounds !== sheetBounds) {
+      sheetBounds = needsSheetBounds;
+      // At overview zoom the original bounds prevent a marker from moving into
+      // the small map area above a photo sheet. Keep that camera space available
+      // only while a mobile detail sheet is open.
+      map.setMaxBounds(bounds.pad(sheetBounds ? 1 : 0.3));
+    }
+    if (!marker) return;
+    map.panInside(marker.getLatLng(), {
+      paddingTopLeft: [insets?.left ?? 40, insets?.top ?? 40],
+      paddingBottomRight: [insets?.right ?? 40, insets?.bottom ?? 40],
+      animate: false
+    });
   }
   for (const pin of pins) {
     const icon = L.divIcon({ className: 'reference-marker', iconSize: [44, 44], iconAnchor: [22, 22],
@@ -70,11 +90,8 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
   reset();
   return {
     reset,
-    select(id) {
-      select(id);
-      const marker = markers.get(id);
-      if (marker) map.panInside(marker.getLatLng(), { padding: [40, 40], animate: false });
-    },
+    select,
+    revealSelection,
     destroy() { resize.disconnect(); map.remove(); }
   };
 }

@@ -45,9 +45,15 @@ export function createDetail({ close, neighborhood }) {
     }
   };
   const canvas = pane.parentElement;
+  const body = pane.querySelector('.house-body');
+  function scrollState() {
+    pane.dataset.moreBelow = String(body.scrollHeight - body.clientHeight - body.scrollTop > 2);
+  }
+  body.addEventListener('scroll', scrollState, { passive: true });
   const desktop = matchMedia('(min-width:721px)');
   let anchor;
   function position() {
+    scrollState();
     canvas.style.setProperty('--house-height', pane.hidden ? '0px' : pane.offsetHeight + 'px');
     if (!desktop.matches || pane.hidden || !anchor) return;
     const inset = 8;
@@ -64,6 +70,8 @@ export function createDetail({ close, neighborhood }) {
   const observer = new ResizeObserver(position);
   observer.observe(pane);
   observer.observe(canvas);
+  observer.observe(pane.querySelector('.house-copy'));
+  observer.observe(byId('display-photos'));
   desktop.addEventListener('change', position);
   function select(pin, opener) {
     gallery?.destroy();

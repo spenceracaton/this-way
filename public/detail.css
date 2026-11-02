@@ -51,12 +51,11 @@
 .house-copy h2{font:600 24px/1.14 var(--font-display);margin:0}
 .house-copy a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-underline-offset:3px}
 /* Wrapped address headings keep the directions arrow beside the last word. */
-/* Extend the heading tap area without adding space before the note. */
-.house-copy h2 a{display:inline-block;vertical-align:top;position:relative;min-height:0}
-.house-copy h2 a::before{content:'';position:absolute;inset:-8px 0 -9px}
-.house-copy a::after{content:'↗︎';font:14px sans-serif;margin-left:5px}
-/* Secondary address links size to their text so the description follows closely. */
-#detail-address a{display:inline-block;vertical-align:top;min-height:0;padding-top:4px;font-size:14px;color:var(--muted)}
+/* Keep directions targets separate from the note and at least 44px tall. */
+.house-copy h2 a{display:inline-block;vertical-align:top;position:relative;min-height:44px;padding:8px 0}
+.house-copy a::after{content:'';display:inline-block;width:9px;height:9px;margin-left:7px;background:currentColor;clip-path:polygon(0 0,100% 0,100% 100%,80% 100%,80% 34%,14% 100%,0 86%,66% 20%,0 20%)}
+/* Secondary addresses retain a quiet type size and a full touch target. */
+#detail-address a{min-height:44px;padding:8px 0;font-size:14px;color:var(--muted)}
 .house-copy p{margin:0}
 .house-copy p:empty{display:none}
 #selected-note:not(:empty){margin-top:8px}
@@ -66,9 +65,11 @@
 .house-pane #detail-close{position:absolute;z-index:4;right:4px;top:4px;width:44px;height:44px;padding:0;border:0;background:transparent;color:var(--ink);font:25px/1 var(--font-body)}
 .house-pane #detail-close span{display:inline-grid;place-items:center;width:27px;height:27px;background:var(--surface-card);border-radius:5px}
 .house-pane #detail-close:is(:hover,:focus-visible) span{background:var(--action-secondary-hover);box-shadow:inset 0 0 0 1px var(--border-card)}
-.house-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px;border-top:1px solid var(--line);padding:0 10px}
+.house-actions{position:relative;flex-shrink:0;display:flex;align-items:center;justify-content:flex-end;gap:4px;border-top:1px solid var(--line);padding:0 10px}
+.house-pane[data-more-below=true] .house-actions::before{content:'';position:absolute;left:0;right:0;top:-16px;height:16px;background:linear-gradient(transparent,#39283e18);pointer-events:none}
 .house-actions button{min-height:44px;min-width:44px;border:0;background:transparent;color:inherit;font:500 13px var(--font-body)}
-.house-actions button:disabled{color:var(--muted);opacity:.64}
+.house-actions button:disabled{color:var(--muted);opacity:.64;font-size:12px}
+.house-actions #detail-share{font-weight:650;padding:0 12px}
 .house-actions button:enabled:hover:not(#detail-heart){text-decoration:underline}
 .house-actions #detail-heart{display:inline-flex;align-items:center;justify-content:flex-start;gap:7px;min-width:56px;margin-inline-end:auto;padding:5px 9px;font-size:12px}
 #detail-heart .paper-heart{display:block;flex:0 0 auto;overflow:visible;transform:rotate(-5deg)}
@@ -78,10 +79,11 @@
 #detail-heart[aria-pressed="true"]:hover .heart-paper{fill:#cb899d}
 .house-pane #detail-heart:focus-visible{outline:2px dashed #9e694c;outline-offset:2px;border-radius:5px}
 .house-pane :focus-visible{outline:3px solid var(--focus-color);outline-offset:-3px}
-#display-photos{margin:7px 7px 0}
+#display-photos{margin:12px 12px 0}
 #display-photos .photo-frame{height:min(242px,25svh);background:var(--surface-card);border:1px solid var(--ink)}
 #display-photos .photo-layer img[style]{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;box-shadow:none}
-#display-photos .photo-controls{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:#39283ead;border-radius:16px;height:26px}
+#display-photos .photo-controls{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:transparent;height:44px}
+#display-photos .photo-controls::before{content:'';position:absolute;z-index:-1;inset:9px 0;border-radius:16px;background:#39283ead;pointer-events:none}
 /* Keep the 44px button while drawing a smaller disc behind its chevron. */
 #display-photos .photo-arrow{
   border:0;
@@ -95,12 +97,19 @@
 .photo-lightbox .photo-frame{background:var(--photo-viewer)}
 @media(max-width:720px){
  .canvas:has(.house-pane:not([hidden])) .references{visibility:hidden}
- .house-pane{z-index:1100;top:auto;left:0;bottom:0;width:100%;border:1px solid var(--ink);border-bottom:0;border-radius:16px 16px 0 0;box-shadow:none}
+ .house-pane{z-index:1100;top:auto;left:0;bottom:0;width:100%;max-height:min(70%,calc(100% - 160px));border:1px solid var(--ink);border-bottom:0;border-radius:16px 16px 0 0;box-shadow:none}
  .house-copy{padding:20px 20px 22px}
+ .house-body{scroll-padding:16px}
  .house-pane:has(#display-photos:not([hidden])) .house-copy{padding-top:12px}
- #display-photos{width:min(280px,calc(100% - 40px));margin:12px auto 0}
+ #display-photos{width:min(260px,calc(100% - 40px),36svh);margin:12px auto 0}
  #display-photos .photo-frame{height:auto;aspect-ratio:3/2}
  #display-photos .photo-controls{height:44px}
  #display-photos .photo-controls button{width:44px;height:44px}
  .canvas{container-type:size}
+}
+@media(max-width:720px) and (min-width:560px) and (max-height:480px){
+ .house-pane{top:64px;right:0;left:auto;bottom:auto;width:48%;max-height:calc(100% - 64px);border-radius:12px 0 0 0}
+ #display-photos{width:min(200px,calc(100% - 40px),36svh)}
+ .house-copy{padding:16px}
+ .house-copy h2{font-size:21px}
 }
