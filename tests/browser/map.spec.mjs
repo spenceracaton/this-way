@@ -182,11 +182,12 @@ test('the ordinary URL uses raster artwork without exposing diagnostic controls'
 });
 
 test('Crescent Lake uses its own raster, coordinates and selectable reference points', async ({ page }, testInfo) => {
-  await page.getByRole('combobox', { name: 'Explore a neighborhood' }).selectOption('crescent-lake');
+  await page.getByRole('button', { name: 'Explore a neighborhood' }).click();
+  await page.getByRole('option', { name: /Crescent Lake/ }).click();
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
   await expect(page).toHaveTitle('This Way · Crescent Lake');
   await expect(page.getByRole('heading', { name: 'Crescent Lake', exact: true })).toBeVisible();
-  await expect(page.getByRole('combobox', { name: 'Explore a neighborhood' })).toHaveValue('crescent-lake');
+  await expect(page.getByRole('button', { name: 'Explore a neighborhood' })).toContainText('Crescent Lake');
   expect(await page.locator('img#neighborhood-artwork').evaluate(image => [image.naturalWidth, image.naturalHeight]))
     .toEqual(crescentLake.raster);
   await checkAlignment(page, crescentLake);
@@ -199,7 +200,8 @@ test('Crescent Lake uses its own raster, coordinates and selectable reference po
   await page.getByRole('button', { name: 'Reset view' }).click();
   await expect(page.locator('#selection')).toHaveAttribute('data-selected', '');
   await testInfo.attach('crescent-lake-map', { body: await page.locator('.map-panel').screenshot(), contentType: 'image/png' });
-  await page.getByRole('combobox', { name: 'Explore a neighborhood' }).selectOption('old-northeast');
+  await page.getByRole('button', { name: 'Explore a neighborhood' }).click();
+  await page.getByRole('option', { name: /Old Northeast/ }).click();
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
   await expect(page.getByRole('heading', { name: 'Old Northeast', exact: true })).toBeVisible();
   await checkAlignment(page);

@@ -1,3 +1,4 @@
+import { createNeighborhoodPicker } from './neighborhood-picker.mjs';
 import { createDetail } from './detail.mjs';
 import { createMap } from './map-view.mjs';
 import { neighborhoodFor } from './neighborhoods.mjs';
@@ -17,15 +18,9 @@ async function start() {
   const samplePins = neighborhood.pins;
   document.title = `This Way · ${neighborhood.name}`;
   $('#map-title').textContent = neighborhood.name;
-  $('#neighborhood-select').value = neighborhood.id;
+  createNeighborhoodPicker(neighborhood);
   $('#sample-count').textContent = `${samplePins.length} sample addresses`;
   $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} sample address map. Arrow keys pan, plus and minus zoom, Home resets.`);
-  $('#neighborhood-select').addEventListener('change', event => {
-    const params = new URLSearchParams(location.search);
-    params.set('neighborhood', event.target.value);
-    params.delete('sample');
-    location.search = params;
-  });
   const diagnostic = query.get('diagnostic') === '1';
   const requestedMode = query.get('artwork');
   const artworkMode = diagnostic && ['full', 'raster', 'simple'].includes(requestedMode) ? requestedMode : 'raster';
