@@ -55,7 +55,8 @@
 .house-copy h2 a{display:inline-block;vertical-align:top;position:relative;min-height:0}
 .house-copy h2 a::before{content:'';position:absolute;inset:-8px 0 -9px}
 .house-copy a::after{content:'↗';font:14px sans-serif;margin-left:5px}
-#detail-address a{align-items:baseline;padding-top:4px;font-size:14px;color:var(--muted)}
+/* Secondary address links size to their text so the description follows closely. */
+#detail-address a{display:inline-block;vertical-align:top;min-height:0;padding-top:4px;font-size:14px;color:var(--muted)}
 .house-copy p{margin:0}
 .house-copy p:empty{display:none}
 #detail-address:empty + #selected-note:not(:empty){margin-top:8px}
