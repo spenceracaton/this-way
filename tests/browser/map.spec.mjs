@@ -321,7 +321,9 @@ test('photo-first details support browsing, enlargement and address fallback', a
   expect(longAddress.height).toBeGreaterThanOrEqual(24);
   expect(longAddress.height).toBeLessThanOrEqual(30);
   const note = await sheet.locator('#selected-note').boundingBox();
-  expect(note.y - (longAddress.y + longAddress.height)).toBeLessThanOrEqual(4);
+  const secondaryGap = note.y - (longAddress.y + longAddress.height);
+  expect(secondaryGap).toBeGreaterThanOrEqual(6);
+  expect(secondaryGap).toBeLessThanOrEqual(10);
   const body = await sheet.locator('.house-body').boundingBox();
   expect(longAddress.y + longAddress.height).toBeLessThanOrEqual(body.y + body.height + 1);
   await sheet.getByRole('button', { name: 'Close display details' }).click();
