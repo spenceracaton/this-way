@@ -83,7 +83,15 @@ This is a promising fit for one map. It is not a claim that Leaflet will require
 | `scripts/serve.mjs` | Static-file development server only |
 | `tests/map.test.mjs` | Source-coordinate, mask and integrity checks |
 
-No application backend, accounts, database, uploads, simulated storage, submission flow, events, hearts, or rankings were imported. The map receives its data and reports selection; it does not fetch records or manage a detail-card application.
+The runtime remains a static prototype without application accounts, a database, uploads, or a live submission service. The map receives local sample data and reports selection.
+
+## Core component previews
+
+The header's **Add a display** button opens a form with address validation, optional theme and description, local photos, and curated seasonal tags. Selected display cards also offer **Add photos** and **Report**. **Feedback** is available in the footer. Each form produces an editable preview; none sends data or adds a live listing. Photos are decoded locally, limited to three JPEG/PNG/WebP files of up to 10 MB each, and are not uploaded. Form entries are kept only in the current page's memory.
+
+The footer's **Review demo** opens `review.html`, a workspace with fictional records, status filters, approve/reject decisions, required rejection reasons, and undo. Its in-memory repository is separate from the page controller so a future authenticated service can replace it. Demo decisions reset on reload and do not alter the map. This page is not an authenticated moderation service and must not be given private records without adding access control and a real persistence layer.
+
+The components live in separate ES modules (`submission.mjs`, `community-forms.mjs`, `photo-contribution.mjs`, and `review.mjs`/`review-data.mjs`) with scoped styles. `dialog.mjs` shares native-dialog dismissal, focus return, scroll locking, and overflow cues. UI references came from the Fright This Way QA repository; no FTW submission endpoints or private production data were copied.
 
 ## Reused artwork and seasonal separation
 
@@ -106,7 +114,7 @@ evidence is recorded. PR checks now validate and browser-test the packaged asset
 
 Review this map approach and check it on a physical iPhone. Source is now in the private `spenceracaton/this-way` GitHub repository. Then connect a user-owned Cloudflare account, deploy the same static files, verify asset paths, and demonstrate application rollback. Do this before adding feature layers. There is no new Sites project, source synchronization, publishing controller, or hosting migration in this package.
 
-The product decisions about free-text description, optional real theme, and curated seasonal tags remain future application work. They do not require changes to this map renderer.
+The submission preview now includes free-text description, optional theme, and curated seasonal tags. Real address lookup, submission storage, authentication, moderation, and publication remain future application work.
 
 ## Third-party material
 
