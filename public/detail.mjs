@@ -44,7 +44,27 @@ export function createDetail({ close, neighborhood }) {
       input.select();
     }
   };
-  return function select(pin, opener) {
+  const canvas = pane.parentElement;
+  const desktop = matchMedia('(min-width:721px)');
+  let anchor;
+  function position() {
+    if (!desktop.matches || pane.hidden || !anchor) return;
+    const inset = 8;
+    const gap = 28;
+    const width = pane.offsetWidth;
+    const height = pane.offsetHeight;
+    const rightRoom = canvas.clientWidth - anchor.x;
+    const beside = rightRoom >= width + gap + inset || rightRoom >= anchor.x
+      ? anchor.x + gap : anchor.x - gap - width;
+    const clamp = (value, max) => Math.max(inset, Math.min(value, max - inset));
+    pane.style.setProperty('--house-left', clamp(beside, canvas.clientWidth - width) + 'px');
+    pane.style.setProperty('--house-top', clamp(anchor.y - height / 2, canvas.clientHeight - height) + 'px');
+  }
+  const observer = new ResizeObserver(position);
+  observer.observe(pane);
+  observer.observe(canvas);
+  desktop.addEventListener('change', position);
+  function select(pin, opener) {
     gallery?.destroy();
     gallery = null;
     selected = pin;
@@ -84,5 +104,6 @@ export function createDetail({ close, neighborhood }) {
     let liked = false;
     try { liked = localStorage.getItem(heartKey()) === 'true'; } catch {}
     setHeart(liked);
-  };
+   }
+  return {select, setAnchor(point) { anchor = point; position(); }};
 }

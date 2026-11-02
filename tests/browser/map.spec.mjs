@@ -97,10 +97,8 @@ test('pointer and keyboard selection keep map, list and details synchronized', a
   await expect(a).toHaveAttribute('aria-pressed', 'true');
   await expect(listA).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#selected-label')).toHaveText('A');
-  if (isMobile) {
-    await page.getByRole('button', { name: 'Close display details' }).click();
-    await b.tap();
-  } else await b.click();
+  await page.getByRole('button', { name: 'Close display details' }).click();
+  if (isMobile) await b.tap(); else await b.click();
   await expect(b).toHaveAttribute('aria-pressed', 'true');
   await expect(a).toHaveAttribute('aria-pressed', 'false');
   await expect(listA).toHaveAttribute('aria-pressed', 'false');
@@ -326,4 +324,28 @@ test('photo-first details support browsing, enlargement and address fallback', a
   await page.locator('#reference-list button').nth(1).click();
   await expect(sheet.getByRole('heading', { name: /North Shore Drive/ })).toBeVisible();
   await expect(sheet.locator('#display-photos')).toBeHidden();
+});
+
+test('desktop detail pane follows the selected location and fits inside the map', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Phones use the bottom sheet.');
+  await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await page.locator('#reference-list button').first().click();
+  const marker = pin(page, 'A');
+  const sheet = page.locator('#selection');
+  async function offset() {
+    const m = await marker.boundingBox();
+    const s = await sheet.boundingBox();
+    const x = m.x + m.width / 2;
+    return Math.min(Math.abs(s.x - x), Math.abs(s.x + s.width - x));
+  }
+  await expect.poll(offset).toBeCloseTo(28, 0);
+  const before = await marker.boundingBox();
+  await page.locator('#map').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect.poll(async () => Math.abs((await marker.boundingBox()).x - before.x)).toBeGreaterThan(1);
+  await expect.poll(offset).toBeCloseTo(28, 0);
+  const bounds = await page.locator('.canvas').boundingBox();
+  const card = await sheet.boundingBox();
+  expect(card.x).toBeGreaterThanOrEqual(bounds.x);
+  expect(card.y + card.height).toBeLessThanOrEqual(bounds.y + bounds.height);
 });
