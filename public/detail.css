@@ -50,10 +50,13 @@
 .house-copy{padding:12px 16px;overflow-wrap:anywhere}
 .house-copy h2{font:600 24px/1.14 var(--font-display);margin:0}
 .house-copy a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-underline-offset:3px}
+/* Wrapped address headings keep the directions arrow beside the last word. */
+.house-copy h2 a{display:inline-block;vertical-align:top}
 .house-copy a::after{content:'↗';font:14px sans-serif;margin-left:5px}
 #detail-address a{align-items:baseline;padding-top:4px;font-size:14px;color:var(--muted)}
 .house-copy p{margin:0}
 .house-copy p:empty{display:none}
+#detail-address:empty + #selected-note:not(:empty){margin-top:8px}
 .house-copy ul{display:flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:8px 0 0}
 .house-copy li{background:#e9dfce;border-radius:4px;padding:3px 7px;font-size:12px}
 .house-pane:has(#display-photos[hidden]) h2{padding-right:44px}
@@ -63,8 +66,14 @@
 .house-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px;border-top:1px solid var(--line);padding:0 10px}
 .house-actions button{min-height:44px;min-width:44px;border:0;background:transparent;color:inherit;font:500 13px var(--font-body)}
 .house-actions button:disabled{color:var(--muted);opacity:.64}
-.house-actions button:enabled:hover{text-decoration:underline}
-.house-actions #detail-heart{margin-inline-end:auto;font-size:23px}
+.house-actions button:enabled:hover:not(#detail-heart){text-decoration:underline}
+.house-actions #detail-heart{display:inline-flex;align-items:center;justify-content:flex-start;gap:7px;min-width:56px;margin-inline-end:auto;padding:5px 9px;font-size:12px}
+#detail-heart .paper-heart{display:block;flex:0 0 auto;overflow:visible;transform:rotate(-5deg)}
+#detail-heart .heart-paper{transition:fill .15s ease}
+#detail-heart:hover .heart-paper{fill:#f0d6df}
+#detail-heart[aria-pressed="true"] .heart-paper{fill:#d69caa}
+#detail-heart[aria-pressed="true"]:hover .heart-paper{fill:#cb899d}
+.house-pane #detail-heart:focus-visible{outline:2px dashed #9e694c;outline-offset:2px;border-radius:5px}
 .house-pane :focus-visible{outline:3px solid var(--focus-color);outline-offset:-3px}
 #display-photos{margin:7px 7px 0}
 #display-photos .photo-frame{height:min(242px,25svh);background:var(--surface-card);border:1px solid var(--ink)}
