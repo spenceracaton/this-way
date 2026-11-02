@@ -349,3 +349,28 @@ test('desktop detail pane follows the selected location and fits inside the map'
   expect(card.x).toBeGreaterThanOrEqual(bounds.x);
   expect(card.y + card.height).toBeLessThanOrEqual(bounds.y + bounds.height);
 });
+
+
+test('address-only details keep the heading clear and heart state survives reload', async ({ page }, testInfo) => {
+  await page.locator('#reference-list button').last().click();
+  const sheet = page.locator('#selection');
+  const heading = sheet.locator('#detail-title');
+  const note = sheet.locator('#selected-note');
+  const titleBox = await heading.boundingBox();
+  const noteBox = await note.boundingBox();
+  expect(noteBox.y - (titleBox.y + titleBox.height)).toBeGreaterThanOrEqual(6);
+  const heart = sheet.locator('#detail-heart');
+  await expect(heart.locator('svg.paper-heart')).toBeVisible();
+  await expect(heart.locator('.heart-count')).toHaveText('0');
+  const target = await heart.boundingBox();
+  expect(target.width).toBeGreaterThanOrEqual(44);
+  expect(target.height).toBeGreaterThanOrEqual(44);
+  await heart.click();
+  await expect(heart).toHaveAttribute('aria-pressed', 'true');
+  await expect(heart.locator('.heart-count')).toHaveText('1');
+  await testInfo.attach('address-only-heart', { body: await sheet.screenshot(), contentType: 'image/png' });
+  await page.reload();
+  await page.locator('#reference-list button').last().click();
+  await expect(page.locator('#detail-heart')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#detail-heart .heart-count')).toHaveText('1');
+});
