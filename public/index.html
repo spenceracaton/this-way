@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./gallery.css">
   <link rel="stylesheet" href="./detail.css">
+  <link rel="stylesheet" href="./neighborhood-picker.css">
   <script src="./vendor/leaflet/leaflet.js" defer></script>
   <script type="module" src="./app.mjs"></script>
 </head>
@@ -28,14 +29,11 @@
     <section class="map-panel" aria-labelledby="map-title">
       <h1 id="map-title" class="visually-hidden">Old Northeast</h1>
       <div class="map-toolbar">
-        <label class="neighborhood-control" for="neighborhood-select">
-          <span class="location-mark" aria-hidden="true">⌖</span>
-          <span class="visually-hidden">Explore a neighborhood</span>
-          <select id="neighborhood-select" aria-label="Explore a neighborhood">
-            <option value="old-northeast">Old Northeast</option>
-            <option value="crescent-lake">Crescent Lake</option>
-          </select>
-        </label>
+        <button id="neighborhood-select" type="button" aria-label="Explore a neighborhood" aria-haspopup="dialog" aria-expanded="false" aria-controls="neighborhood-dialog">
+          <svg class="neighborhood-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span id="neighborhood-name">Old Northeast</span>
+          <svg class="neighborhood-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
         <span id="sample-count" class="sample-count">4 sample addresses</span>
       </div>
 
@@ -85,6 +83,19 @@
       </div>
     </section>
   </main>
+
+  <dialog id="neighborhood-dialog" class="neighborhood-dialog" aria-labelledby="neighborhood-picker-title">
+    <div class="neighborhood-picker-heading">
+      <h2 id="neighborhood-picker-title" tabindex="-1">Neighborhoods</h2>
+      <button type="button" id="neighborhood-picker-close" aria-label="Close neighborhood picker">×</button>
+    </div>
+    <div class="neighborhood-search-wrap">
+      <label class="visually-hidden" for="neighborhood-search">Search neighborhoods</label>
+      <input id="neighborhood-search" type="search" placeholder="Search neighborhoods" autocomplete="off" spellcheck="false">
+    </div>
+    <div id="neighborhood-options" role="listbox" aria-label="Neighborhoods"></div>
+    <p id="neighborhood-empty" role="status" aria-live="polite"></p>
+  </dialog>
 
   <footer>
     <span>Map prototype · sample locations only</span>

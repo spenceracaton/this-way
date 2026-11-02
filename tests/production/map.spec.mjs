@@ -15,12 +15,13 @@ test('the expected release serves both neighborhood maps', async ({ page, reques
   const response = await page.goto(`/?smoke=${Date.now()}`);
   expect(response.ok()).toBe(true);
   await expect(page.getByRole('navigation', { name: 'Artwork comparison' })).toBeHidden();
-  await expect(page.getByRole('combobox', { name: 'Explore a neighborhood' })).toHaveValue('old-northeast');
+  await expect(page.getByRole('button', { name: 'Explore a neighborhood' })).toContainText('Old Northeast');
   await expect(page.locator('.map-pin')).toHaveCount(4);
   expect(await page.locator('img#neighborhood-artwork').evaluate(image => [image.naturalWidth, image.naturalHeight]))
     .toEqual([3220, 4228]);
 
-  await page.getByRole('combobox', { name: 'Explore a neighborhood' }).selectOption('crescent-lake');
+  await page.getByRole('button', { name: 'Explore a neighborhood' }).click();
+  await page.getByRole('option', { name: /Crescent Lake/ }).click();
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
   await expect(page.getByRole('heading', { name: 'Crescent Lake', exact: true })).toBeVisible();
   await expect(page.locator('.map-pin')).toHaveCount(4);
