@@ -106,6 +106,8 @@ button:focus-visible,select:focus-visible,a:focus-visible,#map:focus-visible { o
 .leaflet-control-attribution a { color:#646d65!important; }
 
 footer { min-height:42px; padding:0 25px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#757c73; background:var(--paper); font-size:9px; }
+.footer-tools{display:flex;align-items:center;gap:16px}
+.footer-tools a,.footer-tools button{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px}
 
 @media (max-width:720px) {
   .site-header { height:64px; padding:0 15px; grid-template-columns:1fr auto; }

@@ -1,3 +1,6 @@
+import { createSubmission } from './submission.mjs';
+import { initCommunityForms } from './community-forms.mjs';
+import { initPhotoContribution } from './photo-contribution.mjs';
 import { createNeighborhoodPicker } from './neighborhood-picker.mjs';
 import { createDetail } from './detail.mjs';
 import { createMap } from './map-view.mjs';
@@ -5,9 +8,10 @@ import { neighborhoodFor } from './neighborhoods.mjs';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#reference-list');
-let view, renderDetail;
+let view, renderDetail, selectedPin = null;
 
 function selectionChanged(pin) {
+  selectedPin = pin;
   for (const button of list.querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.id === pin?.id));
   renderDetail.select(pin, document.activeElement?.closest('[data-id], [data-pin]'));
 }
@@ -19,6 +23,9 @@ async function start() {
   document.title = `This Way · ${neighborhood.name}`;
   $('#map-title').textContent = neighborhood.name;
   createNeighborhoodPicker(neighborhood);
+  createSubmission();
+  initCommunityForms({ getSelected: () => selectedPin });
+  initPhotoContribution({ getSelected: () => selectedPin });
   $('#sample-count').textContent = `${samplePins.length} sample addresses`;
   $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} sample address map. Arrow keys pan, plus and minus zoom, Home resets.`);
   const diagnostic = query.get('diagnostic') === '1';

@@ -1,0 +1,36 @@
+.photo-contribution-dialog{--pc-ink:#39283e;--pc-paper:#faf3e3;--pc-muted:#665861;--pc-line:#cfc2b4;position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);margin:0;padding:0;width:min(480px,calc(100vw - 24px));max-height:min(760px,calc(100dvh - 24px));overflow:hidden;border:1px solid #b9a5b2;border-radius:9px;background:var(--pc-paper);color:var(--pc-ink);box-shadow:3px 4px 0 #ded0c1;font:15px/1.5 'DM Sans',sans-serif}
+.photo-contribution-dialog::backdrop{background:#241b29bb}
+.photo-contribution-topbar h2:focus{outline:none}
+.photo-contribution-dialog[open]{display:flex;flex-direction:column}
+.photo-contribution-topbar{position:relative;flex:none;padding:18px 58px 14px 22px;border-bottom:1px solid var(--pc-line)}
+.photo-contribution-topbar h2,.photo-contribution-preview h3{margin:0;font:600 25px/1.2 'Fraunces',Georgia,serif}
+.photo-contribution-close{position:absolute;top:4px;right:6px;width:44px;height:44px;border:0;border-radius:5px;background:transparent;color:inherit;font:26px/1 'DM Sans',sans-serif}
+.photo-contribution-scroll{min-height:0;overflow:auto;overscroll-behavior:contain;padding:18px 22px 22px}
+.photo-contribution-address{margin:0 0 12px;font-weight:600;overflow-wrap:anywhere}
+.photo-contribution-help{margin:8px 0;color:var(--pc-muted);font-size:13px}
+.photo-contribution-picker{display:flex;align-items:center;justify-content:center;min-height:48px;margin:14px 0 8px;padding:8px 14px;border:1px dashed #8f7e8a;border-radius:7px;font-weight:600;cursor:pointer}
+.photo-contribution-picker input{position:absolute;width:1px;height:1px;opacity:0;clip-path:inset(50%)}
+.photo-contribution-picker:focus-within{outline:3px solid #bd663f;outline-offset:3px}
+.photo-contribution-previews{display:grid;gap:10px;margin-top:12px}
+.photo-contribution-thumb{display:flex;align-items:center;gap:12px;min-height:72px;padding:8px;border:1px solid var(--pc-line);border-radius:7px;background:#fff9e9}
+.photo-contribution-thumb img{width:76px;height:56px;object-fit:cover;border-radius:4px}
+.photo-contribution-thumb button,.photo-contribution-back,.photo-contribution-done{min-height:44px;padding:0 12px;border:1px solid #bda7ab;border-radius:7px;background:transparent;color:inherit;font:600 14px 'DM Sans',sans-serif}
+.photo-contribution-thumb button{margin-left:auto}
+.photo-contribution-rights{display:flex;align-items:flex-start;gap:10px;margin:16px 0;font-size:13px}
+.photo-contribution-rights input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:#49354f}
+.photo-contribution-next{width:100%;min-height:48px;border:0;border-radius:7px;background:#39283e;color:#f6efdd;font:600 15px 'DM Sans',sans-serif}
+.photo-contribution-next:disabled{opacity:.5;cursor:not-allowed}
+.photo-contribution-error{margin:8px 0;color:#7b281f;font-weight:600}
+.photo-contribution-error:empty{display:none}
+.photo-contribution-preview h3{margin-bottom:12px}
+.photo-contribution-only{padding:10px 12px;border-radius:6px;background:#eee5ce;font-weight:600}
+.photo-contribution-preview-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.photo-contribution-preview-images figure{margin:0}
+.photo-contribution-preview-images img{display:block;width:100%;max-height:180px;object-fit:contain;background:#eee5ce;border-radius:5px}
+.photo-contribution-actions{position:sticky;bottom:-22px;display:flex;gap:10px;margin:18px -22px -22px;padding:12px 22px max(12px,env(safe-area-inset-bottom));border-top:1px solid var(--pc-line);background:var(--pc-paper)}
+.photo-contribution-actions button{flex:1}
+.photo-contribution-done{border-color:#39283e;background:#39283e;color:#f6efdd}
+.photo-contribution-dialog :focus-visible{outline:3px solid #bd663f;outline-offset:2px}
+@media(max-width:520px){.photo-contribution-dialog{top:auto;bottom:0;left:0;transform:none;width:100%;max-width:none;max-height:90dvh;border-radius:16px 16px 0 0}.photo-contribution-topbar{padding-left:20px}.photo-contribution-scroll{padding:16px 20px 20px}.photo-contribution-actions{bottom:-20px;margin:16px -20px -20px;padding-inline:20px}}
+@media(max-height:480px) and (orientation:landscape){.photo-contribution-dialog{max-height:calc(100dvh - 12px);width:min(600px,calc(100vw - 24px))}.photo-contribution-topbar{padding-block:10px}.photo-contribution-scroll{padding-block:12px}}
+@media(prefers-reduced-motion:reduce){.photo-contribution-dialog *{scroll-behavior:auto}}
