@@ -1,16 +1,14 @@
+import { createDetail } from './detail.mjs';
 import { createMap } from './map-view.mjs';
 import { neighborhoodFor } from './neighborhoods.mjs';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#reference-list');
-let view;
+let view, renderDetail;
 
 function selectionChanged(pin) {
   for (const button of list.querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.id === pin?.id));
-  $('#selected-name').textContent = pin?.name || 'Choose a sample pin';
-  $('#selected-note').textContent = pin?.note || 'Select a pin on the map or from the sample list.';
-  $('#selected-label').textContent = pin?.label || '↗';
-  $('#selection').dataset.selected = pin?.id || '';
+  renderDetail(pin, document.activeElement?.closest('[data-id], [data-pin]'));
 }
 
 async function start() {
@@ -25,6 +23,7 @@ async function start() {
   $('#neighborhood-select').addEventListener('change', event => {
     const params = new URLSearchParams(location.search);
     params.set('neighborhood', event.target.value);
+    params.delete('sample');
     location.search = params;
   });
   const diagnostic = query.get('diagnostic') === '1';
@@ -78,10 +77,12 @@ async function start() {
     const name = document.createElement('span'); name.textContent = pin.name;
     button.append(badge, name); button.addEventListener('click', () => view.select(pin.id)); list.append(button);
   }
+  renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins: samplePins, artwork,
     onSelect: selectionChanged,
     onViewChange({ zoom }) { $('#camera-status').textContent = `View ${zoom.toFixed(2)}`; }
   });
+  if (samplePins.some(pin => pin.id === query.get('sample'))) view.select(query.get('sample'));
   $('#reset').addEventListener('click', () => view.reset());
   $('#reset').disabled = false;
   $('#map').setAttribute('aria-busy', 'false');

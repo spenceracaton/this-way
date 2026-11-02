@@ -8,6 +8,8 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./gallery.css">
+  <link rel="stylesheet" href="./detail.css">
   <script src="./vendor/leaflet/leaflet.js" defer></script>
   <script type="module" src="./app.mjs"></script>
 </head>
@@ -59,11 +61,27 @@
           <div id="reference-list"></div>
         </aside>
 
-        <div id="selection" class="selection" data-selected="" role="status" aria-live="polite">
-          <span id="selected-label" class="selected-badge">↗</span>
-          <div><strong id="selected-name">Choose a sample pin</strong><p id="selected-note">Select a pin on the map or from the sample list.</p></div>
-          <span id="camera-status">Overview</span>
-        </div>
+        <section id="selection" class="house-pane" data-selected="" aria-labelledby="detail-title" hidden>
+          <button type="button" id="detail-close" aria-label="Close display details"><span aria-hidden="true">×</span></button>
+          <div class="house-body">
+            <div id="display-photos" hidden></div>
+            <div class="house-copy">
+              <h2 id="detail-title"></h2>
+              <div id="detail-address"></div>
+              <p id="selected-note"></p>
+              <ul id="detail-tags" aria-label="Display tags"></ul>
+            </div>
+          </div>
+          <div class="house-actions">
+            <button type="button" id="detail-heart" aria-label="Heart this sample on this device" aria-pressed="false">♡</button>
+            <button type="button" disabled title="Available for published displays">Add photos</button>
+            <button type="button" id="detail-share">Share</button>
+            <button type="button" disabled title="Available for published displays">Report</button>
+          </div>
+          <input id="share-url" aria-label="Copy display link" readonly hidden>
+          <span id="selected-label" class="visually-hidden"></span>
+        </section>
+        <span id="camera-status" class="visually-hidden">Overview</span>
       </div>
     </section>
   </main>

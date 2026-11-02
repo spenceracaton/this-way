@@ -97,7 +97,10 @@ test('pointer and keyboard selection keep map, list and details synchronized', a
   await expect(a).toHaveAttribute('aria-pressed', 'true');
   await expect(listA).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#selected-label')).toHaveText('A');
-  if (isMobile) await b.tap(); else await b.click();
+  if (isMobile) {
+    await page.getByRole('button', { name: 'Close display details' }).click();
+    await b.tap();
+  } else await b.click();
   await expect(b).toHaveAttribute('aria-pressed', 'true');
   await expect(a).toHaveAttribute('aria-pressed', 'false');
   await expect(listA).toHaveAttribute('aria-pressed', 'false');
@@ -117,7 +120,7 @@ test('pointer and keyboard selection keep map, list and details synchronized', a
   await expect(page.locator('#selection')).toHaveAttribute('data-selected', '');
   await expect(page.locator('.map-pin[aria-pressed="true"]')).toHaveCount(0);
   await expect(page.locator('#reference-list [aria-pressed="true"]')).toHaveCount(0);
-  await expect(page.locator('#selected-name')).toHaveText('Choose a sample pin');
+  await expect(page.locator('#selection')).toBeHidden();
   await b.click();
   const mapBox = await page.locator('#map').boundingBox();
   await page.locator('#map').click({ position: { x: mapBox.width - 70, y: mapBox.height * 0.55 } });
@@ -293,4 +296,34 @@ test('artwork diagnostic preserves geometry and selection across SVG, raster and
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
   await expect(page.locator('#neighborhood-artwork mask')).toHaveCount(2);
   await checkAlignment(page);
+});
+
+test('photo-first details support browsing, enlargement and address fallback', async ({ page }) => {
+  const opener = page.locator('#reference-list button').first();
+  await opener.click();
+  const sheet = page.locator('#selection');
+  const address = sheet.getByRole('link', { name: /Directions to/ });
+  await expect(sheet.getByRole('heading', { name: 'Pumpkin Lantern Walk' })).toBeVisible();
+  const frame = await sheet.locator('.house-body').boundingBox();
+  const link = await address.boundingBox();
+  expect(link.y + link.height).toBeLessThanOrEqual(frame.y + frame.height + 1);
+  await sheet.getByRole('button', { name: 'Next photo' }).click();
+  await expect(sheet.getByRole('button', { name: 'Show photo 2 of 3' })).toHaveAttribute('aria-current', 'true');
+  await sheet.getByRole('button', { name: /Enlarge photo/ }).click();
+  const viewer = page.getByRole('dialog');
+  await expect(viewer).toBeVisible();
+  await page.keyboard.press('ArrowRight');
+  await expect(viewer.getByRole('button', { name: 'Show photo 3 of 3' })).toHaveAttribute('aria-current', 'true');
+  await page.keyboard.press('Escape');
+  await sheet.getByRole('button', { name: 'Close display details' }).click();
+  await page.locator('#reference-list button').nth(2).click();
+  await expect(sheet.getByRole('heading', { name: /Pumpkin Trail/ })).toBeVisible();
+  await expect(sheet.getByRole('button', { name: 'Next photo' })).toHaveCount(0);
+  const longAddress = await address.boundingBox();
+  const body = await sheet.locator('.house-body').boundingBox();
+  expect(longAddress.y + longAddress.height).toBeLessThanOrEqual(body.y + body.height + 1);
+  await sheet.getByRole('button', { name: 'Close display details' }).click();
+  await page.locator('#reference-list button').nth(1).click();
+  await expect(sheet.getByRole('heading', { name: /North Shore Drive/ })).toBeVisible();
+  await expect(sheet.locator('#display-photos')).toBeHidden();
 });
