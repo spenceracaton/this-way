@@ -22,7 +22,7 @@ export function createDetail({ close, neighborhood }) {
   const heartKey = () => 'sample-heart:' + neighborhood + ':' + selected.id;
   function setHeart(liked) {
     heart.setAttribute('aria-pressed', String(liked));
-    heart.textContent = liked ? '♥ 1' : '♡ 0';
+    heart.querySelector('.heart-count').textContent = liked ? '1' : '0';
   }
   heart.onclick = () => {
     const liked = heart.getAttribute('aria-pressed') !== 'true';
