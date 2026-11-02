@@ -8,7 +8,7 @@ let view, renderDetail;
 
 function selectionChanged(pin) {
   for (const button of list.querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.id === pin?.id));
-  renderDetail(pin, document.activeElement?.closest('[data-id], [data-pin]'));
+  renderDetail.select(pin, document.activeElement?.closest('[data-id], [data-pin]'));
 }
 
 async function start() {
@@ -80,6 +80,7 @@ async function start() {
   renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins: samplePins, artwork,
     onSelect: selectionChanged,
+    onAnchorChange: point => renderDetail.setAnchor(point),
     onViewChange({ zoom }) { $('#camera-status').textContent = `View ${zoom.toFixed(2)}`; }
   });
   if (samplePins.some(pin => pin.id === query.get('sample'))) view.select(query.get('sample'));

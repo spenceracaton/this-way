@@ -1,7 +1,7 @@
 import { project, mapPoint, mapBounds } from './coordinates.mjs';
 
 // The complete renderer boundary. No data fetching, forms, storage, or detail-card DOM.
-export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, onViewChange }) {
+export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, onViewChange, onAnchorChange }) {
   const bounds = L.latLngBounds(mapBounds(area.bounds));
   const map = L.map(element, {
     crs: L.CRS.Simple, minZoom: -4, maxZoom: 2,
@@ -30,6 +30,7 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
       marker.setZIndexOffset(key === id ? 1000 : 0);
     }
     onSelect(pins.find(pin => pin.id === id) || null);
+    reportAnchor();
   }
   for (const pin of pins) {
     const icon = L.divIcon({ className: 'reference-marker', iconSize: [44, 44], iconAnchor: [22, 22],
@@ -58,6 +59,11 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
   function reportView() {
     onViewChange?.({ zoom: map.getZoom(), selected });
   }
+  function reportAnchor() {
+    const marker = markers.get(selected);
+    if (marker) onAnchorChange?.(map.latLngToContainerPoint(marker.getLatLng()));
+  }
+  map.on('move zoom resize', reportAnchor);
   map.on('moveend zoomend', reportView);
   const resize = new ResizeObserver(() => map.invalidateSize({ pan: false }));
   resize.observe(element);
