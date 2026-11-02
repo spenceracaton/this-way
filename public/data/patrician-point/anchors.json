@@ -1,0 +1,58 @@
+[
+  {
+    "id": "patrician-point-road-1",
+    "osmType": "way",
+    "osmId": "11244634",
+    "sourceGeographic": {
+      "lng": -82.617283,
+      "lat": 27.812763
+    },
+    "expectedSourcePoint": [
+      158.89,
+      234.9
+    ],
+    "matchErrorPx": 0.000199
+  },
+  {
+    "id": "patrician-point-road-2",
+    "osmType": "way",
+    "osmId": "11246302",
+    "sourceGeographic": {
+      "lng": -82.611921,
+      "lat": 27.8119467
+    },
+    "expectedSourcePoint": [
+      636.07,
+      317.03
+    ],
+    "matchErrorPx": 0.000873
+  },
+  {
+    "id": "patrician-point-road-3",
+    "osmType": "way",
+    "osmId": "11233777",
+    "sourceGeographic": {
+      "lng": -82.6100367,
+      "lat": 27.8098803
+    },
+    "expectedSourcePoint": [
+      803.76,
+      524.94
+    ],
+    "matchErrorPx": 0.000917
+  },
+  {
+    "id": "patrician-point-road-4",
+    "osmType": "way",
+    "osmId": "11245398",
+    "sourceGeographic": {
+      "lng": -82.614453,
+      "lat": 27.8074367
+    },
+    "expectedSourcePoint": [
+      410.74,
+      770.8
+    ],
+    "matchErrorPx": 0.001067
+  }
+]

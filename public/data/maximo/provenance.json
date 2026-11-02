@@ -1,0 +1,39 @@
+{
+  "id": "maximo",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "7c448493a3b874d0c613d7ff3ec0eb7454ea20e3de7ba13391a705b13d8229d9",
+    "map-data.json": "34050d7dc5c6ed8700cea6c124feef593e83b4523b4421df7231775ab693ce39",
+    "buffer.mjs": "617701c8fcbf240155a6e22dc69fdd06e81f9678072b398965222ef5c082d2d8"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-34 20 1068 1020",
+  "coreMaskGeometrySha256": "d27dfc46706f97c4fc2473f74808c1e329571d1379f6a877a5df291c397ebd07",
+  "nearbyMaskGeometrySha256": "4af38ec544e2180a50e297e915dda2fc3085ff7d57c2430a5c09d76da9a53cbd",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/maximo.webp",
+    "width": 3072,
+    "height": 2934,
+    "encoding": "lossless WebP",
+    "sourceSha256": "b9b5e0512893819e86aecd48c239ca1dd50e0dd90fa1b7a12400c05b3dd64a54",
+    "sha256": "bf4796868103cd2de1cd2545bb85ea883c568e91bc9d41e27ffd3bb0143386b7",
+    "bytes": 382306,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

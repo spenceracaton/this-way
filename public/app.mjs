@@ -26,8 +26,16 @@ async function start() {
   createSubmission();
   initCommunityForms({ getSelected: () => selectedPin });
   initPhotoContribution({ getSelected: () => selectedPin });
-  $('#sample-count').textContent = `${samplePins.length} sample addresses`;
-  $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} sample address map. Arrow keys pan, plus and minus zoom, Home resets.`);
+  $('#sample-count').textContent = samplePins.length ? `${samplePins.length} sample addresses` : 'Map only';
+  $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} map${samplePins.length ? ' with sample addresses' : ''}. Arrow keys pan, plus and minus zoom, Home resets.`);
+  if (!samplePins.length) {
+    $('.canvas').classList.add('map-only');
+    $('#references-title').textContent = 'Explore the map';
+    $('.references-heading .eyebrow').textContent = 'NEIGHBORHOOD MAP';
+    $('.references-heading > span').hidden = true;
+    $('#reference-list').textContent = 'No sample addresses here yet.';
+    $('.map-caption').textContent = 'Drag to explore the neighborhood';
+  }
   const diagnostic = query.get('diagnostic') === '1';
   const requestedMode = query.get('artwork');
   const artworkMode = diagnostic && ['full', 'raster', 'simple'].includes(requestedMode) ? requestedMode : 'raster';
@@ -58,6 +66,9 @@ async function start() {
     if (!imageResponse.ok) throw new Error('The map artwork could not load.');
     artwork = new DOMParser().parseFromString(await imageResponse.text(), 'image/svg+xml').documentElement;
     if (artwork.localName !== 'svg' || artwork.querySelector('parsererror')) throw new Error('The map artwork is invalid.');
+    artwork.id = 'neighborhood-artwork';
+    artwork.setAttribute('role', 'img');
+    artwork.setAttribute('aria-label', `Illustrated ${neighborhood.name} street map`);
     // Isolate artwork cost without changing SVG-overlay sizing, map options,
     // geographic projection, bounds, markers, or input handlers.
     if (artworkMode === 'simple') {
@@ -100,6 +111,11 @@ async function start() {
     onAnchorChange: point => renderDetail.setAnchor(point),
     onViewChange({ zoom }) { $('#camera-status').textContent = `View ${zoom.toFixed(2)}`; }
   });
+  if (!samplePins.length) {
+    const credit = $('.leaflet-control-attribution');
+    const creditResize = new ResizeObserver(() => $('.canvas').style.setProperty('--map-credit-height', credit.offsetHeight + 'px'));
+    creditResize.observe(credit);
+  }
   // A card can grow after fonts/images load or after viewport rotation. Only
   // layout changes reveal it again; ordinary user pan/zoom remains untouched.
   const sheetResize = new ResizeObserver(() => view.revealSelection());

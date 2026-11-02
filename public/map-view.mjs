@@ -3,6 +3,7 @@ import { project, mapPoint, mapBounds } from './coordinates.mjs';
 // The complete renderer boundary. No data fetching, forms, storage, or detail-card DOM.
 export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets }) {
   const bounds = L.latLngBounds(mapBounds(area.bounds));
+  const overviewBounds = area.overviewBounds ? L.latLngBounds(mapBounds(area.overviewBounds)) : bounds;
   const map = L.map(element, {
     crs: L.CRS.Simple, minZoom: -4, maxZoom: 2,
     zoomSnap: 0, zoomDelta: 0.5, zoomControl: false,
@@ -17,7 +18,15 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
     ? L.svgOverlay(artwork, bounds, { interactive: false })
     : L.imageOverlay(artwork, bounds, { interactive: false });
   artworkOverlay.addTo(map);
-  map.attributionControl.addAttribution('© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>');
+  // Attribution comes from a small, validated text/link structure in map
+  // configuration; never insert configuration-provided HTML.
+  const attribution = attributionLink(area.attribution) ||
+    attributionLink({ label: '© OpenStreetMap contributors', href: 'https://www.openstreetmap.org/copyright' });
+  const license = attributionLink(area.license && area.licenseUrl
+    ? { label: area.license, href: area.licenseUrl }
+    : null);
+  const additional = (Array.isArray(area.additionalAttributions) ? area.additionalAttributions : []).map(attributionLink).filter(Boolean);
+  map.attributionControl.addAttribution([attribution, ...additional, license].filter(Boolean).join(' · '));
 
   let selected = null;
   const markers = new Map();
@@ -74,7 +83,7 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
   function reset() {
     map.stop();
     select(null);
-    map.fitBounds(bounds, { padding: [28, 28], animate: false, reset: true });
+    map.fitBounds(overviewBounds, { padding: [28, 28], animate: false, reset: true });
   }
   function reportView() {
     onViewChange?.({ zoom: map.getZoom(), selected });
@@ -94,4 +103,23 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
     revealSelection,
     destroy() { resize.disconnect(); map.remove(); }
   };
+}
+
+function attributionLink(value) {
+  if (!value || typeof value !== 'object' || typeof value.label !== 'string') return '';
+  const text = document.createElement('span');
+  text.textContent = value.label;
+  if (typeof value.href !== 'string') return text.outerHTML;
+  let href;
+  try {
+    href = new URL(value.href);
+  } catch {
+    return text.outerHTML;
+  }
+  if (href.protocol !== 'https:') return text.outerHTML;
+  const link = document.createElement('a');
+  link.href = href.href;
+  link.rel = 'noopener noreferrer';
+  link.textContent = value.label;
+  return link.outerHTML;
 }

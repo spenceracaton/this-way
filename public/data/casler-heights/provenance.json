@@ -1,0 +1,39 @@
+{
+  "id": "casler-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "ad532adadb5b55ac426424baf451aec033de3120df3d922cffd8dd2db53be2e1",
+    "map-data.json": "5b82167626b0168bc006a5c8f87faeb2be107d2c00d8b2fb3428bd8e67d1188d",
+    "buffer.mjs": "34333f8fdbb3151a6ef293764a61db44a19dd8ea71988b079f3e7c9fc264436a"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-305 -289 1610 1638",
+  "coreMaskGeometrySha256": "0560465612929f9e6289622804a83505008749cd4e98be60eb5ea0110feff127",
+  "nearbyMaskGeometrySha256": "68677a590b6088009122aeef3b49c5220820b8d500608510ae324e148289b70e",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/casler-heights.webp",
+    "width": 3019,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "228950456b1c9e2eaa7cccf967cb903bbf5bec6946a3c87a53311f34cbd4fe03",
+    "sha256": "57f334e518cfdfd5a18d9a60a3aebcd224a2eef8d817baed14c013cf2a63a73a",
+    "bytes": 181608,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

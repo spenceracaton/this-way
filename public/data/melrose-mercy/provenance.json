@@ -1,0 +1,39 @@
+{
+  "id": "melrose-mercy",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "2e9a1db33ef560a1ae81eb7a2f98685f1436076cda7f500f55be2c69016c2d20",
+    "map-data.json": "1fe59f8fca0108e449ef50a65e658968754aad503946fc5c77fc89264e3c3cde",
+    "buffer.mjs": "cacf7aac46b21a14acd95a0b5ad77e5ba482338561dbf5136062d42c6e476b7d"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -21 960 1102",
+  "coreMaskGeometrySha256": "67eac9f77d074f1d6ab422dd2ffd67fd5b97db250b5060c0afb0cdcf6ffa110d",
+  "nearbyMaskGeometrySha256": "fceddff6cc7bdcf751622f208071f93048df6c0feda8a1d53dc2f117f5dd939d",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/melrose-mercy.webp",
+    "width": 2676,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "47be36a162ea9156871523b469841406b07add05f77a1c9d944cc53d886f65ad",
+    "sha256": "88cc569a3d6a94595c59228e2c1f7f7066fe438a74075b651fcf32a7c0d88aee",
+    "bytes": 310444,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

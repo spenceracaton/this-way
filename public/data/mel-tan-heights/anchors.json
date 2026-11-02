@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mel-tan-heights-road-1",
+    "osmType": "way",
+    "osmId": "137383292",
+    "sourceGeographic": {
+      "lng": -82.6752626,
+      "lat": 27.7520057
+    },
+    "expectedSourcePoint": [
+      123.35,
+      904.11
+    ],
+    "matchErrorPx": 0.000574
+  },
+  {
+    "id": "mel-tan-heights-road-2",
+    "osmType": "way",
+    "osmId": "11237861",
+    "sourceGeographic": {
+      "lng": -82.6757361,
+      "lat": 27.7528175
+    },
+    "expectedSourcePoint": [
+      36.66,
+      736.16
+    ],
+    "matchErrorPx": 0.000639
+  },
+  {
+    "id": "mel-tan-heights-road-3",
+    "osmType": "way",
+    "osmId": "11260494",
+    "sourceGeographic": {
+      "lng": -82.6711298,
+      "lat": 27.7520389
+    },
+    "expectedSourcePoint": [
+      880.0,
+      897.24
+    ],
+    "matchErrorPx": 0.001056
+  },
+  {
+    "id": "mel-tan-heights-road-4",
+    "osmType": "way",
+    "osmId": "1254081633",
+    "sourceGeographic": {
+      "lng": -82.673184,
+      "lat": 27.7551227
+    },
+    "expectedSourcePoint": [
+      503.91,
+      259.25
+    ],
+    "matchErrorPx": 0.001157
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "greater-pinellas-point-road-1",
+    "osmType": "way",
+    "osmId": "83807887",
+    "sourceGeographic": {
+      "lng": -82.6677747,
+      "lat": 27.7194435
+    },
+    "expectedSourcePoint": [
+      339.6,
+      271.95
+    ],
+    "matchErrorPx": 0.000158
+  },
+  {
+    "id": "greater-pinellas-point-road-2",
+    "osmType": "way",
+    "osmId": "11237992",
+    "sourceGeographic": {
+      "lng": -82.6563161,
+      "lat": 27.7213674
+    },
+    "expectedSourcePoint": [
+      548.78,
+      232.28
+    ],
+    "matchErrorPx": 0.000165
+  },
+  {
+    "id": "greater-pinellas-point-road-3",
+    "osmType": "way",
+    "osmId": "320446594",
+    "sourceGeographic": {
+      "lng": -82.678565,
+      "lat": 27.6990551
+    },
+    "expectedSourcePoint": [
+      142.62,
+      692.35
+    ],
+    "matchErrorPx": 0.000172
+  },
+  {
+    "id": "greater-pinellas-point-road-4",
+    "osmType": "way",
+    "osmId": "11253270",
+    "sourceGeographic": {
+      "lng": -82.6473576,
+      "lat": 27.718636
+    },
+    "expectedSourcePoint": [
+      712.32,
+      288.6
+    ],
+    "matchErrorPx": 0.000237
+  }
+]

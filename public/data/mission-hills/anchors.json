@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mission-hills-road-1",
+    "osmType": "way",
+    "osmId": "230749290",
+    "sourceGeographic": {
+      "lng": -82.7206356,
+      "lat": 27.9742895
+    },
+    "expectedSourcePoint": [
+      434.09,
+      1036.81
+    ],
+    "matchErrorPx": 7.4e-05
+  },
+  {
+    "id": "mission-hills-road-2",
+    "osmType": "way",
+    "osmId": "11261293",
+    "sourceGeographic": {
+      "lng": -82.724965,
+      "lat": 27.9787749
+    },
+    "expectedSourcePoint": [
+      120.0,
+      668.33
+    ],
+    "matchErrorPx": 7.4e-05
+  },
+  {
+    "id": "mission-hills-road-3",
+    "osmType": "way",
+    "osmId": "11243836",
+    "sourceGeographic": {
+      "lng": -82.7204837,
+      "lat": 27.9771692
+    },
+    "expectedSourcePoint": [
+      445.11,
+      800.24
+    ],
+    "matchErrorPx": 0.000255
+  },
+  {
+    "id": "mission-hills-road-4",
+    "osmType": "way",
+    "osmId": "11258138",
+    "sourceGeographic": {
+      "lng": -82.721704,
+      "lat": 27.9815056
+    },
+    "expectedSourcePoint": [
+      356.58,
+      444.0
+    ],
+    "matchErrorPx": 0.000518
+  }
+]

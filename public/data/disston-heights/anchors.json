@@ -1,0 +1,58 @@
+[
+  {
+    "id": "disston-heights-road-1",
+    "osmType": "way",
+    "osmId": "1346614650",
+    "sourceGeographic": {
+      "lng": -82.7285638,
+      "lat": 27.8063093
+    },
+    "expectedSourcePoint": [
+      120.0,
+      292.53
+    ],
+    "matchErrorPx": 1.7e-05
+  },
+  {
+    "id": "disston-heights-road-2",
+    "osmType": "way",
+    "osmId": "11234002",
+    "sourceGeographic": {
+      "lng": -82.6984752,
+      "lat": 27.7736573
+    },
+    "expectedSourcePoint": [
+      586.37,
+      864.63
+    ],
+    "matchErrorPx": 7.5e-05
+  },
+  {
+    "id": "disston-heights-road-3",
+    "osmType": "way",
+    "osmId": "11232318",
+    "sourceGeographic": {
+      "lng": -82.7111869,
+      "lat": 27.8096253
+    },
+    "expectedSourcePoint": [
+      389.34,
+      234.43
+    ],
+    "matchErrorPx": 0.000112
+  },
+  {
+    "id": "disston-heights-road-4",
+    "osmType": "way",
+    "osmId": "1054694605",
+    "sourceGeographic": {
+      "lng": -82.728418,
+      "lat": 27.7751338
+    },
+    "expectedSourcePoint": [
+      122.26,
+      838.76
+    ],
+    "matchErrorPx": 0.000116
+  }
+]

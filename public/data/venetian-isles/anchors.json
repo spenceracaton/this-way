@@ -1,0 +1,58 @@
+[
+  {
+    "id": "venetian-isles-road-1",
+    "osmType": "way",
+    "osmId": "52194740",
+    "sourceGeographic": {
+      "lng": -82.6011311,
+      "lat": 27.8200575
+    },
+    "expectedSourcePoint": [
+      140.84,
+      413.61
+    ],
+    "matchErrorPx": 0.000289
+  },
+  {
+    "id": "venetian-isles-road-2",
+    "osmType": "way",
+    "osmId": "11248645",
+    "sourceGeographic": {
+      "lng": -82.6030348,
+      "lat": 27.8226384
+    },
+    "expectedSourcePoint": [
+      36.52,
+      253.7
+    ],
+    "matchErrorPx": 0.00059
+  },
+  {
+    "id": "venetian-isles-road-3",
+    "osmType": "way",
+    "osmId": "11235743",
+    "sourceGeographic": {
+      "lng": -82.6002172,
+      "lat": 27.8228579
+    },
+    "expectedSourcePoint": [
+      190.92,
+      240.1
+    ],
+    "matchErrorPx": 0.000643
+  },
+  {
+    "id": "venetian-isles-road-4",
+    "osmType": "way",
+    "osmId": "11240708",
+    "sourceGeographic": {
+      "lng": -82.5955284,
+      "lat": 27.8189027
+    },
+    "expectedSourcePoint": [
+      447.86,
+      485.16
+    ],
+    "matchErrorPx": 0.000829
+  }
+]

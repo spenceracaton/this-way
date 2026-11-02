@@ -12,7 +12,7 @@ export function createNeighborhoodPicker(current) {
   const mobile = matchMedia('(max-width:720px)');
   let previousOverflow = '';
   document.getElementById('neighborhood-name').textContent = current.name;
-  for (const [id, neighborhood] of Object.entries(neighborhoods)) {
+  for (const [id, neighborhood] of Object.entries(neighborhoods).sort((a, b) => a[1].name.localeCompare(b[1].name))) {
     const row = document.createElement('button');
     row.type = 'button';
     row.className = 'neighborhood-option';
@@ -24,7 +24,7 @@ export function createNeighborhoodPicker(current) {
     name.textContent = neighborhood.name;
     const count = document.createElement('span');
     count.className = 'neighborhood-count';
-    count.textContent = `${neighborhood.pins.length} sample addresses`;
+    count.textContent = neighborhood.pins.length ? `${neighborhood.pins.length} sample addresses` : 'Map only';
     const check = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     check.setAttribute('viewBox', '0 0 24 24');
     check.setAttribute('aria-hidden', 'true');

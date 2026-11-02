@@ -1,0 +1,58 @@
+[
+  {
+    "id": "harris-park-road-1",
+    "osmType": "way",
+    "osmId": "11251991",
+    "sourceGeographic": {
+      "lng": -82.6570136,
+      "lat": 27.8101536
+    },
+    "expectedSourcePoint": [
+      695.79,
+      657.77
+    ],
+    "matchErrorPx": 0.00051
+  },
+  {
+    "id": "harris-park-road-2",
+    "osmType": "way",
+    "osmId": "11258961",
+    "sourceGeographic": {
+      "lng": -82.6533355,
+      "lat": 27.8129888
+    },
+    "expectedSourcePoint": [
+      950.58,
+      435.72
+    ],
+    "matchErrorPx": 0.000546
+  },
+  {
+    "id": "harris-park-road-3",
+    "osmType": "way",
+    "osmId": "48174309",
+    "sourceGeographic": {
+      "lng": -82.663974,
+      "lat": 27.8167806
+    },
+    "expectedSourcePoint": [
+      213.63,
+      138.75
+    ],
+    "matchErrorPx": 0.000588
+  },
+  {
+    "id": "harris-park-road-4",
+    "osmType": "way",
+    "osmId": "11258971",
+    "sourceGeographic": {
+      "lng": -82.6632307,
+      "lat": 27.8126295
+    },
+    "expectedSourcePoint": [
+      265.12,
+      463.86
+    ],
+    "matchErrorPx": 0.000666
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "id": "greater-woodlawn",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "c1a37bfae79c4c98a6ae664d5c95dd38f4c5949f22543c5fa7cbbbfa13b5f0dd",
+    "map-data.json": "9aa519acf0cf3ddccf08466f25dea2068ab1893000f39b00745334eceaec4688",
+    "buffer.mjs": "8e30b4c4eed266b269decce1f1c41dd76199ad5233bdaa4f20d064390e4e9f40"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-105 -75 1210 1210",
+  "coreMaskGeometrySha256": "7bec8085a5ac98fc0bbe7cb2cc38071ff13f3c87603e01e93583656fc5e5007c",
+  "nearbyMaskGeometrySha256": "a824b02c31917e206f6b3f3f524bb3079362b353aba29425fd335322d1ad63f9",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/greater-woodlawn.webp",
+    "width": 3072,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "2d3ca246a67c702b42973399352790ddf4e92824dac1b8c99f77eb39b0c90d6b",
+    "sha256": "86b37a80cb596069fed4b5de4df5686acd01212a15197da6234213e101342775",
+    "bytes": 321080,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

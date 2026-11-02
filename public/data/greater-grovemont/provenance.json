@@ -1,0 +1,39 @@
+{
+  "id": "greater-grovemont",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "f1242b48834a13f2189501542587f04520ccabcd099a58c8169bc9f3bb7256ce",
+    "map-data.json": "000b7c8f53650c365cc58b6ca7749671376d2c32d3b576f180cb6df287ebed03",
+    "buffer.mjs": "06e42ceb248e6849249b03c1977ffd235e99fa36b2e74078ed841f8546de1a7b"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-19 -60 1038 1180",
+  "coreMaskGeometrySha256": "dea11bf5ef45f40a02f11ceffada2dea53b7989bf618cca8a7d0db44ba6d30d0",
+  "nearbyMaskGeometrySha256": "a5827c005fd9388ffdbdfd6643c91f7815472f60acb3bd1eda0f119ef6908dfd",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/greater-grovemont.webp",
+    "width": 2702,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "19cc9b6707164f122d56699a42f501556b93677213259fb21bc3d638923e1437",
+    "sha256": "2dcdd5c2437e2ca2d6dfb1d04cc8c5b515d9e1cc6c03dea597490d31876c7a41",
+    "bytes": 353000,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

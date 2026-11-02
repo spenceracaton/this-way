@@ -1,0 +1,58 @@
+[
+  {
+    "id": "northeast-park-road-1",
+    "osmType": "way",
+    "osmId": "644859685",
+    "sourceGeographic": {
+      "lng": -82.6385451,
+      "lat": 27.7952959
+    },
+    "expectedSourcePoint": [
+      119.98,
+      964.51
+    ],
+    "matchErrorPx": 0.000282
+  },
+  {
+    "id": "northeast-park-road-2",
+    "osmType": "way",
+    "osmId": "11239113",
+    "sourceGeographic": {
+      "lng": -82.624405,
+      "lat": 27.817358
+    },
+    "expectedSourcePoint": [
+      598.33,
+      120.73
+    ],
+    "matchErrorPx": 0.00038
+  },
+  {
+    "id": "northeast-park-road-3",
+    "osmType": "way",
+    "osmId": "137631986",
+    "sourceGeographic": {
+      "lng": -82.6345734,
+      "lat": 27.7994101
+    },
+    "expectedSourcePoint": [
+      254.34,
+      807.16
+    ],
+    "matchErrorPx": 0.000424
+  },
+  {
+    "id": "northeast-park-road-4",
+    "osmType": "way",
+    "osmId": "11257927",
+    "sourceGeographic": {
+      "lng": -82.6148902,
+      "lat": 27.8106775
+    },
+    "expectedSourcePoint": [
+      920.21,
+      376.23
+    ],
+    "matchErrorPx": 0.00044
+  }
+]

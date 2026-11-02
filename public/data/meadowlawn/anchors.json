@@ -1,0 +1,58 @@
+[
+  {
+    "id": "meadowlawn-road-1",
+    "osmType": "way",
+    "osmId": "11245847",
+    "sourceGeographic": {
+      "lng": -82.652693,
+      "lat": 27.841936
+    },
+    "expectedSourcePoint": [
+      657.18,
+      260.61
+    ],
+    "matchErrorPx": 0.000258
+  },
+  {
+    "id": "meadowlawn-road-2",
+    "osmType": "way",
+    "osmId": "11235276",
+    "sourceGeographic": {
+      "lng": -82.6631991,
+      "lat": 27.8282935
+    },
+    "expectedSourcePoint": [
+      257.09,
+      848.12
+    ],
+    "matchErrorPx": 0.000278
+  },
+  {
+    "id": "meadowlawn-road-3",
+    "osmType": "way",
+    "osmId": "46429117",
+    "sourceGeographic": {
+      "lng": -82.666799,
+      "lat": 27.8289827
+    },
+    "expectedSourcePoint": [
+      120.0,
+      818.44
+    ],
+    "matchErrorPx": 0.000282
+  },
+  {
+    "id": "meadowlawn-road-4",
+    "osmType": "way",
+    "osmId": "107867412",
+    "sourceGeographic": {
+      "lng": -82.659303,
+      "lat": 27.843326
+    },
+    "expectedSourcePoint": [
+      405.46,
+      200.75
+    ],
+    "matchErrorPx": 0.000314
+  }
+]

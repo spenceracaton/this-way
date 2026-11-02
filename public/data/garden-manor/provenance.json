@@ -1,0 +1,39 @@
+{
+  "id": "garden-manor",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "faba4abd492a3e4fe5cd5cddc952959fe2017a8e52c62e3f706a9cb16e590204",
+    "map-data.json": "87950ef6b4b834ee0264b65826754cb539f662320de5f3554041f3676e3703be",
+    "buffer.mjs": "9393673d6c9c07bf0d333caaad4cf01131d2c84f151b68a95248f492309c3bd9"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-89 20 1178 1020",
+  "coreMaskGeometrySha256": "c902d0c056e753adc593d5ebc4cecac4e3d1c493b234e8025761e6ad3b593e32",
+  "nearbyMaskGeometrySha256": "317de6b4bf9d3963d9eb8a411fa4b583a095920f806933c146fa005e631fc400",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/garden-manor.webp",
+    "width": 3072,
+    "height": 2660,
+    "encoding": "lossless WebP",
+    "sourceSha256": "d56d7788506f6000d0a3233eb01272a43ed6a81d6b99b157156dbe3bd151ddc4",
+    "sha256": "f2574ce9db0d324d0e7006b29f31f322d314a65ca769d57668e40a3e81700c8c",
+    "bytes": 267166,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

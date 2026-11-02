@@ -1,0 +1,58 @@
+[
+  {
+    "id": "garden-manor-road-1",
+    "osmType": "way",
+    "osmId": "1000462649",
+    "sourceGeographic": {
+      "lng": -82.7283718,
+      "lat": 27.7822615
+    },
+    "expectedSourcePoint": [
+      125.7,
+      907.79
+    ],
+    "matchErrorPx": 0.000234
+  },
+  {
+    "id": "garden-manor-road-2",
+    "osmType": "way",
+    "osmId": "11235128",
+    "sourceGeographic": {
+      "lng": -82.7183081,
+      "lat": 27.789211
+    },
+    "expectedSourcePoint": [
+      973.52,
+      246.02
+    ],
+    "matchErrorPx": 0.000289
+  },
+  {
+    "id": "garden-manor-road-3",
+    "osmType": "way",
+    "osmId": "932277248",
+    "sourceGeographic": {
+      "lng": -82.72597,
+      "lat": 27.7821567
+    },
+    "expectedSourcePoint": [
+      328.04,
+      917.77
+    ],
+    "matchErrorPx": 0.000438
+  },
+  {
+    "id": "garden-manor-road-4",
+    "osmType": "way",
+    "osmId": "11258923",
+    "sourceGeographic": {
+      "lng": -82.7275054,
+      "lat": 27.7852355
+    },
+    "expectedSourcePoint": [
+      198.69,
+      624.59
+    ],
+    "matchErrorPx": 0.000575
+  }
+]

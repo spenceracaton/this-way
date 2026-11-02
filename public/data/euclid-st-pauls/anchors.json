@@ -1,0 +1,58 @@
+[
+  {
+    "id": "euclid-st-pauls-road-1",
+    "osmType": "way",
+    "osmId": "301162881",
+    "sourceGeographic": {
+      "lng": -82.6456603,
+      "lat": 27.7807579
+    },
+    "expectedSourcePoint": [
+      842.62,
+      968.85
+    ],
+    "matchErrorPx": 0.000238
+  },
+  {
+    "id": "euclid-st-pauls-road-2",
+    "osmType": "way",
+    "osmId": "11251476",
+    "sourceGeographic": {
+      "lng": -82.6467119,
+      "lat": 27.7848761
+    },
+    "expectedSourcePoint": [
+      772.85,
+      660.01
+    ],
+    "matchErrorPx": 0.000314
+  },
+  {
+    "id": "euclid-st-pauls-road-3",
+    "osmType": "way",
+    "osmId": "481712941",
+    "sourceGeographic": {
+      "lng": -82.6523226,
+      "lat": 27.781155
+    },
+    "expectedSourcePoint": [
+      400.6,
+      939.07
+    ],
+    "matchErrorPx": 0.000315
+  },
+  {
+    "id": "euclid-st-pauls-road-4",
+    "osmType": "way",
+    "osmId": "1362783920",
+    "sourceGeographic": {
+      "lng": -82.6549375,
+      "lat": 27.7853852
+    },
+    "expectedSourcePoint": [
+      227.11,
+      621.83
+    ],
+    "matchErrorPx": 0.000345
+  }
+]

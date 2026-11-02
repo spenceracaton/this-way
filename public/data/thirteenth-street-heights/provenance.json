@@ -1,0 +1,39 @@
+{
+  "id": "thirteenth-street-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "a00d16acf303c393339ea7803e1f3b6bd4d422025dc067be5f25bd3969f1d5b2",
+    "map-data.json": "a315e63964559c97fa618cb5072d574ad21d4d66863a325d4d20906b5bd583b5",
+    "buffer.mjs": "50d5d510acdbe40422397769c54ad1d6c6eacdf778a4d6de802fb8cd04280121"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-106 -78 1212 1216",
+  "coreMaskGeometrySha256": "9da1e0a23e9b7a84d4c828dd6a036217a568ed3cd61520789b2311ac2afecb05",
+  "nearbyMaskGeometrySha256": "a3a7f61b365cedfd536319a82356cdcdf5db24fec9823636a387496ee5c54182",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/thirteenth-street-heights.webp",
+    "width": 3062,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "ea261218089738fcac255937a72b8d752a57b877e9e32af387c49555e7883bff",
+    "sha256": "1796a6c8116f34289a3658283863627726be0dfb0a44c6efacfd0de9aa0c28a1",
+    "bytes": 301758,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

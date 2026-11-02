@@ -1,0 +1,58 @@
+[
+  {
+    "id": "shore-acres-road-1",
+    "osmType": "way",
+    "osmId": "11256368",
+    "sourceGeographic": {
+      "lng": -82.6155527,
+      "lat": 27.8048293
+    },
+    "expectedSourcePoint": [
+      163.49,
+      911.09
+    ],
+    "matchErrorPx": 0.000144
+  },
+  {
+    "id": "shore-acres-road-2",
+    "osmType": "way",
+    "osmId": "11229080",
+    "sourceGeographic": {
+      "lng": -82.6061931,
+      "lat": 27.8236762
+    },
+    "expectedSourcePoint": [
+      487.03,
+      174.49
+    ],
+    "matchErrorPx": 0.00018
+  },
+  {
+    "id": "shore-acres-road-3",
+    "osmType": "way",
+    "osmId": "11261124",
+    "sourceGeographic": {
+      "lng": -82.6095714,
+      "lat": 27.827366
+    },
+    "expectedSourcePoint": [
+      370.25,
+      30.28
+    ],
+    "matchErrorPx": 0.000261
+  },
+  {
+    "id": "shore-acres-road-4",
+    "osmType": "way",
+    "osmId": "11244638",
+    "sourceGeographic": {
+      "lng": -82.6097791,
+      "lat": 27.8137441
+    },
+    "expectedSourcePoint": [
+      363.07,
+      562.67
+    ],
+    "matchErrorPx": 0.00032
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "melrose-mercy-road-1",
+    "osmType": "way",
+    "osmId": "11260494",
+    "sourceGeographic": {
+      "lng": -82.6630504,
+      "lat": 27.752044
+    },
+    "expectedSourcePoint": [
+      287.25,
+      940.03
+    ],
+    "matchErrorPx": 0.000112
+  },
+  {
+    "id": "melrose-mercy-road-2",
+    "osmType": "way",
+    "osmId": "11261581",
+    "sourceGeographic": {
+      "lng": -82.6599636,
+      "lat": 27.7612885
+    },
+    "expectedSourcePoint": [
+      445.18,
+      405.54
+    ],
+    "matchErrorPx": 0.000197
+  },
+  {
+    "id": "melrose-mercy-road-3",
+    "osmType": "way",
+    "osmId": "11239388",
+    "sourceGeographic": {
+      "lng": -82.6618423,
+      "lat": 27.7504142
+    },
+    "expectedSourcePoint": [
+      349.06,
+      1034.26
+    ],
+    "matchErrorPx": 0.000201
+  },
+  {
+    "id": "melrose-mercy-road-4",
+    "osmType": "way",
+    "osmId": "11258248",
+    "sourceGeographic": {
+      "lng": -82.6527547,
+      "lat": 27.7622076
+    },
+    "expectedSourcePoint": [
+      814.01,
+      352.4
+    ],
+    "matchErrorPx": 0.000307
+  }
+]

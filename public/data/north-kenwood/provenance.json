@@ -1,0 +1,39 @@
+{
+  "id": "north-kenwood",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "45e27b8eadbb9978a905f6d3004145cd5e5a693b1a9aed9a7698192ada3b1c85",
+    "map-data.json": "f4adbc0123bd3ba54961fc00fad744373d110e090e84a67cedc065c8c9a9bcfd",
+    "buffer.mjs": "28462cade21a3912ed60061ae07892d69b7ec65ee8165ac497632c42c958d4c3"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "0 20 1000 1020",
+  "coreMaskGeometrySha256": "554ac9e1da5698354a452650662899bbd1d26c4f6bd8341bb9b2d1d25a8b34e3",
+  "nearbyMaskGeometrySha256": "ab1f79d3a36557cc97bc24c7c3be6a695e4761ccadd765f15cc3e894e6a66b0c",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/north-kenwood.webp",
+    "width": 3012,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "b65a80cf150ea9ed2a87c5ae22765818e8294bb82f0c138164098929b41d9b0e",
+    "sha256": "66f5eba834bf8ed8bcc870cf2e507dfaf4e61f2e1f60179e392b1da79f0a9207",
+    "bytes": 367346,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

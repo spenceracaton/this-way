@@ -1,0 +1,58 @@
+[
+  {
+    "id": "fruitland-heights-road-1",
+    "osmType": "way",
+    "osmId": "11255598",
+    "sourceGeographic": {
+      "lng": -82.6590821,
+      "lat": 27.7484188
+    },
+    "expectedSourcePoint": [
+      121.16,
+      882.85
+    ],
+    "matchErrorPx": 0.000703
+  },
+  {
+    "id": "fruitland-heights-road-2",
+    "osmType": "way",
+    "osmId": "1270817030",
+    "sourceGeographic": {
+      "lng": -82.6547523,
+      "lat": 27.7524939
+    },
+    "expectedSourcePoint": [
+      860.15,
+      96.94
+    ],
+    "matchErrorPx": 0.000738
+  },
+  {
+    "id": "fruitland-heights-road-3",
+    "osmType": "way",
+    "osmId": "11257161",
+    "sourceGeographic": {
+      "lng": -82.6581508,
+      "lat": 27.7484214
+    },
+    "expectedSourcePoint": [
+      280.11,
+      882.35
+    ],
+    "matchErrorPx": 0.001157
+  },
+  {
+    "id": "fruitland-heights-road-4",
+    "osmType": "way",
+    "osmId": "11239382",
+    "sourceGeographic": {
+      "lng": -82.6590855,
+      "lat": 27.7502318
+    },
+    "expectedSourcePoint": [
+      120.58,
+      533.2
+    ],
+    "matchErrorPx": 0.00145
+  }
+]

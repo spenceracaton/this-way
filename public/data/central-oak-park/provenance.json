@@ -1,0 +1,39 @@
+{
+  "id": "central-oak-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "d958b2b1c517b12f106cd48075affeead6a56f8f25057001fdf1021d0f757289",
+    "map-data.json": "0d66c9ec2ac0f5ab92f6dae5266d6faaba957e610e2501fae5989e050feb5d78",
+    "buffer.mjs": "543e9de78e844700b6aba701006b2d705f36f21013cfdec22e5fd33138e5e1e2"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "7 20 986 1020",
+  "coreMaskGeometrySha256": "ac987c8b9cf5612a524a4815cac77a7440d9de0d6c764a41d23665ca9ecae50a",
+  "nearbyMaskGeometrySha256": "929a698da7cde4fec28dd436c8a7ce782d147fd304ecf5eba31bcd7dd95457fe",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/central-oak-park.webp",
+    "width": 2970,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "8b516fd557b2b2f398c622f72666071e86f78280174e5693a3b4d61be7066c50",
+    "sha256": "2d7c89a971d5b9344facbe7ba5fb9aa802557636480869e07508a6a9dbf0965f",
+    "bytes": 497166,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

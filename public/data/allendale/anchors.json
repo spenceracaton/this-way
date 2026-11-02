@@ -1,0 +1,58 @@
+[
+  {
+    "id": "allendale-road-1",
+    "osmType": "way",
+    "osmId": "478978356",
+    "sourceGeographic": {
+      "lng": -82.6511928,
+      "lat": 27.8072163
+    },
+    "expectedSourcePoint": [
+      473.29,
+      849.62
+    ],
+    "matchErrorPx": 0.000494
+  },
+  {
+    "id": "allendale-road-2",
+    "osmType": "way",
+    "osmId": "1263344328",
+    "sourceGeographic": {
+      "lng": -82.6492862,
+      "lat": 27.8066545
+    },
+    "expectedSourcePoint": [
+      649.43,
+      908.3
+    ],
+    "matchErrorPx": 0.000663
+  },
+  {
+    "id": "allendale-road-3",
+    "osmType": "way",
+    "osmId": "86092677",
+    "sourceGeographic": {
+      "lng": -82.6500202,
+      "lat": 27.8093047
+    },
+    "expectedSourcePoint": [
+      581.62,
+      631.49
+    ],
+    "matchErrorPx": 0.000669
+  },
+  {
+    "id": "allendale-road-4",
+    "osmType": "way",
+    "osmId": "1203507000",
+    "sourceGeographic": {
+      "lng": -82.6528475,
+      "lat": 27.8120132
+    },
+    "expectedSourcePoint": [
+      320.42,
+      348.59
+    ],
+    "matchErrorPx": 0.000745
+  }
+]

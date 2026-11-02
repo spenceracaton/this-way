@@ -1,4 +1,5 @@
 import { samplePins } from './sample-pins.mjs';
+import { importedNeighborhoods } from './neighborhood-catalog.mjs';
 
 // An explicit pair of map studies, not a generalized seasonal framework.
 export const neighborhoods = {
@@ -26,6 +27,10 @@ export const neighborhoods = {
     ]
   }
 };
+
+for (const neighborhood of importedNeighborhoods) {
+  neighborhoods[neighborhood.id] = neighborhood;
+}
 
 export function neighborhoodFor(search) {
   const id = new URLSearchParams(search).get('neighborhood') || 'old-northeast';

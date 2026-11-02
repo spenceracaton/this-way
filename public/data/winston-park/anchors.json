@@ -1,0 +1,58 @@
+[
+  {
+    "id": "winston-park-road-1",
+    "osmType": "way",
+    "osmId": "11247154",
+    "sourceGeographic": {
+      "lng": -82.650885,
+      "lat": 27.843915
+    },
+    "expectedSourcePoint": [
+      699.58,
+      678.48
+    ],
+    "matchErrorPx": 0.000146
+  },
+  {
+    "id": "winston-park-road-2",
+    "osmType": "way",
+    "osmId": "11251412",
+    "sourceGeographic": {
+      "lng": -82.6473013,
+      "lat": 27.8493562
+    },
+    "expectedSourcePoint": [
+      862.08,
+      399.44
+    ],
+    "matchErrorPx": 0.000257
+  },
+  {
+    "id": "winston-park-road-3",
+    "osmType": "way",
+    "osmId": "107867415",
+    "sourceGeographic": {
+      "lng": -82.6591509,
+      "lat": 27.8393581
+    },
+    "expectedSourcePoint": [
+      324.77,
+      912.17
+    ],
+    "matchErrorPx": 0.000389
+  },
+  {
+    "id": "winston-park-road-4",
+    "osmType": "way",
+    "osmId": "11249650",
+    "sourceGeographic": {
+      "lng": -82.6617122,
+      "lat": 27.8499371
+    },
+    "expectedSourcePoint": [
+      208.63,
+      369.65
+    ],
+    "matchErrorPx": 0.000408
+  }
+]

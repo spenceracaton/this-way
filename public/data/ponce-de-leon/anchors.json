@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ponce-de-leon-road-1",
+    "osmType": "way",
+    "osmId": "11234716",
+    "sourceGeographic": {
+      "lng": -82.6734001,
+      "lat": 27.7982573
+    },
+    "expectedSourcePoint": [
+      498.45,
+      341.97
+    ],
+    "matchErrorPx": 0.000129
+  },
+  {
+    "id": "ponce-de-leon-road-2",
+    "osmType": "way",
+    "osmId": "764907300",
+    "sourceGeographic": {
+      "lng": -82.6746947,
+      "lat": 27.7919099
+    },
+    "expectedSourcePoint": [
+      418.12,
+      787.2
+    ],
+    "matchErrorPx": 0.000257
+  },
+  {
+    "id": "ponce-de-leon-road-3",
+    "osmType": "way",
+    "osmId": "11256072",
+    "sourceGeographic": {
+      "lng": -82.6708114,
+      "lat": 27.8003721
+    },
+    "expectedSourcePoint": [
+      659.08,
+      193.63
+    ],
+    "matchErrorPx": 0.000341
+  },
+  {
+    "id": "ponce-de-leon-road-4",
+    "osmType": "way",
+    "osmId": "11255001",
+    "sourceGeographic": {
+      "lng": -82.6692944,
+      "lat": 27.7919541
+    },
+    "expectedSourcePoint": [
+      753.21,
+      784.1
+    ],
+    "matchErrorPx": 0.00046
+  }
+]

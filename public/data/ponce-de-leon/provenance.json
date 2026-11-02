@@ -1,0 +1,39 @@
+{
+  "id": "ponce-de-leon",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "026aa03b05d9c2878b0c3292e3c2556205ff1a2ccc189f3d930f9f8f8813402d",
+    "map-data.json": "0c09c554af235c189f06c81d780b32332d180fd20a50fe16e74667b76c3d2471",
+    "buffer.mjs": "18737fdf5b99aae54ed7e7fe2b0dc4e3d31f22b8d9ae510f0b7cc8cd580cfe7b"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-44 20 1088 1020",
+  "coreMaskGeometrySha256": "5bf410e307835a6a02fea1dfd7343e1ba1fcb37acf20c38bb0b2489a0c6afbfc",
+  "nearbyMaskGeometrySha256": "80450676475d6733f09952495e52ff6655bb7f0287ff7cd99826468bb691a7a7",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/ponce-de-leon.webp",
+    "width": 3072,
+    "height": 2880,
+    "encoding": "lossless WebP",
+    "sourceSha256": "2df3cfa5369e4001f09f7a332b077ecdd2204aee58dc0947be8f5bd7eafb8f65",
+    "sha256": "f4f7d11fa0e3a1f0a3eeac7ee643fe1fb95e8e4b0493a9595ebbf2223e7553f0",
+    "bytes": 262988,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

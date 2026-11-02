@@ -1,0 +1,39 @@
+{
+  "id": "wildwood-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "dde8bebca40ec6c368a0aca7219a022b07156e95314f57292ee5342f80e79eef",
+    "map-data.json": "855f5c5dbe142361dc31911417b7b12ab3949b1a56775609391c6a7b3a4bed12",
+    "buffer.mjs": "e9e26f2bfcbfc78cc4e9620e29d0a0eba69fb43b493e285591bf8a5f2a160574"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-106 -16 1212 1092",
+  "coreMaskGeometrySha256": "94ea5b158db1c83924edfbbb7beba5d1c36d665418f6b188aff7a9d77be94ea6",
+  "nearbyMaskGeometrySha256": "6d308517526d71552509b23b5f7379577c82ae59b0ec8c5c7469c191b6d60697",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/wildwood-heights.webp",
+    "width": 3072,
+    "height": 2768,
+    "encoding": "lossless WebP",
+    "sourceSha256": "8322a9ee15b88b255c6b1861b7db8b4cbf808997941a32b5b58537504259bf22",
+    "sha256": "15e4eb03ccd7169cec443e344c6ce1cc36211fea78f79a434830fa4232495162",
+    "bytes": 262754,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

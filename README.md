@@ -1,6 +1,22 @@
 # This Way map prototype
 
-Two neighborhood maps, Old Northeast and Crescent Lake, using reused illustrated geography and Leaflet 1.9.4. This is a local candidate for the Christmas successor, not a deployment or a replacement for Fright This Way.
+59 source-supported neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 57 maps contain geography only. No seasonal overlays or FTW listing records are imported.
+
+The catalog matches the fixed registry in the Fright This Way QA snapshot `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. FTW areas created only in its production database are outside this static snapshot. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM and the two maps' additional County GIS source credits are retained.
+
+Only the selected map's configuration and artwork load. The 57 new lossless WebP images have a maximum 3072px long edge; their SVG sources remain available for diagnostics. The generated expansion adds about 26 MB of artwork to the checkout, rather than downloading that entire catalog in the browser.
+
+## Rebuild the imported geography
+
+The committed assets run without QA-repository access or Python. Rebuilding them requires existing read access to the private QA repository through `gh`, Python with Pillow, and Playwright Chromium:
+
+```sh
+python3 scripts/fetch-ftw-geography.py --output /tmp/this-way-ftw-geography
+python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-geography/source --reference /tmp/this-way-ftw-geography/reference
+node scripts/rasterize-neighborhoods.mjs
+```
+
+Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The fetcher verifies Git blob hashes; each map records source checksums, preserved mask geometry, four independently matched road anchors, and raster checksums in its provenance. Valid raster outputs are reused when their source and dimensions are unchanged. The importer deliberately excludes listing data, executable SVG, external resources, textures, and seasonal decorations.
 
 ## Run
 
@@ -16,11 +32,11 @@ Open `http://localhost:5173/`. For the same app in a 390px-wide frame, open `htt
 npm run check
 ```
 
-This runs the eight coordinate, asset-preservation, invalid-input, and dependency-integrity checks using Node's built-in test runner.
+This runs coordinate, asset-preservation, invalid-input, catalog-integrity, release, and gate checks using Node's built-in test runner.
 
 ## Browser checks (PR 2)
 
-The app and eight Node checks still need no installation. The browser suite uses
+The app and Node checks still need no installation. The browser suite uses
 exactly pinned Playwright 1.64.1 development dependencies and a committed lockfile:
 
 ```sh
@@ -31,11 +47,11 @@ npm run test:browser
 ```
 
 Playwright starts and stops the included server on port 5173. Stop any manually
-started server on that port first. It runs five scenarios in desktop Chromium
-(1280×900) and phone-sized WebKit (390×664, iPhone 13 device profile). All ten
-browser cases run on each PR in one GitHub Actions job, after the eight Node
-checks. There are no retries, path classifiers, deployment credentials or
-publishing steps. Superseded check runs are cancelled.
+started server on that port first. Desktop Chromium (1280×900) and phone-sized
+WebKit (390×664, iPhone 13 device profile) exercise map, detail, picker, and form
+behavior, every supported neighborhood route, and representative SVG diagnostics.
+CI runs the Node checks, prepares and verifies a frozen release artifact, then
+tests that artifact in both browser engines. Superseded runs are cancelled.
 
 The scenarios cover independent rendered pin anchors, actual browser rasterization
 of the shoreline/nearby masks, pointer and keyboard selection, pan/zoom/reset/Home,
@@ -65,7 +81,7 @@ The inspected renderer's camera updates directly call detail-card layout, cluste
 
 The artwork already uses a fixed SVG coordinate system, and `lib/neighborhoods.mjs` defines an explicit affine longitude/latitude conversion. Leaflet's `CRS.Simple` and SVG overlay accept this without a map service or token. This was enough evidence to build one candidate; a second competing application was unnecessary.
 
-This is a promising fit for one map. It is not a claim that Leaflet will require no additional adaptation for future neighborhoods or richer interaction.
+The same adapter now renders all 59 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
 
 ## Code boundaries
 
@@ -107,12 +123,11 @@ The eight sample pins use publicly displayed 2026 Fright This Way street address
 
 ## Next acceptance step
 
-Cloudflare configuration and the manual GitHub release/rollback workflow are
-documented in [DEPLOYMENT.md](DEPLOYMENT.md). Delivery acceptance remains pending
-until the production credential is configured and real deployment/rollback
-evidence is recorded. PR checks now validate and browser-test the packaged assets.
-
-Review this map approach and check it on a physical iPhone. Source is now in the private `spenceracaton/this-way` GitHub repository. Then connect a user-owned Cloudflare account, deploy the same static files, verify asset paths, and demonstrate application rollback. Do this before adding feature layers. There is no new Sites project, source synchronization, publishing controller, or hosting migration in this package.
+Cloudflare delivery and the GitHub release/rollback workflow are documented in
+[DEPLOYMENT.md](DEPLOYMENT.md). Normal delivery validates a frozen release,
+runs both browser engines, deploys current `main`, and checks the hosted release.
+Physical iPhone gestures and a real rollback exercise remain separate acceptance
+checks; browser emulation and map-source tests do not establish those outcomes.
 
 The submission preview now includes free-text description, optional theme, and curated seasonal tags. Real address lookup, submission storage, authentication, moderation, and publication remain future application work.
 

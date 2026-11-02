@@ -1,0 +1,39 @@
+{
+  "id": "highland-oaks",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "70f204238fe6eaf850f879e1c619d9050140b92ed8e889ea25a398dcb3ee3785",
+    "map-data.json": "7fe8e310e5b29730e277254593e2a8caef9f7f6b2242eb0dd6055007c353dfa0",
+    "buffer.mjs": "09e36b84995c48512ac299c4dc917c1a9bd5a277c077a1e6cee09d09899ff328"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-43 20 1086 1020",
+  "coreMaskGeometrySha256": "fb864495dc018016111a0727c51ccb540cebe6de7252b293b36b82545686cd2e",
+  "nearbyMaskGeometrySha256": "f156d72831e2b6cd9f585bf25d715f37be38ca6b8a953d4b94b16e583f80c13f",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/highland-oaks.webp",
+    "width": 3072,
+    "height": 2885,
+    "encoding": "lossless WebP",
+    "sourceSha256": "0316a876cfa906eabe5ac3238a1691ce91659173014cb7298cf59abcaadcf3b5",
+    "sha256": "45b965a242383408165bfb770e2793ae1ded8db734b4761760d9473031000ad1",
+    "bytes": 299548,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

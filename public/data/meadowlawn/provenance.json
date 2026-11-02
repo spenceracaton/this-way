@@ -1,0 +1,39 @@
+{
+  "id": "meadowlawn",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "08e05c9fdf097c490e99ec08f7e640231756bcca4bcff34d7ae3c841ce21b2a6",
+    "map-data.json": "46ab9070c265e8539f9477cec3cd79cd18bf10f6d268067f95a3a042f9a9d9e7",
+    "buffer.mjs": "2e99a0feda2fc66efc743f46298259a31445f84221a0b20fe1d0c3228447ebec"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "5 20 990 1020",
+  "coreMaskGeometrySha256": "380e2995e76e604d453bd6ac317be8e79c28e0ad418eb349684ada56a6208532",
+  "nearbyMaskGeometrySha256": "2e504d3393421996f1a6fef513feecb1449133355b04ef84754270142c409ae1",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/meadowlawn.webp",
+    "width": 2982,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "83c3d92eeba38a1be9dbb426660b12563af522b0d1b6d57f973f979db10a8d6a",
+    "sha256": "f231095c22b5579a34514afb4559448bb81df3a4b26c74b2aee44a34e60cdfca",
+    "bytes": 452550,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

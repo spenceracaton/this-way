@@ -1,0 +1,58 @@
+[
+  {
+    "id": "five-points-road-1",
+    "osmType": "way",
+    "osmId": "11253693",
+    "sourceGeographic": {
+      "lng": -82.6464208,
+      "lat": 27.8045693
+    },
+    "expectedSourcePoint": [
+      150.7,
+      367.25
+    ],
+    "matchErrorPx": 0.000161
+  },
+  {
+    "id": "five-points-road-2",
+    "osmType": "way",
+    "osmId": "1369968939",
+    "sourceGeographic": {
+      "lng": -82.6471157,
+      "lat": 27.8029981
+    },
+    "expectedSourcePoint": [
+      85.52,
+      533.86
+    ],
+    "matchErrorPx": 0.000268
+  },
+  {
+    "id": "five-points-road-3",
+    "osmType": "way",
+    "osmId": "11237160",
+    "sourceGeographic": {
+      "lng": -82.6464965,
+      "lat": 27.8015543
+    },
+    "expectedSourcePoint": [
+      143.6,
+      686.96
+    ],
+    "matchErrorPx": 0.000411
+  },
+  {
+    "id": "five-points-road-4",
+    "osmType": "way",
+    "osmId": "1378590375",
+    "sourceGeographic": {
+      "lng": -82.6385134,
+      "lat": 27.8048906
+    },
+    "expectedSourcePoint": [
+      892.4,
+      333.18
+    ],
+    "matchErrorPx": 0.00057
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "id": "winston-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "b408ccf8e1ed406f0730b2c62ba8c581493c7611ec4ecc27589a5ce3fae33440",
+    "map-data.json": "5d94c33921b66a3304bdc18d1373a2feea89edd0df2e5e38a959a5ba3d4b895f",
+    "buffer.mjs": "1b5b1e6f560613158f635b5c7128e2b664914489187206ddbed9b2073b81756e"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-10 20 1020 1020",
+  "coreMaskGeometrySha256": "118d11420a2c85ff1c90256bd08b19d720718316ce4bdf2ddf9e2d8ed4f8a2ee",
+  "nearbyMaskGeometrySha256": "b2d6cda80d9fddf335da51d4fa288e238fe3632bd66148f3f0cb434dec0fd8e7",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/winston-park.webp",
+    "width": 3072,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "acf62616a311f01cff26e7dff3d47954a0c9e22d20cd9ace488972a824174ed1",
+    "sha256": "c48d81ce97b2697944262b2d63d69a8aa5e81799db91dba2b1da877e53b7d850",
+    "bytes": 429472,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

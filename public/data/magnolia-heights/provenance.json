@@ -1,0 +1,39 @@
+{
+  "id": "magnolia-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "35e27d63896960713175895c7b6eeb8555f66b78afc1af4915bf0cf39b1df1d1",
+    "map-data.json": "f87cda78b1e7df5e9fdbae31a6afd55096ea64dbd615c534628f3b1989edb38c",
+    "buffer.mjs": "7ef36a24f9741ca41984087733f49b0e3c19e1aa386757e6f06b96ee1a2c9b35"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-104 -75 1208 1210",
+  "coreMaskGeometrySha256": "45abe7817c3b82b20abf4a0f10e62b3aa20141294a9428c5b02e9f960dc50c51",
+  "nearbyMaskGeometrySha256": "1ac5f6aa3ce4b544ba241cffbb3de35b427e3dfb787c2f34b6e1dde888eb0cb9",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/magnolia-heights.webp",
+    "width": 3067,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "ba00cc5783882542faf862f86ab4f8e87c990dbdd3628341c1201146facace4c",
+    "sha256": "21a959e65eae547445f3d18d46f4d97dd775374e422974ca7401d43910f1b6e9",
+    "bytes": 375802,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

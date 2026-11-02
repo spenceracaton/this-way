@@ -1,0 +1,58 @@
+[
+  {
+    "id": "north-kenwood-road-1",
+    "osmType": "way",
+    "osmId": "644594845",
+    "sourceGeographic": {
+      "lng": -82.6753397,
+      "lat": 27.7768421
+    },
+    "expectedSourcePoint": [
+      285.19,
+      970.62
+    ],
+    "matchErrorPx": 6.2e-05
+  },
+  {
+    "id": "north-kenwood-road-2",
+    "osmType": "way",
+    "osmId": "209681196",
+    "sourceGeographic": {
+      "lng": -82.6692829,
+      "lat": 27.78512
+    },
+    "expectedSourcePoint": [
+      530.47,
+      591.7
+    ],
+    "matchErrorPx": 0.00013
+  },
+  {
+    "id": "north-kenwood-road-3",
+    "osmType": "way",
+    "osmId": "11252030",
+    "sourceGeographic": {
+      "lng": -82.6589376,
+      "lat": 27.788372
+    },
+    "expectedSourcePoint": [
+      949.42,
+      442.84
+    ],
+    "matchErrorPx": 0.00023
+  },
+  {
+    "id": "north-kenwood-road-4",
+    "osmType": "way",
+    "osmId": "228131626",
+    "sourceGeographic": {
+      "lng": -82.6735603,
+      "lat": 27.782765
+    },
+    "expectedSourcePoint": [
+      357.25,
+      699.5
+    ],
+    "matchErrorPx": 0.000239
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "thirteenth-street-heights-road-1",
+    "osmType": "way",
+    "osmId": "1254095900",
+    "sourceGeographic": {
+      "lng": -82.6506992,
+      "lat": 27.7585185
+    },
+    "expectedSourcePoint": [
+      498.46,
+      236.98
+    ],
+    "matchErrorPx": 0.000272
+  },
+  {
+    "id": "thirteenth-street-heights-road-2",
+    "osmType": "way",
+    "osmId": "160868211",
+    "sourceGeographic": {
+      "lng": -82.6522058,
+      "lat": 27.7520814
+    },
+    "expectedSourcePoint": [
+      358.67,
+      911.9
+    ],
+    "matchErrorPx": 0.000343
+  },
+  {
+    "id": "thirteenth-street-heights-road-3",
+    "osmType": "way",
+    "osmId": "11233919",
+    "sourceGeographic": {
+      "lng": -82.645585,
+      "lat": 27.752991
+    },
+    "expectedSourcePoint": [
+      972.98,
+      816.53
+    ],
+    "matchErrorPx": 0.000389
+  },
+  {
+    "id": "thirteenth-street-heights-road-4",
+    "osmType": "way",
+    "osmId": "228620856",
+    "sourceGeographic": {
+      "lng": -82.6552299,
+      "lat": 27.7539314
+    },
+    "expectedSourcePoint": [
+      78.08,
+      717.93
+    ],
+    "matchErrorPx": 0.000506
+  }
+]

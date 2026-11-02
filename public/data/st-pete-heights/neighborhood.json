@@ -1,0 +1,80 @@
+{
+  "id": "st-pete-heights",
+  "name": "St. Pete Heights",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": -95,
+    "right": 1095,
+    "top": -45,
+    "bottom": 1105
+  },
+  "projection": {
+    "lngOrigin": -82.66702769961734,
+    "latOrigin": 27.802892202910485,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 87302.85275739667,
+    "yScale": 98696.64720218048
+  },
+  "artwork": "./assets/neighborhoods/st-pete-heights.svg",
+  "rasterArtwork": "./assets/neighborhoods/st-pete-heights.webp",
+  "coreBoundary": [
+    [
+      120.00000000062033,
+      172.50307779089366
+    ],
+    [
+      121.86264140006551,
+      642.4512846100855
+    ],
+    [
+      123.18703635071466,
+      885.9271753370524
+    ],
+    [
+      295.8690192615191,
+      890.0553716472116
+    ],
+    [
+      380.7429509865631,
+      888.9880503620443
+    ],
+    [
+      481.72904066242006,
+      887.7210823434604
+    ],
+    [
+      880.0000000006203,
+      884.6283629126542
+    ],
+    [
+      857.1503405718747,
+      169.94462835313902
+    ],
+    [
+      519.2414089083745,
+      172.8451253385153
+    ],
+    [
+      306.1647027075095,
+      173.7051068342539
+    ],
+    [
+      120.00000000062033,
+      172.50307779089366
+    ]
+  ],
+  "overviewBounds": {
+    "left": 120.00000000062033,
+    "right": 880.0000000006203,
+    "top": 169.94462835313902,
+    "bottom": 890.0553716472116
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+}

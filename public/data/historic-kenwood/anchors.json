@@ -1,0 +1,58 @@
+[
+  {
+    "id": "historic-kenwood-road-1",
+    "osmType": "way",
+    "osmId": "11237117",
+    "sourceGeographic": {
+      "lng": -82.6781535,
+      "lat": 27.7760327
+    },
+    "expectedSourcePoint": [
+      163.9,
+      520.95
+    ],
+    "matchErrorPx": 0.000167
+  },
+  {
+    "id": "historic-kenwood-road-2",
+    "osmType": "way",
+    "osmId": "11259306",
+    "sourceGeographic": {
+      "lng": -82.6616777,
+      "lat": 27.7738363
+    },
+    "expectedSourcePoint": [
+      756.98,
+      610.31
+    ],
+    "matchErrorPx": 0.000297
+  },
+  {
+    "id": "historic-kenwood-road-3",
+    "osmType": "way",
+    "osmId": "11242958",
+    "sourceGeographic": {
+      "lng": -82.6587883,
+      "lat": 27.7838221
+    },
+    "expectedSourcePoint": [
+      860.99,
+      204.04
+    ],
+    "matchErrorPx": 0.000343
+  },
+  {
+    "id": "historic-kenwood-road-4",
+    "osmType": "way",
+    "osmId": "11233744",
+    "sourceGeographic": {
+      "lng": -82.681491,
+      "lat": 27.782762
+    },
+    "expectedSourcePoint": [
+      43.76,
+      247.17
+    ],
+    "matchErrorPx": 0.000349
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "palmetto-park-road-1",
+    "osmType": "way",
+    "osmId": "1052124387",
+    "sourceGeographic": {
+      "lng": -82.6630428,
+      "lat": 27.7690402
+    },
+    "expectedSourcePoint": [
+      878.32,
+      405.39
+    ],
+    "matchErrorPx": 0.000138
+  },
+  {
+    "id": "palmetto-park-road-2",
+    "osmType": "way",
+    "osmId": "1010385996",
+    "sourceGeographic": {
+      "lng": -82.6753394,
+      "lat": 27.7675391
+    },
+    "expectedSourcePoint": [
+      312.36,
+      483.47
+    ],
+    "matchErrorPx": 0.000166
+  },
+  {
+    "id": "palmetto-park-road-3",
+    "osmType": "way",
+    "osmId": "11259306",
+    "sourceGeographic": {
+      "lng": -82.6616777,
+      "lat": 27.7738363
+    },
+    "expectedSourcePoint": [
+      941.15,
+      155.92
+    ],
+    "matchErrorPx": 0.000209
+  },
+  {
+    "id": "palmetto-park-road-4",
+    "osmType": "way",
+    "osmId": "644594850",
+    "sourceGeographic": {
+      "lng": -82.6754363,
+      "lat": 27.7709977
+    },
+    "expectedSourcePoint": [
+      307.9,
+      303.57
+    ],
+    "matchErrorPx": 0.00021
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "id": "childs-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "b0f2c9680f7b1a4bf66265ac0e734b1715e7dd7fc013a1c3baa051f616fb4ffd",
+    "map-data.json": "08b5e8671268ffa7c2060c00f44789d802217299a8ae96ae06a5a9d48818bb0e",
+    "buffer.mjs": "7012197c2bd494707effde1e89e97306b100fc9f2a91016d02f95611cfa22327"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "7 20 986 1020",
+  "coreMaskGeometrySha256": "5aaa90c18d8e8aed2d1c99bdf98ddb553362ae69b6f22473422457d6f5ae9ceb",
+  "nearbyMaskGeometrySha256": "2f119cb0eb693eed2c6382b9ebfc41d42329d8dab93783053f23c4dd470390ad",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; original approximate Childs Park channel-bank traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "original approximate Childs Park channel-bank traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.70212874314122%2C27.748865715349655%2C-82.67702843294408%2C27.768567683043724&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/childs-park.webp",
+    "width": 2970,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "6151e5f895a04e3b097217f1c33f3188f1d09257c28fe5280fcb1bee327e8b9b",
+    "sha256": "3bcea210d1b02c4943c9064ab7678e5c487b91645656943d7f6e24016a80f966",
+    "bytes": 450800,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

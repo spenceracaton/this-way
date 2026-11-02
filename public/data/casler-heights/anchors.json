@@ -1,0 +1,58 @@
+[
+  {
+    "id": "casler-heights-road-1",
+    "osmType": "way",
+    "osmId": "11255598",
+    "sourceGeographic": {
+      "lng": -82.6590821,
+      "lat": 27.7484188
+    },
+    "expectedSourcePoint": [
+      880.0,
+      921.08
+    ],
+    "matchErrorPx": 0.000788
+  },
+  {
+    "id": "casler-heights-road-2",
+    "osmType": "way",
+    "osmId": "11239388",
+    "sourceGeographic": {
+      "lng": -82.6622503,
+      "lat": 27.7503921
+    },
+    "expectedSourcePoint": [
+      275.76,
+      495.82
+    ],
+    "matchErrorPx": 0.001223
+  },
+  {
+    "id": "casler-heights-road-3",
+    "osmType": "way",
+    "osmId": "11255598",
+    "sourceGeographic": {
+      "lng": -82.6590887,
+      "lat": 27.7519393
+    },
+    "expectedSourcePoint": [
+      878.74,
+      162.39
+    ],
+    "matchErrorPx": 0.001376
+  },
+  {
+    "id": "casler-heights-road-4",
+    "osmType": "way",
+    "osmId": "758034083",
+    "sourceGeographic": {
+      "lng": -82.6621975,
+      "lat": 27.7511995
+    },
+    "expectedSourcePoint": [
+      285.83,
+      321.82
+    ],
+    "matchErrorPx": 0.001389
+  }
+]

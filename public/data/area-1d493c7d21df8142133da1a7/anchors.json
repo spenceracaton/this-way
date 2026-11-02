@@ -1,0 +1,58 @@
+[
+  {
+    "id": "area-1d493c7d21df8142133da1a7-road-1",
+    "osmType": "way",
+    "osmId": "11255821",
+    "sourceGeographic": {
+      "lng": -82.637843,
+      "lat": 27.8252606
+    },
+    "expectedSourcePoint": [
+      413.19,
+      516.54
+    ],
+    "matchErrorPx": 0.000136
+  },
+  {
+    "id": "area-1d493c7d21df8142133da1a7-road-2",
+    "osmType": "way",
+    "osmId": "11234434",
+    "sourceGeographic": {
+      "lng": -82.6350391,
+      "lat": 27.8319237
+    },
+    "expectedSourcePoint": [
+      504.42,
+      271.4
+    ],
+    "matchErrorPx": 0.000139
+  },
+  {
+    "id": "area-1d493c7d21df8142133da1a7-road-3",
+    "osmType": "way",
+    "osmId": "11226923",
+    "sourceGeographic": {
+      "lng": -82.6294894,
+      "lat": 27.8268534
+    },
+    "expectedSourcePoint": [
+      684.99,
+      457.94
+    ],
+    "matchErrorPx": 0.000166
+  },
+  {
+    "id": "area-1d493c7d21df8142133da1a7-road-4",
+    "osmType": "way",
+    "osmId": "11243884",
+    "sourceGeographic": {
+      "lng": -82.6385084,
+      "lat": 27.8300118
+    },
+    "expectedSourcePoint": [
+      391.54,
+      341.74
+    ],
+    "matchErrorPx": 0.000191
+  }
+]

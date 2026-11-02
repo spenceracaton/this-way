@@ -1,0 +1,39 @@
+{
+  "id": "st-pete-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "83e775ec022d500abe45a3be04937f6bab5a8ab370f558b72d920b6afd160638",
+    "map-data.json": "33296da64cd188083cad3248f00d4445bc2bbdf56774cdd9268f9d75940d083e",
+    "buffer.mjs": "b6aff17de87cfc3fe92fd668483ab34d5af30318378f78950cb26f43cb5a02d5"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-95 -45 1190 1150",
+  "coreMaskGeometrySha256": "96eff36f046214fb94d9162d16ae19f2b6da48d3d6d68555d732889c56d68d4a",
+  "nearbyMaskGeometrySha256": "422a2ee88f6bc08abac5eb514dc6288faa1c0a5a13411bab29f1c9273e341428",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/st-pete-heights.webp",
+    "width": 3072,
+    "height": 2969,
+    "encoding": "lossless WebP",
+    "sourceSha256": "6ebfdd2730417ae415fca0d19f22b0879318be4aca2c6694754f27af95d619a5",
+    "sha256": "ead8adbd61dc2b12def1e0c74c02316ec9b3aa85e61be028bd03aa3ba1260041",
+    "bytes": 266838,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "station-view-road-1",
+    "osmType": "way",
+    "osmId": "11262091",
+    "sourceGeographic": {
+      "lng": -82.675316,
+      "lat": 27.805596
+    },
+    "expectedSourcePoint": [
+      509.95,
+      238.67
+    ],
+    "matchErrorPx": 0.000516
+  },
+  {
+    "id": "station-view-road-2",
+    "osmType": "way",
+    "osmId": "11237135",
+    "sourceGeographic": {
+      "lng": -82.6754541,
+      "lat": 27.801045
+    },
+    "expectedSourcePoint": [
+      496.98,
+      721.84
+    ],
+    "matchErrorPx": 0.000841
+  },
+  {
+    "id": "station-view-road-3",
+    "osmType": "way",
+    "osmId": "1095095066",
+    "sourceGeographic": {
+      "lng": -82.6798838,
+      "lat": 27.801019
+    },
+    "expectedSourcePoint": [
+      80.98,
+      724.6
+    ],
+    "matchErrorPx": 0.000854
+  },
+  {
+    "id": "station-view-road-4",
+    "osmType": "way",
+    "osmId": "32708937",
+    "sourceGeographic": {
+      "lng": -82.6753703,
+      "lat": 27.798485
+    },
+    "expectedSourcePoint": [
+      504.85,
+      993.63
+    ],
+    "matchErrorPx": 0.000877
+  }
+]

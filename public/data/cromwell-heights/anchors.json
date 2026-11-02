@@ -1,0 +1,58 @@
+[
+  {
+    "id": "cromwell-heights-road-1",
+    "osmType": "way",
+    "osmId": "11239384",
+    "sourceGeographic": {
+      "lng": -82.6489778,
+      "lat": 27.7502486
+    },
+    "expectedSourcePoint": [
+      656.62,
+      531.67
+    ],
+    "matchErrorPx": 0.000152
+  },
+  {
+    "id": "cromwell-heights-road-2",
+    "osmType": "way",
+    "osmId": "1062781752",
+    "sourceGeographic": {
+      "lng": -82.64598,
+      "lat": 27.7484554
+    },
+    "expectedSourcePoint": [
+      935.28,
+      720.02
+    ],
+    "matchErrorPx": 0.000342
+  },
+  {
+    "id": "cromwell-heights-road-3",
+    "osmType": "way",
+    "osmId": "644594719",
+    "sourceGeographic": {
+      "lng": -82.6526514,
+      "lat": 27.7520795
+    },
+    "expectedSourcePoint": [
+      315.14,
+      339.36
+    ],
+    "matchErrorPx": 0.000552
+  },
+  {
+    "id": "cromwell-heights-road-4",
+    "osmType": "way",
+    "osmId": "11238692",
+    "sourceGeographic": {
+      "lng": -82.652095,
+      "lat": 27.7508662
+    },
+    "expectedSourcePoint": [
+      366.86,
+      466.8
+    ],
+    "matchErrorPx": 0.000572
+  }
+]

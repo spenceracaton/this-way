@@ -1,0 +1,39 @@
+{
+  "id": "snell-isle",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "e6c15f9489e9d323c824e40ffed76a4185555d059a2e60a08edc957e49017d2c",
+    "map-data.json": "e60440bdf44e84f652db363bbd933baaa333d2333a34baf49828ec4b690cd321",
+    "buffer.mjs": "00245905cf5a7f601b5f33e75a0b7ba8cef422dd6d399a88183cc81668520aef"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "25e7325bc96b16fc91f83ed895eaac34a6634ca31160cda34200f71e1ed8a801",
+  "nearbyMaskGeometrySha256": "4b317c4267f731878af36650af9c953931923a2e81ae616c5d624fcbb57870c3",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/snell-isle.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "312275616e21ba6b6592a3555ba6f1c69712988a1b473c815891fc7fab74d016",
+    "sha256": "7460e673990727e2a5461e6d947e9bfd463308ee875db0e10a38d44f7b5f8f53",
+    "bytes": 496616,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "crescent-heights-road-1",
+    "osmType": "way",
+    "osmId": "481712963",
+    "sourceGeographic": {
+      "lng": -82.6385446,
+      "lat": 27.794395
+    },
+    "expectedSourcePoint": [
+      879.87,
+      670.89
+    ],
+    "matchErrorPx": 0.000179
+  },
+  {
+    "id": "crescent-heights-road-2",
+    "osmType": "way",
+    "osmId": "11248309",
+    "sourceGeographic": {
+      "lng": -82.644177,
+      "lat": 27.7998123
+    },
+    "expectedSourcePoint": [
+      357.55,
+      102.99
+    ],
+    "matchErrorPx": 0.000227
+  },
+  {
+    "id": "crescent-heights-road-3",
+    "osmType": "way",
+    "osmId": "11248502",
+    "sourceGeographic": {
+      "lng": -82.6446891,
+      "lat": 27.7948215
+    },
+    "expectedSourcePoint": [
+      310.06,
+      626.18
+    ],
+    "matchErrorPx": 0.000471
+  },
+  {
+    "id": "crescent-heights-road-4",
+    "osmType": "way",
+    "osmId": "11242103",
+    "sourceGeographic": {
+      "lng": -82.6399046,
+      "lat": 27.7975767
+    },
+    "expectedSourcePoint": [
+      753.75,
+      337.35
+    ],
+    "matchErrorPx": 0.000657
+  }
+]

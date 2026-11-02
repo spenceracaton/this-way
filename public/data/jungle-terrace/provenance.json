@@ -1,0 +1,39 @@
+{
+  "id": "jungle-terrace",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "bd3c137759891814c7a1561ab5e509ca0327d79f8f717e2072e096430b4d57cc",
+    "map-data.json": "82722b675e60e863597f7f66e43ed89ceb5ed748c08e762b752c145144865380",
+    "buffer.mjs": "860cc13cd552fa6ca3685cdf933d6846bcbe6185f212f3ab4a05d1031ce70fbe"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "1dfde8f9399610562061e34a6263e042bdcc9e7d9427b92cb72c6bce9ec87c91",
+  "nearbyMaskGeometrySha256": "03f135b26558bf19f6c0171143e17a548395ab50242afd6907af90908e97b16c",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/jungle-terrace.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "77a8ed5b42f58643ddc8f14bc5c124bcadfbe1d87d8341c9cd675fd9ba305794",
+    "sha256": "88ed3b083fe1f6dbe01e667d8ac56d277b27f6ad2268ab046614be7adc8c0886",
+    "bytes": 372566,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "lake-maggiore-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "31abb6e2680f5a26962d06ba25d9ef35a63356ac1994602b8212f1129e71c310",
+    "map-data.json": "d31bbcb61067933fa47dfa44d934cd2ce5fea16f7995fa904266b6e53f5da354",
+    "buffer.mjs": "e7a043b9497af41cc284366646f5cb8e3b8d5a43d07abbdad946485faf41c739"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-277 -226 1554 1512",
+  "coreMaskGeometrySha256": "8624c8bc579d06d0143abb866f697063da2208ed440d8ff0e72df031359d6977",
+  "nearbyMaskGeometrySha256": "57e5477ed1c9903550aaba18a1ff1aba27909c614c8cd6cd91ca7775ba0ffb56",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; original approximate Bayou Court wet-basin trace from Pinellas County Aerials2026 public GIS reference (as-is, not a surveyed shoreline)",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "original approximate Bayou Court wet-basin trace from Pinellas County Aerials2026 public GIS reference (as-is, not a surveyed shoreline)",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.648%2C27.724%2C-82.638%2C27.733&bboxSR=4326&imageSR=4326&size=1000%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/lake-maggiore-park.webp",
+    "width": 3072,
+    "height": 2989,
+    "encoding": "lossless WebP",
+    "sourceSha256": "cea49bd60debaf1c55a0bb0fe6deb0dc9bac702d389c68aa894f14f2464c3f38",
+    "sha256": "5976534eea2fd75d7b7ce6a79deed4a547db9bc6c213b356787ae0dc6b5a0a44",
+    "bytes": 279468,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

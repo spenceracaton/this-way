@@ -1,0 +1,39 @@
+{
+  "id": "shore-acres",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "dd160680d50cc9e64eea6399a76816c15b242dd1fe92ba28cb7ca5f8c546a355",
+    "map-data.json": "d2e5fb6662bd95cfc902e8edb38f6c1ed7cec6e12e028dab9d337564acb911b7",
+    "buffer.mjs": "37660b2720e45d419344a68832c4a0b98ffe9cb31163b814cc9af33040d534c0"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "20 -176 960 1224",
+  "finalViewBox": "20 -176 960 1224",
+  "coreMaskGeometrySha256": "78d5ab951364121ee919d2824e277cce75c144fa4ae689fcfa212eb8640b2bc7",
+  "nearbyMaskGeometrySha256": "dcf67b76c3a628283867bb52c4ec6bf57fe13e2199a15efb995d0f18b352b98f",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/shore-acres.webp",
+    "width": 2409,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "81bc3c649de892bc40c3c1521b774ab2b15a0ccdfc7b62d632d92a9fca805aff",
+    "sha256": "941e053441c8bcd213149876ce19a17c327e10d26c871947f8dd2a7e45153f0e",
+    "bytes": 613112,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lake-maggiore-park-road-1",
+    "osmType": "way",
+    "osmId": "1420704366",
+    "sourceGeographic": {
+      "lng": -82.6413197,
+      "lat": 27.7303241
+    },
+    "expectedSourcePoint": [
+      760.65,
+      188.91
+    ],
+    "matchErrorPx": 0.000164
+  },
+  {
+    "id": "lake-maggiore-park-road-2",
+    "osmType": "way",
+    "osmId": "11252116",
+    "sourceGeographic": {
+      "lng": -82.6450232,
+      "lat": 27.7303246
+    },
+    "expectedSourcePoint": [
+      105.37,
+      188.81
+    ],
+    "matchErrorPx": 0.000224
+  },
+  {
+    "id": "lake-maggiore-park-road-3",
+    "osmType": "way",
+    "osmId": "301431402",
+    "sourceGeographic": {
+      "lng": -82.6403329,
+      "lat": 27.7267663
+    },
+    "expectedSourcePoint": [
+      935.25,
+      900.08
+    ],
+    "matchErrorPx": 0.000448
+  },
+  {
+    "id": "lake-maggiore-park-road-4",
+    "osmType": "way",
+    "osmId": "161484047",
+    "sourceGeographic": {
+      "lng": -82.6444912,
+      "lat": 27.7284007
+    },
+    "expectedSourcePoint": [
+      199.5,
+      573.38
+    ],
+    "matchErrorPx": 0.000971
+  }
+]

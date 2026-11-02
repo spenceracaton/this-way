@@ -1,0 +1,39 @@
+{
+  "id": "station-view",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "9befa6489734c6485c5ac63f0fee4a68528a47da988258d1844ba7d8425d8452",
+    "map-data.json": "6ef9979ecb0000b8854379efcdad1bf9895854a0bbc39e0affc41665d60e2b6d",
+    "buffer.mjs": "fa72cc5999e17ed47b750dbc494ffb987f6c6ffbd6e2c582044d78a805743a3e"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-108 -88 1216 1236",
+  "coreMaskGeometrySha256": "4c216c64aabf85d30be9856f064c23ceb437dd31b0c67f04cf72d33a3050ed25",
+  "nearbyMaskGeometrySha256": "42be97fad43e38ca5079df1e5a8dbc76ce2d597863f75e0ef1b1b2459dabbcac",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/station-view.webp",
+    "width": 3022,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "5e152a90ff658c420b9c8ccf07f92a35ced996d3dcf8cff05c441723e6c8157c",
+    "sha256": "12012fdc09d80a9e1d7cef40a752d434d16afc1e7ad455281edde4221fd031fc",
+    "bytes": 246686,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

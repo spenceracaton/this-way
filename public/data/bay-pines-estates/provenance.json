@@ -1,0 +1,39 @@
+{
+  "id": "bay-pines-estates",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "11279d54812d413874222d5f4190471bb00b7ac1143ac239462b748f11ab81b7",
+    "map-data.json": "75809c667810b6bac451fcc7e72a4ae0898d16aff6b40307f4d846d77e32c2f0",
+    "buffer.mjs": "e2c5c72777ebb7aa21bf893adf2f661dd8187aa7eb04f27f7ef82cbbb2e88a4e"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -31 960 1122",
+  "coreMaskGeometrySha256": "5ddcda552ce23d0ce34195bcd68aeaa3efb8a7208eb1e9ceec04a8c01958be58",
+  "nearbyMaskGeometrySha256": "67425ce0fbd4cf943a9e7fbcf54bc276ee0348a5e0fc78e1faf95084d790f26d",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/bay-pines-estates.webp",
+    "width": 2628,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "224a43aae48582bf454ec416e395ffed130a8eb038bb80f6193200259013e17f",
+    "sha256": "63adf12daf9499eff268a172eaf8a7d17d8fe2e1b2acdf3d63b969ba55b787cd",
+    "bytes": 348282,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

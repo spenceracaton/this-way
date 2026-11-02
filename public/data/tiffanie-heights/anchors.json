@@ -1,0 +1,58 @@
+[
+  {
+    "id": "tiffanie-heights-road-1",
+    "osmType": "way",
+    "osmId": "11255773",
+    "sourceGeographic": {
+      "lng": -82.767754,
+      "lat": 27.885475
+    },
+    "expectedSourcePoint": [
+      412.16,
+      925.1
+    ],
+    "matchErrorPx": 0.001069
+  },
+  {
+    "id": "tiffanie-heights-road-2",
+    "osmType": "way",
+    "osmId": "11254737",
+    "sourceGeographic": {
+      "lng": -82.7696899,
+      "lat": 27.8890231
+    },
+    "expectedSourcePoint": [
+      161.34,
+      405.0
+    ],
+    "matchErrorPx": 0.001461
+  },
+  {
+    "id": "tiffanie-heights-road-3",
+    "osmType": "way",
+    "osmId": "11237924",
+    "sourceGeographic": {
+      "lng": -82.769692,
+      "lat": 27.886295
+    },
+    "expectedSourcePoint": [
+      161.07,
+      804.9
+    ],
+    "matchErrorPx": 0.001539
+  },
+  {
+    "id": "tiffanie-heights-road-4",
+    "osmType": "way",
+    "osmId": "11247368",
+    "sourceGeographic": {
+      "lng": -82.7670321,
+      "lat": 27.8876267
+    },
+    "expectedSourcePoint": [
+      505.69,
+      609.69
+    ],
+    "matchErrorPx": 0.001603
+  }
+]

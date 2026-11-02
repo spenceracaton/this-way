@@ -1,0 +1,58 @@
+[
+  {
+    "id": "greater-grovemont-road-1",
+    "osmType": "way",
+    "osmId": "1390909824",
+    "sourceGeographic": {
+      "lng": -82.6595086,
+      "lat": 27.8211354
+    },
+    "expectedSourcePoint": [
+      523.25,
+      120.0
+    ],
+    "matchErrorPx": 1e-05
+  },
+  {
+    "id": "greater-grovemont-road-2",
+    "osmType": "way",
+    "osmId": "11237026",
+    "sourceGeographic": {
+      "lng": -82.6659591,
+      "lat": 27.8138474
+    },
+    "expectedSourcePoint": [
+      69.64,
+      699.46
+    ],
+    "matchErrorPx": 0.000361
+  },
+  {
+    "id": "greater-grovemont-road-3",
+    "osmType": "way",
+    "osmId": "11237021",
+    "sourceGeographic": {
+      "lng": -82.6642245,
+      "lat": 27.8134282
+    },
+    "expectedSourcePoint": [
+      191.62,
+      732.79
+    ],
+    "matchErrorPx": 0.000391
+  },
+  {
+    "id": "greater-grovemont-road-4",
+    "osmType": "way",
+    "osmId": "11257041",
+    "sourceGeographic": {
+      "lng": -82.6580867,
+      "lat": 27.817507
+    },
+    "expectedSourcePoint": [
+      623.24,
+      408.49
+    ],
+    "matchErrorPx": 0.000411
+  }
+]

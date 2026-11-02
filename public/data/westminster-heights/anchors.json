@@ -1,0 +1,58 @@
+[
+  {
+    "id": "westminster-heights-road-1",
+    "osmType": "way",
+    "osmId": "11231952",
+    "sourceGeographic": {
+      "lng": -82.6998501,
+      "lat": 27.7719392
+    },
+    "expectedSourcePoint": [
+      876.5,
+      176.02
+    ],
+    "matchErrorPx": 0.000238
+  },
+  {
+    "id": "westminster-heights-road-2",
+    "osmType": "way",
+    "osmId": "11234399",
+    "sourceGeographic": {
+      "lng": -82.7094274,
+      "lat": 27.7705784
+    },
+    "expectedSourcePoint": [
+      289.49,
+      270.28
+    ],
+    "matchErrorPx": 0.000295
+  },
+  {
+    "id": "westminster-heights-road-3",
+    "osmType": "way",
+    "osmId": "11238608",
+    "sourceGeographic": {
+      "lng": -82.7011413,
+      "lat": 27.765964
+    },
+    "expectedSourcePoint": [
+      797.36,
+      589.91
+    ],
+    "matchErrorPx": 0.000298
+  },
+  {
+    "id": "westminster-heights-road-4",
+    "osmType": "way",
+    "osmId": "1370782411",
+    "sourceGeographic": {
+      "lng": -82.7122069,
+      "lat": 27.7719008
+    },
+    "expectedSourcePoint": [
+      119.13,
+      178.68
+    ],
+    "matchErrorPx": 0.000366
+  }
+]

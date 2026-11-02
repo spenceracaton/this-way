@@ -1,0 +1,39 @@
+{
+  "id": "tiffanie-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "30a4501ab90e49a19628156e3ac236b95264f6d08b2d27a9d20f18ac905b85be",
+    "map-data.json": "2066478bd347bf58ab5a65a5c0c49ee3592a76c450d9c98d0fa68445a00d1be4",
+    "buffer.mjs": "33cab23a37c3094ffdc5480aeb2f07b014314c7516ca1fe4b5c779613b08be88"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "d68586ff9855f83fa860e9e66c58d57858b46faca0ac0d8b4f552d816ebec66e",
+  "nearbyMaskGeometrySha256": "4f4604ed618bbe05ba45ff17642675817283226363eca6fb3dc0bf72c62cbbe5",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/tiffanie-heights.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "d6595598c165cc3ec4486bdd8b3cfa61709a4362415eab4b8ef23f32a6647cbb",
+    "sha256": "bf63291668fba28a70f6ebd8ba0182e049c1d55575c780f830b5ce2ba2017386",
+    "bytes": 124628,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

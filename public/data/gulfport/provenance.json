@@ -1,0 +1,39 @@
+{
+  "id": "gulfport",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "78618c53e3d9311d0afd855c5b460e4eaeb39c13108cb449f540c37d95b08152",
+    "map-data.json": "7d5c32e8e82f7168fda8372a9b3418d2dd0c86d52f181cb0209a2575a3c7b3a9",
+    "buffer.mjs": "bc0a73ae23e648ac1e4e7b6f8cf355848f5b41628fc9d4ca6d5b7c9766bb0a05"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "09f34616f9d04a8aaa022a73bcccb00a93730ee5de946d4d17c10601262c9126",
+  "nearbyMaskGeometrySha256": "b22c7a5239ed5452c3a287ab4bed884bbc441400cf4a11e7c966fdd782f55742",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/gulfport.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "496685f63a09d78665ad4f485ff2f2edf17077dc1031448c7ba24357de3ff6ba",
+    "sha256": "be8352213575f91561344208380dc96d1f0bdb12f27eb287868d304ab6741487",
+    "bytes": 703288,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

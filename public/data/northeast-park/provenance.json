@@ -1,0 +1,39 @@
+{
+  "id": "northeast-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "410ec229628b321dbf84e98a5aff07001028381fada4b50d30c0429747f2b9c7",
+    "map-data.json": "2f575d2c2e7606059ec309e5d79fcb2f52cccd6f01ffddfd7909f2443102c403",
+    "buffer.mjs": "78f737b6461cce76dd7cb3f0b748677639887c665935dd66da70b462c22a0f53"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "14 20 966 1020",
+  "coreMaskGeometrySha256": "7ef191ce89fbc1ed3667990f1b297116d83940a5c48925840561abf677ec220b",
+  "nearbyMaskGeometrySha256": "bf46f2cabd33ed3ebab10a368876f4fa1a7dd5ae2a80aafa1d1be1d8a6cd3e91",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/northeast-park.webp",
+    "width": 2909,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "c5ef9be7a1afa94eaf11a94256a582500f783848b63e32e7244e3e116483da19",
+    "sha256": "beac846645e2fd39084602c123abb261ede4809037d7604cc75382424fe4d042",
+    "bytes": 605156,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "gulfport-road-1",
+    "osmType": "way",
+    "osmId": "11238696",
+    "sourceGeographic": {
+      "lng": -82.7078381,
+      "lat": 27.7510194
+    },
+    "expectedSourcePoint": [
+      509.15,
+      514.87
+    ],
+    "matchErrorPx": 0.000109
+  },
+  {
+    "id": "gulfport-road-2",
+    "osmType": "way",
+    "osmId": "1566959154",
+    "sourceGeographic": {
+      "lng": -82.718221,
+      "lat": 27.7658008
+    },
+    "expectedSourcePoint": [
+      332.43,
+      230.59
+    ],
+    "matchErrorPx": 0.000202
+  },
+  {
+    "id": "gulfport-road-3",
+    "osmType": "way",
+    "osmId": "11262618",
+    "sourceGeographic": {
+      "lng": -82.6854172,
+      "lat": 27.74025
+    },
+    "expectedSourcePoint": [
+      890.76,
+      721.99
+    ],
+    "matchErrorPx": 0.000225
+  },
+  {
+    "id": "gulfport-road-4",
+    "osmType": "way",
+    "osmId": "1377753702",
+    "sourceGeographic": {
+      "lng": -82.6940281,
+      "lat": 27.7412166
+    },
+    "expectedSourcePoint": [
+      744.2,
+      703.4
+    ],
+    "matchErrorPx": 0.00026
+  }
+]

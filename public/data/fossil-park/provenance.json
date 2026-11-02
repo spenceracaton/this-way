@@ -1,0 +1,39 @@
+{
+  "id": "fossil-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "8dc53fde9e11bd89245a3affdd6cae317018780dd316d79ac765a624097ff718",
+    "map-data.json": "875cb0dd5c6fe0a3d1c4931223af3612d0379a903153841ba7883d5121fa4fe9",
+    "buffer.mjs": "873b597d78af40401dab95145d9301a0c322e76d6a2358f7ebaa52c278b17148"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -22 960 1104",
+  "coreMaskGeometrySha256": "520801bc0bf63ce68a3ff0f16e81417cc0ba48251849e5b75f1ebb2d411562f8",
+  "nearbyMaskGeometrySha256": "656cd9caaafbe1eaba2496b0a8fbddf386fcc961f74a81a138a8f37497b9dbe6",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/fossil-park.webp",
+    "width": 2671,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "c4490f0c2d15028e449825bfd160be5f321461f417818be7793fcd2703b929a2",
+    "sha256": "8eeda7c8b95802c2f6332652712ee5a085771d94c4787c85569412a3814c477b",
+    "bytes": 419258,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

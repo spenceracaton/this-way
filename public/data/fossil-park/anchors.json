@@ -1,0 +1,58 @@
+[
+  {
+    "id": "fossil-park-road-1",
+    "osmType": "way",
+    "osmId": "11243884",
+    "sourceGeographic": {
+      "lng": -82.6377829,
+      "lat": 27.829803
+    },
+    "expectedSourcePoint": [
+      758.24,
+      861.9
+    ],
+    "matchErrorPx": 0.000113
+  },
+  {
+    "id": "fossil-park-road-2",
+    "osmType": "way",
+    "osmId": "1449326194",
+    "sourceGeographic": {
+      "lng": -82.6443195,
+      "lat": 27.8284673
+    },
+    "expectedSourcePoint": [
+      423.42,
+      939.27
+    ],
+    "matchErrorPx": 0.000149
+  },
+  {
+    "id": "fossil-park-road-3",
+    "osmType": "way",
+    "osmId": "11248201",
+    "sourceGeographic": {
+      "lng": -82.6385927,
+      "lat": 27.8269657
+    },
+    "expectedSourcePoint": [
+      716.76,
+      1026.25
+    ],
+    "matchErrorPx": 0.000228
+  },
+  {
+    "id": "fossil-park-road-4",
+    "osmType": "way",
+    "osmId": "11254933",
+    "sourceGeographic": {
+      "lng": -82.6469049,
+      "lat": 27.842611
+    },
+    "expectedSourcePoint": [
+      290.99,
+      120.0
+    ],
+    "matchErrorPx": 0.000276
+  }
+]

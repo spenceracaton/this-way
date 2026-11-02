@@ -1,0 +1,39 @@
+{
+  "id": "old-southeast",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "3aa6ae10da5aa1f65b6eaccdc6725a6248fc376fbb8f64b46c11660a6039a987",
+    "map-data.json": "50669e61ce707e43d41da4d3494c1ce822d37c67789910453ff736e1f4ab6a11",
+    "buffer.mjs": "8b191bf86906e9461ea823d442eac0774e0def6f8625cba93223ead59dc48ec5"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-7 -59 1014 1178",
+  "coreMaskGeometrySha256": "82bda469b583a63b6a89433ec4182efb360bb122599018499976d1362638c579",
+  "nearbyMaskGeometrySha256": "3f8d8f7862747ad58b5fc598455ba82010cbbba10c2c164052c4e2aa3712397e",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/old-southeast.webp",
+    "width": 2644,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "71dc457a7da8bcaa2d70986d5913c631f67d79ce18d273213e1b403d6f6bb092",
+    "sha256": "e1012e34bd98b5da9607680a4d8ee1e2de1a380be1933fa5107b73af2990fc47",
+    "bytes": 357842,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

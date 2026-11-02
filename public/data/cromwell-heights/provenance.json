@@ -1,0 +1,39 @@
+{
+  "id": "cromwell-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "9c8c51705b417d058f04454d36396ca9d55bde52fcbceddbf87feedfd6237675",
+    "map-data.json": "f141e3bd1536c1f2bd1081255a5ad4e758c5eb5c1ea6d439f169bf47edfe2120",
+    "buffer.mjs": "7ddf5d800e889612d7691ccf9065b135cfe9905d0c271816eeaf6a7776d3da0c"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-106 20 1212 1020",
+  "coreMaskGeometrySha256": "864a0d08ad1ab5b39a36ca0d3c4934b4af2b6eab3b0950955bba0f719b9749a3",
+  "nearbyMaskGeometrySha256": "b7145e5c1b4930145670281010ecc9110cf084a9dede2f34552defbbea9d4355",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/cromwell-heights.webp",
+    "width": 3072,
+    "height": 2585,
+    "encoding": "lossless WebP",
+    "sourceSha256": "bd3b790b307d09b3c9ec566329aa14c0eba7cac82a12915091f473f0ff39238a",
+    "sha256": "23ed18233e367dc37d45413b23d3cc06bbce18ebbd23d1f104fb5488ade62bfc",
+    "bytes": 233272,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

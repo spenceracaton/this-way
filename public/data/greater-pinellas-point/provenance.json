@@ -1,0 +1,40 @@
+{
+  "id": "greater-pinellas-point",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "f240006ba6feadc93973ada6f430f2fa3c1e0237dfba4ce47fd0f62a94148eb4",
+    "map-data.json": "fde4bf7526c509c9b6eeb5ad0f83357990bf9020ea6239f8970bef95209beb75",
+    "buffer.mjs": "54967689deb4aac06c9c79755641065fa958563a0d3b9a522c417dd2d044eeb6",
+    "greater-pinellas-point.json": "bab3ed2b49177aa9089a570ffaca69989d99758d5dec799427434ddedece91af"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "8c11a8f75b0af4fbb8bb7b13c5adb90fad1248569fa92b67741e7412d0b4f9d7",
+  "nearbyMaskGeometrySha256": "a2d9fdc57909a8649b0b6f783752524ed64bf11f476fb01f3b61dbb75b8debb1",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/greater-pinellas-point.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "1a1c431e383bb89d74b52e1fd974505f7ff9bde0cea8c90202ca40418f65c0e7",
+    "sha256": "3fce6c08df1e453376a8b8b4a0f6cf6d6eb05ddf6fac4a66ff178c29ce48b705",
+    "bytes": 556288,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

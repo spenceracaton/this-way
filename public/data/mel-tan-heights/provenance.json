@@ -1,0 +1,39 @@
+{
+  "id": "mel-tan-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "dce6817dcba8337004c1ab219c33dbf4f547042b12120c4013aafb59a6c4cbb6",
+    "map-data.json": "c9388207317ba73582973c55a62a82d0067d70b7b34679af2bc508298782ff26",
+    "buffer.mjs": "068ce57fd52c7677e0e2beb7903e02b7e0233bae13952517b86aef30ae228bb2"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-290 -254 1580 1568",
+  "coreMaskGeometrySha256": "2ad115892a317b30e896ef6643fd526562de7fa190afd15db6dbfc574a1deabc",
+  "nearbyMaskGeometrySha256": "4a3958c3dae559250b331ef42467565d184ffcb57a4e0722a14ae8277728d0ec",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/mel-tan-heights.webp",
+    "width": 3072,
+    "height": 3049,
+    "encoding": "lossless WebP",
+    "sourceSha256": "beb0b0589857c0586fc6260796237bb3a84d02fec0740ad8e4d033353b7d7386",
+    "sha256": "5f9d9b92c541241c678a05e2ce68be16a965c4c7078b1e8367fbe817ce494557",
+    "bytes": 172284,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

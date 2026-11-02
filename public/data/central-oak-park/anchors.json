@@ -1,0 +1,58 @@
+[
+  {
+    "id": "central-oak-park-road-1",
+    "osmType": "way",
+    "osmId": "1391812697",
+    "sourceGeographic": {
+      "lng": -82.6981016,
+      "lat": 27.7718176
+    },
+    "expectedSourcePoint": [
+      188.79,
+      684.56
+    ],
+    "matchErrorPx": 7.7e-05
+  },
+  {
+    "id": "central-oak-park-road-2",
+    "osmType": "way",
+    "osmId": "11240585",
+    "sourceGeographic": {
+      "lng": -82.6855319,
+      "lat": 27.7693354
+    },
+    "expectedSourcePoint": [
+      655.7,
+      788.77
+    ],
+    "matchErrorPx": 0.000296
+  },
+  {
+    "id": "central-oak-park-road-3",
+    "osmType": "way",
+    "osmId": "1346643429",
+    "sourceGeographic": {
+      "lng": -82.6795137,
+      "lat": 27.7711166
+    },
+    "expectedSourcePoint": [
+      879.25,
+      713.99
+    ],
+    "matchErrorPx": 0.000353
+  },
+  {
+    "id": "central-oak-park-road-4",
+    "osmType": "way",
+    "osmId": "1254073584",
+    "sourceGeographic": {
+      "lng": -82.687632,
+      "lat": 27.783656
+    },
+    "expectedSourcePoint": [
+      577.69,
+      187.55
+    ],
+    "matchErrorPx": 0.000392
+  }
+]
