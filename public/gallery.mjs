@@ -21,6 +21,7 @@
   const retry=button('Retry loading photo','Retry',()=>show(index));retry.className='photo-retry';error.append(node('span','Photo unavailable'),retry);
   const imageButton=large?node('div'):button('Enlarge photo of '+address,'',()=>{if(visibleIndex>=0&&Date.now()>suppressClickUntil)onOpen?.(visibleIndex)});
   imageButton.className='photo-image';frame.append(imageButton,error);if(closeButton&&!large)frame.append(closeButton);host.append(frame);
+  if(!large){const hint=node('span');hint.className='photo-expand-hint';hint.setAttribute('aria-hidden','true');imageButton.append(hint)}
 
   const count=node('span');count.className='photo-count';count.setAttribute('aria-live','polite');count.setAttribute('aria-atomic','true');host.append(count);
   function load(i){

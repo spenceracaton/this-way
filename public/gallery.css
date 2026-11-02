@@ -3,6 +3,8 @@
 .photo-gallery[hidden]{display:none}
 .photo-frame{position:relative;height:200px;max-width:100%;touch-action:pan-y;overflow:hidden;border-radius:7px;background:var(--photo-mat)}
 .photo-image{position:relative;display:block;width:100%;height:100%;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:hidden}
+.photo-expand-hint{position:absolute;z-index:2;top:8px;left:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:5px;background:var(--photo-control-rest);color:var(--photo-control-ink);pointer-events:none}
+.photo-expand-hint::before{content:'';width:14px;height:14px;background:linear-gradient(currentColor,currentColor) left top/5px 2px no-repeat,linear-gradient(currentColor,currentColor) left top/2px 5px no-repeat,linear-gradient(currentColor,currentColor) right top/5px 2px no-repeat,linear-gradient(currentColor,currentColor) right top/2px 5px no-repeat,linear-gradient(currentColor,currentColor) left bottom/5px 2px no-repeat,linear-gradient(currentColor,currentColor) left bottom/2px 5px no-repeat,linear-gradient(currentColor,currentColor) right bottom/5px 2px no-repeat,linear-gradient(currentColor,currentColor) right bottom/2px 5px no-repeat}
 .photo-layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity 180ms ease;pointer-events:none}
 .photo-layer img{width:100%;height:100%;display:block;object-fit:cover}
 /* Auto dimensions put the frame and shadow on the photograph, not its letterbox. */
