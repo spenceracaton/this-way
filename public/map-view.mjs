@@ -1,7 +1,32 @@
 import { project, mapPoint, mapBounds } from './coordinates.mjs';
 
+// A compact neighborhood-local pin picker used from the submission dialog.
+// Its crosshair represents the map center, so keyboard panning and zooming
+// work through Leaflet's normal accessible map controls.
+export async function createLocationPicker({ leaflet: L, element, area, artwork }) {
+  const bounds = L.latLngBounds(mapBounds(area.bounds));
+  const map = L.map(element, { crs: L.CRS.Simple, minZoom: -3, maxZoom: 2, zoomSnap: 0.5,
+    zoomControl: false, attributionControl: true, keyboard: true, maxBounds: bounds, maxBoundsViscosity: 1 });
+  L.control.zoom({ position: 'topleft' }).addTo(map);
+  const overlayArtwork = artwork.localName === 'svg' ? artwork.cloneNode(true) : artwork;
+  (artwork.localName === 'svg' ? L.svgOverlay(overlayArtwork, bounds, { interactive: false }) : L.imageOverlay(overlayArtwork.src, bounds, { interactive: false })).addTo(map);
+  const pickerCredits = [attributionLink(area.attribution) || attributionLink({ label: '© OpenStreetMap contributors', href: 'https://www.openstreetmap.org/copyright' }), attributionLink(area.license && area.licenseUrl ? { label: area.license, href: area.licenseUrl } : null), ...(Array.isArray(area.additionalAttributions) ? area.additionalAttributions.map(attributionLink) : [])].filter(Boolean);
+  if (pickerCredits.length) map.attributionControl.addAttribution(pickerCredits.join(' · '));
+  map.fitBounds(bounds, { padding: [14, 14], animate: false });
+  const resize = new ResizeObserver(() => map.invalidateSize({ pan: false })); resize.observe(element);
+  return {
+    getPosition() {
+      const center = map.getCenter();
+      const x = center.lng, y = -center.lat, p = area.projection;
+      return { lat: p.latOrigin - (y - p.yOrigin) / p.yScale, lng: p.lngOrigin + (x - p.xOrigin) / p.xScale };
+    },
+    destroy() { resize.disconnect(); map.remove(); }
+  };
+}
+
 // The complete renderer boundary. No data fetching, forms, storage, or detail-card DOM.
-export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets }) {
+export function createMap({ leaflet: L, element, area, pins: initialPins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets }) {
+  let pins = [...initialPins];
   const bounds = L.latLngBounds(mapBounds(area.bounds));
   const overviewBounds = area.overviewBounds ? L.latLngBounds(mapBounds(area.overviewBounds)) : bounds;
   const map = L.map(element, {
@@ -61,9 +86,14 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
       animate: false
     });
   }
-  for (const pin of pins) {
-    const icon = L.divIcon({ className: 'reference-marker', iconSize: [44, 44], iconAnchor: [22, 22],
-      html: `<button class="map-pin" type="button" aria-label="Select sample ${pin.label}: ${pin.name}" aria-pressed="false" data-pin="${pin.id}">${pin.label}</button>` });
+  function addPin(pin) {
+    // Build and serialize through the DOM so live address/title text is escaped.
+    const button = document.createElement('button');
+    button.className = 'map-pin'; button.type = 'button';
+    button.setAttribute('aria-label', `Select ${pin.live ? 'display' : 'sample'} ${pin.label}: ${pin.name}`);
+    button.setAttribute('aria-pressed', 'false'); button.dataset.pin = pin.id;
+    button.textContent = pin.label;
+    const icon = L.divIcon({ className: 'reference-marker', iconSize: [44, 44], iconAnchor: [22, 22], html: button.outerHTML });
     const marker = L.marker(mapPoint(project(pin, area.projection)), { icon, keyboard: false, title: pin.name })
       .on('click', () => select(pin.id))
       .on('add', event => {
@@ -75,6 +105,7 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
       }).addTo(map);
     markers.set(pin.id, marker);
   }
+  pins.forEach(addPin);
   map.on('click', () => select(null));
   element.addEventListener('keydown', event => {
     if (event.key === 'Escape') { select(null); event.preventDefault(); }
@@ -100,6 +131,14 @@ export function createMap({ leaflet: L, element, area, pins, artwork, onSelect, 
   return {
     reset,
     select,
+    setPins(nextPins) {
+      const selectedId = selected;
+      for (const marker of markers.values()) marker.remove();
+      markers.clear(); pins = [...nextPins]; pins.forEach(addPin);
+      selected = null;
+      if (selectedId && pins.some(pin => pin.id === selectedId)) select(selectedId);
+      else onSelect(null);
+    },
     revealSelection,
     destroy() { resize.disconnect(); map.remove(); }
   };

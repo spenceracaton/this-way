@@ -8,6 +8,13 @@ Only the selected map's configuration and artwork load. Imported lossless WebP i
 
 Each map is a separate data/artwork bundle. See [map reuse and coordinate format](docs/map-data.md) for using it outside this application, and [the expansion audit](docs/neighborhood-expansion.md) for recovered and pending areas. Artwork retains its permission-based license; technical portability does not grant reuse rights.
 
+The same-origin Worker adds durable listings in D1 and private photo storage in
+R2. Valid text/address submissions publish immediately; photos wait separately
+for authenticated owner review. See [service setup](docs/service-setup.md),
+[API contracts](docs/service-api.md), and [FTW migration planning](docs/ftw-migration.md).
+Production activation requires the owner setup and manually reviewed release
+changes. This branch does not migrate existing FTW records.
+
 ## Rebuild the imported geography
 
 The committed assets run without QA-repository access or Python. Rebuilding them requires existing read access to the private QA repository through `gh`, Python with Pillow, and Playwright Chromium:
@@ -24,7 +31,7 @@ Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The
 
 ## Run
 
-Requires Node.js 20 or later. No dependency installation, account, API key, build, or network connection is required to run it after downloading.
+Requires Node.js 22 or later. No dependency installation, account, API key, build, or network connection is required to run it after downloading.
 
 ```sh
 npm run dev
@@ -37,6 +44,21 @@ npm run check
 ```
 
 This runs coordinate, asset-preservation, invalid-input, catalog-integrity, release, and gate checks using Node's built-in test runner.
+It also runs real local Worker/D1/R2 integration checks for persistence, private
+photos, authentication, moderation, concurrent upload limits, and retries. Python
+is needed for the importer's generated-fixture regression tests.
+
+For a complete browser journey with a real isolated Worker, database, and bucket:
+
+```sh
+npm run test:service
+```
+
+This command creates temporary local state and test credentials, exercises both
+browser engines, and removes the state afterward. It does not contact production
+databases or upload to a remote bucket. `-- --project=phone-webkit` selects one
+browser. For an interactive persistent local service, use the setup guide's
+local Worker instructions.
 
 ## Browser checks (PR 2)
 
@@ -72,12 +94,15 @@ performance, touch gesture behavior, deployment, or compatibility of a second ma
 ## What this proves so far
 
 - A standard map engine can display this neighborhood's illustrated SVG and its original core/nearby masks.
-- Each map has four numbered address samples that align with independently recorded public map markers. The original OSM road anchors remain checked as geography fixtures. Measured desktop rendering error was below one screen pixel at the initial view.
+- The two original maps each have four numbered address samples aligned with independently recorded public map markers. The other maps contain geography without invented listings. OSM road anchors remain separate geometry fixtures.
 - Desktop Chromium browser checks exercised mouse selection, zoom, drag panning, native keyboard panning, reset, Enter selection, and Escape clearing.
 - A narrow iframe using the same app showed four pins, selection, zoom/reset controls, and no horizontal page overflow. Its 390px frame had 375px of content width after the browser scrollbar.
 - The neutral SVG retains the geographic paths and two original masks. The core mask path is fingerprint-checked against the inspected source. The rendered coastal reference was visually inspected.
 
-The prototype does not establish physical-iPhone touch/scroll performance, every neighborhood's compatibility, deployment correctness, production asset loading, or rollback. Those remain later acceptance checks.
+Local checks establish geometry and automated UI behavior. Each production release
+is verified separately against its exact `main` commit. Physical-iPhone gesture
+performance and a real rollback exercise remain separate acceptance checks; the
+new listing service also requires its documented owner setup before activation.
 
 ## Why Leaflet was selected
 
@@ -103,13 +128,30 @@ The same adapter now renders all 75 prepared maps. Additional geography and rich
 | `scripts/serve.mjs` | Static-file development server only |
 | `tests/map.test.mjs` | Source-coordinate, mask and integrity checks |
 
-The runtime remains a static prototype without application accounts, a database, uploads, or a live submission service. The map receives local sample data and reports selection.
+The static development server remains an illustrative preview. When the listing
+service is configured, the default map uses live records and approved photos;
+the original samples remain available only through explicit `?sample=a`, `c`, or
+`d` links. An enabled service error is shown to the user rather than replaced
+with fictional records. Public listing DTOs omit object keys, private source
+snapshots, upload capabilities, and review notes.
 
 ## Core component previews
 
-The header's **Add a display** button opens a form with address validation, optional theme and description, local photos, and curated seasonal tags. Selected display cards also offer **Add photos** and **Report**. **Feedback** is available in the footer. Each form produces an editable preview; none sends data or adds a live listing. Photos are decoded locally, limited to three JPEG/PNG/WebP files of up to 10 MB each, and are not uploaded. Form entries are kept only in the current page's memory.
+The header's **Add a display** button collects an address, a confirmed map pin,
+optional theme/description, photos, and season-configured tags. In service mode,
+the text listing is saved and appears immediately. Up to three JPEG/PNG/WebP
+photos are resized in the browser, validated and stripped of metadata on the
+server, and stored privately pending review. An upload failure keeps the saved
+listing and offers a photo retry. **Add photos** on a live listing uses the same
+private review flow. **Report** and **Feedback** remain clearly labeled previews.
+On the static development server, submission/photo forms also remain previews.
 
-The footer's **Review demo** opens `review.html`, a workspace with fictional records, status filters, approve/reject decisions, required rejection reasons, and undo. Its in-memory repository is separate from the page controller so a future authenticated service can replace it. Demo decisions reset on reload and do not alter the map. This page is not an authenticated moderation service and must not be given private records without adding access control and a real persistence layer.
+`review.html` uses a single-owner sign-in when the service is enabled. Photo
+approval/rejection is independent of text listing visibility; the owner can also
+hide or restore a text listing. Private images require the owner session. Review
+decisions use record versions to catch stale actions and write transactional
+audit events. In static mode the page retains the fictional **Review demo**;
+those decisions stay in memory and reset on reload.
 
 The components live in separate ES modules (`submission.mjs`, `community-forms.mjs`, `photo-contribution.mjs`, and `review.mjs`/`review-data.mjs`) with scoped styles. `dialog.mjs` shares native-dialog dismissal, focus return, scroll locking, and overflow cues. UI references came from the Fright This Way QA repository; no FTW submission endpoints or private production data were copied.
 
@@ -133,7 +175,11 @@ runs both browser engines, deploys current `main`, and checks the hosted release
 Physical iPhone gestures and a real rollback exercise remain separate acceptance
 checks; browser emulation and map-source tests do not establish those outcomes.
 
-The submission preview now includes free-text description, optional theme, and curated seasonal tags. Real address lookup, submission storage, authentication, moderation, and publication remain future application work.
+Address placement currently uses a manual pin and explicit address-match
+confirmation. County address lookup/geocoding remains future work. The FTW import
+planner preserves legacy coordinate provenance and flags unresolved locations
+before a published listing can be planned; it does not guess a projection or run
+an actual import. Events and resident self-service remain out of scope.
 
 ## Third-party material
 

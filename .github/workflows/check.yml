@@ -77,6 +77,10 @@ jobs:
       - run: npx playwright test --project=${{ matrix.project }}
         env:
           STATIC_ROOT: release/public
+      - name: Test the isolated service journey
+        run: npm run test:service -- --project=${{ matrix.project }}
+        env:
+          SERVICE_TEST_CONFIG: release/wrangler.jsonc
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: ${{ failure() }}
         with:
@@ -142,6 +146,8 @@ jobs:
           ARTIFACT_ID: ${{ needs.validate.outputs.artifact-id }}
           ARTIFACT_DIGEST: ${{ needs.validate.outputs.artifact-digest }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          OWNER_PASSWORD_HASH: ${{ secrets.THIS_WAY_OWNER_PASSWORD_HASH }}
+          SERVICE_SECRET: ${{ secrets.THIS_WAY_SERVICE_SECRET }}
       - run: npx playwright install --with-deps chromium
       - name: Verify production behavior
         run: npm run test:production

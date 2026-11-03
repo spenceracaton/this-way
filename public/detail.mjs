@@ -32,7 +32,8 @@ export function createDetail({ close, neighborhood }) {
   byId('detail-share').onclick = async () => {
     const pin = selected;
     const url = new URL(location.href);
-    url.searchParams.set('sample', pin.id);
+    if (pin.live) { url.searchParams.delete('sample'); url.searchParams.set('listing', pin.id); }
+    else { url.searchParams.delete('listing'); url.searchParams.set('sample', pin.id); }
     try {
       if (navigator.share) await navigator.share({ title: pin.name, url: url.href });
       else await navigator.clipboard.writeText(url.href);
@@ -84,7 +85,8 @@ export function createDetail({ close, neighborhood }) {
     host.replaceChildren();
     if (!pin) { position(); return; }
     returnFocus = opener || document.querySelector('[data-pin="' + CSS.escape(pin.id) + '"]');
-    const data = (neighborhood === 'old-northeast' && samples[pin.id]) || {};
+    const data = pin.live ? { title: pin.title, description: pin.description, tags: pin.tags, photos: pin.photos || [] }
+      : (neighborhood === 'old-northeast' && samples[pin.id]) || {};
     const address = document.createElement('a');
     address.id = 'selected-name';
     address.textContent = pin.name;
@@ -98,6 +100,7 @@ export function createDetail({ close, neighborhood }) {
     title.textContent = data.title || '';
     (data.title ? secondary : title).append(address);
     byId('selected-label').textContent = pin.label;
+    heart.setAttribute('aria-label', pin.live ? 'Heart this display on this device' : 'Heart this sample on this device');
     byId('selected-note').textContent = data.description || pin.note;
     const tags = byId('detail-tags');
     tags.replaceChildren();
@@ -108,7 +111,7 @@ export function createDetail({ close, neighborhood }) {
     }
     tags.hidden = !tags.childElementCount;
     host.hidden = !data.photos?.length;
-    if (!host.hidden) gallery = mountGallery(host, data.photos.map(file => ({url: './assets/samples/' + file})), pin.name);
+    if (!host.hidden) gallery = mountGallery(host, data.photos.map(file => ({url: pin.live ? file : './assets/samples/' + file})), pin.name);
     pane.querySelector('.house-body').scrollTop = 0;
     let liked = false;
     try { liked = localStorage.getItem(heartKey()) === 'true'; } catch {}

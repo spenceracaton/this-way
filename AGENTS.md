@@ -17,14 +17,17 @@ Treat a pull request as release-sensitive when it changes any of these paths:
 - `.github/CODEOWNERS`
 - `AGENTS.md`
 - `scripts/release.mjs`
+- `scripts/configure-owner.mjs`
 - `scripts/require-success.mjs`
 - `package.json`
 - `package-lock.json`
 - `wrangler.jsonc`
+- `migrations/**`
 - `playwright.production.config.mjs`
-- `tests/production.spec.mjs`
+- `tests/production/**`
 - `tests/release.test.mjs`
-- `tests/gate.test.mjs`
+- `tests/configure-owner.test.mjs`
+- `tests/require-success.test.mjs`
 
 For a release-sensitive pull request:
 

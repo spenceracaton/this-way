@@ -26,7 +26,7 @@
     <nav class="primary-nav" aria-label="Main navigation">
       <a href="./" aria-current="page">Map</a>
     </nav>
-    <button id="add-display" class="future-action" type="button" aria-haspopup="dialog" aria-controls="submission-dialog"><span aria-hidden="true">＋</span> Add a display</button>
+    <button id="add-display" class="future-action" type="button" aria-haspopup="dialog" aria-controls="submission-dialog" disabled><span aria-hidden="true">＋</span> Add a display</button>
   </header>
 
   <main class="map-shell">
@@ -109,20 +109,38 @@
         <input id="submission-address" name="address" autocomplete="street-address" maxlength="160" required aria-describedby="submission-address-help submission-address-error" placeholder="Street address, city">
         <p id="submission-address-error" class="submission-error" role="status"></p>
         <p id="submission-address-help" class="submission-help">Enter the full street address, including the city.</p>
+        <fieldset id="submission-location-picker" class="submission-location" hidden>
+          <legend>Pin position <small>(required)</small></legend>
+          <p class="submission-help">Move the map until the marker matches your address.</p>
+          <button id="submission-location-button" type="button" class="submission-secondary">Choose pin position</button>
+          <div id="submission-location-map-wrap" class="submission-location-map-wrap" hidden>
+            <p id="submission-location-address" class="submission-location-address"></p>
+            <div class="submission-location-map-frame">
+            <div id="submission-location-map" tabindex="0" role="application" aria-label="Choose pin position in this neighborhood. Pan with arrow keys and zoom with plus or minus."></div>
+            <span class="submission-map-crosshair" aria-hidden="true">＋</span>
+            </div>
+            <button id="submission-location-confirm" type="button" class="submission-secondary">Use map center</button>
+          </div>
+          <label id="submission-location-match-label" class="submission-location-match" hidden><input id="submission-location-match" type="checkbox"> I confirm that the pin matches the address above.</label>
+          <p id="submission-location-status" class="submission-help" role="status" tabindex="-1">Choose a position and confirm that it matches the address.</p>
+        </fieldset>
         <div class="submission-field"><label for="submission-theme">Theme <small>(optional)</small></label><input id="submission-theme" name="theme" maxlength="80" placeholder="For example: A winter wonderland" aria-describedby="submission-theme-error"><p id="submission-theme-error" class="submission-error" role="status"></p></div>
         <div class="submission-field"><label for="submission-description">Description <small>(optional)</small></label><textarea id="submission-description" name="description" maxlength="500" rows="3" placeholder="What should visitors know about your display?" aria-describedby="submission-description-count submission-description-error"></textarea><p id="submission-description-count" class="submission-description-count">0/500</p><p id="submission-description-error" class="submission-error" role="status"></p></div>
         <details class="submission-extra"><summary>Add photos <small>(optional)</small></summary><label class="submission-photo-picker"><span>＋ Choose photos</span><input id="submission-photos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-label="Choose display photos" aria-describedby="submission-photos-help submission-photos-error"></label><p id="submission-photos-help" class="submission-help submission-photo-help">Up to 3 JPEG, PNG or WebP photos, 10 MB each. Photos stay in this preview.</p><div id="submission-photo-previews" class="submission-photo-previews"></div><p id="submission-photos-error" class="submission-error" role="status"></p></details>
         <details class="submission-extra"><summary>Seasonal tags <small>(optional)</small></summary><fieldset id="submission-tags" aria-label="Seasonal tags"></fieldset></details>
       </form>
       <section id="submission-preview" hidden aria-label="Display preview"><p class="submission-preview-notice">Preview only — not submitted or shown on the map.</p><article id="submission-preview-card" class="submission-preview-card"></article></section>
+      <p id="submission-service-error" class="submission-error" role="alert"></p>
+      <section id="submission-receipt" class="submission-receipt" hidden aria-live="polite"><h3 id="submission-receipt-title">Your display is on the map</h3><p id="submission-receipt-copy"></p><p id="submission-photo-receipt"></p></section>
     </div>
-    <div id="submission-form-actions" class="submission-actions"><p class="submission-preview-notice">Preview only. Nothing will be submitted or added to the map.</p><button id="submission-preview-button" class="submission-primary" type="submit" form="submission-form">Preview display</button></div>
+    <div id="submission-form-actions" class="submission-actions"><p id="submission-preview-notice" class="submission-preview-notice">Preview only. Nothing will be submitted or added to the map.</p><button id="submission-preview-button" class="submission-primary" type="submit" form="submission-form">Preview display</button></div>
     <div id="submission-preview-actions" class="submission-actions submission-preview-actions" hidden><button id="submission-edit" class="submission-secondary" type="button">Edit display</button><button id="submission-done" class="submission-primary" type="button">Done</button></div>
+    <div id="submission-receipt-actions" class="submission-actions submission-preview-actions" hidden><button id="submission-photo-retry" class="submission-secondary" type="button">Retry photo uploads</button><button id="submission-receipt-done" class="submission-primary" type="button">Done</button></div>
   </dialog>
 
   <footer>
     <span>Map prototype · sample locations only</span>
-    <span class="footer-tools"><button type="button" data-open-feedback>Feedback</button><a href="./review.html">Review demo</a></span>
+    <span class="footer-tools"><button type="button" data-open-feedback disabled>Feedback</button><a href="./review.html">Review demo</a></span>
   </footer>
 </body>
 </html>
