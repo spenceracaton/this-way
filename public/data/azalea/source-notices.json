@@ -1,0 +1,271 @@
+{
+  "attribution": "© OpenStreetMap contributors; Pinellas County 2025 Orthos via Esri World Imagery (derived conservative approximate exposed-water traces)",
+  "license": "Mixed sources; see sourceLicenses and per-feature provenance",
+  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.751,27.774,-82.733,27.795",
+  "sourceLicenses": {
+    "osm": {
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "attribution": "© OpenStreetMap contributors"
+    },
+    "imageryDerivedTrace": {
+      "attribution": "Pinellas County 2025 Orthos via Esri World Imagery",
+      "scope": "Conservative derived vector interpretations, no imagery pixels redistributed; no ODbL claim or invented OSM ID. Refer to original image/source URLs and source-use terms."
+    }
+  },
+  "sourceBindings": {
+    "osm": {
+      "path": "osm-raw.xml",
+      "sha256": "b4eb7aa51422799396187217875dfa977ca8b5a713e2c690e15bba05ccaaef2f"
+    },
+    "imageryTrace": {
+      "path": "../candidate/creek-source-features.geojson",
+      "sha256": "a9eb93b8e359246707e0217f6f6c4be724acda261973ea211c7e15c58d87ab66"
+    },
+    "southernNearbyTrace": {
+      "path": "../geometry/southern-nearby-source-feature.geojson",
+      "sha256": "2e87186e8007882a9dd3741a70e3bc915da811d0fea9c40218e5a1f4a8c8d6eb"
+    }
+  },
+  "coverageDerivation": {
+    "identity": "Exact City of St Petersburg Azalea association ring, not a survey",
+    "boundarySource": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=94&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+    "water": "Five conservative observed/inferred Pinellas2025 imagery creek footprints; retained original OSM waterpolygons. Not surveyed banks or walkability",
+    "nearby": "200 m visibility only, clipped to retained peninsula shoreline and water exclusions; does not confer membership",
+    "shorelineMode": "coastal",
+    "precision": "Exactsourcevertices preserved; computed intersections serialized under existing metric precision; continuous difference evidence retained"
+  },
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=94&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.751,27.774,-82.733,27.795"
+  ],
+  "featureNotices": [
+    {
+      "sourceLicense": "ODbL-1.0"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "sourceLicense": "ODbL-1.0"
+    },
+    {
+      "source": "PGS",
+      "sourceLicense": "ODbL-1.0"
+    },
+    {
+      "sourceLicense": "ODbL-1.0",
+      "sourceFeatureId": "relation/2580762",
+      "sourceComponentIndex": 0
+    },
+    {
+      "sourceLicense": "ODbL-1.0",
+      "sourceFeatureId": "relation/2580762",
+      "sourceComponentIndex": 1
+    },
+    {
+      "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+      "sourceDate": "2025-01-25",
+      "sourceImageSha256": "98f5f9d37d3a68bdcb33e7fdc4b9bb428ba7baa46994b934ac7e15095a467449",
+      "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7424%2C27.7838%2C-82.7411%2C27.787&bboxSR=4326&imageSR=4326&size=900%2C2100&format=png32&f=json",
+      "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+    },
+    {
+      "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+      "sourceDate": "2025-01-25",
+      "sourceImageSha256": "1db6276ce6c2ac3d24704ffc32be6ac51c5ffa7116b1b18b5824707732c5ddb8",
+      "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7445%2C27.7805%2C-82.7413%2C27.7849&bboxSR=4326&imageSR=4326&size=1500%2C2100&format=png32&f=json",
+      "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+    },
+    {
+      "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+      "sourceDate": "2025-01-25",
+      "sourceImageSha256": "c4759d68c23c8d034bb8b7effb7778fb8bbfbb9fc29e29fa2494ee787b42dd13",
+      "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7465%2C27.7778%2C-82.7432%2C27.7814&bboxSR=4326&imageSR=4326&size=1800%2C2000&format=png32&f=json",
+      "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+    },
+    {
+      "source": "Pinellas County2025 orthophotography viaEsri",
+      "sourceImageSha256": "e365b44684402539c972f3b902b7aa45b2c2027479335326166f9fd54d454382",
+      "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7459%2C27.7757%2C-82.7437%2C27.7775&bboxSR=4326&imageSR=4326&size=1800%2C1500&format=png32&f=json",
+      "sourceDate": "2025-01-25",
+      "license": "Referenceprovider terms; no rasterpixels distributed; not ODbL claimed"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors; Pinellas County 2025 Orthos via Esri World Imagery (derived conservative approximate exposed-water traces)",
+    "license": "Mixed sources; see sourceLicenses and per-feature provenance",
+    "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.751,27.774,-82.733,27.795",
+    "sourceLicenses": {
+      "osm": {
+        "license": "ODbL-1.0",
+        "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "imageryDerivedTrace": {
+        "attribution": "Pinellas County 2025 Orthos via Esri World Imagery",
+        "scope": "Conservative derived vector interpretations, no imagery pixels redistributed; no ODbL claim or invented OSM ID. Refer to original image/source URLs and source-use terms."
+      }
+    },
+    "sourceBindings": {
+      "osm": {
+        "path": "osm-raw.xml",
+        "sha256": "b4eb7aa51422799396187217875dfa977ca8b5a713e2c690e15bba05ccaaef2f"
+      },
+      "imageryTrace": {
+        "path": "../candidate/creek-source-features.geojson",
+        "sha256": "a9eb93b8e359246707e0217f6f6c4be724acda261973ea211c7e15c58d87ab66"
+      },
+      "southernNearbyTrace": {
+        "path": "../geometry/southern-nearby-source-feature.geojson",
+        "sha256": "2e87186e8007882a9dd3741a70e3bc915da811d0fea9c40218e5a1f4a8c8d6eb"
+      }
+    },
+    "coverageDerivation": {
+      "identity": "Exact City of St Petersburg Azalea association ring, not a survey",
+      "boundarySource": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=94&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "water": "Five conservative observed/inferred Pinellas2025 imagery creek footprints; retained original OSM waterpolygons. Not surveyed banks or walkability",
+      "nearby": "200 m visibility only, clipped to retained peninsula shoreline and water exclusions; does not confer membership",
+      "shorelineMode": "coastal",
+      "precision": "Exactsourcevertices preserved; computed intersections serialized under existing metric precision; continuous difference evidence retained"
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=94&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.751,27.774,-82.733,27.795"
+    ],
+    "featureNotices": [
+      {
+        "sourceLicense": "ODbL-1.0"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "sourceLicense": "ODbL-1.0"
+      },
+      {
+        "source": "PGS",
+        "sourceLicense": "ODbL-1.0"
+      },
+      {
+        "sourceLicense": "ODbL-1.0",
+        "sourceFeatureId": "relation/2580762",
+        "sourceComponentIndex": 0
+      },
+      {
+        "sourceLicense": "ODbL-1.0",
+        "sourceFeatureId": "relation/2580762",
+        "sourceComponentIndex": 1
+      },
+      {
+        "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+        "sourceDate": "2025-01-25",
+        "sourceImageSha256": "98f5f9d37d3a68bdcb33e7fdc4b9bb428ba7baa46994b934ac7e15095a467449",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7424%2C27.7838%2C-82.7411%2C27.787&bboxSR=4326&imageSR=4326&size=900%2C2100&format=png32&f=json",
+        "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+        "sourceDate": "2025-01-25",
+        "sourceImageSha256": "1db6276ce6c2ac3d24704ffc32be6ac51c5ffa7116b1b18b5824707732c5ddb8",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7445%2C27.7805%2C-82.7413%2C27.7849&bboxSR=4326&imageSR=4326&size=1500%2C2100&format=png32&f=json",
+        "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+        "sourceDate": "2025-01-25",
+        "sourceImageSha256": "c4759d68c23c8d034bb8b7effb7778fb8bbfbb9fc29e29fa2494ee787b42dd13",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7465%2C27.7778%2C-82.7432%2C27.7814&bboxSR=4326&imageSR=4326&size=1800%2C2000&format=png32&f=json",
+        "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography viaEsri",
+        "sourceImageSha256": "e365b44684402539c972f3b902b7aa45b2c2027479335326166f9fd54d454382",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7459%2C27.7757%2C-82.7437%2C27.7775&bboxSR=4326&imageSR=4326&size=1800%2C1500&format=png32&f=json",
+        "sourceDate": "2025-01-25",
+        "license": "Referenceprovider terms; no rasterpixels distributed; not ODbL claimed"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors; Pinellas County 2025 Orthos via Esri World Imagery (derived conservative approximate exposed-water traces)",
+    "license": "Mixed sources; see sourceLicenses and per-feature provenance",
+    "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.751,27.774,-82.733,27.795",
+    "sourceLicenses": {
+      "osm": {
+        "license": "ODbL-1.0",
+        "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "imageryDerivedTrace": {
+        "attribution": "Pinellas County 2025 Orthos via Esri World Imagery",
+        "scope": "Conservative derived vector interpretations, no imagery pixels redistributed; no ODbL claim or invented OSM ID. Refer to original image/source URLs and source-use terms."
+      }
+    },
+    "sourceBindings": {
+      "osm": {
+        "path": "osm-raw.xml",
+        "sha256": "b4eb7aa51422799396187217875dfa977ca8b5a713e2c690e15bba05ccaaef2f"
+      },
+      "imageryTrace": {
+        "path": "../candidate/creek-source-features.geojson",
+        "sha256": "a9eb93b8e359246707e0217f6f6c4be724acda261973ea211c7e15c58d87ab66"
+      },
+      "southernNearbyTrace": {
+        "path": "../geometry/southern-nearby-source-feature.geojson",
+        "sha256": "2e87186e8007882a9dd3741a70e3bc915da811d0fea9c40218e5a1f4a8c8d6eb"
+      }
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=94&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.751,27.774,-82.733,27.795"
+    ],
+    "featureNotices": [
+      {
+        "sourceLicense": "ODbL-1.0"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "sourceLicense": "ODbL-1.0"
+      },
+      {
+        "source": "PGS",
+        "sourceLicense": "ODbL-1.0"
+      },
+      {
+        "sourceLicense": "ODbL-1.0",
+        "sourceFeatureId": "relation/2580762",
+        "sourceComponentIndex": 0
+      },
+      {
+        "sourceLicense": "ODbL-1.0",
+        "sourceFeatureId": "relation/2580762",
+        "sourceComponentIndex": 1
+      },
+      {
+        "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+        "sourceDate": "2025-01-25",
+        "sourceImageSha256": "98f5f9d37d3a68bdcb33e7fdc4b9bb428ba7baa46994b934ac7e15095a467449",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7424%2C27.7838%2C-82.7411%2C27.787&bboxSR=4326&imageSR=4326&size=900%2C2100&format=png32&f=json",
+        "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+        "sourceDate": "2025-01-25",
+        "sourceImageSha256": "1db6276ce6c2ac3d24704ffc32be6ac51c5ffa7116b1b18b5824707732c5ddb8",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7445%2C27.7805%2C-82.7413%2C27.7849&bboxSR=4326&imageSR=4326&size=1500%2C2100&format=png32&f=json",
+        "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography via Esri World Imagery",
+        "sourceDate": "2025-01-25",
+        "sourceImageSha256": "c4759d68c23c8d034bb8b7effb7778fb8bbfbb9fc29e29fa2494ee787b42dd13",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7465%2C27.7778%2C-82.7432%2C27.7814&bboxSR=4326&imageSR=4326&size=1800%2C2000&format=png32&f=json",
+        "license": "Public imagery reference; no imagery pixels redistributed or OSM feature ID claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography viaEsri",
+        "sourceImageSha256": "e365b44684402539c972f3b902b7aa45b2c2027479335326166f9fd54d454382",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7459%2C27.7757%2C-82.7437%2C27.7775&bboxSR=4326&imageSR=4326&size=1800%2C1500&format=png32&f=json",
+        "sourceDate": "2025-01-25",
+        "license": "Referenceprovider terms; no rasterpixels distributed; not ODbL claimed"
+      }
+    ]
+  }
+}

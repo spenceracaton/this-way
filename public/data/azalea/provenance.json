@@ -1,0 +1,58 @@
+{
+  "id": "azalea",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "fd575910f01ddec5f86dd38b25d687c935f13410b5bf7cb5b28c8afab0efcf66",
+    "map-data.json": "fb99527dad5e753c8a2fd68ddeff148535d8dc2e74bdaad32003bbf020168c75",
+    "buffer.mjs": "71d9b094e2e93cf8e38a54cf3f81c28db2117dac2aac03384c317803b382b6a9",
+    "buffer-map-data.json": "4adb684e087f02dbd3b5a331dc1b4606b25992c9f55177f25e3bfa207d44509c",
+    "source-geography.geojson": "3aa8893642037a1e6912d3b712447d95af972010a1f1bf8ac5b31b399fab9689"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 -16 960 1092",
+  "coreMaskGeometrySha256": "977f93999521d8b1be1be93f899481e7b5976304b2f0b462f63bc12225420ad2",
+  "nearbyMaskGeometrySha256": "f38bc4d586f4854561c011d24c70a0790a0e2cc1db50e2d58a5b2c84963e632c",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; Pinellas County 2025 Orthos via Esri World Imagery (derived conservative approximate exposed-water traces)",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=94&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery / Esri",
+        "href": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7424%2C27.7838%2C-82.7411%2C27.787&bboxSR=4326&imageSR=4326&size=900%2C2100&format=png32&f=json"
+      }
+    ],
+    "license": "Mixed sources; see sourceLicenses and per-feature provenance",
+    "licenseUrl": null
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/azalea/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/azalea/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/azalea.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/azalea/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/azalea/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "f7b3616fecdb878337cca6c765124a387012d8c87d2c6c8aa7d0635b3fcdba5e",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/azalea.webp",
+    "width": 2701,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "9248d3bb2514708f0294939b6df87ffe1ae429c9d6339adc4252da9adcc4b147",
+    "sha256": "a342701cde8e8c1a91a7e53f46244bbf932486c4ab681d6042c658525cea1764",
+    "bytes": 417304,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

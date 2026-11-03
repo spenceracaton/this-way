@@ -1,0 +1,58 @@
+[
+  {
+    "id": "historic-park-street-road-1",
+    "osmType": "way",
+    "osmId": "1019802633",
+    "sourceGeographic": {
+      "lng": -82.7455424,
+      "lat": 27.7772985
+    },
+    "expectedSourcePoint": [
+      203.44,
+      294.49
+    ],
+    "matchErrorPx": 0.000283
+  },
+  {
+    "id": "historic-park-street-road-2",
+    "osmType": "way",
+    "osmId": "11234109",
+    "sourceGeographic": {
+      "lng": -82.7406249,
+      "lat": 27.7680814
+    },
+    "expectedSourcePoint": [
+      482.42,
+      885.48
+    ],
+    "matchErrorPx": 0.000436
+  },
+  {
+    "id": "historic-park-street-road-3",
+    "osmType": "way",
+    "osmId": "11239653",
+    "sourceGeographic": {
+      "lng": -82.7380061,
+      "lat": 27.7740369
+    },
+    "expectedSourcePoint": [
+      630.99,
+      503.62
+    ],
+    "matchErrorPx": 0.000487
+  },
+  {
+    "id": "historic-park-street-road-4",
+    "osmType": "way",
+    "osmId": "11249174",
+    "sourceGeographic": {
+      "lng": -82.7368852,
+      "lat": 27.7790607
+    },
+    "expectedSourcePoint": [
+      694.58,
+      181.5
+    ],
+    "matchErrorPx": 0.00049
+  }
+]

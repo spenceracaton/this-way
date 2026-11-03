@@ -1,0 +1,58 @@
+[
+  {
+    "id": "northeast-terraces-road-1",
+    "osmType": "way",
+    "osmId": "11247151",
+    "sourceGeographic": {
+      "lng": -82.6333031,
+      "lat": 27.8430557
+    },
+    "expectedSourcePoint": [
+      374.62,
+      141.11
+    ],
+    "matchErrorPx": 0.000564
+  },
+  {
+    "id": "northeast-terraces-road-2",
+    "osmType": "way",
+    "osmId": "11243235",
+    "sourceGeographic": {
+      "lng": -82.634659,
+      "lat": 27.839755
+    },
+    "expectedSourcePoint": [
+      119.39,
+      843.76
+    ],
+    "matchErrorPx": 0.001003
+  },
+  {
+    "id": "northeast-terraces-road-3",
+    "osmType": "way",
+    "osmId": "11236796",
+    "sourceGeographic": {
+      "lng": -82.6329988,
+      "lat": 27.8411643
+    },
+    "expectedSourcePoint": [
+      431.9,
+      543.75
+    ],
+    "matchErrorPx": 0.001089
+  },
+  {
+    "id": "northeast-terraces-road-4",
+    "osmType": "way",
+    "osmId": "11247151",
+    "sourceGeographic": {
+      "lng": -82.6345724,
+      "lat": 27.8430558
+    },
+    "expectedSourcePoint": [
+      135.69,
+      141.09
+    ],
+    "matchErrorPx": 0.001871
+  }
+]

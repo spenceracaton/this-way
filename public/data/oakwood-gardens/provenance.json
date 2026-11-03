@@ -1,0 +1,58 @@
+{
+  "id": "oakwood-gardens",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "457275510d94001a673b954044ea701dfce9dfa19a4d8922d6334a26e0b4bac1",
+    "map-data.json": "8aa12d9be9375f26a6a655cef6ad3f82b89842b3ba1d5bcddc601eba06f74f95",
+    "buffer.mjs": "7dc1f093ca85d5df07067a3fab19013d8de3a554d560a5395a928f662082e013",
+    "buffer-map-data.json": "eb959f022e6dab82050c8491ec297b39614a4067a33550b0fa35e0328de72381",
+    "source-geography.geojson": "5b43967b4d79f449652e23d339adb38f170459519ffddc2a37022139483b1c86"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-112 -94 1224 1248",
+  "coreMaskGeometrySha256": "14fa4e47506e7a87ed860388402d7d774d04021eb7c990ca55fd9ed8d800bba4",
+  "nearbyMaskGeometrySha256": "c19c95f28476f724c8909a2b7e3be309806169ac3b990cb49eb571cac9eb6b8e",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID+IN+%282%2C22%2C120%29&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery / Esri",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6651%2C27.7974%2C-82.6528%2C27.8085&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/oakwood-gardens/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/oakwood-gardens/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/oakwood-gardens.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/oakwood-gardens/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/oakwood-gardens/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "f6e749c0d5da747dd2c295bb763830b3489c11284098a2bd6d509e98c1a4dc8a",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/oakwood-gardens.webp",
+    "width": 3013,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "614127336538c156311f6aea008708fa95219895f1f60f3c51a4f332c1376170",
+    "sha256": "9f684722e4f99fe8c0c12262446ffcf8b2c60564b9d5493bcb7e740243a440e9",
+    "bytes": 290140,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

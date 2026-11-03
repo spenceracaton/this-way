@@ -1,0 +1,58 @@
+[
+  {
+    "id": "live-oaks-road-1",
+    "osmType": "way",
+    "osmId": "645093812",
+    "sourceGeographic": {
+      "lng": -82.6998194,
+      "lat": 27.7673325
+    },
+    "expectedSourcePoint": [
+      881.3,
+      994.65
+    ],
+    "matchErrorPx": 0.000155
+  },
+  {
+    "id": "live-oaks-road-2",
+    "osmType": "way",
+    "osmId": "1349533340",
+    "sourceGeographic": {
+      "lng": -82.6985117,
+      "lat": 27.7786185
+    },
+    "expectedSourcePoint": [
+      961.4,
+      213.34
+    ],
+    "matchErrorPx": 0.000185
+  },
+  {
+    "id": "live-oaks-road-3",
+    "osmType": "way",
+    "osmId": "1345391676",
+    "sourceGeographic": {
+      "lng": -82.7008254,
+      "lat": 27.7772939
+    },
+    "expectedSourcePoint": [
+      819.68,
+      305.04
+    ],
+    "matchErrorPx": 0.000216
+  },
+  {
+    "id": "live-oaks-road-4",
+    "osmType": "way",
+    "osmId": "1175031957",
+    "sourceGeographic": {
+      "lng": -82.7099166,
+      "lat": 27.7709059
+    },
+    "expectedSourcePoint": [
+      262.82,
+      747.27
+    ],
+    "matchErrorPx": 0.000405
+  }
+]

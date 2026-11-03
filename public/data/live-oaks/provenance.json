@@ -1,0 +1,54 @@
+{
+  "id": "live-oaks",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "908c6193e34688127b67c3e1352d1eecaf66c9cebb5d279b4dc1152820143b89",
+    "map-data.json": "b61d406fbac00610a24be11aa8b681d44028c9c8668ff89a2ddb7eb3e59d59ff",
+    "buffer.mjs": "c8e75827cd3fab3c851aa91f07b2d5c8b4ae895f815c6e12f7a9530aa505457b",
+    "buffer-map-data.json": "1cc7d886065395377ef11db72b87925d5f8d1c8ce105d690555135ee05a6a781",
+    "source-geography.geojson": "eb6c7feda62e902e6dafb0e333885f6b923955f10899a31029867957f153a4e0"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-42 20 1084 1020",
+  "coreMaskGeometrySha256": "38dd2d17c5a52c0230605cba6751f57061524b1c411dda16b227b181c874d924",
+  "nearbyMaskGeometrySha256": "2ffa0e0332c8f862c52dcb9d8e020365caad8a4eae9f326fdd9ad65a051d2ee8",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.71428171%2C27.76908248%2C-82.69772738%2C27.77905250&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/live-oaks/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/live-oaks/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/live-oaks.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/live-oaks/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/live-oaks/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "89afceef4c5cfe9a61a29be28b42904218b94795de8c10eec65e44758b2f67d6",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/live-oaks.webp",
+    "width": 3072,
+    "height": 2891,
+    "encoding": "lossless WebP",
+    "sourceSha256": "aae81ba45445824a4665edf18a7b3b93b0bc49f6d262faf22d6c78fb07ac05d6",
+    "sha256": "4d68766ec3671ebb43b0b6cbc078e67ecf883e0d4691ad1276e840beb39c69ce",
+    "bytes": 284968,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

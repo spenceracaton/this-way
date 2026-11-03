@@ -1,0 +1,93 @@
+{
+  "repository": "spenceracaton/fright-this-way-qa",
+  "revision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "mapPrefixes": {
+    "allendale-terrace": "release-source/event-db-14131417d188/current",
+    "azalea": "release-source/event-db-b383f9ea60f2/baseline",
+    "bahama-shores": "release-source/event-db-b383f9ea60f2/baseline",
+    "bartlett-park": "release-source/event-db-b383f9ea60f2/baseline",
+    "gateway": "release-source/event-db-b383f9ea60f2/baseline",
+    "harbor-isle": "release-source/event-db-b383f9ea60f2/baseline",
+    "historic-park-street": "release-source/event-db-b383f9ea60f2/baseline",
+    "historic-uptown": "release-source/event-db-14131417d188/current",
+    "lake-maggiore-shores": "release-source/event-db-b383f9ea60f2/baseline",
+    "live-oaks": "release-source/event-db-14131417d188/current",
+    "northeast-terraces": "release-source/event-db-14131417d188/current",
+    "norwood-heights": "release-source/event-db-14131417d188/current",
+    "oakwood-gardens": "release-source/event-db-14131417d188/current",
+    "pasadena-vista": "release-source/event-db-14131417d188/current",
+    "tyrone-gardens": "release-source/event-db-14131417d188/current",
+    "west-shore-village": "release-source/event-db-14131417d188/current"
+  },
+  "qaAssetHashes": {
+    "azalea": {
+      "map-data.json": "fb99527dad5e753c8a2fd68ddeff148535d8dc2e74bdaad32003bbf020168c75",
+      "buffer-map-data.json": "4adb684e087f02dbd3b5a331dc1b4606b25992c9f55177f25e3bfa207d44509c",
+      "review-map.svg": "fd575910f01ddec5f86dd38b25d687c935f13410b5bf7cb5b28c8afab0efcf66"
+    },
+    "bahama-shores": {
+      "buffer-map-data.json": "68fde387a31423ef1b69282606a468ae28c1983fba752a7d06f025c767de7842",
+      "map-data.json": "4afb8c594691388d1ed2114d7e085367a5cc3b68afe05e2dc4e104e78467a9c1",
+      "review-map.svg": "d1c384ad17f944968c9534dc3c0d07f87ee823a3eae157b8c03e4bcb33c6d760"
+    },
+    "historic-park-street": {
+      "map-data.json": "6884aea8d8aec66a114e91435d41ec4dd58d61b32dfedf4e2f0c08940992a18f",
+      "buffer-map-data.json": "612432cfb7a14184b59be88ea7d0a4f22cbf6bac6729eb3dcbe3acfa2c5f73be",
+      "review-map.svg": "e0befd07dec45ea135f3d09fcbc84c7f97f8bfeea614a6ffdd757afa0555b0f6"
+    },
+    "bartlett-park": {
+      "map-data.json": "fa7f05b8fbb57046969d752f4dba9b3fe462a8b60d340c471aa3664556a81c4d",
+      "buffer-map-data.json": "e5a00911db19788653efd38519a5d636749ab9d24b521dc7ee68d46ff6e76205",
+      "review-map.svg": "8263ed11d3af83f88f879727845eae908c8b1bc6f6c51000e5077464154b95b2"
+    },
+    "harbor-isle": {
+      "buffer-map-data.json": "7868f702ae57c5dd5b75e39eec10056d51fe3f2c767b0160d150bc0ae7bb88a8",
+      "map-data.json": "a58e6bef8954c15c781e6884a45e65bb3b8eaa171069b3b6397903eea5235deb",
+      "review-map.svg": "0c7507d383861b5368e514aea24ef22109344449712c1e12c8d8c8465d7c9130"
+    },
+    "gateway": {
+      "map-data.json": "dc26a70490fef4478dae87bc1545ceb832ff85aa1f00b1540d543d7f29d3da9a",
+      "buffer-map-data.json": "214e61ded8cca0a2b06309806074bd69da4ec507ffc537709afae8745f145cce",
+      "review-map.svg": "613a9fb6baa90ff35709b1f79b7ee04d37dabbe545004d5395b561c1c85c0d9e"
+    }
+  },
+  "unavailableIds": [
+    "feather-sound",
+    "bayou-highlands",
+    "orange-terrace",
+    "coquina-key",
+    "perry-bayview",
+    "riviera-heights",
+    "harbordale",
+    "mystic-lake",
+    "stonesthrow",
+    "holiday-park"
+  ],
+  "scope": "Recovered prepared geography; retained source snapshots are not current production source authority.",
+  "qaMetadataHashes": {
+    "azalea": {
+      "expectedMapEntry": "64c79dfdcb2c25823a52bbd682178faffb0c723124343ff678fc7d375741fd2e",
+      "expectedBufferEntry": "61b8bee6db7793b810b13727f40270d25272413d6958d3f6db290b8a51d57f66"
+    },
+    "bahama-shores": {
+      "expectedMapEntry": "863635ba4f4975b351e6873fe353d76d0b67bcb342489951c2f8dfc70d44e32d",
+      "expectedBufferEntry": "432c1d65c93d228ef814b335a0e97d16bfceeaf4af2044a17c006ab8fbf0d7fa"
+    },
+    "historic-park-street": {
+      "expectedMapEntry": "0cad83f018702960d0138077dfb52ec65e9f81fbf21539360e01ba12c1905fe3",
+      "expectedBufferEntry": "6150922cbefe8c6a7d8a57ac33ea0fe1821f58dce2fe18f8a6023dfb6c4ec71f"
+    },
+    "bartlett-park": {
+      "expectedMapEntry": "c49d4e0291de4777064f18a0f5bd9c175bef63a0dfff77a7d25ccbd107ec3012",
+      "expectedBufferEntry": "35fbbed3415c8edaaa2ee5d7bc24275e8c7c9ce39361df4879592d39cc1dc637"
+    },
+    "harbor-isle": {
+      "expectedMapEntry": "dbce5a73c8580462b82aaadf415eba370b594e60041cc6e3e4ab02a05ddda682",
+      "expectedBufferEntry": "e447595c95dc9e056894ea9112bf93684399b9f47813f51e6cf9b1d96530e36f"
+    },
+    "gateway": {
+      "expectedMapEntry": "b41552ccffd195445624d6df2517537e2288b9fc454dd5a8b89765e6a37b8ea1",
+      "expectedBufferEntry": "6a436d6efafae9cb631f8f14a461262415a2d6a8a11ab14077fa8d54ed69a274"
+    }
+  }
+}

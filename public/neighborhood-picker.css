@@ -7,11 +7,11 @@
 }
 .map-toolbar{right:auto;width:max-content;max-width:min(480px,calc(100% - 160px));min-height:48px;padding:0 20px 4px 34px;background:var(--picker-cream);gap:0}
 .map-toolbar::after{content:'';position:absolute;inset:0 auto 0 100%;width:64px;background:var(--picker-cream);pointer-events:none;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 48' preserveAspectRatio='none'%3E%3Cpath d='M0 0H80C45 0 42 48 0 48Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 48' preserveAspectRatio='none'%3E%3Cpath d='M0 0H80C45 0 42 48 0 48Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
-#neighborhood-select{pointer-events:auto;appearance:none;display:flex;align-items:center;gap:8px;max-width:100%;min-width:0;min-height:44px;padding:3px 0;border:0;background:transparent;color:var(--picker-accent);text-align:left;font:600 24px/1.2 'DM Sans',sans-serif;cursor:pointer}
+#neighborhood-select{pointer-events:auto;appearance:none;display:grid;grid-template-columns:20px minmax(0,1fr) 16px;align-items:start;align-content:center;gap:8px;max-width:100%;min-width:0;min-height:44px;padding:3px 0;border:0;background:transparent;color:var(--picker-accent);text-align:left;font:600 24px/1.2 'DM Sans',sans-serif;cursor:pointer}
 #neighborhood-name{min-width:0;overflow-wrap:anywhere}
 #neighborhood-select svg{flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-#neighborhood-select .neighborhood-pin{width:20px;height:24px;transform:none}
-#neighborhood-select .neighborhood-chevron{width:16px;height:16px;transition:transform .15s}
+#neighborhood-select .neighborhood-pin{width:20px;height:24px;margin-top:2.4px;transform:none}
+#neighborhood-select .neighborhood-chevron{width:16px;height:16px;margin-top:6.4px;transition:transform .15s}
 #neighborhood-select[aria-expanded=true] .neighborhood-chevron{transform:rotate(180deg)}
 .map-toolbar .sample-count{display:none}
 .neighborhood-dialog{position:fixed;inset:0 auto auto 0;padding:0;margin:0;width:400px;max-width:calc(100vw - 24px);max-height:75dvh;overflow:hidden;border:1px solid var(--picker-border);border-radius:8px 9px 6px 7px;background:var(--picker-surface);color:var(--picker-ink);box-shadow:3px 4px 0 #ded0c1}

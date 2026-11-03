@@ -1,0 +1,58 @@
+[
+  {
+    "id": "pasadena-vista-road-1",
+    "osmType": "way",
+    "osmId": "1253395112",
+    "sourceGeographic": {
+      "lng": -82.7330721,
+      "lat": 27.7707941
+    },
+    "expectedSourcePoint": [
+      454.55,
+      861.86
+    ],
+    "matchErrorPx": 8e-05
+  },
+  {
+    "id": "pasadena-vista-road-2",
+    "osmType": "way",
+    "osmId": "191000251",
+    "sourceGeographic": {
+      "lng": -82.7313076,
+      "lat": 27.7712976
+    },
+    "expectedSourcePoint": [
+      614.3,
+      810.34
+    ],
+    "matchErrorPx": 0.000199
+  },
+  {
+    "id": "pasadena-vista-road-3",
+    "osmType": "way",
+    "osmId": "11253738",
+    "sourceGeographic": {
+      "lng": -82.7306335,
+      "lat": 27.7771882
+    },
+    "expectedSourcePoint": [
+      675.33,
+      207.59
+    ],
+    "matchErrorPx": 0.000365
+  },
+  {
+    "id": "pasadena-vista-road-4",
+    "osmType": "way",
+    "osmId": "159935687",
+    "sourceGeographic": {
+      "lng": -82.7296161,
+      "lat": 27.7699635
+    },
+    "expectedSourcePoint": [
+      767.44,
+      946.85
+    ],
+    "matchErrorPx": 0.000667
+  }
+]

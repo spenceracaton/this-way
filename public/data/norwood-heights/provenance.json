@@ -1,0 +1,54 @@
+{
+  "id": "norwood-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "2dbf2cf161c4c02c7988041bd635aa03c1a67bb52e3a728176b7d34337d5284c",
+    "map-data.json": "f23c72f66980bce6594d5ff9ea5def1f67274d28c5d4eae60b69febd097bc6a7",
+    "buffer.mjs": "1785dacd088180168de3fbf40a0de865b2f131967511a4c305781205c03f92f3",
+    "buffer-map-data.json": "a83037e50dc08352cbd5e587031fb00ec748aade5d6e5d0ab8239e6486fd7aa5",
+    "source-geography.geojson": "9012f56ab22eb4f80c2d31c9e2155b87856a569577ded24316749bc9fc8a0ff3"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-108 -89 1216 1238",
+  "coreMaskGeometrySha256": "3964fd15bb4a14f707c6ac9126aae1718dc49e742a5f0964df47a23cb0667506",
+  "nearbyMaskGeometrySha256": "8e09d37bf6a82edd8e79af5c96fb6d02a7ec76be951b9b14fb03dc561f14d5ef",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.67042687%2C27.79012793%2C-82.65825633%2C27.80109765&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/norwood-heights/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/norwood-heights/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/norwood-heights.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/norwood-heights/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/norwood-heights/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "ee884910b43d3e4b95e35ef158937f368d026029b6a0030ae74c115f19eed42f",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/norwood-heights.webp",
+    "width": 3017,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "4a848d257c25e9071063e97c5230dfaca3e55d21b17f33dfbc3f242e5c74e49c",
+    "sha256": "84d10164c7a191c7e469da3152ddbb1c8d1dc47520ddce6d11ccc503572293e8",
+    "bytes": 211240,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

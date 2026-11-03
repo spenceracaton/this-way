@@ -1,0 +1,54 @@
+{
+  "id": "historic-uptown",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "a8f08bf1ab6ddd95b266de6599f424c04ce998cd9ce032b3dc96dd5b00e737ec",
+    "map-data.json": "20bcf15f36d75b94570c6db572e89399c9392636571085607208d9ab045d8b39",
+    "buffer.mjs": "66990806d79fcafd442a14a225c4c99ccc626eb15913b14f20ca3dd47f9e46ed",
+    "buffer-map-data.json": "d8c0ea42fc598e3100ae96b9ff120fc739b26942aca4deeff30deba13a9750d4",
+    "source-geography.geojson": "7b80f488d43f0005590aa44501f1f946de2098def04094ba7a4460e3d1adc196"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-12 20 1024 1020",
+  "coreMaskGeometrySha256": "9cdaab4281aa0db568901ae113b24e7d0dc34876e153d9b9297dd27e674dac44",
+  "nearbyMaskGeometrySha256": "9344ea59c2b362a90c4e1a24bf01c8a2b4e907a32b91fa496de02070f915c57f",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.65694448%2C27.77571913%2C-82.63650407%2C27.78622601&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/historic-uptown/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/historic-uptown/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/historic-uptown.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/historic-uptown/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/historic-uptown/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "7d0bc632b509290f0f769860e6c34f0558217f343c269fb55ff77f421da90b74",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/historic-uptown.webp",
+    "width": 3072,
+    "height": 3060,
+    "encoding": "lossless WebP",
+    "sourceSha256": "6786d2ab77fba8bf6f5d5aa82b477243172682178ea9ce2858c7fcc9a64c1ea8",
+    "sha256": "25a08544264f221fa14ac9362240feede754bd453219a06dfd7216fa1155207a",
+    "bytes": 340960,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

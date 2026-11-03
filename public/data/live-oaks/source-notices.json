@@ -1,0 +1,501 @@
+{
+  "attribution": "© OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "coverageSources": [
+    "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.71529809%2C27.76818320%2C-82.69671100%2C27.77995178",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.71428171%2C27.76908248%2C-82.69772738%2C27.77905250&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+    },
+    {
+      "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+      "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+      "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+      "sourceImagePixelRing": [
+        [
+          118,
+          253
+        ],
+        [
+          330,
+          251
+        ],
+        [
+          600,
+          252
+        ],
+        [
+          820,
+          252
+        ],
+        [
+          1054,
+          250
+        ],
+        [
+          1060,
+          265
+        ],
+        [
+          1015,
+          272
+        ],
+        [
+          800,
+          275
+        ],
+        [
+          600,
+          276
+        ],
+        [
+          330,
+          277
+        ],
+        [
+          118,
+          279
+        ]
+      ],
+      "sourcePublisher": "Pinellas County Enterprise GIS",
+      "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+    },
+    {
+      "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+      "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+      "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+      "sourceImagePixelRing": [
+        [
+          1100,
+          252
+        ],
+        [
+          1240,
+          251
+        ],
+        [
+          1430,
+          251
+        ],
+        [
+          1600,
+          249
+        ],
+        [
+          1719,
+          248
+        ],
+        [
+          1728,
+          262
+        ],
+        [
+          1714,
+          275
+        ],
+        [
+          1550,
+          277
+        ],
+        [
+          1390,
+          276
+        ],
+        [
+          1220,
+          277
+        ],
+        [
+          1100,
+          279
+        ]
+      ],
+      "sourcePublisher": "Pinellas County Enterprise GIS",
+      "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+    },
+    {
+      "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+      "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+      "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+      "sourceImagePixelRing": [
+        [
+          1755,
+          249
+        ],
+        [
+          1870,
+          250
+        ],
+        [
+          1990,
+          250
+        ],
+        [
+          2060,
+          250
+        ],
+        [
+          2066,
+          265
+        ],
+        [
+          1990,
+          276
+        ],
+        [
+          1870,
+          277
+        ],
+        [
+          1755,
+          279
+        ]
+      ],
+      "sourcePublisher": "Pinellas County Enterprise GIS",
+      "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.71529809%2C27.76818320%2C-82.69671100%2C27.77995178",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.71428171%2C27.76908248%2C-82.69772738%2C27.77905250&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            118,
+            253
+          ],
+          [
+            330,
+            251
+          ],
+          [
+            600,
+            252
+          ],
+          [
+            820,
+            252
+          ],
+          [
+            1054,
+            250
+          ],
+          [
+            1060,
+            265
+          ],
+          [
+            1015,
+            272
+          ],
+          [
+            800,
+            275
+          ],
+          [
+            600,
+            276
+          ],
+          [
+            330,
+            277
+          ],
+          [
+            118,
+            279
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+      },
+      {
+        "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            1100,
+            252
+          ],
+          [
+            1240,
+            251
+          ],
+          [
+            1430,
+            251
+          ],
+          [
+            1600,
+            249
+          ],
+          [
+            1719,
+            248
+          ],
+          [
+            1728,
+            262
+          ],
+          [
+            1714,
+            275
+          ],
+          [
+            1550,
+            277
+          ],
+          [
+            1390,
+            276
+          ],
+          [
+            1220,
+            277
+          ],
+          [
+            1100,
+            279
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+      },
+      {
+        "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            1755,
+            249
+          ],
+          [
+            1870,
+            250
+          ],
+          [
+            1990,
+            250
+          ],
+          [
+            2060,
+            250
+          ],
+          [
+            2066,
+            265
+          ],
+          [
+            1990,
+            276
+          ],
+          [
+            1870,
+            277
+          ],
+          [
+            1755,
+            279
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.71529809%2C27.76818320%2C-82.69671100%2C27.77995178",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.71428171%2C27.76908248%2C-82.69772738%2C27.77905250&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            118,
+            253
+          ],
+          [
+            330,
+            251
+          ],
+          [
+            600,
+            252
+          ],
+          [
+            820,
+            252
+          ],
+          [
+            1054,
+            250
+          ],
+          [
+            1060,
+            265
+          ],
+          [
+            1015,
+            272
+          ],
+          [
+            800,
+            275
+          ],
+          [
+            600,
+            276
+          ],
+          [
+            330,
+            277
+          ],
+          [
+            118,
+            279
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+      },
+      {
+        "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            1100,
+            252
+          ],
+          [
+            1240,
+            251
+          ],
+          [
+            1430,
+            251
+          ],
+          [
+            1600,
+            249
+          ],
+          [
+            1719,
+            248
+          ],
+          [
+            1728,
+            262
+          ],
+          [
+            1714,
+            275
+          ],
+          [
+            1550,
+            277
+          ],
+          [
+            1390,
+            276
+          ],
+          [
+            1220,
+            277
+          ],
+          [
+            1100,
+            279
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+      },
+      {
+        "sourceType": "manual bank trace from County 2026 aerial raster; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.7125745481184%2C27.77322627055694%2C-82.70341792928492%2C27.774160960069562&bboxSR=4326&imageSR=4326&size=2200%2C500&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            1755,
+            249
+          ],
+          [
+            1870,
+            250
+          ],
+          [
+            1990,
+            250
+          ],
+          [
+            2060,
+            250
+          ],
+          [
+            2066,
+            265
+          ],
+          [
+            1990,
+            276
+          ],
+          [
+            1870,
+            277
+          ],
+          [
+            1755,
+            279
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; tracing by FrightThisWay research"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "oakwood-gardens-road-1",
+    "osmType": "way",
+    "osmId": "11246927",
+    "sourceGeographic": {
+      "lng": -82.660886,
+      "lat": 27.8020865
+    },
+    "expectedSourcePoint": [
+      316.26,
+      620.36
+    ],
+    "matchErrorPx": 0.000186
+  },
+  {
+    "id": "oakwood-gardens-road-2",
+    "osmType": "way",
+    "osmId": "11242150",
+    "sourceGeographic": {
+      "lng": -82.6558164,
+      "lat": 27.80237
+    },
+    "expectedSourcePoint": [
+      800.76,
+      589.73
+    ],
+    "matchErrorPx": 0.00033
+  },
+  {
+    "id": "oakwood-gardens-road-3",
+    "osmType": "way",
+    "osmId": "11237154",
+    "sourceGeographic": {
+      "lng": -82.6632041,
+      "lat": 27.8010794
+    },
+    "expectedSourcePoint": [
+      94.72,
+      729.17
+    ],
+    "matchErrorPx": 0.000658
+  },
+  {
+    "id": "oakwood-gardens-road-4",
+    "osmType": "way",
+    "osmId": "149478445",
+    "sourceGeographic": {
+      "lng": -82.6614279,
+      "lat": 27.7988052
+    },
+    "expectedSourcePoint": [
+      264.47,
+      974.88
+    ],
+    "matchErrorPx": 0.000658
+  }
+]

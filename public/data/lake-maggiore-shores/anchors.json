@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lake-maggiore-shores-road-1",
+    "osmType": "way",
+    "osmId": "644859679",
+    "sourceGeographic": {
+      "lng": -82.6465868,
+      "lat": 27.7520103
+    },
+    "expectedSourcePoint": [
+      879.37,
+      152.2
+    ],
+    "matchErrorPx": 0.000141
+  },
+  {
+    "id": "lake-maggiore-shores-road-2",
+    "osmType": "way",
+    "osmId": "11235805",
+    "sourceGeographic": {
+      "lng": -82.6546437,
+      "lat": 27.7439222
+    },
+    "expectedSourcePoint": [
+      504.64,
+      577.25
+    ],
+    "matchErrorPx": 0.000453
+  },
+  {
+    "id": "lake-maggiore-shores-road-3",
+    "osmType": "way",
+    "osmId": "11261178",
+    "sourceGeographic": {
+      "lng": -82.6506648,
+      "lat": 27.7520967
+    },
+    "expectedSourcePoint": [
+      689.7,
+      147.66
+    ],
+    "matchErrorPx": 0.00046
+  },
+  {
+    "id": "lake-maggiore-shores-road-4",
+    "osmType": "way",
+    "osmId": "11229585",
+    "sourceGeographic": {
+      "lng": -82.6474595,
+      "lat": 27.7415145
+    },
+    "expectedSourcePoint": [
+      838.78,
+      703.78
+    ],
+    "matchErrorPx": 0.000471
+  }
+]

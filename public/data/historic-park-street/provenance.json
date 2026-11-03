@@ -1,0 +1,58 @@
+{
+  "id": "historic-park-street",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "e0befd07dec45ea135f3d09fcbc84c7f97f8bfeea614a6ffdd757afa0555b0f6",
+    "map-data.json": "6884aea8d8aec66a114e91435d41ec4dd58d61b32dfedf4e2f0c08940992a18f",
+    "buffer.mjs": "bb7961b1cd28b34a5a8400e831a582e26c30cf0f6b323b2ff0fd18389b91c795",
+    "buffer-map-data.json": "612432cfb7a14184b59be88ea7d0a4f22cbf6bac6729eb3dcbe3acfa2c5f73be",
+    "source-geography.geojson": "4eca62d98fb42daf06fb28506168480f8be005ec169dc64a38d3519abb362861"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-15 20 1048 1020",
+  "coreMaskGeometrySha256": "64c6aa03afd0bf0b387c1d84ea2e1ae9ce77c1ab16eb2ddf553521d72a203221",
+  "nearbyMaskGeometrySha256": "1ddebb02db5da8d83df1c6c6d5ec59453ac1368a096674f404793f7902f21321",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": null,
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=100&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery / Esri",
+        "href": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.7424%2C27.7838%2C-82.7411%2C27.787&bboxSR=4326&imageSR=4326&size=900%2C2100&format=png32&f=json"
+      }
+    ],
+    "license": "Mixed: original OSM features ODbL-1.0; retained County/Esri-derived trace attribution and original reference vectors separately licensed; no raster imagery redistributed.",
+    "licenseUrl": null
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/historic-park-street/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/historic-park-street/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/historic-park-street.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/historic-park-street/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/historic-park-street/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "be763817d28887b25234b427151fc4b835d0a66f12accb593f03839e9515b17d",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/historic-park-street.webp",
+    "width": 3072,
+    "height": 2990,
+    "encoding": "lossless WebP",
+    "sourceSha256": "8103c85e6d360a5c60a48d41934057fd7d4df05891928a608fc255f57c912975",
+    "sha256": "ee061072d165e6c239d9651daccbdb44f482d6d44dd499b0592b8be6e40b9b38",
+    "bytes": 374834,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

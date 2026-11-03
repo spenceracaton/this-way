@@ -1,0 +1,92 @@
+{
+  "attribution": "© OpenStreetMap contributors (ODbL 1.0); original source ways plus separately attributed County2026 manually derived pond-water patch. Complete wetland relations retained separately in source-exclusions.geojson; artwork land footprint retains wetlands as land, not open water.",
+  "coverageDerivation": {
+    "identity": "Exact City Harbor Isle association envelope; administrative identity includes water, eligible membership is reviewed dryland only",
+    "shoreline": "Retained genuine mainland matches all 1556 fresh local OSM coastline segments; three closed coastline islands retained; complete source reservoir and wetland rings preserved; one separately attributed conservative County2026 pond-water patch; no guessed shoreline closure",
+    "visibility": "200m nearby visibility clipped to reviewed drygeometry with crosswater interval checks; not membership or walking-route assurance",
+    "precision": "Source-informed app geography checked against Pinellas County 2026 imagery; not surveyed banks or walking-route assurance",
+    "paint": "Reviewed land clipped only to presentation rectangle beyond allcore/nearby; membership geometry remains unchanged"
+  },
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=91&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.624,27.833,-82.603,27.846"
+  ],
+  "featureNotices": [
+    {
+      "source": "PGS"
+    },
+    {
+      "source": "Pinellas County2026 Aerials; manually derived conservative open-water patch",
+      "sourceImageSha256": "f3734e6673288322c421c68b7b281dac80884717004b0b71672636b63e87950d",
+      "sourceExtent": {
+        "xmin": -9197884.246285021,
+        "ymin": 3228525.8382672663,
+        "xmax": -9197327.648831053,
+        "ymax": 3228767.0304973195,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857
+        }
+      }
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors (ODbL 1.0); original source ways plus separately attributed County2026 manually derived pond-water patch. Complete wetland relations retained separately in source-exclusions.geojson; artwork land footprint retains wetlands as land, not open water.",
+    "coverageDerivation": {
+      "identity": "Exact City Harbor Isle association envelope; administrative identity includes water, eligible membership is reviewed dryland only",
+      "shoreline": "Retained genuine mainland matches all 1556 fresh local OSM coastline segments; three closed coastline islands retained; complete source reservoir and wetland rings preserved; one separately attributed conservative County2026 pond-water patch; no guessed shoreline closure",
+      "visibility": "200m nearby visibility clipped to reviewed drygeometry with crosswater interval checks; not membership or walking-route assurance",
+      "precision": "Source-informed app geography checked against Pinellas County 2026 imagery; not surveyed banks or walking-route assurance",
+      "paint": "Reviewed land clipped only to presentation rectangle beyond allcore/nearby; membership geometry remains unchanged"
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=91&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.624,27.833,-82.603,27.846"
+    ],
+    "featureNotices": [
+      {
+        "source": "PGS"
+      },
+      {
+        "source": "Pinellas County2026 Aerials; manually derived conservative open-water patch",
+        "sourceImageSha256": "f3734e6673288322c421c68b7b281dac80884717004b0b71672636b63e87950d",
+        "sourceExtent": {
+          "xmin": -9197884.246285021,
+          "ymin": 3228525.8382672663,
+          "xmax": -9197327.648831053,
+          "ymax": 3228767.0304973195,
+          "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+          }
+        }
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors (ODbL 1.0); original source ways plus separately attributed County2026 manually derived pond-water patch. Complete wetland relations retained separately in source-exclusions.geojson; artwork land footprint retains wetlands as land, not open water.",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=91&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.624,27.833,-82.603,27.846"
+    ],
+    "featureNotices": [
+      {
+        "source": "PGS"
+      },
+      {
+        "source": "Pinellas County2026 Aerials; manually derived conservative open-water patch",
+        "sourceImageSha256": "f3734e6673288322c421c68b7b281dac80884717004b0b71672636b63e87950d",
+        "sourceExtent": {
+          "xmin": -9197884.246285021,
+          "ymin": 3228525.8382672663,
+          "xmax": -9197327.648831053,
+          "ymax": 3228767.0304973195,
+          "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+          }
+        }
+      }
+    ]
+  }
+}

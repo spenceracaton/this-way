@@ -1,0 +1,58 @@
+[
+  {
+    "id": "tyrone-gardens-road-1",
+    "osmType": "way",
+    "osmId": "11236786",
+    "sourceGeographic": {
+      "lng": -82.7180949,
+      "lat": 27.7851969
+    },
+    "expectedSourcePoint": [
+      725.8,
+      104.49
+    ],
+    "matchErrorPx": 0.001009
+  },
+  {
+    "id": "tyrone-gardens-road-2",
+    "osmType": "way",
+    "osmId": "11233750",
+    "sourceGeographic": {
+      "lng": -82.7188089,
+      "lat": 27.7826529
+    },
+    "expectedSourcePoint": [
+      533.13,
+      880.43
+    ],
+    "matchErrorPx": 0.001702
+  },
+  {
+    "id": "tyrone-gardens-road-3",
+    "osmType": "way",
+    "osmId": "11261357",
+    "sourceGeographic": {
+      "lng": -82.719809,
+      "lat": 27.784498
+    },
+    "expectedSourcePoint": [
+      263.26,
+      317.66
+    ],
+    "matchErrorPx": 0.001889
+  },
+  {
+    "id": "tyrone-gardens-road-4",
+    "osmType": "way",
+    "osmId": "11257990",
+    "sourceGeographic": {
+      "lng": -82.7193233,
+      "lat": 27.7836155
+    },
+    "expectedSourcePoint": [
+      394.32,
+      586.83
+    ],
+    "matchErrorPx": 0.002063
+  }
+]

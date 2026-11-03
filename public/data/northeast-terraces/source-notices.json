@@ -1,0 +1,66 @@
+{
+  "attribution": "© OpenStreetMap contributors; County Aerials2025 original conservative lake trace where explicitly attributed",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.63715575409002,27.8368906848009,-82.6280861645172,27.845567143459412",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer/exportImage"
+  ],
+  "featureNotices": [
+    {
+      "tiger:source": "tiger_import_dch_v0.6_20070809"
+    },
+    {
+      "source": "PGS"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors; County Aerials2025 original conservative lake trace where explicitly attributed",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.63715575409002,27.8368906848009,-82.6280861645172,27.845567143459412",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer/exportImage"
+    ],
+    "featureNotices": [
+      {
+        "tiger:source": "tiger_import_dch_v0.6_20070809"
+      },
+      {
+        "source": "PGS"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors; County Aerials2025 original conservative lake trace where explicitly attributed",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.63715575409002,27.8368906848009,-82.6280861645172,27.845567143459412",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer/exportImage"
+    ],
+    "featureNotices": [
+      {
+        "tiger:source": "tiger_import_dch_v0.6_20070809"
+      },
+      {
+        "source": "PGS"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "azalea-road-1",
+    "osmType": "way",
+    "osmId": "11254067",
+    "sourceGeographic": {
+      "lng": -82.7510512,
+      "lat": 27.7884323
+    },
+    "expectedSourcePoint": [
+      72.83,
+      330.05
+    ],
+    "matchErrorPx": 0.000118
+  },
+  {
+    "id": "azalea-road-2",
+    "osmType": "way",
+    "osmId": "477605835",
+    "sourceGeographic": {
+      "lng": -82.7379383,
+      "lat": 27.7863951
+    },
+    "expectedSourcePoint": [
+      705.33,
+      441.12
+    ],
+    "matchErrorPx": 0.000315
+  },
+  {
+    "id": "azalea-road-3",
+    "osmType": "way",
+    "osmId": "11254646",
+    "sourceGeographic": {
+      "lng": -82.7419012,
+      "lat": 27.7833227
+    },
+    "expectedSourcePoint": [
+      514.18,
+      608.63
+    ],
+    "matchErrorPx": 0.000474
+  },
+  {
+    "id": "azalea-road-4",
+    "osmType": "way",
+    "osmId": "477605835",
+    "sourceGeographic": {
+      "lng": -82.7392672,
+      "lat": 27.7882232
+    },
+    "expectedSourcePoint": [
+      641.23,
+      341.45
+    ],
+    "matchErrorPx": 0.000533
+  }
+]

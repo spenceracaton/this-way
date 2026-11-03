@@ -1,0 +1,54 @@
+{
+  "id": "allendale-terrace",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "436030ff04e7afff48fe190c6f9904c5fbb4eb7b77c50ac62ed9c7013464e0ac",
+    "map-data.json": "8fa70b674de152d66545e52f152ff9512fb9b03ddcae49c4a2a71809baba1e13",
+    "buffer.mjs": "8fe6815d4220ea45a9ad3bb8bfb6bcb1b651bab0518a85881c10970ba5c30072",
+    "buffer-map-data.json": "04f5adf299f20fa01ebfbe30cd24bd161f8d1931b3dd8b26c5c983125d230fd2",
+    "source-geography.geojson": "5b35c0820845a8741ccb5015fc400a6155d61732dbbb30f04a224615385aeeca"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-136 20 1272 1020",
+  "coreMaskGeometrySha256": "1d00887896c6836aea81193c509349bb5fdc31b3cdfa23ea037bd82683d45251",
+  "nearbyMaskGeometrySha256": "e7146c5fd1e95be85d9a89a890523bf10cc4736be3599e454d79ae73e50eaafd",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.65176976%2C27.80121243%2C-82.64061437%2C27.80876389&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/allendale-terrace/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/allendale-terrace/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/allendale-terrace.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/allendale-terrace/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/allendale-terrace/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "82f664dc8d66b539e5c5a38385d6fc71a08f65efc1a45e4916fa38278c2c55cd",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/allendale-terrace.webp",
+    "width": 3072,
+    "height": 2463,
+    "encoding": "lossless WebP",
+    "sourceSha256": "1e87fd0a476ca9b166f19938c69d60d3fa6c0c6a19bce546c3f0117e2335676a",
+    "sha256": "c278f5767c97814877aa8667f11a084c9eff446d88d820c9650948b3131766ed",
+    "bytes": 293896,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

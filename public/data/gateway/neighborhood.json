@@ -1,0 +1,103 @@
+{
+  "id": "gateway",
+  "name": "Gateway",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": 20,
+    "right": 980,
+    "top": 20,
+    "bottom": 1040
+  },
+  "projection": {
+    "lngOrigin": -82.6428456169318,
+    "latOrigin": 27.851368463738964,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 58974.918144232,
+    "yScale": 66701.4484184357
+  },
+  "artwork": "./assets/neighborhoods/gateway.svg",
+  "rasterArtwork": "./assets/neighborhoods/gateway.webp",
+  "coreBoundary": [
+    [
+      738.9827551555888,
+      120.00000000011852
+    ],
+    [
+      740.0364906322558,
+      241.0576859222532
+    ],
+    [
+      740.6857378287099,
+      516.9599436142538
+    ],
+    [
+      741.7434334575771,
+      603.3854035715566
+    ],
+    [
+      742.0414717484209,
+      627.7866683443951
+    ],
+    [
+      742.4378197263467,
+      854.9544749309166
+    ],
+    [
+      743.5933694363705,
+      938.8574389234802
+    ],
+    [
+      526.2194416909493,
+      940.0000000001185
+    ],
+    [
+      525.4073850033925,
+      784.2136763380016
+    ],
+    [
+      258.3748916715879,
+      785.6263410687574
+    ],
+    [
+      258.9423135178862,
+      605.4205045432819
+    ],
+    [
+      257.80114115218174,
+      388.07506144102985
+    ],
+    [
+      256.4066305644676,
+      122.54631221597367
+    ],
+    [
+      738.9827551555888,
+      120.00000000011852
+    ]
+  ],
+  "overviewBounds": {
+    "left": 256.4066305644676,
+    "right": 743.5933694363705,
+    "top": 120.00000000011852,
+    "bottom": 940.0000000001185
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "Mixed: OSM features ODbL-1.0; separately identified original County-aerial interpretation not OSM",
+  "licenseUrl": null,
+  "additionalAttributions": [
+    {
+      "label": "City of St. Petersburg GIS",
+      "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=106&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson"
+    },
+    {
+      "label": "Pinellas County imagery",
+      "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+    }
+  ],
+  "sourceNotices": "./data/gateway/source-notices.json"
+}

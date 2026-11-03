@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bartlett-park-road-1",
+    "osmType": "way",
+    "osmId": "161467821",
+    "sourceGeographic": {
+      "lng": -82.6384305,
+      "lat": 27.7583543
+    },
+    "expectedSourcePoint": [
+      771.05,
+      201.3
+    ],
+    "matchErrorPx": 0.000438
+  },
+  {
+    "id": "bartlett-park-road-2",
+    "osmType": "way",
+    "osmId": "55450822",
+    "sourceGeographic": {
+      "lng": -82.6354359,
+      "lat": 27.7569909
+    },
+    "expectedSourcePoint": [
+      968.59,
+      302.93
+    ],
+    "matchErrorPx": 0.000506
+  },
+  {
+    "id": "bartlett-park-road-3",
+    "osmType": "way",
+    "osmId": "1295606349",
+    "sourceGeographic": {
+      "lng": -82.6465855,
+      "lat": 27.7516356
+    },
+    "expectedSourcePoint": [
+      233.1,
+      702.12
+    ],
+    "matchErrorPx": 0.000563
+  },
+  {
+    "id": "bartlett-park-road-4",
+    "osmType": "way",
+    "osmId": "161467807",
+    "sourceGeographic": {
+      "lng": -82.6385774,
+      "lat": 27.7556841
+    },
+    "expectedSourcePoint": [
+      761.36,
+      400.34
+    ],
+    "matchErrorPx": 0.000762
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "west-shore-village-road-1",
+    "osmType": "way",
+    "osmId": "11246993",
+    "sourceGeographic": {
+      "lng": -82.6881214,
+      "lat": 27.7383855
+    },
+    "expectedSourcePoint": [
+      307.75,
+      625.16
+    ],
+    "matchErrorPx": 0.000253
+  },
+  {
+    "id": "west-shore-village-road-2",
+    "osmType": "way",
+    "osmId": "11244079",
+    "sourceGeographic": {
+      "lng": -82.68524,
+      "lat": 27.7393731
+    },
+    "expectedSourcePoint": [
+      666.61,
+      486.19
+    ],
+    "matchErrorPx": 0.000458
+  },
+  {
+    "id": "west-shore-village-road-3",
+    "osmType": "way",
+    "osmId": "782237306",
+    "sourceGeographic": {
+      "lng": -82.6833817,
+      "lat": 27.736164
+    },
+    "expectedSourcePoint": [
+      898.05,
+      937.76
+    ],
+    "matchErrorPx": 0.000764
+  },
+  {
+    "id": "west-shore-village-road-4",
+    "osmType": "way",
+    "osmId": "53016630",
+    "sourceGeographic": {
+      "lng": -82.6874186,
+      "lat": 27.7355512
+    },
+    "expectedSourcePoint": [
+      395.28,
+      1023.99
+    ],
+    "matchErrorPx": 0.000805
+  }
+]

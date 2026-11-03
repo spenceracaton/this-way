@@ -1,0 +1,103 @@
+{
+  "id": "tyrone-gardens",
+  "name": "Tyrone Gardens",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": -466,
+    "right": 1465,
+    "top": -401,
+    "bottom": 1461
+  },
+  "projection": {
+    "lngOrigin": -82.71893167453788,
+    "latOrigin": 27.783801825179502,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 269844.7337049317,
+    "yScale": 305008.2873502288
+  },
+  "artwork": "./assets/neighborhoods/tyrone-gardens.svg",
+  "rasterArtwork": "./assets/neighborhoods/tyrone-gardens.webp",
+  "coreBoundary": [
+    [
+      243.54587046438706,
+      431.5610363086608
+    ],
+    [
+      268.71499299175866,
+      431.41250761321345
+    ],
+    [
+      268.5842124419451,
+      409.02196712480793
+    ],
+    [
+      267.8939866090389,
+      290.60059871797455
+    ],
+    [
+      368.71607840492334,
+      184.74453261899083
+    ],
+    [
+      879.9999999980827,
+      661.2934998686521
+    ],
+    [
+      702.4130732871556,
+      875.2554673820928
+    ],
+    [
+      121.69066441314567,
+      872.5622908100333
+    ],
+    [
+      119.99999999808261,
+      597.8205282534416
+    ],
+    [
+      122.77717593628472,
+      597.6890189199775
+    ],
+    [
+      129.82012348584146,
+      589.2402893602516
+    ],
+    [
+      129.82012348584146,
+      558.9224655976814
+    ],
+    [
+      131.22331610216605,
+      447.5944407152699
+    ],
+    [
+      130.72583704180397,
+      431.77058118371
+    ],
+    [
+      243.54587046438706,
+      431.5610363086608
+    ]
+  ],
+  "overviewBounds": {
+    "left": 119.99999999808261,
+    "right": 879.9999999980827,
+    "top": 184.74453261899083,
+    "bottom": 875.2554673820928
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "additionalAttributions": [
+    {
+      "label": "Pinellas County imagery",
+      "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.72237661%2C27.78087131%2C-82.71549053%2C27.78673234&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+    }
+  ],
+  "sourceNotices": "./data/tyrone-gardens/source-notices.json"
+}

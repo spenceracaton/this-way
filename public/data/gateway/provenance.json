@@ -1,0 +1,58 @@
+{
+  "id": "gateway",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "613a9fb6baa90ff35709b1f79b7ee04d37dabbe545004d5395b561c1c85c0d9e",
+    "map-data.json": "dc26a70490fef4478dae87bc1545ceb832ff85aa1f00b1540d543d7f29d3da9a",
+    "buffer.mjs": "73ccc2398b0ea664bc9ec992f4468c272e41b39d76419fedde32cb907424f639",
+    "buffer-map-data.json": "214e61ded8cca0a2b06309806074bd69da4ec507ffc537709afae8745f145cce",
+    "source-geography.geojson": "a693ef4e79e59dc30e9d52e9226ed6b905d19db2781f4eabd1f6f9546ed81d2a"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "eebacbf06e4265b11cde2b09b352e85b6c4521bdfd685460349e3707b101b74c",
+  "nearbyMaskGeometrySha256": "a112fd713408e6f796feb141bf0f3096f4cc4ce8888c0b82393202b114fd4f35",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=106&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+      }
+    ],
+    "license": "Mixed: OSM features ODbL-1.0; separately identified original County-aerial interpretation not OSM",
+    "licenseUrl": null
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/gateway/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/gateway/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/gateway.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/gateway/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/gateway/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "6beaa98d40e12bb526db8090fb84fc7967ba5b9ec28be9c12c3326515ce040d0",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/gateway.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "5f7af6bcfba26704af0593c554f6a5f2f41dc070823a2cb3f20f9fcd267d55db",
+    "sha256": "b3920c7c496f0c009662d541c6bc5748e320f83928951a221798e481bbf64152",
+    "bytes": 301104,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

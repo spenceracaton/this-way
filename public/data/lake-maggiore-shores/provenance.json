@@ -1,0 +1,58 @@
+{
+  "id": "lake-maggiore-shores",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "b769fd053e76cab0ce8e806c515fce39f657fe9edcda9919d6088501b95fdae5",
+    "map-data.json": "b640a95fceb832e45230c096e93024c23cba71480ea2400f87571f2a6a2dd151",
+    "buffer.mjs": "e03790654f5084566edea94332b1af94584ce3a32e35c890be70ee533da04eb6",
+    "buffer-map-data.json": "b4e1139dcabed56fb8e824a83a4beb41055ecc528a78e8afcc5e365d9843a323",
+    "source-geography.geojson": "9915c0cea08461183af1a0ce65a2a24110f9aff924e6975307246fc317ce62f5"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-12 20 1024 1020",
+  "coreMaskGeometrySha256": "833097a8590691696fae116b5d552ac58b7dd55cdcc7bea99a7bb1c9caf4faa9",
+  "nearbyMaskGeometrySha256": "f53118967b7d65677d3912e720a71b698b33a12e2004f5c3ea4dbbb26e0f3a7e",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; additional original approximate channel-bank coordinates derived from Pinellas County 2026 aerial reference imagery. Original trace geometry is separately attributed; County source image pixels are not included in application artwork.",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?f=geojson&where=1%3D1&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6653%2C27.739%2C-82.6442%2C27.7507&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/lake-maggiore-shores/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/lake-maggiore-shores/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/lake-maggiore-shores.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/lake-maggiore-shores/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/lake-maggiore-shores/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "1fa33c0f0facb12b83462c81313c3779687a251c29b5e5bf95a08f879f07f07c",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/lake-maggiore-shores.webp",
+    "width": 3072,
+    "height": 3060,
+    "encoding": "lossless WebP",
+    "sourceSha256": "119ea6db5a9c4d3d19cf1a87fc922e3b2292f9260fdc002e48639b2811e36a34",
+    "sha256": "c18353afa3a9f4af3f8c9cdb0077b19738accdb320cf21c12e85d606c11a9730",
+    "bytes": 333340,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

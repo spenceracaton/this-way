@@ -29,10 +29,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Map data
 
-Files under `public/data/` contain data derived from OpenStreetMap and are made
-available under the Open Database License 1.0. Copyright OpenStreetMap
-contributors. See <https://www.openstreetmap.org/copyright> and the provenance
-files alongside each dataset.
+OpenStreetMap-derived data is made available under the Open Database License
+1.0. Copyright OpenStreetMap contributors. See
+<https://www.openstreetmap.org/copyright> and the provenance files alongside
+each dataset. Some datasets also contain separately attributed City GIS or
+County/Esri imagery-derived reference geometry. The ODbL statement does not
+relicense those sources or the source imagery. Retain the per-map attribution,
+license statements, and `source-notices.json` where present. An absent source-wide
+license field does not grant a blanket license for all content in that map.
 
 ## Leaflet
 

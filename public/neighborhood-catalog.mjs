@@ -1,4 +1,4 @@
-// Fixed-neighborhood geography only; FTW database-only areas are not included.
+// Prepared geography only; directory names without maps are excluded.
 export const importedNeighborhoods = [
   {
     "id": "thirteenth-street-heights",
@@ -19,9 +19,33 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "allendale-terrace",
+    "name": "Allendale Terrace",
+    "config": "./data/allendale-terrace/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "azalea",
+    "name": "Azalea",
+    "config": "./data/azalea/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "bahama-shores",
+    "name": "Bahama Shores",
+    "config": "./data/bahama-shores/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "barcley-estates",
     "name": "Barcley Estates",
     "config": "./data/barcley-estates/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "bartlett-park",
+    "name": "Bartlett Park",
+    "config": "./data/bartlett-park/neighborhood.json",
     "pins": []
   },
   {
@@ -133,6 +157,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "gateway",
+    "name": "Gateway",
+    "config": "./data/gateway/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "greater-grovemont",
     "name": "Greater Grovemont",
     "config": "./data/greater-grovemont/neighborhood.json",
@@ -157,6 +187,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "harbor-isle",
+    "name": "Harbor Isle",
+    "config": "./data/harbor-isle/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "harris-park",
     "name": "Harris Park",
     "config": "./data/harris-park/neighborhood.json",
@@ -172,6 +208,18 @@ export const importedNeighborhoods = [
     "id": "historic-kenwood",
     "name": "Historic Kenwood",
     "config": "./data/historic-kenwood/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "historic-park-street",
+    "name": "Historic Park Street",
+    "config": "./data/historic-park-street/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "historic-uptown",
+    "name": "Historic Uptown",
+    "config": "./data/historic-uptown/neighborhood.json",
     "pins": []
   },
   {
@@ -196,6 +244,18 @@ export const importedNeighborhoods = [
     "id": "lake-maggiore-park",
     "name": "Lake Maggiore Park",
     "config": "./data/lake-maggiore-park/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "lake-maggiore-shores",
+    "name": "Lake Maggiore Shores",
+    "config": "./data/lake-maggiore-shores/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "live-oaks",
+    "name": "Live Oaks",
+    "config": "./data/live-oaks/neighborhood.json",
     "pins": []
   },
   {
@@ -247,9 +307,27 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "northeast-terraces",
+    "name": "Northeast Terraces",
+    "config": "./data/northeast-terraces/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "northwest",
     "name": "Northwest",
     "config": "./data/northwest/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "norwood-heights",
+    "name": "Norwood Heights",
+    "config": "./data/norwood-heights/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "oakwood-gardens",
+    "name": "Oakwood Gardens",
+    "config": "./data/oakwood-gardens/neighborhood.json",
     "pins": []
   },
   {
@@ -262,6 +340,12 @@ export const importedNeighborhoods = [
     "id": "palmetto-park",
     "name": "Palmetto Park",
     "config": "./data/palmetto-park/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "pasadena-vista",
+    "name": "Pasadena Vista",
+    "config": "./data/pasadena-vista/neighborhood.json",
     "pins": []
   },
   {
@@ -319,9 +403,21 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "tyrone-gardens",
+    "name": "Tyrone Gardens",
+    "config": "./data/tyrone-gardens/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "venetian-isles",
     "name": "Venetian Isles",
     "config": "./data/venetian-isles/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "west-shore-village",
+    "name": "West Shore Village",
+    "config": "./data/west-shore-village/neighborhood.json",
     "pins": []
   },
   {

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bahama-shores-road-1",
+    "osmType": "way",
+    "osmId": "11254842",
+    "sourceGeographic": {
+      "lng": -82.6372648,
+      "lat": 27.715725
+    },
+    "expectedSourcePoint": [
+      283.33,
+      410.12
+    ],
+    "matchErrorPx": 0.000143
+  },
+  {
+    "id": "bahama-shores-road-2",
+    "osmType": "way",
+    "osmId": "11262662",
+    "sourceGeographic": {
+      "lng": -82.6382054,
+      "lat": 27.7136318
+    },
+    "expectedSourcePoint": [
+      206.82,
+      602.45
+    ],
+    "matchErrorPx": 0.000359
+  },
+  {
+    "id": "bahama-shores-road-3",
+    "osmType": "way",
+    "osmId": "219169044",
+    "sourceGeographic": {
+      "lng": -82.634548,
+      "lat": 27.71093
+    },
+    "expectedSourcePoint": [
+      504.32,
+      850.7
+    ],
+    "matchErrorPx": 0.000561
+  },
+  {
+    "id": "bahama-shores-road-4",
+    "osmType": "way",
+    "osmId": "11255975",
+    "sourceGeographic": {
+      "lng": -82.6366693,
+      "lat": 27.7115805
+    },
+    "expectedSourcePoint": [
+      331.77,
+      790.93
+    ],
+    "matchErrorPx": 0.000896
+  }
+]

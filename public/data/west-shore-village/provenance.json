@@ -1,0 +1,58 @@
+{
+  "id": "west-shore-village",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "3c473151458bd5f56b79be4bf496f45735582c951d1984c9de0680e992bd5ee1",
+    "map-data.json": "04a2919398fda45d7a4e19af21f5005c5150c4e59297c04ff9b5a8db25806034",
+    "buffer.mjs": "0050db84b3bdfbbecd72d9e9c76e638733c208d0f006fbd20074aeabe980f084",
+    "buffer-map-data.json": "e38a23c28748c35a665505f5e9da5267cea9d62458aa546ace9fa96fbff652c7",
+    "source-geography.geojson": "4ef74d4af3f4a866ddaa6ada3c690005811fa6dda372eb639c3548e185e8dd34"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "96c00708c3a12e38a0cbcbce7367096a5a33653a7366de8a90f70ee9bbe1fd02",
+  "nearbyMaskGeometrySha256": "fac9d4585d17f76a4c3e364116a0a55444bbb19b4585a14f0d4dbf146a976495",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; County Aerials2025 original conservative lake trace where explicitly attributed",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query"
+      },
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer/exportImage"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/west-shore-village/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/west-shore-village/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/west-shore-village.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/west-shore-village/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/west-shore-village/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "717b730c47127b0994558a3ddfd4d5e67e35603d203be5cbd9aaae4ec02c318e",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/west-shore-village.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "69c98c07f5bd60da2d17283a88170b5d953c9b6f6a9259d6f3703f39bd774bce",
+    "sha256": "f58c30ed3ebf9f1c62913eddeddb89d6556ad5b23d9d32632e0ce3a5fdd16854",
+    "bytes": 188596,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

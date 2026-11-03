@@ -1,0 +1,58 @@
+{
+  "id": "pasadena-vista",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "65b77be3d70b0645ac136f14ec3816f11604cc2c7f89915eb0bf050b86b4a6a8",
+    "map-data.json": "364b4deeb9bf2505b3c564e59ae5b38f29cf6a10ae4fec6649228c34239cb896",
+    "buffer.mjs": "0ec819d15cbf3808aab3f3083840278c9cbf7d900d908a39f4d0f6aefda955ed",
+    "buffer-map-data.json": "10e9f714895bcc278e33c20315bb62ffc727797d629cbf1205d6242637298505",
+    "source-geography.geojson": "4566440d43aa531c04e74bd36190420683b8c176f22b4aa9beae5478fd4648df"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "460627166f59202b6866c85873f4f9d225c55b19397d4ad92d9292ae2c36b2df",
+  "nearbyMaskGeometrySha256": "28e9cc2cc23c162bd039c5ce12f98bb5c3b9085c11130c17ad77c33abbfc570e",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=108&outFields=OBJECTID,NANAME,STATUS&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/pasadena-vista/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/pasadena-vista/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/pasadena-vista.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/pasadena-vista/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/pasadena-vista/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "02fe0747ebb54a27756964a886decf1b28ed6cd3bd1a58963f2c91f983538d9a",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/pasadena-vista.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "07901c460ef2f8a2167b934fc45bc3a8f6918c657e47654db4c7bbc62cebd243",
+    "sha256": "1fee347139d3955b97e32928978a10fbe1f2a7f1e088b627f4e0f053340acea6",
+    "bytes": 315580,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

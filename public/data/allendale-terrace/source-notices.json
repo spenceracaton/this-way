@@ -1,0 +1,438 @@
+{
+  "attribution": "© OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "coverageSources": [
+    "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.65278643%2C27.80031315%2C-82.63959770%2C27.80966317",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.65176976%2C27.80121243%2C-82.64061437%2C27.80876389&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation",
+    "https://www.stpetecona.org/all-neighborhoods/allendale-terrace-neighborhood"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "sourceType": "Manual conservative channel/corridor tracing from georeferenced County 2026 aerial raster and continuity corroborated by OSM stream way/211153845; not a County vector feature",
+      "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.64702872065142%2C27.804351005632146%2C-82.64423987123551%2C27.805790502611966&bboxSR=4326&imageSR=4326&size=1600%2C1200&format=jpg&interpolation=RSP_BilinearInterpolation",
+      "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+      "sourceImagePixelRing": [
+        [
+          290,
+          813
+        ],
+        [
+          344,
+          780
+        ],
+        [
+          411,
+          752
+        ],
+        [
+          485,
+          714
+        ],
+        [
+          561,
+          675
+        ],
+        [
+          650,
+          618
+        ],
+        [
+          729,
+          566
+        ],
+        [
+          813,
+          508
+        ],
+        [
+          899,
+          457
+        ],
+        [
+          985,
+          402
+        ],
+        [
+          1073,
+          348
+        ],
+        [
+          1161,
+          293
+        ],
+        [
+          1240,
+          255
+        ],
+        [
+          1300,
+          274
+        ],
+        [
+          1328,
+          302
+        ],
+        [
+          1313,
+          350
+        ],
+        [
+          1248,
+          405
+        ],
+        [
+          1182,
+          450
+        ],
+        [
+          1100,
+          485
+        ],
+        [
+          1011,
+          500
+        ],
+        [
+          922,
+          549
+        ],
+        [
+          839,
+          607
+        ],
+        [
+          756,
+          663
+        ],
+        [
+          687,
+          717
+        ],
+        [
+          603,
+          775
+        ],
+        [
+          491,
+          850
+        ],
+        [
+          416,
+          900
+        ],
+        [
+          345,
+          927
+        ],
+        [
+          299,
+          901
+        ]
+      ],
+      "sourcePublisher": "Pinellas County Enterprise GIS",
+      "attribution": "Pinellas County 2026 aerial imagery; interpretation by FrightThisWay research"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.65278643%2C27.80031315%2C-82.63959770%2C27.80966317",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.65176976%2C27.80121243%2C-82.64061437%2C27.80876389&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation",
+      "https://www.stpetecona.org/all-neighborhoods/allendale-terrace-neighborhood"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "sourceType": "Manual conservative channel/corridor tracing from georeferenced County 2026 aerial raster and continuity corroborated by OSM stream way/211153845; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.64702872065142%2C27.804351005632146%2C-82.64423987123551%2C27.805790502611966&bboxSR=4326&imageSR=4326&size=1600%2C1200&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            290,
+            813
+          ],
+          [
+            344,
+            780
+          ],
+          [
+            411,
+            752
+          ],
+          [
+            485,
+            714
+          ],
+          [
+            561,
+            675
+          ],
+          [
+            650,
+            618
+          ],
+          [
+            729,
+            566
+          ],
+          [
+            813,
+            508
+          ],
+          [
+            899,
+            457
+          ],
+          [
+            985,
+            402
+          ],
+          [
+            1073,
+            348
+          ],
+          [
+            1161,
+            293
+          ],
+          [
+            1240,
+            255
+          ],
+          [
+            1300,
+            274
+          ],
+          [
+            1328,
+            302
+          ],
+          [
+            1313,
+            350
+          ],
+          [
+            1248,
+            405
+          ],
+          [
+            1182,
+            450
+          ],
+          [
+            1100,
+            485
+          ],
+          [
+            1011,
+            500
+          ],
+          [
+            922,
+            549
+          ],
+          [
+            839,
+            607
+          ],
+          [
+            756,
+            663
+          ],
+          [
+            687,
+            717
+          ],
+          [
+            603,
+            775
+          ],
+          [
+            491,
+            850
+          ],
+          [
+            416,
+            900
+          ],
+          [
+            345,
+            927
+          ],
+          [
+            299,
+            901
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; interpretation by FrightThisWay research"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors; original approximate channel/corridor traces from Pinellas County Aerials2026 public GIS reference (as-is, not surveyed shorelines)",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.65278643%2C27.80031315%2C-82.63959770%2C27.80966317",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.65176976%2C27.80121243%2C-82.64061437%2C27.80876389&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation",
+      "https://www.stpetecona.org/all-neighborhoods/allendale-terrace-neighborhood"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "sourceType": "Manual conservative channel/corridor tracing from georeferenced County 2026 aerial raster and continuity corroborated by OSM stream way/211153845; not a County vector feature",
+        "sourceImageURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.64702872065142%2C27.804351005632146%2C-82.64423987123551%2C27.805790502611966&bboxSR=4326&imageSR=4326&size=1600%2C1200&format=jpg&interpolation=RSP_BilinearInterpolation",
+        "sourceImageFile": "county-aerial-2026-channel-detail.jpg",
+        "sourceImagePixelRing": [
+          [
+            290,
+            813
+          ],
+          [
+            344,
+            780
+          ],
+          [
+            411,
+            752
+          ],
+          [
+            485,
+            714
+          ],
+          [
+            561,
+            675
+          ],
+          [
+            650,
+            618
+          ],
+          [
+            729,
+            566
+          ],
+          [
+            813,
+            508
+          ],
+          [
+            899,
+            457
+          ],
+          [
+            985,
+            402
+          ],
+          [
+            1073,
+            348
+          ],
+          [
+            1161,
+            293
+          ],
+          [
+            1240,
+            255
+          ],
+          [
+            1300,
+            274
+          ],
+          [
+            1328,
+            302
+          ],
+          [
+            1313,
+            350
+          ],
+          [
+            1248,
+            405
+          ],
+          [
+            1182,
+            450
+          ],
+          [
+            1100,
+            485
+          ],
+          [
+            1011,
+            500
+          ],
+          [
+            922,
+            549
+          ],
+          [
+            839,
+            607
+          ],
+          [
+            756,
+            663
+          ],
+          [
+            687,
+            717
+          ],
+          [
+            603,
+            775
+          ],
+          [
+            491,
+            850
+          ],
+          [
+            416,
+            900
+          ],
+          [
+            345,
+            927
+          ],
+          [
+            299,
+            901
+          ]
+        ],
+        "sourcePublisher": "Pinellas County Enterprise GIS",
+        "attribution": "Pinellas County 2026 aerial imagery; interpretation by FrightThisWay research"
+      }
+    ]
+  }
+}
