@@ -19,13 +19,13 @@ const rel = path => path.replace(/^\.\//, 'public/');
 test('catalog matches the supported fixed-neighborhood set and preserves the two sample maps', async () => {
   const summary = await json('public/data/neighborhood-import.json');
   const ids = Object.keys(neighborhoods);
-  assert.equal(ids.length, 89);
+  assert.equal(ids.length, 94);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual([...ids].sort(), [...summary.supportedIds].sort());
   assert.deepEqual(summary.retainedSampleMaps, ['old-northeast', 'crescent-lake']);
   assert.equal(neighborhoods['old-northeast'].pins.length, 4);
   assert.equal(neighborhoods['crescent-lake'].pins.length, 4);
-  assert.equal(importedNeighborhoods.length, 87);
+  assert.equal(importedNeighborhoods.length, 92);
   const sourcePlan = await json('scripts/ftw-expansion-sources.json');
   for (const id of Object.keys(sourcePlan.mapPrefixes)) assert.ok(ids.includes(id), `${id} recovered map`);
   const readyPlan = await json('scripts/ftw-ready-geography-sources.json');
@@ -88,12 +88,18 @@ test('every imported map configuration, artwork, provenance and anchor is intern
       assert.equal(config.attribution.label, 'Pinellas County GIS');
       assert.deepEqual(config.additionalAttributions.map(credit => credit.label), ['U.S. Census Bureau', 'USGS NHD']);
       assert.equal(config.license, null);
-      assert.equal(config.coverageKind, 'census-designated-place');
+      const classifications = { 'census-designated-place': ['census-cdp/', 'Census designated place'], 'incorporated-place': ['census-incorporated-place/', 'Incorporated place'] };
+      const classification = classifications[config.coverageKind];
+      assert.ok(classification, `${item.id} explicit Census classification`);
       const geographyBytes = await read(rel(config.geography));
       assert.equal(sha256(geographyBytes), provenance.sourceGeometrySha256);
       const geography = JSON.parse(geographyBytes);
       const core = geography.features.find(feature => feature.id === provenance.coreFeatureId);
       assert.equal(core.properties.source, 'U.S. Census Bureau');
+      assert.ok(core.id.startsWith(classification[0]));
+      assert.equal(core.properties.coverageType, classification[1]);
+      assert.equal(core.geometry.type, 'Polygon');
+      assert.equal(core.geometry.coordinates.length, 1);
       assert.deepEqual(core.geometry.coordinates[0].map(([lng, lat]) => [
         config.projection.xOrigin + (lng - config.projection.lngOrigin) * config.projection.xScale,
         config.projection.yOrigin - (lat - config.projection.latOrigin) * config.projection.yScale

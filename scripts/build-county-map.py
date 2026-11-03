@@ -32,10 +32,22 @@ def build(source_dir, output_root):
     if sha(geography_bytes) != source["geographySha256"]:
         raise ValueError("Geographic input checksum mismatch")
     features = json.loads(geography_bytes)["features"]
+    coverage_types = {
+        "census-designated-place": ("census-cdp", "Census designated place", "Census-designated-place reference coverage; not an association, parcel, access or surveyed boundary."),
+        "incorporated-place": ("census-incorporated-place", "Incorporated place", "Census-incorporated-place reference coverage; not an association, parcel, access or surveyed boundary."),
+    }
+    classification = coverage_types.get(source.get("coverageKind"))
+    if classification is None:
+        raise ValueError(f"Unsupported Census coverage kind: {source.get('coverageKind')!r}")
+    id_prefix, coverage_type, boundary_note = classification
     core = [f for f in features if f.get("id") == source["coreFeatureId"]]
     if len(core) != 1 or core[0]["properties"].get("source") != "U.S. Census Bureau":
         raise ValueError("Expected one identified Census core feature")
     core = core[0]
+    source_geo_id = str(core["properties"].get("sourceGeoId", ""))
+    if (source["coreFeatureId"] != f"{id_prefix}/{source_geo_id}" or
+            core["properties"].get("coverageType") != coverage_type):
+        raise ValueError("Census core identity and coverage classification disagree")
     geometry = core["geometry"]
     # The current application coverage model is a single ring. Never silently
     # substitute a largest polygon or remove a hole to fit that model.
@@ -123,7 +135,7 @@ def build(source_dir, output_root):
                   sourceNotices=f'./data/{source["id"]}/source-notices.json',
                   geography=f'./data/{source["id"]}/geography.geojson',
                   coverageKind=source["coverageKind"],
-                  boundaryNote="Census-designated-place reference coverage; not an association, parcel, access or surveyed boundary.")
+                  boundaryNote=boundary_note)
     notices = dict(source["sourceNotices"], attribution=source["attribution"],
                    additionalAttributions=credits, sourceEvidence=source["sourceEvidence"],
                    acquiredAt=source["acquiredAt"], coverageKind=source["coverageKind"])

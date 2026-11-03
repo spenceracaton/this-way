@@ -13,6 +13,9 @@
     "bartlett-park",
     "bay-pines-estates",
     "bayou-highlands",
+    "bear-creek-cdp",
+    "belleair-beach-place",
+    "belleair-bluffs-place",
     "campbell-park",
     "casler-heights",
     "central-oak-park",
@@ -76,6 +79,7 @@
     "perkins",
     "perry-bayview",
     "ponce-de-leon",
+    "ridgecrest-cdp",
     "ridgewood-groves",
     "riviera-heights",
     "shore-acres",
@@ -84,6 +88,7 @@
     "station-view",
     "stonesthrow",
     "thirteenth-street-heights",
+    "tierra-verde-cdp",
     "tiffanie-heights",
     "tyrone-gardens",
     "venetian-isles",
@@ -108,6 +113,9 @@
     "bartlett-park",
     "bay-pines-estates",
     "bayou-highlands",
+    "bear-creek-cdp",
+    "belleair-beach-place",
+    "belleair-bluffs-place",
     "campbell-park",
     "casler-heights",
     "central-oak-park",
@@ -169,6 +177,7 @@
     "perkins",
     "perry-bayview",
     "ponce-de-leon",
+    "ridgecrest-cdp",
     "ridgewood-groves",
     "riviera-heights",
     "shore-acres",
@@ -177,6 +186,7 @@
     "station-view",
     "stonesthrow",
     "thirteenth-street-heights",
+    "tierra-verde-cdp",
     "tiffanie-heights",
     "tyrone-gardens",
     "venetian-isles",
@@ -317,7 +327,7 @@
       "bufferConfigSha256": "ce8ea3e7c710f3a5e4635e1a6123a12334ec0ebedd733ca82485c3acd9f2731b"
     }
   ],
-  "scope": "Prepared QA maps plus independently source-reviewed county CDP maps; directory-only areas are excluded.",
+  "scope": "Prepared QA maps plus independently source-reviewed county Census-place maps; directory-only areas are excluded.",
   "additionalSourceBatches": [
     {
       "sourceProfile": "county-census-usgs-v1",
@@ -328,6 +338,23 @@
       "sourcePackages": "geography/sources/",
       "sources": [
         "U.S. Census Bureau TIGERweb January 1, 2026 CDPs",
+        "Pinellas County RoadCenterline",
+        "USGS National Hydrography Dataset"
+      ]
+    },
+    {
+      "batchId": "county-five-follow-on",
+      "sourceProfile": "county-census-usgs-v1",
+      "importedIds": [
+        "bear-creek-cdp",
+        "ridgecrest-cdp",
+        "tierra-verde-cdp",
+        "belleair-bluffs-place",
+        "belleair-beach-place"
+      ],
+      "sourcePackages": "geography/sources/",
+      "sources": [
+        "U.S. Census Bureau TIGERweb January 1, 2026 places (CDP and incorporated)",
         "Pinellas County RoadCenterline",
         "USGS National Hydrography Dataset"
       ]

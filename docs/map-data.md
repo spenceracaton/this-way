@@ -3,7 +3,7 @@
 The imported maps are stored separately from the UI, sample listings, and seasonal
 content. Reading the committed bundle does not require GitHub credentials, an API,
 Python, or Leaflet. Rebuilding the older FTW-derived bundles requires access
-to the private QA repository. New county/CDP maps retain their minimal original
+to the private QA repository. New county/Census maps retain their minimal original
 geographic inputs in `geography/sources/{id}/` and rebuild offline without it.
 
 ## Files
@@ -19,7 +19,7 @@ Read `public/data/neighborhood-import.json` for `importedIds` and the two
 | `data/{id}/anchors.json` | Four geographic road vertices matched to SVG coordinates |
 | `data/{id}/provenance.json` | Input hashes, mask hashes, transform notes, raster dimensions and checksums; newer batches also record exact source paths |
 | `data/{id}/source-notices.json` | Source-specific credit, terms, evidence URLs, retrieval time and checksums |
-| `data/{id}/geography.geojson` | County/CDP batches: original longitude/latitude core, roads and water, with source identities and a geographic property allowlist |
+| `data/{id}/geography.geojson` | County/Census batches: original longitude/latitude core, roads and water, with source identities and a geographic property allowlist |
 
 Paths beginning `./` in a configuration resolve relative to `public/`, not relative
 to the configuration file. For example, Harbor Isle's `artwork` is
@@ -73,10 +73,10 @@ does not imply an ODbL grant for its separately attributed County-derived patch.
 The source notices preserve what the source actually declared. Original aerial
 imagery pixels, FTW listings, and seasonal overlays are not included.
 
-## County/CDP source packages
+## County/Census source packages
 
 `geography/sources/{id}/geography.geojson` is a standard GeoJSON FeatureCollection
-in longitude/latitude (EPSG:4326). It preserves the Census CDP core, County road
+in longitude/latitude (EPSG:4326). It preserves the Census CDP or incorporated-place core, County road
 parts, and USGS water components and holes. Source IDs distinguish Census GEOID,
 County centerline/object IDs, and USGS layer/object/permanent IDs. These inputs
 have no listings, editor identities, address ranges, photos or seasonal styling.
@@ -97,7 +97,8 @@ packaging are documented in [the county preparation log](county-map-preparation.
 The acquisition snapshot additionally retains raw response metadata and file
 hashes outside the public tree; the compact package is the committed rebuild input.
 
-These maps use dated Census-designated-place reference areas, which may differ
-from neighborhood association definitions. County/USGS/Census credit and terms
+These maps use dated Census CDP or incorporated-place reference areas, which may
+differ from neighborhood association definitions. Each package records its exact
+coverage kind, and the packager rejects conflicting Census classifications. County/USGS/Census credit and terms
 remain separate. `license: null` means no single source-wide license was asserted;
 it does not remove the County accuracy disclaimer or grant artwork rights.

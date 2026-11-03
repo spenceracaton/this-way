@@ -1,0 +1,71 @@
+{
+  "id": "ridgecrest-cdp",
+  "sourceProfile": "county-census-usgs-v1",
+  "acquiredAt": "2026-11-03T16:38:58.592120Z",
+  "sourcePackageSha256": "ca3292f42b68ad419ff7c2974538981a0e4082315112f1fed4fa869acf80c4c2",
+  "sourceGeometrySha256": "6229d12b4dcaeb2a041bf7e5c42acdd46da9d107035edf6b7cbbbfd543699b05",
+  "rawSnapshotSha256": "905767c70715ef40f8443aa3ee817adc4ec021cfe75d5b23054731027711d71f",
+  "rendererSha256": "55946876cf04ee6cf0f22058a67f4d65cb9567747f0b2baa27e5b38eb4893b5e",
+  "anchorUtilitySha256": "53ae70f6f60eaf27793f153a242d44cfb6808bdd70360b081cc990f71eb7857b",
+  "coreFeatureId": "census-cdp/1260275",
+  "coverageKind": "census-designated-place",
+  "sourceEvidence": {
+    "censusCore": {
+      "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
+      "metadataSha256": "8a75ef2c9e1a3b5ae69585b6b9a6d0ffd2047b40ff83363d020249779028be11",
+      "expectedFeatureCount": 1,
+      "retrievedFeatureCount": 1,
+      "sourceGeoId": "1260275"
+    },
+    "countyRoads": {
+      "serviceUrl": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+      "metadataSha256": "bad3f545c2c4a167a597d5ceea9021dbf22b0e40fc2bba54d999e2fe546a1261",
+      "expectedFeatureCount": 471,
+      "retrievedFeatureCount": 471,
+      "packagedFeatureCount": 471
+    },
+    "usgsNhd": {
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+      "metadataSha256": "1e9ec55c6d5ea69be954a7318d1fa3430d35419c9bbb233f738619ee8495a412",
+      "layers": [
+        {
+          "role": "area",
+          "sourceLayer": "Area - Large Scale",
+          "layerId": 9,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+          "metadataSha256": "78273aa51382c9d9920c39dd2b5382881a95d6e1b25fbc5c7384d50a79e627e5",
+          "expectedFeatureCount": 0,
+          "retrievedFeatureCount": 0
+        },
+        {
+          "role": "waterbody",
+          "sourceLayer": "Waterbody - Large Scale",
+          "layerId": 12,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+          "metadataSha256": "791dc7077b95f7a72b35397c20683afe56a39aa66d1a540232e2ccb83717a51c",
+          "expectedFeatureCount": 33,
+          "retrievedFeatureCount": 33
+        }
+      ]
+    }
+  },
+  "sourceNoticesSha256": "4653e114ae424f553d0a769021e7fa94a7c083ad9dea407f12d982f3bea9725a",
+  "coreMaskGeometrySha256": "0e4f5288bf4f90c041cb35fde2e2805c079ed15ac46fc1b6d5496977408384f0",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "anchors": 4,
+  "roadFeatures": 471,
+  "overviewLabels": 18,
+  "boundaryNote": "Census-designated-place reference coverage; not an association, parcel, access or surveyed boundary.",
+  "transformNotes": "Source geographic geometry is retained. A local linear drawing projection is shared by artwork and pins. Nearby artwork is orientation context, not extra submission eligibility.",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/ridgecrest-cdp.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "f7fd797592e374fe9c720dfdff533621d49a6e25c669cc5ae7ad106a5698cd3a",
+    "sha256": "1c56f843c817a141fa833e290eeedca344109a0a091884cb309ad96915014d2d",
+    "bytes": 367758,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

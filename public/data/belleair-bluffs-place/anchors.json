@@ -1,0 +1,62 @@
+[
+  {
+    "id": "belleair-bluffs-place-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "610000004",
+    "sourceFeatureId": "pinellas-road/388101/0",
+    "sourceGeographic": {
+      "lng": -82.8143278901249,
+      "lat": 27.9182659822061
+    },
+    "expectedSourcePoint": [
+      694.35,
+      547.93
+    ],
+    "matchErrorPx": 0.000205
+  },
+  {
+    "id": "belleair-bluffs-place-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50217658",
+    "sourceFeatureId": "pinellas-road/354848/0",
+    "sourceGeographic": {
+      "lng": -82.8066262480889,
+      "lat": 27.9217618925693
+    },
+    "expectedSourcePoint": [
+      958.45,
+      412.26
+    ],
+    "matchErrorPx": 0.000259
+  },
+  {
+    "id": "belleair-bluffs-place-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50218082",
+    "sourceFeatureId": "pinellas-road/354333/0",
+    "sourceGeographic": {
+      "lng": -82.8079192928899,
+      "lat": 27.9126609864851
+    },
+    "expectedSourcePoint": [
+      914.11,
+      765.45
+    ],
+    "matchErrorPx": 0.000354
+  },
+  {
+    "id": "belleair-bluffs-place-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50232613",
+    "sourceFeatureId": "pinellas-road/361814/0",
+    "sourceGeographic": {
+      "lng": -82.8214795578832,
+      "lat": 27.9161290653037
+    },
+    "expectedSourcePoint": [
+      449.11,
+      630.86
+    ],
+    "matchErrorPx": 0.000421
+  }
+]

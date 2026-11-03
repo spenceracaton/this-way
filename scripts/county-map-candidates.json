@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
-  "scope": "First three research candidates outside St. Petersburg; two source-reviewed maps and one deferred study, not a verified countywide inventory.",
+  "scope": "Research queue: original two accepted maps, deferred South Highpoint, and a five-map follow-on batch; not a complete neighborhood inventory.",
   "iterationPolicy": "Complete and critique one candidate before starting the next; preserve failures and the specific improvement used in the next attempt.",
-  "referenceBoundaryKind": "January 1, 2026 Census-designated-place reference; not an HOA, parcel, or surveyed neighborhood boundary",
+  "referenceBoundaryKind": "January 1, 2026 Census CDP or incorporated-place reference; not an HOA, parcel, access or surveyed boundary",
   "sourceServices": {
     "referenceBoundaries": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
     "roads": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
-    "water": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer"
+    "water": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+    "incorporatedPlaces": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4"
   },
   "candidates": [
     {
@@ -32,6 +33,51 @@
       "reason": "Another compact candidate for testing whether the first map's source and rendering workflow is reusable.",
       "status": "deferred-multipart-and-holed-core",
       "sourceGeoId": "1267462"
+    },
+    {
+      "id": "bear-creek-cdp",
+      "name": "Bear Creek",
+      "order": 4,
+      "sourceGeoId": "1204735",
+      "coverageKind": "census-designated-place",
+      "status": "source-and-mobile-review-passed",
+      "reason": "Compact county-contained single-exterior Census place; acquire and review individually before acceptance."
+    },
+    {
+      "id": "ridgecrest-cdp",
+      "name": "Ridgecrest",
+      "order": 5,
+      "sourceGeoId": "1260275",
+      "coverageKind": "census-designated-place",
+      "status": "source-and-mobile-review-passed",
+      "reason": "Compact county-contained single-exterior Census place; acquire and review individually before acceptance."
+    },
+    {
+      "id": "tierra-verde-cdp",
+      "name": "Tierra Verde",
+      "order": 6,
+      "sourceGeoId": "1271825",
+      "coverageKind": "census-designated-place",
+      "status": "source-and-mobile-review-passed",
+      "reason": "Compact county-contained single-exterior Census place; acquire and review individually before acceptance."
+    },
+    {
+      "id": "belleair-bluffs-place",
+      "name": "Belleair Bluffs",
+      "order": 7,
+      "sourceGeoId": "1205125",
+      "coverageKind": "incorporated-place",
+      "status": "source-and-mobile-review-passed",
+      "reason": "Compact county-contained single-exterior Census place; acquire and review individually before acceptance."
+    },
+    {
+      "id": "belleair-beach-place",
+      "name": "Belleair Beach",
+      "order": 8,
+      "sourceGeoId": "1205100",
+      "coverageKind": "incorporated-place",
+      "status": "source-and-mobile-review-passed",
+      "reason": "Compact county-contained single-exterior Census place; acquire and review individually before acceptance."
     }
   ]
 }

@@ -1,0 +1,71 @@
+{
+  "id": "bear-creek-cdp",
+  "sourceProfile": "county-census-usgs-v1",
+  "acquiredAt": "2026-11-03T16:31:52.879863Z",
+  "sourcePackageSha256": "503cafb84c5775e579d704bfed0161f61afe59d3cbf60296bda3fe36ab5c0801",
+  "sourceGeometrySha256": "28bffea35078a57f3dd1456400aad1d7b41031ba69d084b3d9939b4c1e2f6aef",
+  "rawSnapshotSha256": "34a494b973445ec9aaa07a85c9fc2bbba08647c4216b0c97b1712e8adeb95e40",
+  "rendererSha256": "55946876cf04ee6cf0f22058a67f4d65cb9567747f0b2baa27e5b38eb4893b5e",
+  "anchorUtilitySha256": "53ae70f6f60eaf27793f153a242d44cfb6808bdd70360b081cc990f71eb7857b",
+  "coreFeatureId": "census-cdp/1204735",
+  "coverageKind": "census-designated-place",
+  "sourceEvidence": {
+    "censusCore": {
+      "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
+      "metadataSha256": "2ae0fdce75430ea68b754253713b9a0a30d41701489b6330459c3c7452fcf28b",
+      "expectedFeatureCount": 1,
+      "retrievedFeatureCount": 1,
+      "sourceGeoId": "1204735"
+    },
+    "countyRoads": {
+      "serviceUrl": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+      "metadataSha256": "bad3f545c2c4a167a597d5ceea9021dbf22b0e40fc2bba54d999e2fe546a1261",
+      "expectedFeatureCount": 320,
+      "retrievedFeatureCount": 320,
+      "packagedFeatureCount": 320
+    },
+    "usgsNhd": {
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+      "metadataSha256": "1e9ec55c6d5ea69be954a7318d1fa3430d35419c9bbb233f738619ee8495a412",
+      "layers": [
+        {
+          "role": "area",
+          "sourceLayer": "Area - Large Scale",
+          "layerId": 9,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+          "metadataSha256": "c6378f2a9c793e86c143245ee5b114ad78fa0e2aff1f5c6067b22d54a1fd9ba0",
+          "expectedFeatureCount": 3,
+          "retrievedFeatureCount": 3
+        },
+        {
+          "role": "waterbody",
+          "sourceLayer": "Waterbody - Large Scale",
+          "layerId": 12,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+          "metadataSha256": "bdd62ae3044419992df817dbbe49e56ef4c709352ba25cd0859a65b035a7ce57",
+          "expectedFeatureCount": 30,
+          "retrievedFeatureCount": 30
+        }
+      ]
+    }
+  },
+  "sourceNoticesSha256": "c0537d377381aacff4cd64206a832e7c43f505770dd2891d8149888a309435d7",
+  "coreMaskGeometrySha256": "9a28e6f4919f52d8d1a838a4e298e009820b3eca68f07c63140760407331901d",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "anchors": 4,
+  "roadFeatures": 320,
+  "overviewLabels": 18,
+  "boundaryNote": "Census-designated-place reference coverage; not an association, parcel, access or surveyed boundary.",
+  "transformNotes": "Source geographic geometry is retained. A local linear drawing projection is shared by artwork and pins. Nearby artwork is orientation context, not extra submission eligibility.",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/bear-creek-cdp.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "9f9e34fb4e475f7ca5761e59ca4a9b85657320330f3af583a01bc5b065619083",
+    "sha256": "901103ba7f57c52890140887c5fc930d85ae95710b6fa5caa5ecd4ca1e3f9625",
+    "bytes": 428582,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}
