@@ -38,6 +38,12 @@ relicense those sources or the source imagery. Retain the per-map attribution,
 license statements, and `source-notices.json` where present. An absent source-wide
 license field does not grant a blanket license for all content in that map.
 
+County/CDP source packages also contain separately credited U.S. Census Bureau
+boundaries, Pinellas County road centerlines, and USGS National Hydrography
+Dataset geometry. Retain their source-specific terms and accuracy disclaimers
+in `source.json` and `source-notices.json`; the application MIT license and OSM
+ODbL statement do not relicense those geographic inputs.
+
 ## Leaflet
 
 Files under `public/vendor/leaflet/` are distributed under Leaflet's BSD

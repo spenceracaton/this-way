@@ -211,9 +211,21 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "greenbriar-cdp",
+    "name": "Greenbriar",
+    "config": "./data/greenbriar-cdp/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "gulfport",
     "name": "Gulfport",
     "config": "./data/gulfport/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "harbor-bluffs-cdp",
+    "name": "Harbor Bluffs",
+    "config": "./data/harbor-bluffs-cdp/neighborhood.json",
     "pins": []
   },
   {

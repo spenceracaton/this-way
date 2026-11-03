@@ -1,0 +1,62 @@
+[
+  {
+    "id": "greenbriar-cdp-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50193871",
+    "sourceFeatureId": "pinellas-road/341544/0",
+    "sourceGeographic": {
+      "lng": -82.7508809442331,
+      "lat": 28.0160758065815
+    },
+    "expectedSourcePoint": [
+      491.88,
+      299.64
+    ],
+    "matchErrorPx": 0.000348
+  },
+  {
+    "id": "greenbriar-cdp-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50230894",
+    "sourceFeatureId": "pinellas-road/376932/0",
+    "sourceGeographic": {
+      "lng": -82.7556674301362,
+      "lat": 28.0170726096219
+    },
+    "expectedSourcePoint": [
+      254.82,
+      243.72
+    ],
+    "matchErrorPx": 0.000348
+  },
+  {
+    "id": "greenbriar-cdp-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "600000447",
+    "sourceFeatureId": "pinellas-road/387683/0",
+    "sourceGeographic": {
+      "lng": -82.746312536041,
+      "lat": 28.0172464074543
+    },
+    "expectedSourcePoint": [
+      718.14,
+      233.97
+    ],
+    "matchErrorPx": 0.000445
+  },
+  {
+    "id": "greenbriar-cdp-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50182036",
+    "sourceFeatureId": "pinellas-road/387144/0",
+    "sourceGeographic": {
+      "lng": -82.7532570194179,
+      "lat": 28.015262954644
+    },
+    "expectedSourcePoint": [
+      374.2,
+      345.24
+    ],
+    "matchErrorPx": 0.000492
+  }
+]

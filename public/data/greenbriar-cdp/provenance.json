@@ -1,0 +1,71 @@
+{
+  "id": "greenbriar-cdp",
+  "sourceProfile": "county-census-usgs-v1",
+  "acquiredAt": "2026-11-03T15:29:12.266707Z",
+  "sourcePackageSha256": "6f028f85edce017a569bd01f225c7734187ef1abd79066491843e89c47a0dc9c",
+  "sourceGeometrySha256": "5456eadf54ed23d3b1daf51e4bcba76bd71dd969964dc35a51223de0aad1bdc8",
+  "rawSnapshotSha256": "849a562446ac68d2b589575aaeee1bf9779f494f6b8b525523a7f1c3472beeb5",
+  "rendererSha256": "3085694d63c52385884be85df62a19dcce2c217f4369d928454c2fd961fb3964",
+  "anchorUtilitySha256": "53ae70f6f60eaf27793f153a242d44cfb6808bdd70360b081cc990f71eb7857b",
+  "coreFeatureId": "census-cdp/1227360",
+  "coverageKind": "census-designated-place",
+  "sourceEvidence": {
+    "censusCore": {
+      "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
+      "metadataSha256": "2ae0fdce75430ea68b754253713b9a0a30d41701489b6330459c3c7452fcf28b",
+      "expectedFeatureCount": 1,
+      "retrievedFeatureCount": 1,
+      "sourceGeoId": "1227360"
+    },
+    "countyRoads": {
+      "serviceUrl": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+      "metadataSha256": "bad3f545c2c4a167a597d5ceea9021dbf22b0e40fc2bba54d999e2fe546a1261",
+      "expectedFeatureCount": 236,
+      "retrievedFeatureCount": 236,
+      "packagedFeatureCount": 236
+    },
+    "usgsNhd": {
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+      "metadataSha256": "1e9ec55c6d5ea69be954a7318d1fa3430d35419c9bbb233f738619ee8495a412",
+      "layers": [
+        {
+          "role": "area",
+          "sourceLayer": "Area - Large Scale",
+          "layerId": 9,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+          "metadataSha256": "6a18c1f04ce858de773006329d890d1410d2b2cb71117e5c203dd0674b033aab",
+          "expectedFeatureCount": 0,
+          "retrievedFeatureCount": 0
+        },
+        {
+          "role": "waterbody",
+          "sourceLayer": "Waterbody - Large Scale",
+          "layerId": 12,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+          "metadataSha256": "bdd62ae3044419992df817dbbe49e56ef4c709352ba25cd0859a65b035a7ce57",
+          "expectedFeatureCount": 16,
+          "retrievedFeatureCount": 16
+        }
+      ]
+    }
+  },
+  "sourceNoticesSha256": "847e466cdae1b2266fb833f1d21cf9d0b5fccbc24bf5bf867315818ab8bd75cd",
+  "coreMaskGeometrySha256": "e66f9e75b8ebbe00f0edc10d0a41dc438b1fbd2a4c8b864929306230dc575ee6",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "anchors": 4,
+  "roadFeatures": 236,
+  "overviewLabels": 18,
+  "boundaryNote": "Census-designated-place reference coverage; not an association, parcel, access or surveyed boundary.",
+  "transformNotes": "Source geographic geometry is retained. A local linear drawing projection is shared by artwork and pins. Nearby artwork is orientation context, not extra submission eligibility.",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/greenbriar-cdp.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "950debacac141c2488ef156bfdf676a34409763c807e78d4341d35ee19b3dee5",
+    "sha256": "f863aa88818b02840b4aba100e0670cc2728a86c9ffc95d93626e78d88ad25e4",
+    "bytes": 323520,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

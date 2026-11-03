@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "south-highpoint-cdp",
+  "name": "South Highpoint",
+  "status": "unsupported-not-registered",
+  "sourceDateUtc": "2026-11-03T16:04:28.187231Z",
+  "source": {
+    "provider": "U.S. Census Bureau",
+    "product": "TIGERweb Census Designated Places",
+    "vintage": "January 1, 2026",
+    "layerId": 5,
+    "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
+    "queryUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5/query",
+    "where": "STATE='12' AND BASENAME='South Highpoint'",
+    "requestedOutSR": 4326,
+    "geoid": "1267462",
+    "sourceFeatureCount": 1,
+    "sourceGeometryType": "esriGeometryPolygon",
+    "sourceRingCount": 19,
+    "sourcePositionCount": 660,
+    "geojsonGeometryType": "MultiPolygon",
+    "polygonCount": 9,
+    "ringCountsPerPolygon": [
+      9,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "coreGeojsonSha256": "a0d19a63a3cc45d7b2581776ea0cd1678fe19710df24ad634ee04194edc5579e",
+    "queryResponseSha256": "081786d062468033a55cd8c2060116ab367e6fc8a0777c76818e538e24a9f009",
+    "metadataFile": "census-layer-metadata.json",
+    "rawMetadataSha256": "8a75ef2c9e1a3b5ae69585b6b9a6d0ffd2047b40ff83363d020249779028be11",
+    "queryResponseEvidencePath": "/workspace/design-review/county-live/south-highpoint-check.json",
+    "countyContainmentEvidencePath": "/workspace/design-review/county-live/census-pinellas-county-check.json"
+  },
+  "terms": {
+    "copyrightText": "Source: U.S. Census Bureau",
+    "license": "Public domain for Census-authored federal work under 17 U.S.C. § 105, subject to the statutory exclusion for third-party works",
+    "attribution": "Credit the U.S. Census Bureau",
+    "citation": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title17-section105&num=0&edition=prelim"
+  },
+  "decision": {
+    "reason": "The current map builder accepts only a Polygon with one ring. Census geometry is a valid MultiPolygon with nine components and ten interior rings. Preserve the complete geometry; explicit app coverage-model support and review are required before drawing or registering it.",
+    "roadFeaturesRequested": false,
+    "waterFeaturesRequested": false,
+    "packageCreated": false,
+    "mapPreviewCreated": false
+  }
+}

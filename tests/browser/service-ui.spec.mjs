@@ -90,6 +90,7 @@ test('live map starts empty, publishes immediately, safely renders addresses, an
   await expect(page.locator('#sample-count')).toHaveText('0 live displays');
   await expect(page.locator('#reference-list')).toHaveText('No live displays here yet.');
   await expect(page.locator('#reference-list')).not.toContainText('255 9th Ave NE');
+  await expect(page.locator('.map-panel > .references')).toBeVisible();
 
   await page.getByRole('button', { name: 'Add a display', exact: true }).click();
   const modal = page.getByRole('dialog', { name: 'Add a display' });
@@ -111,6 +112,7 @@ test('live map starts empty, publishes immediately, safely renders addresses, an
   await expect(page.locator('#sample-count')).toHaveText('1 live display');
   await expect(page.locator('#references-title')).toHaveText('Live displays');
   await expect(page.locator('.canvas')).not.toHaveClass(/map-only/);
+  await expect(page.locator('.canvas > .references')).toHaveCount(1);
   await expect(page.locator('footer .footer-tools a')).toHaveText('Review photos');
   await expect(page.locator('#reference-list')).toContainText('123 <img src=x onerror=window.__xss=1> Avenue, St Petersburg');
   await expect(page.locator('#reference-list img')).toHaveCount(0);

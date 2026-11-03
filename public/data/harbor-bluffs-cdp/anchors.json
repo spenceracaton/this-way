@@ -1,0 +1,62 @@
+[
+  {
+    "id": "harbor-bluffs-cdp-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50219649",
+    "sourceFeatureId": "pinellas-road/353505/0",
+    "sourceGeographic": {
+      "lng": -82.825882322291,
+      "lat": 27.8984416531943
+    },
+    "expectedSourcePoint": [
+      520.43,
+      903.56
+    ],
+    "matchErrorPx": 0.000227
+  },
+  {
+    "id": "harbor-bluffs-cdp-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50219804",
+    "sourceFeatureId": "pinellas-road/353855/0",
+    "sourceGeographic": {
+      "lng": -82.8251745796021,
+      "lat": 27.9019467043573
+    },
+    "expectedSourcePoint": [
+      546.15,
+      759.42
+    ],
+    "matchErrorPx": 0.000339
+  },
+  {
+    "id": "harbor-bluffs-cdp-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50232595",
+    "sourceFeatureId": "pinellas-road/361804/0",
+    "sourceGeographic": {
+      "lng": -82.8233114122488,
+      "lat": 27.9175178326957
+    },
+    "expectedSourcePoint": [
+      613.86,
+      119.08
+    ],
+    "matchErrorPx": 0.000361
+  },
+  {
+    "id": "harbor-bluffs-cdp-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50209907",
+    "sourceFeatureId": "pinellas-road/349526/0",
+    "sourceGeographic": {
+      "lng": -82.8300090585106,
+      "lat": 27.9061559608301
+    },
+    "expectedSourcePoint": [
+      370.46,
+      586.32
+    ],
+    "matchErrorPx": 0.000374
+  }
+]

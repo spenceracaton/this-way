@@ -25,7 +25,7 @@ for (const [id, neighborhood] of Object.entries(neighborhoods)) {
       if (page.viewportSize().width <= 720) {
         await expect.poll(async () => {
           const [card, credit] = await Promise.all([page.locator('.references').boundingBox(), page.locator('.leaflet-control-attribution').boundingBox()]);
-          return credit.y - card.y - card.height;
+          return card.y - credit.y - credit.height;
         }).toBeGreaterThanOrEqual(6);
       }
     }
@@ -72,8 +72,45 @@ test('long County GIS credits remain visible and separate from the empty state',
       expect(box.y + box.height).toBeLessThanOrEqual(height - 5);
       await expect.poll(async () => {
         const card = await page.locator('.references').boundingBox();
-        return (await credit.boundingBox()).y - card.y - card.height;
+        const box = await credit.boundingBox();
+        return card.y - box.y - box.height;
       }).toBeGreaterThanOrEqual(6);
+    }
+  }
+});
+
+test('county CDP overviews fit above the mobile empty state without hiding coverage under the title', async ({ page }) => {
+  const maps = importedNeighborhoods.filter(item => item.id.endsWith('-cdp'));
+  expect(maps.length).toBeGreaterThan(0);
+  for (const [width, height] of [[320,568],[390,664],[664,390]]) {
+    await page.setViewportSize({ width, height });
+    for (const item of maps) {
+      await page.goto(`/?neighborhood=${item.id}`);
+      await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
+      const config = JSON.parse(await readFile(resolve('public', item.config.replace(/^\.\//, '')), 'utf8'));
+      const boxes = await page.evaluate(config => {
+        const art = document.querySelector('#neighborhood-artwork').getBoundingClientRect();
+        const points = config.coreBoundary.map(([x, y]) => [
+          art.x + (x - config.bounds.left) / (config.bounds.right - config.bounds.left) * art.width,
+          art.y + (y - config.bounds.top) / (config.bounds.bottom - config.bounds.top) * art.height
+        ]);
+        return {
+          coreTop: Math.min(...points.map(point => point[1])),
+          coreBottom: Math.max(...points.map(point => point[1])),
+          titleBottom: document.querySelector('.map-toolbar').getBoundingClientRect().bottom,
+          creditTop: document.querySelector('.leaflet-control-attribution').getBoundingClientRect().top,
+          creditBottom: document.querySelector('.leaflet-control-attribution').getBoundingClientRect().bottom,
+          stripTop: document.querySelector('.references').getBoundingClientRect().top
+        };
+      }, config);
+      expect(boxes.coreTop).toBeGreaterThanOrEqual(boxes.titleBottom + 10);
+      expect(boxes.coreBottom).toBeLessThanOrEqual(boxes.creditTop - 10);
+      expect(boxes.stripTop - boxes.creditBottom).toBeGreaterThanOrEqual(6);
+      await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+      await expect(page.locator('.map-panel > .references')).toBeVisible();
+      const map = await page.locator('#map').boundingBox();
+      const strip = await page.locator('.references').boundingBox();
+      expect(strip.y).toBeGreaterThanOrEqual(map.y + map.height);
     }
   }
 });

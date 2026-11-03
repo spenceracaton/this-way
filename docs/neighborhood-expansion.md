@@ -150,6 +150,10 @@ are exhausted rather than inventing coverage for the remaining directory.
 
 ## Repeating the process
 
+For new areas beyond the retained bundles, follow the
+[one-neighborhood preparation loop](county-map-preparation.md). Its research
+queue is separate from the 87 accepted maps and the St. Petersburg directory backlog.
+
 Use `scripts/ftw-expansion-sources.json` as the pinned source plan. Preserve source
 terms and verify asset/metadata fixture hashes where available. Run scratch
 preflight, review coverage/credits/anchors, then generate only changed rasters.
