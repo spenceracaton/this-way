@@ -158,10 +158,12 @@ original private-object evidence.
 
 ## Validation
 
-All 149 Node/local Worker checks pass, including bundled Worker authentication,
+All 150 Node/local Worker checks pass, including bundled Worker authentication,
 prepare/apply/status/restore across restarts, expiry/command tampering, account
 and scope checks, private control-bucket enforcement, cleanup ownership markers,
-payload/hash/current-source checks and public replay/restore verification.
+payload/hash/current-source checks and public replay/restore verification. An
+unrelated database/network error cannot count as the expected CHECK failure in
+the atomic rollback probe.
 The real selected five-record/five-photo payload also passes fresh source-field
 and byte checks plus the authenticated local Worker prepare, atomic rollback
 probe, apply, exact retry, status, restore and restore retry. Production bindings

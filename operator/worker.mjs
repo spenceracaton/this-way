@@ -112,7 +112,10 @@ async function verifyAtomicBatchRollback(db, runId) {
       db.prepare('INSERT INTO ftw_import_guard_assertions(assertion_id,ok) VALUES(?,1)').bind(ids[0]),
       db.prepare('INSERT INTO ftw_import_guard_assertions(assertion_id,ok) VALUES(?,0)').bind(ids[1])
     ]);
-  } catch { failedAsExpected = true; }
+  } catch (error) {
+    const detail = `${error?.message || ''} ${error?.cause?.message || ''}`;
+    failedAsExpected = /CHECK constraint failed:\s*ok\s*=\s*1/i.test(detail);
+  }
   const leftovers = await countOwned();
   if (leftovers.length) {
     await db.prepare('DELETE FROM ftw_import_guard_assertions WHERE assertion_id IN (?,?)').bind(...ids).run();

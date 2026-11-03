@@ -5,6 +5,7 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createFtwOperatorRuntime } from './helpers/ftw-operator-runtime.mjs';
+import operatorWorker from '../operator/worker.mjs';
 
 const now = 1793740000000;
 const token = 'local-only-operator-token-32-bytes-minimumx';
@@ -132,4 +133,35 @@ test('operator rejects source records outside its approved neighborhood, season 
   assert.notEqual(result.response.status, 200);
   assert.equal((await counts(result.service.db)).listings, 0);
   assert.equal((await counts(result.service.db)).ftw_import_checkpoints, 0);
+});
+
+test('an unrelated D1 batch error cannot be recorded as successful rollback proof', async () => {
+  const runId = 'probe-network-error', issuedAt = Date.now(), expiresAt = issuedAt + 60_000;
+  const command = { version: 1, runId, operation: 'prepare', issuedAt, expiresAt,
+    bundleDigest: 'a'.repeat(64), input: sourceInput(),
+    sourceEvidence: { operatorContract: 'ftw-operator-v1', bundleDigest: 'a'.repeat(64) } };
+  const bytes = Buffer.from(JSON.stringify(command));
+  let batches = 0, writes = 0;
+  const statement = {
+    bind() { return this; },
+    async all() { return { results: [] }; },
+    async run() { writes++; return {}; },
+    async first() { return null; }
+  };
+  const db = {
+    prepare() { return statement; },
+    async batch() {
+      batches++;
+      if (batches === 1) throw new Error('Transient D1 network failure');
+      return Array.from({ length: 5 }, () => ({ results: [] }));
+    }
+  };
+  const response = await operatorWorker.fetch(new Request('https://operator.example/execute', {
+    method: 'POST', headers: { authorization: `Bearer ${token}` }
+  }), { DB: db, PHOTOS: {}, CONTROL: { get: async () => ({ size: bytes.length, arrayBuffer: async () => bytes }) },
+    OPERATOR_TOKEN: token, COMMAND_KEY: commandKey(runId), COMMAND_SHA256: sha(bytes), RUN_ID: runId, EXPIRES_AT: String(expiresAt) });
+  assert.equal(response.status, 400);
+  assert.match((await response.json()).message, /atomic rollback verification failed/);
+  assert.equal(batches, 1, 'checkpoint preparation must not start after an unproven probe');
+  assert.equal(writes, 0);
 });
