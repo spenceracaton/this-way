@@ -43,3 +43,13 @@ replay, restart, public visibility and browser rendering. Nine placement issues
 remain explicit. Public DTOs omit private moderation/history/keys; the pilot
 namespace and provenance distinguish these assumptions from a full export.
 `node scripts/rehearse-ftw-import.mjs` has no remote apply mode.
+
+## Guarded apply and recovery preparation
+
+The [checkpoint executor](ftw-checkpoint-recovery.md) adds durable before-images,
+transactional baseline assertions, atomic row/mapping checkpoints, immutable
+photo staging, lost-response recovery and guarded restore for small batches.
+Its command runs only in isolated local storage. The
+[source export contract](ftw-source-export.md) specifies the authentic scoped
+content package still needed before live migration; no production content is
+imported by shipping these tools.

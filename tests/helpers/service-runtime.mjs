@@ -1,6 +1,6 @@
 import { build } from 'esbuild';
 import { Miniflare } from 'miniflare';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { pbkdf2Sync } from 'node:crypto';
@@ -24,7 +24,8 @@ export async function createTestService({ persistPath, activeSeason } = {}) {
     loader: { '.json': 'json' },
   });
   const worker = bundled.outputFiles[0].text;
-  const migration = await readFile(resolve(root, 'migrations/0001_initial.sql'), 'utf8');
+  const migrationNames = (await readdir(resolve(root, 'migrations'))).filter(name => /^\d+.*\.sql$/.test(name)).sort();
+  const migration = (await Promise.all(migrationNames.map(name => readFile(resolve(root, 'migrations', name), 'utf8')))).join('\n');
   const runtime = new Miniflare({
     workers: [{ config: {
       name: 'this-way-service-test',

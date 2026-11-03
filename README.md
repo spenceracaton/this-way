@@ -17,6 +17,8 @@ in [run 41570806085, attempt 4](https://github.com/spenceracaton/this-way/action
 Public API, owner sign-in/moderation access, and logout passed live checks.
 Production FTW records have not been migrated. An [isolated public-data rehearsal](docs/ftw-rehearsal-pilot.md) inspected 40 real listings, imported 31 eligible records and five photos into local storage, and verified a no-op rerun and persistence. Nine placements remain flagged; the rehearsal data and photos are private cloud artifacts, not public site assets.
 
+The next [guarded checkpoint and restore preparation](docs/ftw-checkpoint-recovery.md) supports reviewed source updates and recovery in isolated storage. Live migration still requires an [authorized content export](docs/ftw-source-export.md) and a reviewed operator connection; these tools expose no public import endpoint.
+
 ## Rebuild the imported geography
 
 The committed assets run without QA-repository access or Python. Rebuilding the FTW-derived bundles requires existing read access to the private QA repository through `gh`, Python with Pillow, and Playwright Chromium:
