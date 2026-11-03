@@ -4,7 +4,13 @@ import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { verifyArtifact, rollbackTarget, finalizeReceipt, ensureServiceResources, validateOwnerSecrets } from '../scripts/release.mjs';
+import { verifyArtifact, rollbackTarget, finalizeReceipt, ensureServiceResources, validateOwnerSecrets, requireCleanSource } from '../scripts/release.mjs';
+
+test('a release cannot claim a committed identity while configuration or source changes are uncommitted', () => {
+  assert.doesNotThrow(() => requireCleanSource(''));
+  assert.throws(() => requireCleanSource(' M wrangler.jsonc\n'), /before freezing a release/);
+  assert.throws(() => requireCleanSource('?? server/index.mjs\n'), /before freezing a release/);
+});
 
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 async function fixture(t) {

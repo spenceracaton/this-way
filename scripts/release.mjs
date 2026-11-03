@@ -23,7 +23,12 @@ async function files(root, prefix = '') {
   return found.sort();
 }
 
+export function requireCleanSource(status) {
+  if (status.trim()) throw new Error('Commit or stash source changes before freezing a release.');
+}
+
 export async function prepareRelease(root = 'release') {
+  requireCleanSource(execFileSync('git', ['status', '--porcelain', '--untracked-files=normal'], { encoding: 'utf8' }));
   const commit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
   const release_id = process.env.GITHUB_RUN_ID
     ? `${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT || '1'}`
