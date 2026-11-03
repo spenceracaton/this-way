@@ -1,0 +1,335 @@
+{
+  "repository": "spenceracaton/fright-this-way-qa",
+  "revision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "scope": "Pinned recorded geography source bundle; fingerprints below are recorded from the audited source snapshot, not maintained production or QA assertions.",
+  "mapPrefixes": {
+    "feather-sound": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "bayou-highlands": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "orange-terrace": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "coquina-key": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "perry-bayview": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "riviera-heights": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "harbordale": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "mystic-lake": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "stonesthrow": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "holiday-park": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "arcadia-gardens": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "crossroads-area": "release-source/pipeline-a1a2-b61687a91bd3/current"
+  },
+  "recordedSourceAssetHashes": {
+    "feather-sound": {
+      "source-geography.geojson": {
+        "sha256": "eb7029b4e83e6c14d842dc374a3b3733e94ed48993cd584ad08e0146425190d8",
+        "gitBlobSha": "9dd8fa9d9a6ff5b2a1b6066a2b4cfe6a0fada922"
+      },
+      "map-data.json": {
+        "sha256": "f34dd50d13502a50dde296f740bee8104756a5c804a5b19e60efa18d01523ce3",
+        "gitBlobSha": "19a081fc7453c2278b8f3453b7c1134969095e0e"
+      },
+      "review-map.svg": {
+        "sha256": "553b801f3593a7d673964992f175698fa1a6f8b46fe39c28d5fa4fc4e163422a",
+        "gitBlobSha": "31f36a6ee10218ae22fc1631b14a8161244a8179"
+      },
+      "buffer-map-data.json": {
+        "sha256": "be402d65f5b7e71e6275d14a10d2929d39ef7a3838a3cce03d17581c59b3c082",
+        "gitBlobSha": "9c6f54b3c1a2d9f01b3f641b22c894a9b965fb54"
+      },
+      "buffer.mjs": {
+        "sha256": "af7cff967e6cb8265fb26e811693e1788a55ac47cf70125ee5d6d1cbab255971",
+        "gitBlobSha": "9ee34bf20c3cffea218d23c2ac35331860881a57"
+      }
+    },
+    "bayou-highlands": {
+      "source-geography.geojson": {
+        "sha256": "ea8849c317a10a58bb680ba85fe1fa15bb16ef56eb6d87d13406a70c4c07edd6",
+        "gitBlobSha": "bd0bed99c6b9b8836c4a2f6be5a988e516e203ae"
+      },
+      "map-data.json": {
+        "sha256": "0757ecba688fe69cf3ddc34c0fd049fd14424ec293cdae1c785c6f3074e81d92",
+        "gitBlobSha": "c6cee8460fbeee72371eaaa2bc31212058e80083"
+      },
+      "review-map.svg": {
+        "sha256": "940978966536e8fa3823b21b63e49ddc50ec6a8909198ce11281eee00d7ddbd7",
+        "gitBlobSha": "87890783d21debf470999162f55c242dc749be77"
+      },
+      "buffer-map-data.json": {
+        "sha256": "ad2a45653523a882e34b799094bf9b3e1840d7c605fc2402afac9e00347fc13e",
+        "gitBlobSha": "5e1fe4a05aa66acb37fa14037bf6ad1571300143"
+      },
+      "buffer.mjs": {
+        "sha256": "abd90323a4b7092471d00dd09b9df6e9bbea43742738242853a61bdb8d329378",
+        "gitBlobSha": "fb6e1dd0d1a01f9d096c294c4ee487bfc38d8c30"
+      }
+    },
+    "orange-terrace": {
+      "source-geography.geojson": {
+        "sha256": "6505f32daf82ccf112a386cea4bbc6505c69813569eb665c6b93f1f0fcde62f9",
+        "gitBlobSha": "f32fcd6d8a26d11b233af7e67691cbbcce7b7fb4"
+      },
+      "map-data.json": {
+        "sha256": "b95205e32a553fe0761d3ea56cff25a835aa81a8e505c21c0548604c2e77d40a",
+        "gitBlobSha": "06de49f9b0c0dfe7a82ce205e5448529cea5cd75"
+      },
+      "review-map.svg": {
+        "sha256": "50d66580193ebe4d22e03fdacca4fa38bc351f74d98394370808c48981c9b268",
+        "gitBlobSha": "6663f1f8418b267a5393db1633d2bd19794657d3"
+      },
+      "buffer-map-data.json": {
+        "sha256": "ea958898e048be095187b5d3dc729bf6489dd98b9de754fff3942f4300ca39bf",
+        "gitBlobSha": "56164aacb364af9b035a9c786308889c09ea1272"
+      },
+      "buffer.mjs": {
+        "sha256": "e8ebd2d82120601baaa64cbb538264d1ddb73947982ea249a550d3c4922777b0",
+        "gitBlobSha": "c6fe0d2c89dd3821b1e961f7e007ae60ec0e47ce"
+      }
+    },
+    "coquina-key": {
+      "source-geography.geojson": {
+        "sha256": "f838c11e727c060d6ae9022b0d990bffa0fb06ae205d9f0183eb06fdabbd5805",
+        "gitBlobSha": "af83e7380577daad6964adb1faa24c357027cd2e"
+      },
+      "map-data.json": {
+        "sha256": "a177fc96af3019cd370a5e86eb124cc8568c548ccae134c2cc9da3bf7e9c5e7c",
+        "gitBlobSha": "9a56f477645df5259a947a3e7159489456354988"
+      },
+      "review-map.svg": {
+        "sha256": "abc6dd2fe098f8f49d11af177d9419a4aec2da25e488d9ab7874927555f6019c",
+        "gitBlobSha": "36b302295e02d1c1832f5723f4664c9676935637"
+      },
+      "buffer-map-data.json": {
+        "sha256": "b8d83feeb4a62a85388233441ffcff0e5067de05ed85760227f5a4527b3bafcb",
+        "gitBlobSha": "2c48dcc5ffd6dd11793bfe443bcf1ad17c0d370f"
+      },
+      "buffer.mjs": {
+        "sha256": "92a29cba7b1900e8604ecf326ba0f690acc9e5ef7c0f99661e9ddef47845a2dc",
+        "gitBlobSha": "b3b2489d911aef0625a82a365c918065ae76e5fd"
+      }
+    },
+    "perry-bayview": {
+      "source-geography.geojson": {
+        "sha256": "2192b422fa77fd96c9eb16bd9d1d99b46f8075fa09b20e9712ba05cf5a6fbd9c",
+        "gitBlobSha": "34884062289629f0cb61c674f8d32d91c55d0c48"
+      },
+      "map-data.json": {
+        "sha256": "27932e597f4f367074c311e28f8e897b9004817ee054c246d1a2bf58d572ff79",
+        "gitBlobSha": "fab89af1cc74cc12f7f62d9d1e69da8734518c98"
+      },
+      "review-map.svg": {
+        "sha256": "ea8c643f4965f675440fd2dff9a92da3bb04317cc4285f706e4ec70fd36e06c4",
+        "gitBlobSha": "f4d94ccc0af85bce5c415f247efa81df67720911"
+      },
+      "buffer-map-data.json": {
+        "sha256": "5f33803ec5f58b0019540306fd72bac9fc96bf39919b5c704ba6103e91825337",
+        "gitBlobSha": "3ee1ac4e4c81775609b31bff6196f0531469d32f"
+      },
+      "buffer.mjs": {
+        "sha256": "4e971144140b75d85b33e32295930bc244aa312e2abb35533f716e04ccfbb0a4",
+        "gitBlobSha": "56b0c7e69f5e6561ac9ead3c401594a1ad0fbe68"
+      }
+    },
+    "riviera-heights": {
+      "source-geography.geojson": {
+        "sha256": "993d98229d01b8b4253725850fe20e00b8264945cd4e9fccbcb28ff664578b9d",
+        "gitBlobSha": "9a418927a3340a5012d0e6190bab0e5f4910e9a8"
+      },
+      "map-data.json": {
+        "sha256": "e8f514074d716dafe6057b49156ece8553d0a9302399bddc94482ea9cd0e2c19",
+        "gitBlobSha": "dfc0feea0a6f69ada66082e77aa914a2aa65c711"
+      },
+      "review-map.svg": {
+        "sha256": "559240b64a3686c2cca69b21e361ee48edb2ccaa5159c0fb3b4f4fa019cc7977",
+        "gitBlobSha": "2d829cb93bcb51b37b3f83eea51b9e951961e400"
+      },
+      "buffer-map-data.json": {
+        "sha256": "c1a411fc55a206bcd0f52f868676439d423a29c13f9ff2fc51a0b700c42bad24",
+        "gitBlobSha": "a87c5b7a63e77f224e2eec109e0b3fbd7a76394f"
+      },
+      "buffer.mjs": {
+        "sha256": "612d3a6906de1f0e02a03047c81d10de2229e8a6e9ea0b0d764ff00bc7a519e7",
+        "gitBlobSha": "3ddb1655122a7a40375ac361ab8648ef8fc32fd5"
+      }
+    },
+    "harbordale": {
+      "source-geography.geojson": {
+        "sha256": "da937816d314b3421c20767460745a4ad45ca65ed205f5c0dbafd168a466a6b6",
+        "gitBlobSha": "0292f47d25c0c9dcd6cc23abe4b8389c8e765812"
+      },
+      "map-data.json": {
+        "sha256": "aabae7c90fe35201d292c3aca5668bd627429f1ca1afc43a06b0cce2756a86c8",
+        "gitBlobSha": "afcd6ff5e117f889409302e67321b17e10092641"
+      },
+      "review-map.svg": {
+        "sha256": "214eaf6fec3963708a56a517b4ec74163e5bd9983bff8169490e7859b9d5abd0",
+        "gitBlobSha": "600e0bedf25624f62c230a6e3b82c2a4950ed715"
+      },
+      "buffer-map-data.json": {
+        "sha256": "aaca0806927aa0fbe09905c53ba4b4b238db230dcf929cbb8e0aa6c835f35a26",
+        "gitBlobSha": "5298b652eba9079c2927e648d8c10f3392c736ec"
+      },
+      "buffer.mjs": {
+        "sha256": "3b762c5b7bc7e8f91483b1cb03c555add09ec87c840ed5a02a5fcd586db3bf18",
+        "gitBlobSha": "912213dc45533500ae12ab7a7a8cbcf9242e71c7"
+      }
+    },
+    "mystic-lake": {
+      "source-geography.geojson": {
+        "sha256": "9f78fa8d63917f83f59f9bb4e4ef4aa27063d6029b5e5a93cdf982db5ed45d0a",
+        "gitBlobSha": "c2c28ff01c3908778bc7fda6f42ab33965069c46"
+      },
+      "map-data.json": {
+        "sha256": "91287c8fac35cb444d57b91cec12df56e0a770fbbbd9e34b5659054893dd9375",
+        "gitBlobSha": "ed29cf870e72542af1e166538d8cdb719fd07f2d"
+      },
+      "review-map.svg": {
+        "sha256": "58db9db77106ed3f1bb633b0736cf516ceee8359a207d6a9c0dfe4b8bba6efea",
+        "gitBlobSha": "c20b23ac31abdf3ddb290e83bfa2b4cdd4868b63"
+      },
+      "buffer-map-data.json": {
+        "sha256": "c759a76b79acead5ec2b5067b16f459474248fb634fe7cb50aed6402c62e570d",
+        "gitBlobSha": "68174fcbb83fd00161cf51e76c3a2bfd580527ec"
+      },
+      "buffer.mjs": {
+        "sha256": "46becabff4a71a7716c572482de6f92ce10fc8ab50bc52a39ae878624742d1a3",
+        "gitBlobSha": "b8b33ce589c70821e11ba0500f562563494fc1b7"
+      }
+    },
+    "stonesthrow": {
+      "source-geography.geojson": {
+        "sha256": "11acced6146cd184771764b57b0a8b8e1a0c21af3232a070a3e6240d01c454c4",
+        "gitBlobSha": "799b633ce38589fc1589bf936275a723728fd853"
+      },
+      "map-data.json": {
+        "sha256": "7d464251b768f15d9caf1ee9d63d955108fb4b6851ec60fdf0ca9221fb6683f4",
+        "gitBlobSha": "8311b2d61e45955af5381da1d4cb847cfb1ce750"
+      },
+      "review-map.svg": {
+        "sha256": "1bb75a21557d1b56072eaabf5ed91cb45949b0ae0f921a3b964d4ecce8efdd88",
+        "gitBlobSha": "d0adae7f3f281446c52957707f685f920bd222a8"
+      },
+      "buffer-map-data.json": {
+        "sha256": "8b080ad4e0ae7a2d4db666b2ba1a2c2d80058ca84a70e50f04654ffb11f48df3",
+        "gitBlobSha": "2692c772ee4aeb49d23ca8625f26aba004c7d1ba"
+      },
+      "buffer.mjs": {
+        "sha256": "4ec69a737deafe898ef0656283724209a1698881db6a47f9455b9d22064e0f47",
+        "gitBlobSha": "619981728b280abb950ff4362055631db5eaf242"
+      }
+    },
+    "holiday-park": {
+      "source-geography.geojson": {
+        "sha256": "8dd0522fc41de9ce60c3f7f25fa6299c33d4d2f281ccfca7aee57a3e19894e57",
+        "gitBlobSha": "4dd570cbcd61c3dea5f5a9fb74b79cd4aed867a4"
+      },
+      "map-data.json": {
+        "sha256": "0b82c9a4a728eb541f6206d588ba79fc116e1c1f67d537db8e4d634ea2d3ea70",
+        "gitBlobSha": "28982c8193158b5c678181e5a9a1caf86fd0e2a8"
+      },
+      "review-map.svg": {
+        "sha256": "fd3753361f2798412c5e5cc3f36262f1f258117dbef8cfaf48731f0f0f2ce852",
+        "gitBlobSha": "20950ccdb956b968975d301d74bbc7144a1933ac"
+      },
+      "buffer-map-data.json": {
+        "sha256": "9bf672c2ddb5cf106f62a30a7e16fa60351ce542fb60b070d27c6d26f28a690b",
+        "gitBlobSha": "4082d624275465a83b31ace7c4dfbb9d71422eed"
+      },
+      "buffer.mjs": {
+        "sha256": "8f8d45d2087ced027a349aae2027fd41429a08ab5c3e724bc2760337f4b47fe9",
+        "gitBlobSha": "8cd5c5349c90ce5fe5f28b79d490377622886dfe"
+      }
+    },
+    "arcadia-gardens": {
+      "source-geography.geojson": {
+        "sha256": "0e4585e3f47df03535dd37272181349dd0dde48ac29f0d441b6fde99779e7dab",
+        "gitBlobSha": "52b10e722b5f6c37c8d3ce4748e098d9b2129316"
+      },
+      "map-data.json": {
+        "sha256": "4702dac9b1b4d4e2bdaa6f0717bb4771a55748dab5d20a320144cac162873e04",
+        "gitBlobSha": "aaa8fcc8b8b7679cd4e35646be0a069047200efc"
+      },
+      "review-map.svg": {
+        "sha256": "becaaa5a243d9f363d77103eef600457ffa709481a31ae3d91faa4e88daff663",
+        "gitBlobSha": "cce5cc4804c02a779c85d6cebca001d1b21d093a"
+      },
+      "buffer-map-data.json": {
+        "sha256": "74c8b3c7fe9253cfaf7b949b5116d7815a12dd5be9b5c4b3bfecc39bf770998a",
+        "gitBlobSha": "5e5852db1f2a0cca9ff9bcbcda7ff72f21f44935"
+      },
+      "buffer.mjs": {
+        "sha256": "91cd5e0312c2039ac70179532a3db6fde59d4e7b91a0d6b580fe9acdbf256a02",
+        "gitBlobSha": "7410ca56e44be28b915764873361abbffa4924a2"
+      }
+    },
+    "crossroads-area": {
+      "source-geography.geojson": {
+        "sha256": "0570630307fbd8a3fdb344a5bfdfe3f3cb2abb67fe5114a7c4301f2657003ddf",
+        "gitBlobSha": "ef34fc1397645db6e11e696a1b704ac20fec4749"
+      },
+      "map-data.json": {
+        "sha256": "403443953772c93c26013a5cef809542b25b98f2d6c139356f25b87a6e4a2483",
+        "gitBlobSha": "c11458d0e8a22c1ccf3a4cf4ec9897ab63af7269"
+      },
+      "review-map.svg": {
+        "sha256": "718bc5d10557cd743931edff535ea4b47339eb8424f4e158588ec5d5c2837563",
+        "gitBlobSha": "f26a1561f4d27eea4bc15f3f93d05a5b80997982"
+      },
+      "buffer-map-data.json": {
+        "sha256": "2d6ae5f44c3e43b27d3926383ddacee212fa8ae7751b714c14f9eae1f6f79109",
+        "gitBlobSha": "de078121439bda1345e921ddc8b43c2ba21e704f"
+      },
+      "buffer.mjs": {
+        "sha256": "6339608732aa671ae61d2d388b55ca1078ef0f2c8318300ea5d121c35b25d799",
+        "gitBlobSha": "c559cade5c31b0e584d371bd472545a72b6d677d"
+      }
+    }
+  },
+  "recordedSourceMetadataHashes": {
+    "feather-sound": {
+      "expectedMapEntry": "3a251b46bbe621f409b2f0969d0fb7b1f7bde9b9d2a8b9b5854a758e1bd92583",
+      "expectedBufferEntry": "ed704373711f57841dea54cf3d6cd14e8193d07da6568f13a7d905b9d11c2001"
+    },
+    "bayou-highlands": {
+      "expectedMapEntry": "e7ad4f130f0d5b8ecb11837671111501bf6e8009b4dcc6220d926860b5e118a6",
+      "expectedBufferEntry": "bc59c689525a13c8848661e2a1a8cd8eb7735f77112f12663f37930bb45bcf45"
+    },
+    "orange-terrace": {
+      "expectedMapEntry": "9ed8b39120c4c47064916e2b6824d7810c0f6eace01a303f0730975f6bab0553",
+      "expectedBufferEntry": "f817235c873807e42986dd3fc631baa33672fdb607a634463f73f38d9460192a"
+    },
+    "coquina-key": {
+      "expectedMapEntry": "0308eefbe66a890e1d7fe81b053f06b4576b81fdf64ea13195fde808ed681b60",
+      "expectedBufferEntry": "53a8a53e113cc2438abf71291a6874ccd00687585ac92ab9305267381dd52301"
+    },
+    "perry-bayview": {
+      "expectedMapEntry": "12f5e5597878dd94ecaed80962eaba04bb2af780ad6fd0a847312e50e62b16ab",
+      "expectedBufferEntry": "b7443df1752b844e7a388d802f6085022da7737f2036a2e0fc9b42cec14c7e42"
+    },
+    "riviera-heights": {
+      "expectedMapEntry": "c6af28285c7471917a1ffe0a63092658175ef2a0a5a3e3f60dfc8a22c60ca025",
+      "expectedBufferEntry": "244748916d40450036fba9c655540aaee3c7ad525c99a405d3e87ea8be472722"
+    },
+    "harbordale": {
+      "expectedMapEntry": "8c1d2f53bd18bc260c07d563ae62960479f79cc087ba8c9e8a5aad4193c9a452",
+      "expectedBufferEntry": "945ed543292135faac00cc69ba6e26680c7de8a067b29057647ca2344a6a5234"
+    },
+    "mystic-lake": {
+      "expectedMapEntry": "321990a1702c4732cde00b9eb41e2bc7c5519a6d11f20fb6ace849aaddb015e7",
+      "expectedBufferEntry": "c515dd667be1b28fc127eaba29882fc45ac19fd35b7d779b8f37eb5152d9ceed"
+    },
+    "stonesthrow": {
+      "expectedMapEntry": "8e6d1bf2b0e0384dfe5f697a59ab20b055716e0aeaff012c73b58395fb20e8b7",
+      "expectedBufferEntry": "52a232f2701e75b81f721b98757bcd06114d4bf706015a4078bdc9fcbe40186a"
+    },
+    "holiday-park": {
+      "expectedMapEntry": "242ec34de14ba2b2382ccea4c2be057cd0909d79470a13796f12387ccd3c0621",
+      "expectedBufferEntry": "54bee4466eaaa1ccccf156c958b6ce8a69746b24fdb3c5cf2fdaf21111b89ade"
+    },
+    "arcadia-gardens": {
+      "expectedMapEntry": "f63cec13366dc96bfccbf642b9e03fec5c8c620812c98ae8032dd1c3fe0849aa",
+      "expectedBufferEntry": "6fadf9329d02ef12bf331764bb43b1e1e28a4b21d1bdf16c83e148421ef17b65"
+    },
+    "crossroads-area": {
+      "expectedMapEntry": "0423504a2671b9bbd178ecbd27ef186f37e9fdd9fe9e986d2568b9eb0690d380",
+      "expectedBufferEntry": "2e9511a4efcddc2b695168f70e828631c3c88ea1e26abfede5659db19780490c"
+    }
+  }
+}

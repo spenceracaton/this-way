@@ -1,0 +1,33 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D56&outFields=OBJECTID,NANAME,STATUS&outSR=4326",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.640,27.827,-82.633,27.837",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.63967764500394%2C27.82746654794782%2C-82.6336150328828%2C27.836649044418603&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=2000"
+  ],
+  "featureNotices": [],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D56&outFields=OBJECTID,NANAME,STATUS&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.640,27.827,-82.633,27.837",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.63967764500394%2C27.82746654794782%2C-82.6336150328828%2C27.836649044418603&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=2000"
+    ],
+    "featureNotices": []
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D56&outFields=OBJECTID,NANAME,STATUS&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.640,27.827,-82.633,27.837",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.63967764500394%2C27.82746654794782%2C-82.6336150328828%2C27.836649044418603&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=2000"
+    ],
+    "featureNotices": []
+  }
+}

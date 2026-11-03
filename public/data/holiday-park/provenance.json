@@ -1,0 +1,57 @@
+{
+  "id": "holiday-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "fd3753361f2798412c5e5cc3f36262f1f258117dbef8cfaf48731f0f0f2ce852",
+    "map-data.json": "0b82c9a4a728eb541f6206d588ba79fc116e1c1f67d537db8e4d634ea2d3ea70",
+    "buffer.mjs": "8f8d45d2087ced027a349aae2027fd41429a08ab5c3e724bc2760337f4b47fe9",
+    "buffer-map-data.json": "9bf672c2ddb5cf106f62a30a7e16fa60351ce542fb60b070d27c6d26f28a690b",
+    "source-geography.geojson": "8dd0522fc41de9ce60c3f7f25fa6299c33d4d2f281ccfca7aee57a3e19894e57"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "659271e13790c8940cf80d560449b500333e566992d578823edde6ba8251f1ec",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D52&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery / Esri"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/holiday-park/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/holiday-park/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/holiday-park.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/holiday-park/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/holiday-park/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "3715110cdeefa9ca45bd6c16369329d2ab1fa1c94c3b3f3e7b8f7fbb59913ae7",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/holiday-park.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "fa94dea9be8c6e03e4f30a1ad0beeba765251df883221586812330974c9dc9ee",
+    "sha256": "6b37cf13a49c0e030e79aefbb84dd9dcc92e90eab197d1941314803ce141a440",
+    "bytes": 330240,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

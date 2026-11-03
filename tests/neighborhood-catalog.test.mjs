@@ -19,16 +19,16 @@ const rel = path => path.replace(/^\.\//, 'public/');
 test('catalog matches the supported fixed-neighborhood set and preserves the two sample maps', async () => {
   const summary = await json('public/data/neighborhood-import.json');
   const ids = Object.keys(neighborhoods);
-  assert.equal(ids.length, 75);
+  assert.equal(ids.length, 78);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual([...ids].sort(), [...summary.supportedIds].sort());
   assert.deepEqual(summary.retainedSampleMaps, ['old-northeast', 'crescent-lake']);
   assert.equal(neighborhoods['old-northeast'].pins.length, 4);
   assert.equal(neighborhoods['crescent-lake'].pins.length, 4);
-  assert.equal(importedNeighborhoods.length, 73);
+  assert.equal(importedNeighborhoods.length, 76);
   const sourcePlan = await json('scripts/ftw-expansion-sources.json');
   for (const id of Object.keys(sourcePlan.mapPrefixes)) assert.ok(ids.includes(id), `${id} recovered map`);
-  for (const id of sourcePlan.unavailableIds) assert.ok(!ids.includes(id), `${id} must await real source assets`);
+  for (const id of ['mystic-lake', 'stonesthrow', 'holiday-park']) assert.ok(ids.includes(id), `${id} verified source map`);
 });
 
 test('every imported map configuration, artwork, provenance and anchor is internally consistent', async () => {

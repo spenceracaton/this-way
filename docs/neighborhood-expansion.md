@@ -67,28 +67,42 @@ avoid overlapping test runners stopping a shared temporary server. After the
 title fix, repeat the affected title/credit/picker checks rather than every
 unchanged route; required CI still runs the complete browser suite.
 
-## Pending source recovery
+## Iteration 4: complete source inventory and three-map batch
 
-Ten areas are referenced by maintained QA but their map assets are absent from
-the retained source snapshots checked here:
+The earlier root recursive GitHub tree was truncated. Enumerating all 47 source
+cohort subtrees independently found every one of the ten previously missing maps
+under `release-source/pipeline-a1a2-b61687a91bd3/current/`, plus Arcadia Gardens
+and Crossroads Area. The earlier missing-asset conclusion was incorrect. This is
+still retained source evidence at the pinned revision, not production authority.
 
-- Bayou Highlands
-- Coquina Key
-- Feather Sound
-- Harbordale
-- Holiday Park
-- Mystic Lake
-- Orange Terrace
-- Perry Bayview
-- Riviera Heights
-- Stonesthrow
+The new `scripts/ftw-ready-geography-sources.json` records exact asset and metadata
+fingerprints for all 12 complete bundles. The ten previously named maps match
+maintained QA asset fingerprints and prepared projection/core coverage evidence;
+Arcadia Gardens and Crossroads Area have pinned source fingerprints but no
+maintained visual fixture. Fetching with `--plan` and `--ids` limits each batch
+without repeating the full discovery audit.
 
-The production build's non-expired distribution artifact was listed by the
-GitHub API, but its signed download returned `Forbidden`. These areas need an
-accessible source/archive containing the actual geography; QA names and test
-expectations alone are not replacement artwork. They have not been added to the
-picker with invented maps. The broader St. Petersburg directory also contains
-35 names without a map definition found in this audit.
+The first batch adds Mystic Lake, Stonesthrow, and Holiday Park: 78 maps total,
+including the two original sample maps. Every map passed four road anchors,
+preserved masks, credits, raster checks, and synchronized server coverage. A fresh
+pinned fetch reproduced all 12 configuration/anchor/notice/SVG files byte-for-byte.
+Only three rasters were rendered; the earlier 73 were reused.
+
+UX and visual reviewers inspected actual WebKit images at 390×664, 320×568, and
+664×390. Their landscape critique led to a compact empty-state card that leaves
+more of the map visible. Both reviewers passed the revised captures. The finite
+illustrated artwork keeps its original
+aspect ratio and whole-neighborhood opening view; zoom exposes street detail.
+
+Remaining complete bundles: Bayou Highlands, Coquina Key, Feather Sound,
+Harbordale, Orange Terrace, Perry Bayview, Riviera Heights, Arcadia Gardens,
+and Crossroads Area. Feather Sound needs source-specific County/USGS adapters;
+it must not be relabeled as OSM data. Directory-only names without a verified map
+definition require new geography work and are outside the ready-import batch.
+
+Efficiency change: audit and cache the complete source inventory once; fetch
+only selected IDs from a recorded plan; review a small batch first and apply
+concrete layout lessons before increasing the next batch size.
 
 ## Repeating the process
 

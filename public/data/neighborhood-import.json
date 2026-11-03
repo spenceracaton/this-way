@@ -38,6 +38,7 @@
     "historic-kenwood",
     "historic-park-street",
     "historic-uptown",
+    "holiday-park",
     "jungle-prada",
     "jungle-terrace",
     "lake-euclid",
@@ -51,6 +52,7 @@
     "melrose-mercy",
     "methodist-town",
     "mission-hills",
+    "mystic-lake",
     "north-kenwood",
     "northeast-park",
     "northeast-terraces",
@@ -69,6 +71,7 @@
     "snell-isle",
     "st-pete-heights",
     "station-view",
+    "stonesthrow",
     "thirteenth-street-heights",
     "tiffanie-heights",
     "tyrone-gardens",
@@ -118,6 +121,7 @@
     "historic-kenwood",
     "historic-park-street",
     "historic-uptown",
+    "holiday-park",
     "jungle-prada",
     "jungle-terrace",
     "lake-euclid",
@@ -131,6 +135,7 @@
     "melrose-mercy",
     "methodist-town",
     "mission-hills",
+    "mystic-lake",
     "north-kenwood",
     "northeast-park",
     "northeast-terraces",
@@ -148,6 +153,7 @@
     "snell-isle",
     "st-pete-heights",
     "station-view",
+    "stonesthrow",
     "thirteenth-street-heights",
     "tiffanie-heights",
     "tyrone-gardens",
@@ -248,6 +254,28 @@
       ],
       "metadataSha256": "7e0a3463da518f029d662b328185abcfbaaa292d20769d3ed4e677eaea68664d",
       "bufferConfigSha256": "4e2ccfb3bf00c7d7a15bad1c5912e43f4610c47ff09a10a712470ae0a2987207"
+    },
+    {
+      "sourceRepository": "spenceracaton/fright-this-way-qa",
+      "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+      "importedIds": [
+        "holiday-park",
+        "mystic-lake",
+        "stonesthrow"
+      ],
+      "metadataSha256": "98b54959f2a874c986d194892bd00bfc575deafcec63dcd5ba3de6a9dab920be",
+      "bufferConfigSha256": "c29a810422061bb750f55284b4a55e736470d7ee9fb78301b482a0aa021bb244"
+    },
+    {
+      "sourceRepository": "spenceracaton/fright-this-way-qa",
+      "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+      "importedIds": [
+        "holiday-park",
+        "mystic-lake",
+        "stonesthrow"
+      ],
+      "metadataSha256": "f34d29f033553595b11baa3b4699705076969152b94579f1be26ac2a12e8a7c6",
+      "bufferConfigSha256": "ce8ea3e7c710f3a5e4635e1a6123a12334ec0ebedd733ca82485c3acd9f2731b"
     }
   ],
   "scope": "Prepared maps recovered from pinned QA inputs; directory-only areas are excluded."
