@@ -135,6 +135,24 @@ def layer_id_from_url(url):
     return int(part)
 
 
+def census_coverage(mtfcc, metadata, service_url):
+    classes = {
+        "G4210": {"metadataName": "Census Designated Places", "layerId": 5,
+                  "coverageKind": "census-designated-place", "featureIdPrefix": "census-cdp",
+                  "coverageType": "Census designated place", "creditLabel": "U.S. Census Bureau (2026 Census Designated Places)"},
+        "G4110": {"metadataName": "Incorporated Places", "layerId": 4,
+                  "coverageKind": "incorporated-place", "featureIdPrefix": "census-incorporated-place",
+                  "coverageType": "Incorporated place", "creditLabel": "U.S. Census Bureau (2026 Incorporated Places)"},
+    }
+    classification = classes.get(str(mtfcc))
+    if classification is None:
+        raise PackageError(f"unsupported Census MTFCC classification: {mtfcc!r}")
+    actual_layer_id = layer_id_from_url(service_url)
+    if metadata.get("name") != classification["metadataName"] or actual_layer_id != classification["layerId"]:
+        raise PackageError("Census MTFCC, metadata layer name, and source service layer ID conflict")
+    return classification
+
+
 def build_package(snapshot_path, output_path, package_id, package_name, county_terms_path=None):
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", package_id):
         raise PackageError("package ID must be a lowercase hyphenated identifier")
@@ -199,6 +217,7 @@ def build_package(snapshot_path, output_path, package_id, package_name, county_t
         raise PackageError(f"Census boundary name mismatch: requested {package_name!r}, source has {source_name!r}")
     if core.get("requestedId") and str(core["requestedId"]) != geoid:
         raise PackageError("Census boundary GEOID differs from the requested stable ID")
+    census_class = census_coverage(core_props.get("MTFCC"), metadata_files["census"], core.get("serviceUrl", ""))
     census_oid_field = core.get("objectIdField") or core.get("objectIdFieldName")
     if not census_oid_field:
         oid_fields = [field["name"] for field in metadata_files["census"].get("fields", [])
@@ -208,11 +227,11 @@ def build_package(snapshot_path, output_path, package_id, package_name, county_t
         census_oid_field = oid_fields[0]
     core_oid = required_property(core_props, census_oid_field, "Census boundary")
     core_geometry = checked_geometry(core_feature.get("geometry"), {"Polygon", "MultiPolygon"}, "Census boundary")
-    core_id = f"census-cdp/{geoid}"
+    core_id = f"{census_class['featureIdPrefix']}/{geoid}"
     features = [{"type": "Feature", "id": core_id, "geometry": core_geometry,
                  "properties": {"source": "U.S. Census Bureau", "name": source_name,
                                 "sourceGeoId": geoid, "sourceObjectId": core_oid,
-                                "coverageType": "Census designated place"}}]
+                                "coverageType": census_class["coverageType"]}}]
 
     bindings = manifest.get("bindings", {})
     road_oid_field = bindings.get("roadObjectIdField")
@@ -330,7 +349,7 @@ def build_package(snapshot_path, output_path, package_id, package_name, county_t
     source_record = {
         "id": package_id,
         "name": package_name,
-        "coverageKind": "census-designated-place",
+        "coverageKind": census_class["coverageKind"],
         "coreFeatureId": core_id,
         "geographySha256": geography_sha,
         "acquiredAt": manifest.get("acquiredAt"),
@@ -348,7 +367,7 @@ def build_package(snapshot_path, output_path, package_id, package_name, county_t
         },
         "attribution": {"label": "Pinellas County GIS", "href": road_url},
         "additionalAttributions": [
-            {"label": "U.S. Census Bureau (2026 Census Designated Places)", "href": census_url},
+            {"label": census_class["creditLabel"], "href": census_url},
             {"label": "U.S. Geological Survey National Hydrography Dataset", "href": nhd_url},
         ],
         "license": None,

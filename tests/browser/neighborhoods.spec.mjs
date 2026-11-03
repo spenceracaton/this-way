@@ -79,15 +79,19 @@ test('long County GIS credits remain visible and separate from the empty state',
   }
 });
 
-test('county CDP overviews fit above the mobile empty state without hiding coverage under the title', async ({ page }) => {
-  const maps = importedNeighborhoods.filter(item => item.id.endsWith('-cdp'));
+test('county Census overviews fit above the mobile empty state without hiding coverage under the title', async ({ page }) => {
+  const areas = await Promise.all(importedNeighborhoods.map(async item => {
+    const area = JSON.parse(await readFile(resolve('public', item.config.replace(/^\.\//, '')), 'utf8'));
+    return { ...item, area };
+  }));
+  const maps = areas.filter(item => item.area.sourceProfile === 'county-census-usgs-v1');
   expect(maps.length).toBeGreaterThan(0);
   for (const [width, height] of [[320,568],[390,664],[664,390]]) {
     await page.setViewportSize({ width, height });
     for (const item of maps) {
       await page.goto(`/?neighborhood=${item.id}`);
       await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
-      const config = JSON.parse(await readFile(resolve('public', item.config.replace(/^\.\//, '')), 'utf8'));
+      const config = item.area;
       const boxes = await page.evaluate(config => {
         const art = document.querySelector('#neighborhood-artwork').getBoundingClientRect();
         const points = config.coreBoundary.map(([x, y]) => [

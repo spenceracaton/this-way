@@ -1,0 +1,71 @@
+{
+  "id": "tierra-verde-cdp",
+  "sourceProfile": "county-census-usgs-v1",
+  "acquiredAt": "2026-11-03T16:45:06.789268Z",
+  "sourcePackageSha256": "99ad3035b34e4a81f2bfd2d3398ab56f592276e0fb9ad22ee461ed85a03cfeb2",
+  "sourceGeometrySha256": "54cfb544789a7613a94518577aab59b4fcd7000b90062ea9c25e800dfd5a4f73",
+  "rawSnapshotSha256": "1dcff6e2491ede745c860b014d4f3ca04921fa46eaf612e53ca5c4d4916db13c",
+  "rendererSha256": "55946876cf04ee6cf0f22058a67f4d65cb9567747f0b2baa27e5b38eb4893b5e",
+  "anchorUtilitySha256": "53ae70f6f60eaf27793f153a242d44cfb6808bdd70360b081cc990f71eb7857b",
+  "coreFeatureId": "census-cdp/1271825",
+  "coverageKind": "census-designated-place",
+  "sourceEvidence": {
+    "censusCore": {
+      "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
+      "metadataSha256": "9553e7d03c892d6bd44126181f74063e629abc9f179dd8654a1c019b297a5c71",
+      "expectedFeatureCount": 1,
+      "retrievedFeatureCount": 1,
+      "sourceGeoId": "1271825"
+    },
+    "countyRoads": {
+      "serviceUrl": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+      "metadataSha256": "bad3f545c2c4a167a597d5ceea9021dbf22b0e40fc2bba54d999e2fe546a1261",
+      "expectedFeatureCount": 313,
+      "retrievedFeatureCount": 313,
+      "packagedFeatureCount": 313
+    },
+    "usgsNhd": {
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+      "metadataSha256": "1e9ec55c6d5ea69be954a7318d1fa3430d35419c9bbb233f738619ee8495a412",
+      "layers": [
+        {
+          "role": "area",
+          "sourceLayer": "Area - Large Scale",
+          "layerId": 9,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+          "metadataSha256": "78273aa51382c9d9920c39dd2b5382881a95d6e1b25fbc5c7384d50a79e627e5",
+          "expectedFeatureCount": 5,
+          "retrievedFeatureCount": 5
+        },
+        {
+          "role": "waterbody",
+          "sourceLayer": "Waterbody - Large Scale",
+          "layerId": 12,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+          "metadataSha256": "c161301a58ef1745cfc19b54edcb0bfbaa565530417bdfb3d9c7d55b396a5e60",
+          "expectedFeatureCount": 28,
+          "retrievedFeatureCount": 28
+        }
+      ]
+    }
+  },
+  "sourceNoticesSha256": "27252a2df6ffff0efd8dab962e472be839fdce675016ebc19f5759cd4d7885bc",
+  "coreMaskGeometrySha256": "dcc59f48503023620ba2ba3d64a7c015abb7b08f5d9b49690120f8f558e75dec",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "anchors": 4,
+  "roadFeatures": 313,
+  "overviewLabels": 11,
+  "boundaryNote": "Census-designated-place reference coverage; not an association, parcel, access or surveyed boundary.",
+  "transformNotes": "Source geographic geometry is retained. A local linear drawing projection is shared by artwork and pins. Nearby artwork is orientation context, not extra submission eligibility.",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/tierra-verde-cdp.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "a4d67f568067c666394f7ca6e5a77784f6e504a5b91bfcb79869da3f10a527f8",
+    "sha256": "1ad25d795754bf08f34ad0796529fa44d3c72351fea9d442435047aef9ee259f",
+    "bytes": 310682,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

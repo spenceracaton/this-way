@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ridgecrest-cdp-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50185396",
+    "sourceFeatureId": "pinellas-road/386340/0",
+    "sourceGeographic": {
+      "lng": -82.79944107257,
+      "lat": 27.8946357525433
+    },
+    "expectedSourcePoint": [
+      773.4,
+      401.04
+    ],
+    "matchErrorPx": 4.9e-05
+  },
+  {
+    "id": "ridgecrest-cdp-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50203329",
+    "sourceFeatureId": "pinellas-road/387373/0",
+    "sourceGeographic": {
+      "lng": -82.8098614771158,
+      "lat": 27.9002833766493
+    },
+    "expectedSourcePoint": [
+      429.26,
+      190.01
+    ],
+    "matchErrorPx": 0.000116
+  },
+  {
+    "id": "ridgecrest-cdp-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "600000420",
+    "sourceFeatureId": "pinellas-road/387658/0",
+    "sourceGeographic": {
+      "lng": -82.8051348342929,
+      "lat": 27.8989872838122
+    },
+    "expectedSourcePoint": [
+      585.36,
+      238.44
+    ],
+    "matchErrorPx": 0.000159
+  },
+  {
+    "id": "ridgecrest-cdp-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50219225",
+    "sourceFeatureId": "pinellas-road/382549/0",
+    "sourceGeographic": {
+      "lng": -82.801521877829,
+      "lat": 27.878350953948
+    },
+    "expectedSourcePoint": [
+      704.68,
+      1009.54
+    ],
+    "matchErrorPx": 0.000225
+  }
+]

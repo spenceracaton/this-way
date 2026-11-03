@@ -67,6 +67,24 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "bear-creek-cdp",
+    "name": "Bear Creek",
+    "config": "./data/bear-creek-cdp/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "belleair-beach-place",
+    "name": "Belleair Beach",
+    "config": "./data/belleair-beach-place/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "belleair-bluffs-place",
+    "name": "Belleair Bluffs",
+    "config": "./data/belleair-bluffs-place/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "campbell-park",
     "name": "Campbell Park",
     "config": "./data/campbell-park/neighborhood.json",
@@ -439,6 +457,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "ridgecrest-cdp",
+    "name": "Ridgecrest",
+    "config": "./data/ridgecrest-cdp/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "ridgewood-groves",
     "name": "Ridgewood Groves",
     "config": "./data/ridgewood-groves/neighborhood.json",
@@ -478,6 +502,12 @@ export const importedNeighborhoods = [
     "id": "stonesthrow",
     "name": "Stonesthrow",
     "config": "./data/stonesthrow/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "tierra-verde-cdp",
+    "name": "Tierra Verde",
+    "config": "./data/tierra-verde-cdp/neighborhood.json",
     "pins": []
   },
   {

@@ -1,0 +1,71 @@
+{
+  "id": "belleair-beach-place",
+  "sourceProfile": "county-census-usgs-v1",
+  "acquiredAt": "2026-11-03T16:52:53.722224Z",
+  "sourcePackageSha256": "931c2350672329ce894700ac0577fb281e6edcb0449bb01eea629bc87f55fd84",
+  "sourceGeometrySha256": "baa55b789cb91d531e7198af382f6936bd01179ead79b5a4d1bb6c759f887ff4",
+  "rawSnapshotSha256": "3dabdbf4852883724a3a6f505c1f02533e1222aedbffc9a69794b467012301f3",
+  "rendererSha256": "55946876cf04ee6cf0f22058a67f4d65cb9567747f0b2baa27e5b38eb4893b5e",
+  "anchorUtilitySha256": "53ae70f6f60eaf27793f153a242d44cfb6808bdd70360b081cc990f71eb7857b",
+  "coreFeatureId": "census-incorporated-place/1205100",
+  "coverageKind": "incorporated-place",
+  "sourceEvidence": {
+    "censusCore": {
+      "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4",
+      "metadataSha256": "736add9c1b82f4c81553c53588c994746202cf903387585e505e47c0f3025f13",
+      "expectedFeatureCount": 1,
+      "retrievedFeatureCount": 1,
+      "sourceGeoId": "1205100"
+    },
+    "countyRoads": {
+      "serviceUrl": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+      "metadataSha256": "bad3f545c2c4a167a597d5ceea9021dbf22b0e40fc2bba54d999e2fe546a1261",
+      "expectedFeatureCount": 287,
+      "retrievedFeatureCount": 287,
+      "packagedFeatureCount": 287
+    },
+    "usgsNhd": {
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+      "metadataSha256": "1e9ec55c6d5ea69be954a7318d1fa3430d35419c9bbb233f738619ee8495a412",
+      "layers": [
+        {
+          "role": "area",
+          "sourceLayer": "Area - Large Scale",
+          "layerId": 9,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+          "metadataSha256": "c6378f2a9c793e86c143245ee5b114ad78fa0e2aff1f5c6067b22d54a1fd9ba0",
+          "expectedFeatureCount": 2,
+          "retrievedFeatureCount": 2
+        },
+        {
+          "role": "waterbody",
+          "sourceLayer": "Waterbody - Large Scale",
+          "layerId": 12,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+          "metadataSha256": "73d2e0e83d80b02d132c771a0cd5ec3339ce2667477ed01c6efc11f7597d0c94",
+          "expectedFeatureCount": 1,
+          "retrievedFeatureCount": 1
+        }
+      ]
+    }
+  },
+  "sourceNoticesSha256": "f3288740554ad6c9fecd5263aa0866148cae77f70ecdcf7c1c081e6f43e28f48",
+  "coreMaskGeometrySha256": "d3f789976cc4034081d203af3a36e4fd511385b57fcc56b9091191e916368d4e",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "anchors": 4,
+  "roadFeatures": 287,
+  "overviewLabels": 18,
+  "boundaryNote": "Census-incorporated-place reference coverage; not an association, parcel, access or surveyed boundary.",
+  "transformNotes": "Source geographic geometry is retained. A local linear drawing projection is shared by artwork and pins. Nearby artwork is orientation context, not extra submission eligibility.",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/belleair-beach-place.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "b07f068a6bd07b24f48eaccd7f54afe5b193f606531fa77132ba006c764b2271",
+    "sha256": "3efb3342c8868e448a5228343b021bf8eaba9a9228ee50022439c3eae804abd4",
+    "bytes": 358476,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "bear-creek-cdp-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50219621",
+    "sourceFeatureId": "pinellas-road/354840/0",
+    "sourceGeographic": {
+      "lng": -82.7279474498066,
+      "lat": 27.7495329915675
+    },
+    "expectedSourcePoint": [
+      384.08,
+      704.13
+    ],
+    "matchErrorPx": 0.000229
+  },
+  {
+    "id": "bear-creek-cdp-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50231526",
+    "sourceFeatureId": "pinellas-road/378786/0",
+    "sourceGeographic": {
+      "lng": -82.7187834257661,
+      "lat": 27.7535345996758
+    },
+    "expectedSourcePoint": [
+      734.1,
+      531.42
+    ],
+    "matchErrorPx": 0.000232
+  },
+  {
+    "id": "bear-creek-cdp-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "700005175",
+    "sourceFeatureId": "pinellas-road/452673/0",
+    "sourceGeographic": {
+      "lng": -82.7240129033476,
+      "lat": 27.7501245172189
+    },
+    "expectedSourcePoint": [
+      534.36,
+      678.6
+    ],
+    "matchErrorPx": 0.000287
+  },
+  {
+    "id": "bear-creek-cdp-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50218495",
+    "sourceFeatureId": "pinellas-road/374926/0",
+    "sourceGeographic": {
+      "lng": -82.7291264040811,
+      "lat": 27.7630480105912
+    },
+    "expectedSourcePoint": [
+      339.05,
+      120.82
+    ],
+    "matchErrorPx": 0.000411
+  }
+]

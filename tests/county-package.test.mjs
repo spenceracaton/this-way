@@ -12,13 +12,13 @@ const script = path.join(repo, 'scripts/package-county-geography.py');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const jsonBytes = value => Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
 
-async function snapshotFixture(root) {
+async function snapshotFixture(root, { packageId = 'greenbriar-cdp', packageName = 'Greenbriar', geoid = '1227360', mtfcc = 'G4210', censusLayerName = 'Census Designated Places', censusLayerId = 5 } = {}) {
   const snapshot = path.join(root, 'snapshot');
   const files = {};
   const content = {
     'boundary.geojson': { type: 'FeatureCollection', features: [{
       type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[-82.8, 27.8], [-82.8, 27.81], [-82.79, 27.81], [-82.8, 27.8]]]},
-      properties: { OBJECTID: 5, BASENAME: 'Greenbriar', GEOID: '1227360', NAME: 'Greenbriar CDP' },
+      properties: { OBJECTID: 5, BASENAME: packageName, GEOID: geoid, MTFCC: mtfcc, NAME: `${packageName}${mtfcc === 'G4210' ? ' CDP' : ''}` },
     }]},
     'roads.geojson': { type: 'FeatureCollection', features: [{
       type: 'Feature', id: null, geometry: { type: 'LineString', coordinates: [[-82.8, 27.8], [-82.79, 27.81]] },
@@ -29,7 +29,7 @@ async function snapshotFixture(root) {
       geometry: { type: 'Polygon', coordinates: [[[-82.805, 27.8], [-82.805, 27.81], [-82.795, 27.81], [-82.805, 27.8]]] },
       properties: { OBJECTID: 10, PERMANENT_IDENTIFIER: 'P-10', FDATE: 1, FTYPE: 436, FCODE: 43600 },
     }]},
-    'raw/boundary-metadata.json': { fields: [{ name: 'OBJECTID', type: 'esriFieldTypeOID' }] },
+    'raw/boundary-metadata.json': { name: censusLayerName, fields: [{ name: 'OBJECTID', type: 'esriFieldTypeOID' }] },
     'raw/roads-metadata.json': { serviceItemId: 'item-123' },
     'raw/nhd-service-metadata.json': { copyrightText: 'USGS NHD' },
     'raw/Area - Large Scale-metadata.json': { name: 'Area - Large Scale' },
@@ -43,11 +43,11 @@ async function snapshotFixture(root) {
     files[relative] = digest(bytes);
   }
   const manifest = {
-    candidate: { id: 'greenbriar-cdp', name: 'Greenbriar' }, acquiredAt: '2026-11-03T00:00:00Z',
+    candidate: { id: packageId, name: packageName }, acquiredAt: '2026-11-03T00:00:00Z',
     spatialQuery: { extent: { xmin: -82.81, ymin: 27.79, xmax: -82.78, ymax: 27.82 } },
     filesSha256: files,
     sources: {
-      coreBoundary: { serviceUrl: 'https://census.example/5', metadataSha256: 'c'.repeat(64), requestedId: '1227360', expectedFeatureCount: 1, retrievedFeatureCount: 1 },
+      coreBoundary: { serviceUrl: `https://census.example/${censusLayerId}`, metadataSha256: 'c'.repeat(64), requestedId: geoid, expectedFeatureCount: 1, retrievedFeatureCount: 1 },
       roads: { serviceUrl: 'https://county.example/0', metadataSha256: 'r'.repeat(64), expectedFeatureCount: 1, retrievedFeatureCount: 1 },
       nhdService: { serviceUrl: 'https://usgs.example/MapServer', metadataSha256: 'n'.repeat(64), layers: {
         'Area - Large Scale': { serviceUrl: 'https://usgs.example/MapServer/9', metadataSha256: 'a'.repeat(64), objectIdField: 'OBJECTID', expectedFeatureCount: 0, retrievedFeatureCount: 0, features: [] },
@@ -63,8 +63,8 @@ async function snapshotFixture(root) {
   return snapshot;
 }
 
-function invoke(snapshot, output, terms) {
-  const args = [script, '--snapshot', snapshot, '--output', output, '--id', 'greenbriar-cdp', '--name', 'Greenbriar'];
+function invoke(snapshot, output, terms, packageId = 'greenbriar-cdp', packageName = 'Greenbriar') {
+  const args = [script, '--snapshot', snapshot, '--output', output, '--id', packageId, '--name', packageName];
   if (terms) args.push('--county-terms', terms);
   return spawnSync('python3', args, { encoding: 'utf8' });
 }
@@ -98,6 +98,8 @@ test('county item terms must match the road layer service item and retain eviden
   assert.equal(county.serviceItemEvidence.url, 'https://www.arcgis.com/sharing/rest/content/items/item-123?f=pjson');
   assert.equal(county.serviceItemEvidence.rawFileSha256, digest(valid));
   assert.equal(source.license, null);
+  assert.equal(source.coverageKind, 'census-designated-place');
+  assert.equal(source.coreFeatureId, 'census-cdp/1227360');
 
   await writeFile(terms, jsonBytes({ id: 'wrong-item', licenseInfo: 'Do not accept mismatched terms.' }));
   const rejectedOutput = path.join(root, 'rejected-package');
@@ -105,6 +107,44 @@ test('county item terms must match the road layer service item and retain eviden
   assert.notEqual(rejected.status, 0);
   assert.match(rejected.stderr, /service item id does not match/i);
   await assert.rejects(readFile(path.join(rejectedOutput, 'source.json')), { code: 'ENOENT' });
+});
+
+test('packages incorporated places from Census G4110 and retains city coverage identity', async t => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'county-package-incorporated-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const snapshot = await snapshotFixture(root, {
+    packageId: 'belleair-beach', packageName: 'Belleair Beach', geoid: '1205100',
+    mtfcc: 'G4110', censusLayerName: 'Incorporated Places', censusLayerId: 4,
+  });
+  const output = path.join(root, 'city-package');
+  const result = invoke(snapshot, output, undefined, 'belleair-beach', 'Belleair Beach');
+  assert.equal(result.status, 0, result.stderr);
+  const source = JSON.parse(await readFile(path.join(output, 'source.json'), 'utf8'));
+  const geography = JSON.parse(await readFile(path.join(output, 'geography.geojson'), 'utf8'));
+  assert.equal(source.coverageKind, 'incorporated-place');
+  assert.equal(source.coreFeatureId, 'census-incorporated-place/1205100');
+  assert.equal(geography.features[0].id, source.coreFeatureId);
+  assert.equal(geography.features[0].properties.coverageType, 'Incorporated place');
+  assert.equal(source.additionalAttributions[0].label, 'U.S. Census Bureau (2026 Incorporated Places)');
+});
+
+test('rejects unknown or conflicting Census MTFCC, metadata layer, and endpoint classifications', async t => {
+  const cases = [
+    { mtfcc: 'G9999' },
+    { mtfcc: 'G4110' },
+    { censusLayerName: 'Incorporated Places' },
+    { censusLayerId: 4 },
+  ];
+  for (const [index, options] of cases.entries()) {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'county-package-census-class-'));
+    t.after(() => rm(root, { recursive: true, force: true }));
+    const snapshot = await snapshotFixture(root, options);
+    const output = path.join(root, `rejected-${index}`);
+    const result = invoke(snapshot, output);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /MTFCC|classification/i);
+    await assert.rejects(readFile(path.join(output, 'source.json')), { code: 'ENOENT' });
+  }
 });
 
 test('rejects malformed, unclosed, dimension-inconsistent, or out-of-range geometry before output creation', async t => {

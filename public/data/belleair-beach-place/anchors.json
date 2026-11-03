@@ -1,0 +1,62 @@
+[
+  {
+    "id": "belleair-beach-place-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50193934",
+    "sourceFeatureId": "pinellas-road/341652/0",
+    "sourceGeographic": {
+      "lng": -82.8406798997896,
+      "lat": 27.9258569608129
+    },
+    "expectedSourcePoint": [
+      333.97,
+      446.07
+    ],
+    "matchErrorPx": 0.00018
+  },
+  {
+    "id": "belleair-beach-place-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "600001010",
+    "sourceFeatureId": "pinellas-road/388061/0",
+    "sourceGeographic": {
+      "lng": -82.843871582018,
+      "lat": 27.909567029049
+    },
+    "expectedSourcePoint": [
+      247.79,
+      943.88
+    ],
+    "matchErrorPx": 0.000368
+  },
+  {
+    "id": "belleair-beach-place-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50232600",
+    "sourceFeatureId": "pinellas-road/378261/0",
+    "sourceGeographic": {
+      "lng": -82.8217913832064,
+      "lat": 27.9170351105323
+    },
+    "expectedSourcePoint": [
+      843.99,
+      715.66
+    ],
+    "matchErrorPx": 0.000432
+  },
+  {
+    "id": "belleair-beach-place-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50180069",
+    "sourceFeatureId": "pinellas-road/333587/0",
+    "sourceGeographic": {
+      "lng": -82.8452829722978,
+      "lat": 27.914560901316
+    },
+    "expectedSourcePoint": [
+      209.68,
+      791.27
+    ],
+    "matchErrorPx": 0.000497
+  }
+]

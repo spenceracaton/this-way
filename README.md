@@ -1,8 +1,8 @@
 # This Way map prototype
 
-89 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 87 maps contain geography only. No seasonal overlays or FTW listing records are imported.
+94 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 92 maps contain geography only. No seasonal overlays or FTW listing records are imported.
 
-The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Three more maps—Mystic Lake, Stonesthrow, and Holiday Park—come from a complete audit of the pinned source cohorts. Those directories are historical inputs, not the current production source authority. The final nine-map batch completes all 12 recovered bundles, for 87 FTW-derived maps total. Two independently prepared county/CDP maps—Greenbriar and Harbor Bluffs—bring the catalog to 89. Their January 1, 2026 Census CDP boundaries, County roads and USGS water are retained as reusable geographic inputs; South Highpoint remains an unregistered multipart/holed source study. This is not a claim of complete current FTW coverage: 34 directory-only entries lack a verified reusable map definition. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, County/Esri, and USGS source credits are retained where applicable. Feather Sound uses County road centerlines and USGS water data with its declared mixed-source terms; it is not labeled OSM.
+The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Three more maps—Mystic Lake, Stonesthrow, and Holiday Park—come from a complete audit of the pinned source cohorts. Those directories are historical inputs, not the current production source authority. The final nine-map batch completes all 12 recovered bundles, for 87 FTW-derived maps total. Seven independently prepared county/Census maps—Greenbriar, Harbor Bluffs, Bear Creek, Ridgecrest, Tierra Verde, Belleair Bluffs, and Belleair Beach—bring the catalog to 94. Their January 1, 2026 Census reference boundaries, County roads and USGS water are retained as reusable geographic inputs. The first five use CDP areas; Belleair Bluffs and Belleair Beach use explicitly classified incorporated-place areas. South Highpoint remains an unregistered multipart/holed source study. This is not a claim of complete current FTW coverage: 34 directory-only entries lack a verified reusable map definition. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, County/Esri, and USGS source credits are retained where applicable. Feather Sound uses County road centerlines and USGS water data with its declared mixed-source terms; it is not labeled OSM.
 
 Only the selected map's configuration and artwork load. Imported lossless WebP images have a maximum 3072px long edge; their SVG sources remain available for diagnostics. The browser does not download the entire catalog's artwork.
 
@@ -19,7 +19,7 @@ Existing FTW records have not been migrated.
 
 ## Rebuild the imported geography
 
-The committed assets run without QA-repository access or Python. Rebuilding them requires existing read access to the private QA repository through `gh`, Python with Pillow, and Playwright Chromium:
+The committed assets run without QA-repository access or Python. Rebuilding the FTW-derived bundles requires existing read access to the private QA repository through `gh`, Python with Pillow, and Playwright Chromium:
 
 ```sh
 python3 scripts/fetch-ftw-geography.py --output /tmp/this-way-ftw-geography
@@ -32,16 +32,18 @@ node scripts/rasterize-neighborhoods.mjs
 node scripts/build-service-geography.mjs
 ```
 
-County/CDP maps rebuild from committed source packages without private QA access:
+County/Census maps rebuild from committed source packages without private QA access:
 
 ```sh
-python3 scripts/build-county-map.py --source geography/sources/greenbriar-cdp --output-root .
-python3 scripts/build-county-map.py --source geography/sources/harbor-bluffs-cdp --output-root .
+for source in geography/sources/*/; do
+  python3 scripts/build-county-map.py --source "$source" --output-root . || exit
+done
 node scripts/rasterize-neighborhoods.mjs
 node scripts/build-service-geography.mjs
 ```
 
-See [the county preparation log](docs/county-map-preparation.md) for source acquisition,
+See [the county preparation log](docs/county-map-preparation.md) and
+[the five-map follow-on review](docs/county-five-map-review.md) for source acquisition,
 per-neighborhood critique, and the South Highpoint geometry stop.
 
 Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The fetcher verifies Git blob hashes; the original expansion plan also checks maintained QA fixture fingerprints where available. The ready-geography plan checks recorded source asset and metadata fingerprints; these do not imply additional maintained fixture coverage. Each map records source checksums, preserved mask geometry, four independently matched road anchors, and raster checksums in its provenance. Valid raster outputs are reused when their source and dimensions are unchanged. The importer deliberately excludes listing data, executable SVG, external resources, textures, and seasonal decorations. Use `--ids id-a id-b` to select a batch and `--output-root /tmp/map-preflight` to validate in a scratch output tree. A failing source/metadata preflight writes no batch outputs.
@@ -127,7 +129,7 @@ The inspected renderer's camera updates directly call detail-card layout, cluste
 
 The artwork already uses a fixed SVG coordinate system, and `lib/neighborhoods.mjs` defines an explicit affine longitude/latitude conversion. Leaflet's `CRS.Simple` and SVG overlay accept this without a map service or token. This was enough evidence to build one candidate; a second competing application was unnecessary.
 
-The same adapter now renders all 89 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
+The same adapter now renders all 94 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
 
 ## Code boundaries
 

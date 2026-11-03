@@ -1,0 +1,62 @@
+[
+  {
+    "id": "tierra-verde-cdp-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50219558",
+    "sourceFeatureId": "pinellas-road/354739/0",
+    "sourceGeographic": {
+      "lng": -82.729345518871,
+      "lat": 27.7000168799941
+    },
+    "expectedSourcePoint": [
+      525.76,
+      82.58
+    ],
+    "matchErrorPx": 9.3e-05
+  },
+  {
+    "id": "tierra-verde-cdp-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50200670",
+    "sourceFeatureId": "pinellas-road/343739/0",
+    "sourceGeographic": {
+      "lng": -82.7245725542591,
+      "lat": 27.693601992814
+    },
+    "expectedSourcePoint": [
+      596.22,
+      189.51
+    ],
+    "matchErrorPx": 0.000223
+  },
+  {
+    "id": "tierra-verde-cdp-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50219604",
+    "sourceFeatureId": "pinellas-road/387103/0",
+    "sourceGeographic": {
+      "lng": -82.727339720306,
+      "lat": 27.6644785580106
+    },
+    "expectedSourcePoint": [
+      555.37,
+      674.97
+    ],
+    "matchErrorPx": 0.00035
+  },
+  {
+    "id": "tierra-verde-cdp-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "700009159",
+    "sourceFeatureId": "pinellas-road/607576/0",
+    "sourceGeographic": {
+      "lng": -82.7148890641134,
+      "lat": 27.6454822621535
+    },
+    "expectedSourcePoint": [
+      739.17,
+      991.62
+    ],
+    "matchErrorPx": 0.000424
+  }
+]

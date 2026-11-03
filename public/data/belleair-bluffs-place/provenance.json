@@ -1,0 +1,71 @@
+{
+  "id": "belleair-bluffs-place",
+  "sourceProfile": "county-census-usgs-v1",
+  "acquiredAt": "2026-11-03T16:48:57.872990Z",
+  "sourcePackageSha256": "11b6f56904f274494a1b33a419eb4bc83009ac23a9a06b2abeb8b81e16798dc9",
+  "sourceGeometrySha256": "c1f5d92575ee2d15d23cb3db52dfb1592a0328858e9eae344a32e39bf03bfb57",
+  "rawSnapshotSha256": "37b4508253a1cabce8c0030841b339e02c9441a4c828114202bf9f4296edb0da",
+  "rendererSha256": "55946876cf04ee6cf0f22058a67f4d65cb9567747f0b2baa27e5b38eb4893b5e",
+  "anchorUtilitySha256": "53ae70f6f60eaf27793f153a242d44cfb6808bdd70360b081cc990f71eb7857b",
+  "coreFeatureId": "census-incorporated-place/1205125",
+  "coverageKind": "incorporated-place",
+  "sourceEvidence": {
+    "censusCore": {
+      "serviceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4",
+      "metadataSha256": "9ed6d5151d23fc55931d333718ca7ca52a8b57342c44a4e9a550b1027cd75da9",
+      "expectedFeatureCount": 1,
+      "retrievedFeatureCount": 1,
+      "sourceGeoId": "1205125"
+    },
+    "countyRoads": {
+      "serviceUrl": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+      "metadataSha256": "bad3f545c2c4a167a597d5ceea9021dbf22b0e40fc2bba54d999e2fe546a1261",
+      "expectedFeatureCount": 359,
+      "retrievedFeatureCount": 359,
+      "packagedFeatureCount": 359
+    },
+    "usgsNhd": {
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+      "metadataSha256": "1e9ec55c6d5ea69be954a7318d1fa3430d35419c9bbb233f738619ee8495a412",
+      "layers": [
+        {
+          "role": "area",
+          "sourceLayer": "Area - Large Scale",
+          "layerId": 9,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+          "metadataSha256": "c6378f2a9c793e86c143245ee5b114ad78fa0e2aff1f5c6067b22d54a1fd9ba0",
+          "expectedFeatureCount": 1,
+          "retrievedFeatureCount": 1
+        },
+        {
+          "role": "waterbody",
+          "sourceLayer": "Waterbody - Large Scale",
+          "layerId": 12,
+          "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+          "metadataSha256": "73d2e0e83d80b02d132c771a0cd5ec3339ce2667477ed01c6efc11f7597d0c94",
+          "expectedFeatureCount": 2,
+          "retrievedFeatureCount": 2
+        }
+      ]
+    }
+  },
+  "sourceNoticesSha256": "fa31f0275bb543fd6ccb657c15a363b292bc93086543130bd52001d89d9147de",
+  "coreMaskGeometrySha256": "57ef68f5e560af2c4d0e25931afe7bd828685ec8b0be252dceeaeafb1fc0108c",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "anchors": 4,
+  "roadFeatures": 359,
+  "overviewLabels": 18,
+  "boundaryNote": "Census-incorporated-place reference coverage; not an association, parcel, access or surveyed boundary.",
+  "transformNotes": "Source geographic geometry is retained. A local linear drawing projection is shared by artwork and pins. Nearby artwork is orientation context, not extra submission eligibility.",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/belleair-bluffs-place.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "6b6b2adfe219c7d6ed86f26e50250dddbb600cd660e702c66f9cd5621ab1c22e",
+    "sha256": "b47aad2d506bfced6a34aecaad280541afdc6dc214062c8d996909a6764406d2",
+    "bytes": 346632,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}
