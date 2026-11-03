@@ -187,6 +187,10 @@ async function start() {
       if (card.left > map.left + 1) return { left: 32,
         top: Math.max(toolbar.bottom, zoom.bottom) - map.top + 32,
         right: map.right - card.left + 32, bottom: 32 };
+      // Diagnostic mode keeps zoom on the right beside its comparison panel.
+      if (zoom.left > map.left + map.width / 2) return { left: 32,
+        top: toolbar.bottom - map.top + 32, right: map.right - zoom.left + 32,
+        bottom: map.bottom - card.top + 32 };
       // Keep the marker in the open lane between the left zoom control and
       // bottom-right attribution, above the detail sheet.
       const credit = $('#map .leaflet-control-attribution')?.getBoundingClientRect();

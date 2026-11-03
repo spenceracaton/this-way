@@ -143,6 +143,7 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   .leaflet-control-zoom { margin:118px 12px 0 0!important; }
   #map .leaflet-top.leaflet-right { right:auto; left:12px; }
   #map .leaflet-top.leaflet-right .leaflet-control-zoom { margin-right:0!important; }
+  .map-panel:has(#artwork-diagnostic:not([hidden])) #map .leaflet-top.leaflet-right { left:auto; right:12px; }
   .map-caption { display:none; }
   .selection { left:12px; right:12px; bottom:88px; width:auto; min-height:68px; transform:none; }
   .selection[data-selected=""] { transform:translateY(10px); }
