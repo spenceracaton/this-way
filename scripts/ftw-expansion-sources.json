@@ -51,18 +51,6 @@
       "review-map.svg": "613a9fb6baa90ff35709b1f79b7ee04d37dabbe545004d5395b561c1c85c0d9e"
     }
   },
-  "unavailableIds": [
-    "feather-sound",
-    "bayou-highlands",
-    "orange-terrace",
-    "coquina-key",
-    "perry-bayview",
-    "riviera-heights",
-    "harbordale",
-    "mystic-lake",
-    "stonesthrow",
-    "holiday-park"
-  ],
   "scope": "Recovered prepared geography; retained source snapshots are not current production source authority.",
   "qaMetadataHashes": {
     "azalea": {

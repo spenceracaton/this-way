@@ -1,0 +1,53 @@
+{
+  "id": "riviera-heights",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "559240b64a3686c2cca69b21e361ee48edb2ccaa5159c0fb3b4f4fa019cc7977",
+    "map-data.json": "e8f514074d716dafe6057b49156ece8553d0a9302399bddc94482ea9cd0e2c19",
+    "buffer.mjs": "612d3a6906de1f0e02a03047c81d10de2229e8a6e9ea0b0d764ff00bc7a519e7",
+    "buffer-map-data.json": "c1a411fc55a206bcd0f52f868676439d423a29c13f9ff2fc51a0b700c42bad24",
+    "source-geography.geojson": "993d98229d01b8b4253725850fe20e00b8264945cd4e9fccbcb28ff664578b9d"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-306 -273 1612 1606",
+  "coreMaskGeometrySha256": "24d01c0c84545adc3ffddb55e8d2fa616fea7c217984a539261ca96ad2332030",
+  "nearbyMaskGeometrySha256": "ae674067210c96e23b3b70deb28038f00a7a51bde11cf8eb3a5550a52004561e",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/riviera-heights/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/riviera-heights/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/riviera-heights.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/riviera-heights/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/riviera-heights/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "184c6d6b8b9a6d81c5ae2ce40a8f39dcd0e0f7a63cb16b4ce9e306a61f5a5c94",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/riviera-heights.webp",
+    "width": 3072,
+    "height": 3061,
+    "encoding": "lossless WebP",
+    "sourceSha256": "09c5ad303a2878d889f1ab5772dcd7e698e054b8e7f1079dd6884f16589655b3",
+    "sha256": "5110282755e0afe4aa6bb4855fbd4b6ae1be1691bfc4a331acf0f2772c257c3d",
+    "bytes": 178388,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

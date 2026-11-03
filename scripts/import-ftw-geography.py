@@ -157,7 +157,11 @@ def anchors_for(map_data: dict, projection: dict, bounds: dict, svg: bytes, neig
     for feature in map_data.get("features", []):
         props = feature.get("properties", {})
         source_way = re.fullmatch(r"way/(\d+)", str(feature.get("id", "")))
-        if not (props.get("osmType") == "way" or source_way) or props.get("highway") in {None, "footway", "path", "steps"}:
+        is_osm_road = props.get("osmType") == "way" or source_way
+        is_pinellas_road = (props.get("source") == "Pinellas County RoadCenterline" and
+                            props.get("sourceCenterlineId") is not None and
+                            str(feature.get("id", "")).startswith("pinellas-road/"))
+        if not (is_osm_road or is_pinellas_road) or props.get("highway") in {None, "footway", "path", "steps"}:
             continue
         coords = feature.get("geometry", {}).get("coordinates", [])
         if feature.get("geometry", {}).get("type") != "LineString":
@@ -176,10 +180,15 @@ def anchors_for(map_data: dict, projection: dict, bounds: dict, svg: bytes, neig
             match = min(nearby, key=lambda v: math.hypot(v[0]-xy[0], v[1]-xy[1]))
             distance = math.hypot(match[0]-xy[0], match[1]-xy[1])
             if distance <= .1:
-                osm_id = props.get("osmId") or (source_way.group(1) if source_way else None)
-                if osm_id is None:
+                if is_osm_road:
+                    source_id = props.get("osmId") or (source_way.group(1) if source_way else None)
+                    source_type = "way"
+                else:
+                    source_id = props.get("sourceCenterlineId")
+                    source_type = props["source"]
+                if source_id is None:
                     continue
-                candidates.append((distance, str(osm_id), index, coord, match))
+                candidates.append((distance, str(source_id), index, coord, match, source_type, str(feature.get("id", ""))))
     # Select geographically separated matches; no computed-only anchors are emitted.
     selected = []
     for item in sorted(candidates):
@@ -187,10 +196,21 @@ def anchors_for(map_data: dict, projection: dict, bounds: dict, svg: bytes, neig
             selected.append(item)
         if len(selected) == 4:
             break
-    return [{"id": f"{neighborhood_id}-road-{i+1}", "osmType": "way", "osmId": item[1],
-             "sourceGeographic": {"lng": item[3][0], "lat": item[3][1]},
-             "expectedSourcePoint": [round(item[4][0], 6), round(item[4][1], 6)],
-             "matchErrorPx": round(item[0], 6)} for i, item in enumerate(selected)]
+    anchors = []
+    for i, item in enumerate(selected):
+        if item[5] == "way":
+            anchor = {"id": f"{neighborhood_id}-road-{i+1}", "osmType": "way", "osmId": item[1],
+                      "sourceGeographic": {"lng": item[3][0], "lat": item[3][1]},
+                      "expectedSourcePoint": [round(item[4][0], 6), round(item[4][1], 6)],
+                      "matchErrorPx": round(item[0], 6)}
+        else:
+            anchor = {"id": f"{neighborhood_id}-road-{i+1}",
+                      "sourceType": item[5], "sourceId": item[1], "sourceFeatureId": item[6],
+                      "sourceGeographic": {"lng": item[3][0], "lat": item[3][1]},
+                      "expectedSourcePoint": [round(item[4][0], 6), round(item[4][1], 6)],
+                      "matchErrorPx": round(item[0], 6)}
+        anchors.append(anchor)
+    return anchors
 
 
 def source_notices(data: dict, metadata: dict) -> dict:
@@ -198,6 +218,12 @@ def source_notices(data: dict, metadata: dict) -> dict:
     keys = ("attribution", "license", "licenseUrl", "sourceUrl", "sourceLicenses",
             "licenses", "sourceBindings", "supplementalOriginalTraceLicense", "coverageDerivation")
     notices = {key: data[key] for key in keys if key in data}
+    # Precision review can contain request-specific address notes. It is not a
+    # license statement and does not belong in a public geography bundle.
+    derivation = notices.get("coverageDerivation")
+    if isinstance(derivation, dict) and "precision" in derivation:
+        notices["coverageDerivation"] = {key: value for key, value in derivation.items() if key != "precision"}
+        notices["omittedSourceFields"] = ["coverageDerivation.precision (request-specific QA note)"]
     notices["coverageSources"] = metadata.get("coverageSources", [])
     # Keep the distinct source/terms records attached to authored geography,
     # without duplicating all road coordinates or any unrelated app data.
@@ -218,7 +244,25 @@ def reviewed_credits(notices: dict, map_data: dict) -> tuple[dict, list[dict]]:
         feature.get("properties", {}).get("osmType") in {"way", "node", "relation"}
         for feature in map_data.get("features", []))
     if not has_osm:
-        raise ValueError("Unrecognized geography source; review attribution before importing")
+        attribution = str(notices.get("attribution", ""))
+        features = map_data.get("features", [])
+        is_reviewed_feather_bundle = (
+            "Pinellas County eGIS" in attribution and
+            "U.S. Geological Survey National Hydrography Dataset" in attribution and
+            any(feature.get("properties", {}).get("source") == "Pinellas County RoadCenterline" for feature in features) and
+            any(feature.get("properties", {}).get("source") == "USGS NHD" for feature in features) and
+            any("services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0" in url
+                for url in notices.get("coverageSources", [])) and
+            any("hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer" in url
+                for url in notices.get("coverageSources", []))
+        )
+        if not is_reviewed_feather_bundle:
+            raise ValueError("Unrecognized geography source; review attribution before importing")
+        sources = notices["coverageSources"]
+        road_url = next(url for url in sources if "Pinellas_RoadCenterline_view" in url)
+        nhd_url = next(url for url in sources if "hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer" in url)
+        return ({"label": "Pinellas County eGIS", "href": road_url},
+                [{"label": "U.S. Geological Survey National Hydrography Dataset", "href": nhd_url}])
     primary = {"label": "© OpenStreetMap contributors", "href": "https://www.openstreetmap.org/copyright"}
     additional = []
     # This normalization is used only for the newly reviewed batches. Earlier

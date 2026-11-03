@@ -47,7 +47,10 @@ the y axis. Use each configuration's `bounds` to set the SVG/image viewBox; do n
 assume all artwork fills the nominal `width` and `height`. `overviewBounds` frames
 the core; `bounds` includes nearby artwork. To place the WebP, stretch it over the
 same bounds. `coreBoundary` is in drawing coordinates. Independent anchors can
-check a new renderer's coordinate conversion.
+check a new renderer's coordinate conversion. OSM-derived anchors carry `osmType`
+and `osmId`. Feather Sound anchors instead carry `sourceType`, `sourceId`, and
+`sourceFeatureId` from the County road centerlines; consumers must not assume
+every anchor is an OSM feature.
 
 Coverage is approximate app geography, not official association boundaries,
 surveyed shorelines, routing geometry, or parcel membership. The SVG masks are

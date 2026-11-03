@@ -11,7 +11,7 @@ const importer = resolve(repo, 'scripts/import-ftw-geography.py');
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 const jsonBytes = value => Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
 
-async function fixture({ expansion = false } = {}) {
+async function fixture({ expansion = false, countyRoads = false } = {}) {
   const root = await mkdtemp(resolve(tmpdir(), 'this-way-import-'));
   const source = resolve(root, 'source');
   const reference = resolve(root, 'reference');
@@ -31,19 +31,32 @@ async function fixture({ expansion = false } = {}) {
     const lines = points.map(([x, y], index) => `<path d="M ${x} ${y} L ${x + 10} ${y + 10}"/>`).join('');
     const svg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><defs><g id="geographyArtwork">${lines}</g><mask id="spotlight"><path d="M 0 0 L 1100 0 L 1100 1100 Z"/></mask></defs><g id="art">${lines}</g></svg>`);
     const mapData = {
-      attribution: expansion ? '© OpenStreetMap contributors' : '© OpenStreetMap contributors',
+      attribution: countyRoads
+        ? 'Pinellas County eGIS; U.S. Geological Survey National Hydrography Dataset'
+        : '© OpenStreetMap contributors',
       ...(expansion ? {
         license: null,
         sourceLicenses: [{ source: 'county imagery', terms: 'County and Esri terms apply' }],
         coverageDerivation: 'Reviewed from city GIS and county aerials.',
       } : { license: 'ODbL-1.0', licenseUrl: 'https://opendatacommons.org/licenses/odbl/1-0/' }),
+      ...(countyRoads ? {
+        license: 'Mixed public geographic sources; see provenance',
+        licenseUrl: 'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer',
+        coverageDerivation: { identity: 'Public source geography reference.', precision: 'Requested address: 101 QA Fixture Street' },
+      } : {}),
       features: points.map(([x], index) => ({
-        type: 'Feature', id: `way/${mapIndex * 10 + index + 1}`,
-        properties: expansion
+        type: 'Feature', id: countyRoads ? `pinellas-road/${mapIndex * 10 + index + 1}/0` : `way/${mapIndex * 10 + index + 1}`,
+        properties: countyRoads
+          ? { highway: 'residential', source: 'Pinellas County RoadCenterline', sourceCenterlineId: `${mapIndex * 10 + index + 1}` }
+          : expansion
           ? { highway: 'residential', sourceLicense: 'OpenStreetMap ODbL-1.0' }
           : { osmType: 'way', osmId: mapIndex * 10 + index + 1, highway: 'residential' },
         geometry: { type: 'LineString', coordinates: [[x / 10000, 0], [(x + 10) / 10000, -0.001]] },
-      })),
+      })).concat(countyRoads ? [{
+        type: 'Feature', id: 'usgs-nhd/waterbody/1',
+        properties: { source: 'USGS NHD', sourceObjectId: 1 },
+        geometry: { type: 'Polygon', coordinates: [[[0, 0], [0.001, 0], [0.001, 0.001], [0, 0]]] },
+      }] : []),
     };
     const buffer = { artwork: '<mask id="nearbyBlocksMask"><path d="M 0 0 L 1100 0 L 1100 1100 Z"/></mask><g id="nearbyBlocksArtwork"><path d="M 0 0 L 1100 0"/></g>' };
     const bufferModule = Buffer.from(`export default ${JSON.stringify(buffer)};\n`);
@@ -59,7 +72,10 @@ async function fixture({ expansion = false } = {}) {
       name: id === 'alpha-map' ? 'Alpha Map' : 'Zeta Map',
       projection: { xOrigin: 0, yOrigin: 100, lngOrigin: 0, latOrigin: 0, xScale: 10000, yScale: 100000 },
       bounds: { left: 0, right: 1100, top: 0, bottom: 1100 },
-      ...(expansion ? { coverageSources: ['https://egis.stpete.org/city-gis', 'https://egis.pinellas.gov/County2026'] } : {}),
+      ...(expansion ? { coverageSources: countyRoads ? [
+        'https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0',
+        'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer',
+      ] : ['https://egis.stpete.org/city-gis', 'https://egis.pinellas.gov/County2026'] } : {}),
     };
     buffers[id] = {
       bufferBounds: { left: -20, right: 1120, top: -20, bottom: 1120 },
@@ -166,6 +182,54 @@ test('expansion retains mixed source terms and supplies OSM IDs from feature IDs
     'https://egis.stpete.org/city-gis', 'https://egis.pinellas.gov/County2026',
   ] : []);
   assert.deepEqual(anchors.map(anchor => anchor.osmId).sort(), ['1', '2', '3', '4']);
+});
+
+test('reviewed Pinellas and USGS bundle keeps source-specific credits and source anchor IDs', async t => {
+  const f = await fixture({ expansion: true, countyRoads: true });
+  t.after(() => rm(f.root, { recursive: true, force: true }));
+  const result = run(f, ['alpha-map']);
+  assert.equal(result.status, 0, result.stderr);
+  const config = JSON.parse(await readFile(resolve(f.output, 'public/data/alpha-map/neighborhood.json'), 'utf8'));
+  const notices = JSON.parse(await readFile(resolve(f.output, 'public/data/alpha-map/source-notices.json'), 'utf8'));
+  const anchors = JSON.parse(await readFile(resolve(f.output, 'public/data/alpha-map/anchors.json'), 'utf8'));
+  assert.equal(config.license, 'Mixed public geographic sources; see provenance');
+  assert.deepEqual(config.attribution, {
+    label: 'Pinellas County eGIS',
+    href: 'https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0',
+  });
+  assert.deepEqual(config.additionalAttributions, [{
+    label: 'U.S. Geological Survey National Hydrography Dataset',
+    href: 'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer',
+  }]);
+  assert.equal(notices.attribution, 'Pinellas County eGIS; U.S. Geological Survey National Hydrography Dataset');
+  assert.deepEqual(notices.coverageDerivation, { identity: 'Public source geography reference.' });
+  assert.ok(notices.omittedSourceFields.includes('coverageDerivation.precision (request-specific QA note)'));
+  for (const name of ['neighborhood.json', 'source-notices.json', 'provenance.json']) {
+    assert.doesNotMatch(await readFile(resolve(f.output, 'public/data/alpha-map', name), 'utf8'), /101 QA Fixture Street/);
+  }
+  assert.equal(anchors.length, 4);
+  assert.ok(anchors.every(anchor => anchor.sourceType === 'Pinellas County RoadCenterline' && !('osmId' in anchor)));
+  assert.deepEqual(anchors.map(anchor => anchor.sourceId).sort(), ['1', '2', '3', '4']);
+});
+
+test('unreviewed source providers remain rejected', async t => {
+  const f = await fixture({ expansion: true });
+  t.after(() => rm(f.root, { recursive: true, force: true }));
+  const dataPath = resolve(f.source, 'alpha-map/map-data.json');
+  const data = JSON.parse(await readFile(dataPath, 'utf8'));
+  data.attribution = 'Unknown local source';
+  data.features = data.features.map((feature, index) => ({
+    ...feature, id: `unknown-provider/${index + 1}`,
+    properties: { highway: 'residential', source: 'Unknown provider', sourceObjectId: index + 1 },
+  }));
+  const bytes = jsonBytes(data);
+  await writeFile(dataPath, bytes);
+  f.files.find(file => file.id === 'alpha-map' && file.file === 'map-data.json').sha256 = sha256(bytes);
+  await writeFile(resolve(f.source, 'manifest.json'), jsonBytes({ ...f.manifest, files: f.files }));
+  const result = run(f, ['alpha-map']);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /unrecognized geography source/i);
+  await assert.rejects(readFile(resolve(f.output, 'public/data/alpha-map/neighborhood.json')), { code: 'ENOENT' });
 });
 
 test('a changed prepared reference file is rejected before output writes', async t => {

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "crossroads-area-road-1",
+    "osmType": "way",
+    "osmId": "11240061",
+    "sourceGeographic": {
+      "lng": -82.7362113,
+      "lat": 27.7835134
+    },
+    "expectedSourcePoint": [
+      126.25,
+      596.15
+    ],
+    "matchErrorPx": 0.000209
+  },
+  {
+    "id": "crossroads-area-road-2",
+    "osmType": "way",
+    "osmId": "1059646863",
+    "sourceGeographic": {
+      "lng": -82.7283782,
+      "lat": 27.7858922
+    },
+    "expectedSourcePoint": [
+      878.71,
+      337.86
+    ],
+    "matchErrorPx": 0.000527
+  },
+  {
+    "id": "crossroads-area-road-3",
+    "osmType": "way",
+    "osmId": "11240058",
+    "sourceGeographic": {
+      "lng": -82.7363308,
+      "lat": 27.7871906
+    },
+    "expectedSourcePoint": [
+      114.77,
+      196.88
+    ],
+    "matchErrorPx": 0.000616
+  },
+  {
+    "id": "crossroads-area-road-4",
+    "osmType": "way",
+    "osmId": "1350940517",
+    "sourceGeographic": {
+      "lng": -82.7285027,
+      "lat": 27.7820658
+    },
+    "expectedSourcePoint": [
+      866.75,
+      753.33
+    ],
+    "matchErrorPx": 0.000631
+  }
+]

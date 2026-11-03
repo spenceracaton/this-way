@@ -1,0 +1,57 @@
+{
+  "id": "harbordale",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "214eaf6fec3963708a56a517b4ec74163e5bd9983bff8169490e7859b9d5abd0",
+    "map-data.json": "aabae7c90fe35201d292c3aca5668bd627429f1ca1afc43a06b0cce2756a86c8",
+    "buffer.mjs": "3b762c5b7bc7e8f91483b1cb03c555add09ec87c840ed5a02a5fcd586db3bf18",
+    "buffer-map-data.json": "aaca0806927aa0fbe09905c53ba4b4b238db230dcf929cbb8e0aa6c835f35a26",
+    "source-geography.geojson": "da937816d314b3421c20767460745a4ad45ca65ed205f5c0dbafd168a466a6b6"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "8970cd240165f6d21eca006d4561e073787bd62088009b04750e6e4a2ea3664e",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D85&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/harbordale/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/harbordale/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/harbordale.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/harbordale/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/harbordale/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "1205d669a9ea8d125e568d4c55b8a6439297c419e64528d7c54ea9f0f375851e",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/harbordale.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "f951cce5a3720112cb975492a9702c709ca4f0ea1f34789d9189823948624ebe",
+    "sha256": "6076e7fabfaab2093597d1aa300e604350a2ac5846ccc25793ab900b8f6a83fb",
+    "bytes": 302686,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

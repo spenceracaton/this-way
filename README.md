@@ -1,8 +1,8 @@
 # This Way map prototype
 
-78 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 76 maps contain geography only. No seasonal overlays or FTW listing records are imported.
+87 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 85 maps contain geography only. No seasonal overlays or FTW listing records are imported.
 
-The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Three more maps—Mystic Lake, Stonesthrow, and Holiday Park—come from a complete audit of the pinned source cohorts. Those directories are historical inputs, not the current production source authority. Nine further complete map bundles are verified and queued for the next batch; this is not a claim of complete current FTW coverage. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, and additional County/Esri source credits are retained where applicable.
+The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Three more maps—Mystic Lake, Stonesthrow, and Holiday Park—come from a complete audit of the pinned source cohorts. Those directories are historical inputs, not the current production source authority. The final nine-map batch completes all 12 recovered bundles, for 87 maps total. This is not a claim of complete current FTW coverage: 34 directory-only entries lack a verified reusable map definition. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, County/Esri, and USGS source credits are retained where applicable. Feather Sound uses County road centerlines and USGS water data with its declared mixed-source terms; it is not labeled OSM.
 
 Only the selected map's configuration and artwork load. Imported lossless WebP images have a maximum 3072px long edge; their SVG sources remain available for diagnostics. The browser does not download the entire catalog's artwork.
 
@@ -26,7 +26,7 @@ python3 scripts/fetch-ftw-geography.py --output /tmp/this-way-ftw-geography
 python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-geography/source --reference /tmp/this-way-ftw-geography/reference
 python3 scripts/fetch-ftw-geography.py --expansion --output /tmp/this-way-ftw-expansion
 python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-expansion/source --reference /tmp/this-way-ftw-expansion/reference
-python3 scripts/fetch-ftw-geography.py --plan scripts/ftw-ready-geography-sources.json --ids mystic-lake stonesthrow holiday-park --output /tmp/this-way-ftw-ready
+python3 scripts/fetch-ftw-geography.py --plan scripts/ftw-ready-geography-sources.json --output /tmp/this-way-ftw-ready
 python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-ready/source --reference /tmp/this-way-ftw-ready/reference
 node scripts/rasterize-neighborhoods.mjs
 node scripts/build-service-geography.mjs
@@ -115,7 +115,7 @@ The inspected renderer's camera updates directly call detail-card layout, cluste
 
 The artwork already uses a fixed SVG coordinate system, and `lib/neighborhoods.mjs` defines an explicit affine longitude/latitude conversion. Leaflet's `CRS.Simple` and SVG overlay accept this without a map service or token. This was enough evidence to build one candidate; a second competing application was unnecessary.
 
-The same adapter now renders all 75 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
+The same adapter now renders all 87 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
 
 ## Code boundaries
 

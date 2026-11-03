@@ -13,7 +13,7 @@ test('picker search, current selection and dismissal preserve map context', asyn
   await expect(dialog(page).getByRole('heading', { name: 'Neighborhoods' })).toBeFocused();
   await expect(trigger(page)).toHaveAttribute('aria-expanded', 'true');
   await expect(dialog(page).getByRole('option', { selected: true })).toContainText('Old Northeast');
-  await expect(dialog(page).getByRole('option')).toHaveCount(78);
+  await expect(dialog(page).getByRole('option')).toHaveCount(87);
   await search(page).fill('CrEsCeNt-Lake');
   await expect(dialog(page).getByRole('option')).toHaveCount(1);
   await expect(dialog(page).getByRole('option')).toContainText('Crescent Lake');

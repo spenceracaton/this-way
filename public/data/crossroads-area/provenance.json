@@ -1,0 +1,58 @@
+{
+  "id": "crossroads-area",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "718bc5d10557cd743931edff535ea4b47339eb8424f4e158588ec5d5c2837563",
+    "map-data.json": "403443953772c93c26013a5cef809542b25b98f2d6c139356f25b87a6e4a2483",
+    "buffer.mjs": "6339608732aa671ae61d2d388b55ca1078ef0f2c8318300ea5d121c35b25d799",
+    "buffer-map-data.json": "2d6ae5f44c3e43b27d3926383ddacee212fa8ae7751b714c14f9eae1f6f79109",
+    "source-geography.geojson": "0570630307fbd8a3fdb344a5bfdfe3f3cb2abb67fe5114a7c4301f2657003ddf"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "7672d4192c8b023995b7b7363f06134ff441dc3d56bba09a0d35f0540c57e464",
+  "nearbyMaskGeometrySha256": "78bb838ae4b21d9d6677987b478173244b4b49fd3d93c2c0a1df1097b98db264",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "OpenStreetMap contributors; City of St Petersburg boundary; Pinellas County 2026 aerial reference for separate original pond exclusion",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D44&outFields=*&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery / Esri",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/crossroads-area/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/crossroads-area/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/crossroads-area.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/crossroads-area/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/crossroads-area/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "b269ba496ccbd5639836c2decb77e685a6e7743ddb0abb73fef79ec00f512aa4",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/crossroads-area.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "b7654827517aa92c88ebf9d35ef8cfabe32ce8e66eb7a307c82328d9307522f2",
+    "sha256": "95aec7dd441e8c2149554cbc05ebb64c5a5490cf8926b37214f898eeb64cf4b7",
+    "bytes": 215516,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

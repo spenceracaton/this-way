@@ -94,7 +94,7 @@ more of the map visible. Both reviewers passed the revised captures. The finite
 illustrated artwork keeps its original
 aspect ratio and whole-neighborhood opening view; zoom exposes street detail.
 
-Remaining complete bundles: Bayou Highlands, Coquina Key, Feather Sound,
+At this stage the remaining complete bundles were: Bayou Highlands, Coquina Key, Feather Sound,
 Harbordale, Orange Terrace, Perry Bayview, Riviera Heights, Arcadia Gardens,
 and Crossroads Area. Feather Sound needs source-specific County/USGS adapters;
 it must not be relabeled as OSM data. Directory-only names without a verified map
@@ -103,6 +103,50 @@ definition require new geography work and are outside the ready-import batch.
 Efficiency change: audit and cache the complete source inventory once; fetch
 only selected IDs from a recorded plan; review a small batch first and apply
 concrete layout lessons before increasing the next batch size.
+
+## Iteration 5: finish the verified ready inventory
+
+Added Bayou Highlands, Coquina Key, Feather Sound, Harbordale, Orange Terrace,
+Perry Bayview, Riviera Heights, Arcadia Gardens, and Crossroads Area. The catalog
+now contains 87 prepared maps: two original sample studies and 85 geography-only
+bundles. Server coverage was regenerated from the same configurations.
+
+Feather Sound required two narrow source adapters. Its independently matched
+County road anchors keep `sourceType`, `sourceId`, and `sourceFeatureId`, without
+invented OSM identifiers. Credits retain Pinellas County eGIS and USGS NHD, along
+with original mixed-source terms, FDOT core-reference URLs, and feature notices.
+Unknown providers remain rejected until reviewed. Existing OSM output ordering
+is preserved so earlier bundles remain reproducible.
+
+The shared source plan's one fresh pinned fetch produced all 60 geography input
+files and two shared registry snapshots. Cached, verified bytes fed both batches.
+Nine rasters were generated in scratch preflight and reused in the final import;
+the existing 76 imported rasters were reused. All nine maps pass four road
+anchors, mask/source/raster integrity, and API coverage synchronization. The
+first batch's compact landscape empty state applies without another UI change.
+
+UX and visual reviewers passed all nine maps after inspecting actual phone,
+narrow, landscape and zoom WebKit renders. All 27 map/viewport spacing checks
+passed. Code review found a request-specific precision note in the QA source;
+the public notice export now omits that non-license field, records the omission,
+and tests that the request address never enters public output. Original source
+hashes and license statements remain intact. A fresh source bundle reproduces
+all 36 configuration/anchor/notice/SVG outputs byte-for-byte. All 188 local
+catalog/picker browser cases passed across Chromium and phone WebKit; local
+Node checks and the real isolated Worker/D1/R2 integration checks also passed.
+
+The complete audit covered 47 source cohorts and 87 distinct public neighborhood
+directories. All prepared map bundles found in that inventory are now represented.
+The separate St. Petersburg directory has 107 entries; exact ID/name/alias
+matching accounts for 73, including Edgemoor's anonymous map ID and Crossroads
+Area. The 34 remaining names are recorded in [the backlog](neighborhood-backlog.json).
+They need new source/geometry work; a directory name alone is not a ready map.
+No claim is made about geography available outside this pinned source audit.
+
+Efficiency change: increase the batch only after the first batch's source,
+layout and delivery checks pass; preserve the special provider adapter as a
+narrow branch; cache preflight rasters; stop when prepared, attributable sources
+are exhausted rather than inventing coverage for the remaining directory.
 
 ## Repeating the process
 

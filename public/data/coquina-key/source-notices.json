@@ -1,0 +1,36 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coverageSources": [
+    "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query?where=UPPER%28NANAME%29+LIKE+%27%25COQUINA%25%27&outFields=OBJECTID%2CNANUM%2CNANAME%2CACTIVE&returnGeometry=true&outSR=4326&f=geojson",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.716,-82.620,27.746",
+    "https://ckna.org/about-ckna",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0"
+  ],
+  "featureNotices": [],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query?where=UPPER%28NANAME%29+LIKE+%27%25COQUINA%25%27&outFields=OBJECTID%2CNANUM%2CNANAME%2CACTIVE&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.716,-82.620,27.746",
+      "https://ckna.org/about-ckna",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0"
+    ],
+    "featureNotices": []
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query?where=UPPER%28NANAME%29+LIKE+%27%25COQUINA%25%27&outFields=OBJECTID%2CNANUM%2CNANAME%2CACTIVE&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.716,-82.620,27.746",
+      "https://ckna.org/about-ckna",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0"
+    ],
+    "featureNotices": []
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "perry-bayview-road-1",
+    "osmType": "way",
+    "osmId": "11252606",
+    "sourceGeographic": {
+      "lng": -82.6846227,
+      "lat": 27.7398431
+    },
+    "expectedSourcePoint": [
+      381.98,
+      849.15
+    ],
+    "matchErrorPx": 0.000619
+  },
+  {
+    "id": "perry-bayview-road-2",
+    "osmType": "way",
+    "osmId": "11244078",
+    "sourceGeographic": {
+      "lng": -82.6853938,
+      "lat": 27.7447531
+    },
+    "expectedSourcePoint": [
+      310.11,
+      332.08
+    ],
+    "matchErrorPx": 0.000728
+  },
+  {
+    "id": "perry-bayview-road-3",
+    "osmType": "way",
+    "osmId": "11234833",
+    "sourceGeographic": {
+      "lng": -82.686406,
+      "lat": 27.7417681
+    },
+    "expectedSourcePoint": [
+      215.77,
+      646.43
+    ],
+    "matchErrorPx": 0.000794
+  },
+  {
+    "id": "perry-bayview-road-4",
+    "osmType": "way",
+    "osmId": "11237232",
+    "sourceGeographic": {
+      "lng": -82.684399,
+      "lat": 27.738828
+    },
+    "expectedSourcePoint": [
+      402.83,
+      956.05
+    ],
+    "matchErrorPx": 0.000838
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "attribution": "OpenStreetMap contributors; City of St Petersburg boundary; Pinellas County 2026 aerial reference for separate original pond exclusion",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D44&outFields=*&outSR=4326",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.74027636027516,27.776820467700862,-82.72436477410182,27.79142479200679",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.73827636027515%2C27.778820467700864%2C-82.72636477410182%2C27.789424792006788&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CGlobalID%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=1000&resultOffset=0",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.73827636027515%2C27.778820467700864%2C-82.72636477410182%2C27.789424792006788&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CGlobalID%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=1000&resultOffset=1000",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.737%2C27.7802%2C-82.7277%2C27.788&bboxSR=4326&imageSR=4326&size=1800%2C1500&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+    },
+    {
+      "source": "Bing"
+    },
+    {
+      "source": "Pinellas County Aerials2026",
+      "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "license": "County aerial reference; original approximate bank interpretation, no image redistribution"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "OpenStreetMap contributors; City of St Petersburg boundary; Pinellas County 2026 aerial reference for separate original pond exclusion",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D44&outFields=*&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.74027636027516,27.776820467700862,-82.72436477410182,27.79142479200679",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.73827636027515%2C27.778820467700864%2C-82.72636477410182%2C27.789424792006788&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CGlobalID%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=1000&resultOffset=0",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.73827636027515%2C27.778820467700864%2C-82.72636477410182%2C27.789424792006788&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CGlobalID%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=1000&resultOffset=1000",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.737%2C27.7802%2C-82.7277%2C27.788&bboxSR=4326&imageSR=4326&size=1800%2C1500&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source": "Bing"
+      },
+      {
+        "source": "Pinellas County Aerials2026",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "license": "County aerial reference; original approximate bank interpretation, no image redistribution"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "OpenStreetMap contributors; City of St Petersburg boundary; Pinellas County 2026 aerial reference for separate original pond exclusion",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D44&outFields=*&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.74027636027516,27.776820467700862,-82.72436477410182,27.79142479200679",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.73827636027515%2C27.778820467700864%2C-82.72636477410182%2C27.789424792006788&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CGlobalID%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=1000&resultOffset=0",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.73827636027515%2C27.778820467700864%2C-82.72636477410182%2C27.789424792006788&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFULLADDR%2CGlobalID%2CMUNICIPALITY%2CSTATUS%2CPSTLCITY&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=1000&resultOffset=1000",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.737%2C27.7802%2C-82.7277%2C27.788&bboxSR=4326&imageSR=4326&size=1800%2C1500&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source": "Bing"
+      },
+      {
+        "source": "Pinellas County Aerials2026",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.7342%2C27.7830%2C-82.7317%2C27.7844&bboxSR=4326&imageSR=4326&size=1600%2C1000&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "license": "County aerial reference; original approximate bank interpretation, no image redistribution"
+      }
+    ]
+  }
+}

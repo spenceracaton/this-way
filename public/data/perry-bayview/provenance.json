@@ -1,0 +1,57 @@
+{
+  "id": "perry-bayview",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "ea8c643f4965f675440fd2dff9a92da3bb04317cc4285f706e4ec70fd36e06c4",
+    "map-data.json": "27932e597f4f367074c311e28f8e897b9004817ee054c246d1a2bf58d572ff79",
+    "buffer.mjs": "4e971144140b75d85b33e32295930bc244aa312e2abb35533f716e04ccfbb0a4",
+    "buffer-map-data.json": "5f33803ec5f58b0019540306fd72bac9fc96bf39919b5c704ba6103e91825337",
+    "source-geography.geojson": "2192b422fa77fd96c9eb16bd9d1d99b46f8075fa09b20e9712ba05cf5a6fbd9c"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "abdb189dbc93a7ad30e09a9ac8a4d19632b12accb6c11a994bc14044985c4aaf",
+  "nearbyMaskGeometrySha256": "9b8db510ef42b8ed54a3712636fda55a4f8cfcd5493e20b74ab00cd4f3979f2d",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=93&outFields=OBJECTID,NANAME,STATUS&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/perry-bayview/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/perry-bayview/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/perry-bayview.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/perry-bayview/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/perry-bayview/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "2f6373b795805b3887fa74df18e055c8a4e1efc0e755e49cd298472cbc3ee8b8",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/perry-bayview.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "3c4c2c421d53b283e10098d5d50250a94a853b4b90dbcb77648dd230856d97b4",
+    "sha256": "dc1dbe7076e2a98b355ca837429d49ad05724b63577ff1c1e29edeac2902cbcd",
+    "bytes": 173470,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

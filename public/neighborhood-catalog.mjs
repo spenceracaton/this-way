@@ -25,6 +25,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "arcadia-gardens",
+    "name": "Arcadia Gardens",
+    "config": "./data/arcadia-gardens/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "azalea",
     "name": "Azalea",
     "config": "./data/azalea/neighborhood.json",
@@ -55,6 +61,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "bayou-highlands",
+    "name": "Bayou Highlands",
+    "config": "./data/bayou-highlands/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "campbell-park",
     "name": "Campbell Park",
     "config": "./data/campbell-park/neighborhood.json",
@@ -79,6 +91,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "coquina-key",
+    "name": "Coquina Key",
+    "config": "./data/coquina-key/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "crescent-heights",
     "name": "Crescent Heights",
     "config": "./data/crescent-heights/neighborhood.json",
@@ -100,6 +118,12 @@ export const importedNeighborhoods = [
     "id": "cross-bayou-estates",
     "name": "Cross Bayou Estates",
     "config": "./data/cross-bayou-estates/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "crossroads-area",
+    "name": "Crossroads Area",
+    "config": "./data/crossroads-area/neighborhood.json",
     "pins": []
   },
   {
@@ -130,6 +154,12 @@ export const importedNeighborhoods = [
     "id": "euclid-st-pauls",
     "name": "Euclid St. Paul's",
     "config": "./data/euclid-st-pauls/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "feather-sound",
+    "name": "Feather Sound",
+    "config": "./data/feather-sound/neighborhood.json",
     "pins": []
   },
   {
@@ -190,6 +220,12 @@ export const importedNeighborhoods = [
     "id": "harbor-isle",
     "name": "Harbor Isle",
     "config": "./data/harbor-isle/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "harbordale",
+    "name": "Harbordale",
+    "config": "./data/harbordale/neighborhood.json",
     "pins": []
   },
   {
@@ -349,6 +385,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "orange-terrace",
+    "name": "Orange Terrace",
+    "config": "./data/orange-terrace/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "palmetto-park",
     "name": "Palmetto Park",
     "config": "./data/palmetto-park/neighborhood.json",
@@ -373,6 +415,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "perry-bayview",
+    "name": "Perry Bayview",
+    "config": "./data/perry-bayview/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "ponce-de-leon",
     "name": "Ponce de Leon",
     "config": "./data/ponce-de-leon/neighborhood.json",
@@ -382,6 +430,12 @@ export const importedNeighborhoods = [
     "id": "ridgewood-groves",
     "name": "Ridgewood Groves",
     "config": "./data/ridgewood-groves/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "riviera-heights",
+    "name": "Riviera Heights",
+    "config": "./data/riviera-heights/neighborhood.json",
     "pins": []
   },
   {

@@ -1,0 +1,110 @@
+{
+  "id": "harbordale",
+  "name": "Harbordale",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": 20,
+    "right": 980,
+    "top": 20,
+    "bottom": 1040
+  },
+  "projection": {
+    "lngOrigin": -82.64259318971175,
+    "latOrigin": 27.74476571817531,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 94793.61893632321,
+    "yScale": 107107.78245610464
+  },
+  "artwork": "./assets/neighborhoods/harbordale.svg",
+  "rasterArtwork": "./assets/neighborhoods/harbordale.webp",
+  "coreBoundary": [
+    [
+      122.41992702534787,
+      911.3865908126525
+    ],
+    [
+      601.2867855897449,
+      905.9097602620584
+    ],
+    [
+      636.2764425116715,
+      905.7262344001557
+    ],
+    [
+      653.1073108104135,
+      912.6732561953678
+    ],
+    [
+      681.1864642581271,
+      929.4100166781234
+    ],
+    [
+      693.6721948845485,
+      908.2388788552714
+    ],
+    [
+      878.4139060062178,
+      907.2726123176274
+    ],
+    [
+      880.0,
+      130.58998332225713
+    ],
+    [
+      510.502617306358,
+      133.93119978816696
+    ],
+    [
+      346.73663623585765,
+      133.38757979520477
+    ],
+    [
+      210.9687048058841,
+      134.10383145338778
+    ],
+    [
+      120.00000000000006,
+      135.98985075555532
+    ],
+    [
+      122.512066147687,
+      348.4363384332691
+    ],
+    [
+      122.71516284571737,
+      655.1670365778749
+    ],
+    [
+      122.33257139265953,
+      849.3368385412755
+    ],
+    [
+      122.41992702534787,
+      911.3865908126525
+    ]
+  ],
+  "overviewBounds": {
+    "left": 120.00000000000006,
+    "right": 880.0,
+    "top": 130.58998332225713,
+    "bottom": 929.4100166781234
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "additionalAttributions": [
+    {
+      "label": "City of St. Petersburg GIS",
+      "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D85&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+    },
+    {
+      "label": "Pinellas County imagery"
+    }
+  ],
+  "sourceNotices": "./data/harbordale/source-notices.json"
+}

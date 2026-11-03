@@ -1,0 +1,62 @@
+[
+  {
+    "id": "feather-sound-road-1",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50232889",
+    "sourceFeatureId": "pinellas-road/360843/0",
+    "sourceGeographic": {
+      "lng": -82.6624761072794,
+      "lat": 27.8978975332499
+    },
+    "expectedSourcePoint": [
+      793.44,
+      842.01
+    ],
+    "matchErrorPx": 0.00014
+  },
+  {
+    "id": "feather-sound-road-2",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50228497",
+    "sourceFeatureId": "pinellas-road/377687/0",
+    "sourceGeographic": {
+      "lng": -82.6934465403865,
+      "lat": 27.9171040302748
+    },
+    "expectedSourcePoint": [
+      250.4,
+      460.9
+    ],
+    "matchErrorPx": 0.000144
+  },
+  {
+    "id": "feather-sound-road-3",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "600000933",
+    "sourceFeatureId": "pinellas-road/387987/0",
+    "sourceGeographic": {
+      "lng": -82.6911242141921,
+      "lat": 27.9046057739474
+    },
+    "expectedSourcePoint": [
+      291.12,
+      708.9
+    ],
+    "matchErrorPx": 0.000154
+  },
+  {
+    "id": "feather-sound-road-4",
+    "sourceType": "Pinellas County RoadCenterline",
+    "sourceId": "50275483",
+    "sourceFeatureId": "pinellas-road/383886/0",
+    "sourceGeographic": {
+      "lng": -82.6736566060693,
+      "lat": 27.8934142812892
+    },
+    "expectedSourcePoint": [
+      597.4,
+      930.97
+    ],
+    "matchErrorPx": 0.000332
+  }
+]

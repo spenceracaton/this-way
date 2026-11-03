@@ -1,0 +1,54 @@
+{
+  "id": "feather-sound",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "553b801f3593a7d673964992f175698fa1a6f8b46fe39c28d5fa4fc4e163422a",
+    "map-data.json": "f34dd50d13502a50dde296f740bee8104756a5c804a5b19e60efa18d01523ce3",
+    "buffer.mjs": "af7cff967e6cb8265fb26e811693e1788a55ac47cf70125ee5d6d1cbab255971",
+    "buffer-map-data.json": "be402d65f5b7e71e6275d14a10d2929d39ef7a3838a3cce03d17581c59b3c082",
+    "source-geography.geojson": "eb7029b4e83e6c14d842dc374a3b3733e94ed48993cd584ad08e0146425190d8"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "8f9d89b7e986a1cc081a0eab7642a47f4e3b4064d912792be2cff8c0e5dcf8a9",
+  "nearbyMaskGeometrySha256": "2d2d00f39f89fd67e916c0e1e339b9bf4856829bfb01f8e375ea2077cbf88f1b",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "Pinellas County eGIS; U.S. Geological Survey National Hydrography Dataset",
+    "attribution": {
+      "label": "Pinellas County eGIS",
+      "href": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0"
+    },
+    "additionalAttributions": [
+      {
+        "label": "U.S. Geological Survey National Hydrography Dataset",
+        "href": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer"
+      }
+    ],
+    "license": "Mixed public geographic sources; see provenance",
+    "licenseUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/feather-sound/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/feather-sound/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/feather-sound.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/feather-sound/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/feather-sound/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "a5b770d86c14daf9ab3d5233fa3bef68171771427c6042e24bf527d43ecddcaf",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/feather-sound.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "470777f7ca7b4aa4576c078d6be97467219514bde5b209e5f750aee80a6a00c9",
+    "sha256": "3678c86124bb7f251fe052a80a73683a030b054715baa10f64d0afaa9e6edac9",
+    "bytes": 435858,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}
