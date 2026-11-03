@@ -13,7 +13,7 @@ const passwordVerifier = `pbkdf2-sha256$100000$${passwordSalt.toString('base64')
 export const TEST_OWNER_PASSWORD = ownerPassword;
 export const TEST_ORIGIN = 'http://localhost';
 
-export async function createTestService({ persistPath } = {}) {
+export async function createTestService({ persistPath, activeSeason } = {}) {
   const bundled = await build({
     entryPoints: [resolve(root, 'server/index.mjs')],
     bundle: true,
@@ -34,6 +34,7 @@ export async function createTestService({ persistPath } = {}) {
         OWNER_PASSWORD_HASH: { type: 'text', value: passwordVerifier },
         SERVICE_SECRET: { type: 'text', value: 'fixed-local-service-test-secret-with-more-than-32-bytes' },
         LOCAL_DEVELOPMENT: { type: 'text', value: '1' },
+        ...(activeSeason ? { ACTIVE_SEASON: { type: 'text', value: activeSeason } } : {}),
         DB: { type: 'd1', id: 'this-way-test-db' },
         PHOTOS: { type: 'r2', name: 'this-way-test-photos' },
       },

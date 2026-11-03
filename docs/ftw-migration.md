@@ -34,3 +34,12 @@ Input record IDs are mapped deterministically to canonical IDs using source syst
 Input is bounded to 500 records, 8 MiB of canonical JSON, 2,000 photos total, and 20 photos per listing. Tags and custom tags remain separate JSON arrays, including unrecognized values. `timestampUnit` explicitly selects source timestamps as `milliseconds` (default) or `seconds`; seconds are converted to canonical milliseconds, while raw values remain in source snapshots. Units are never inferred from timestamp magnitude. `now` is always a canonical millisecond epoch value. Reports are independent records and heart data is count-only so browser identifiers are never imported.
 
 `review_events` triggers capture subsequent status changes to listings and photos. Initial imports use direct inserts and therefore do not create synthetic review events. Preserve source review history separately if it is available; the current planner keeps the latest moderation metadata and raw listing/photo snapshots, but intentionally does not invent a complete legacy review-event history.
+
+## Isolated rehearsal
+
+The [real-data pilot](ftw-rehearsal-pilot.md) inspected 40 public listings,
+loaded 31 eligible records and five photos into local D1/R2, and verified exact
+replay, restart, public visibility and browser rendering. Nine placement issues
+remain explicit. Public DTOs omit private moderation/history/keys; the pilot
+namespace and provenance distinguish these assumptions from a full export.
+`node scripts/rehearse-ftw-import.mjs` has no remote apply mode.

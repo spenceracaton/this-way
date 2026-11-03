@@ -30,7 +30,7 @@ export function createMap({ leaflet: L, element, area, pins: initialPins, artwor
   const bounds = L.latLngBounds(mapBounds(area.bounds));
   const overviewBounds = area.overviewBounds ? L.latLngBounds(mapBounds(area.overviewBounds)) : bounds;
   const map = L.map(element, {
-    crs: L.CRS.Simple, minZoom: -4, maxZoom: 2,
+    crs: L.CRS.Simple, minZoom: -4, maxZoom: 4,
     zoomSnap: 0, zoomDelta: 0.5, zoomControl: false,
     // Leaflet discards new drags during its 250 ms zoom transition. Keep pinch
     // movement continuous, but finish zoom immediately so the next drag works.

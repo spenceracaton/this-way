@@ -169,7 +169,7 @@ test('zoom, drag and keyboard pan preserve alignment; reset and Home restore ove
   await checkAlignment(page);
   const zoomIn = page.getByRole('button', { name: 'Zoom in', exact: true });
   for (let step = 0; step < 16 && await zoomIn.isEnabled(); step += 1) await zoomIn.click();
-  await expect(camera).toHaveText('View 2.00');
+  await expect(camera).toHaveText('View 4.00');
 });
 
 test('the ordinary URL uses raster artwork without exposing diagnostic controls', async ({ page }) => {
