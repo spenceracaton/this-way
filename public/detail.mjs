@@ -6,7 +6,7 @@ const samples = {
   c: { title: 'The Little House of Ghosts at the End of the Pumpkin Trail', description: 'Illustrative display details · not a live Christmas listing.', tags: ['Spooky'], photos: ['lantern.svg'] }
 };
 
-export function createDetail({ close, neighborhood }) {
+export function createDetail({ close, neighborhood, season = null, historical = false }) {
   const byId = id => document.getElementById(id);
   const pane = byId('selection');
   let selected, gallery, returnFocus;
@@ -96,9 +96,12 @@ export function createDetail({ close, neighborhood }) {
     address.setAttribute('aria-label', 'Directions to ' + pin.name);
     const title = byId('detail-title');
     const secondary = byId('detail-address');
+    const seasonNote = byId('detail-season');
     secondary.replaceChildren();
     title.textContent = data.title || '';
     (data.title ? secondary : title).append(address);
+    seasonNote.hidden = !(pin.historical || historical);
+    seasonNote.textContent = `Past season · ${season?.name || 'Earlier season'}`;
     byId('selected-label').textContent = pin.label;
     heart.setAttribute('aria-label', pin.live ? 'Heart this display on this device' : 'Heart this sample on this device');
     byId('selected-note').textContent = data.description || pin.note;

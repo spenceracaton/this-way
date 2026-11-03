@@ -6,6 +6,7 @@ import { createDetail } from './detail.mjs';
 import { createMap, createLocationPicker } from './map-view.mjs';
 import { neighborhoodFor } from './neighborhoods.mjs';
 import { loadService, api, toPin } from './service-client.mjs';
+import { activeSeasonId, seasonFor } from './season-config.mjs';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#reference-list');
@@ -21,6 +22,8 @@ async function start() {
   const query = new URLSearchParams(location.search);
   const neighborhood = neighborhoodFor(location.search);
   const samplePins = neighborhood.pins;
+  const requestedSeason = query.get('season');
+  if (requestedSeason && !seasonFor(requestedSeason)) throw new Error(`Unknown season “${requestedSeason}”.`);
   // Do not expose illustrative sample counts while the service state is still
   // unknown; an enabled API failure must end in an error without sample data.
   $('#sample-count').textContent = 'Loading displays…';
@@ -29,24 +32,62 @@ async function start() {
   $('.references-heading > span').hidden = true;
   const service = await loadService();
   const demoSample = samplePins.some(pin => pin.id === query.get('sample'));
+  const selectedSeasonId = requestedSeason || service?.season?.id || activeSeasonId;
+  const selectedSeason = seasonFor(selectedSeasonId) || (!requestedSeason ? service?.season : null);
+  if (!selectedSeason) throw new Error(`The listing service returned an unsupported season “${selectedSeasonId}”.`);
+  if (requestedSeason && !service && !demoSample) throw new Error('Season listings are unavailable right now. Reload when the listing service is available.');
+  const historical = Boolean(service && !demoSample && selectedSeasonId !== service.season.id);
+  const seasonSelect = $('#season-select');
+  if (![...seasonSelect.options].some(option => option.value === selectedSeasonId)) {
+    const option = document.createElement('option');
+    option.value = selectedSeasonId;
+    option.textContent = `${selectedSeason.name} · Current`;
+    seasonSelect.append(option);
+  }
+  seasonSelect.value = selectedSeasonId;
+  seasonSelect.addEventListener('change', () => {
+    const url = new URL(location.href);
+    url.searchParams.set('season', seasonSelect.value);
+    url.searchParams.delete('sample');
+    url.searchParams.delete('listing');
+    location.assign(url.pathname + url.search + url.hash);
+  });
+  if (historical) {
+    $('#add-display').disabled = false;
+    $('#add-display').setAttribute('aria-label', `Switch to ${service.season.name} to add a display`);
+    $('#add-display').removeAttribute('aria-haspopup');
+    $('#add-display').removeAttribute('aria-controls');
+    $('#add-display').querySelector('[aria-hidden="true"]').hidden = true;
+    $('#add-display-label').textContent = `Switch to ${service.season.name}`;
+    $('#add-display').addEventListener('click', () => {
+      const url = new URL(location.href);
+      url.searchParams.set('season', service.season.id);
+      url.searchParams.delete('sample');
+      url.searchParams.delete('listing');
+      location.assign(url.pathname + url.search + url.hash);
+    });
+  }
   let pins = samplePins;
   if (service && !demoSample) {
-    const params = new URLSearchParams({ neighborhood: neighborhood.id, season: service.season.id });
+    const params = new URLSearchParams({ neighborhood: neighborhood.id, season: selectedSeasonId });
     const result = await api(`/api/listings?${params}`);
     if (!Array.isArray(result?.listings)) throw new Error('The listing service returned an invalid display list.');
-    pins = result.listings.map(toPin);
+    pins = result.listings.map((listing, index) => ({ ...toPin(listing, index), seasonId: selectedSeasonId, historical }));
   }
-  document.title = `This Way · ${neighborhood.name}`;
+  document.title = service && !demoSample
+    ? `This Way · ${neighborhood.name} · ${selectedSeason.name}${historical ? ' · Past season' : ''}`
+    : `This Way · ${neighborhood.name}`;
   $('#map-title').textContent = neighborhood.name;
   createNeighborhoodPicker(neighborhood);
-  $('#sample-count').textContent = service && !demoSample ? `${pins.length} live ${pins.length === 1 ? 'display' : 'displays'}` : (pins.length ? `${pins.length} sample addresses` : 'Map only');
-  $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} map${pins.length ? ` with ${service && !demoSample ? 'live displays' : 'sample addresses'}` : ''}. Arrow keys pan, plus and minus zoom, Home resets.`);
+  $('#sample-count').textContent = service && !demoSample ? `${pins.length} ${historical ? `${selectedSeason.name} displays` : `live ${pins.length === 1 ? 'display' : 'displays'}`}` : (pins.length ? `${pins.length} sample addresses` : 'Map only');
+  $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} map${pins.length ? ` with ${service && !demoSample ? historical ? 'past-season displays' : 'live displays' : 'sample addresses'}` : ''}. Arrow keys pan, plus and minus zoom, Home resets.`);
   if (service && !demoSample) {
-    $('#references-title').textContent = 'Live displays';
+    $('#references-title').textContent = historical ? `${selectedSeason.name} displays` : 'Live displays';
     $('.references-heading .eyebrow').textContent = 'COMMUNITY MAP';
-    $('.references-heading > span').hidden = true;
+    $('.references-heading > span').hidden = !historical;
+    $('.references-heading > span').textContent = historical ? 'Past season' : '';
     $('.map-caption').textContent = 'Drag to explore the neighborhood';
-    document.querySelector('footer > span').textContent = 'Community map · live displays';
+    document.querySelector('footer > span').textContent = historical ? `Community map · past ${selectedSeason.name} displays` : 'Community map · live displays';
     document.querySelector('footer .footer-tools a').textContent = 'Review photos';
   }
   if (!pins.length) {
@@ -57,7 +98,9 @@ async function start() {
     $('#references-title').textContent = 'Explore the map';
     $('.references-heading .eyebrow').textContent = 'NEIGHBORHOOD MAP';
     $('.references-heading > span').hidden = true;
-    $('#reference-list').textContent = service && !demoSample ? 'No live displays here yet.' : 'No sample addresses here yet.';
+    $('#reference-list').textContent = service && !demoSample
+      ? historical ? `No ${selectedSeason.name} displays in this neighborhood.` : 'No live displays here yet.'
+      : 'No sample addresses here yet.';
     $('.map-caption').textContent = 'Drag to explore the neighborhood';
   }
   const diagnostic = query.get('diagnostic') === '1';
@@ -70,6 +113,7 @@ async function start() {
     for (const link of document.querySelectorAll('#artwork-diagnostic a[data-mode]')) {
       const params = new URLSearchParams({ diagnostic: '1', artwork: link.dataset.mode });
       if (neighborhood.id !== 'old-northeast') params.set('neighborhood', neighborhood.id);
+      if (requestedSeason) params.set('season', selectedSeasonId);
       link.href = `?${params}`;
       if (link.dataset.mode === artworkMode) link.setAttribute('aria-current', 'page');
     }
@@ -118,8 +162,10 @@ async function start() {
       button.append(badge, name); button.addEventListener('click', () => view.select(pin.id)); list.append(button);
     }
   };
-  renderList(pins, service && !demoSample ? 'No live displays here yet.' : 'No sample addresses here yet.');
-  renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id });
+  renderList(pins, service && !demoSample
+    ? historical ? `No ${selectedSeason.name} displays in this neighborhood.` : 'No live displays here yet.'
+    : 'No sample addresses here yet.');
+  renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id, season: selectedSeason, historical });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins, artwork,
     onSelect: selectionChanged,
     overviewInsets() {
@@ -141,14 +187,37 @@ async function start() {
       if (card.left > map.left + 1) return { left: 32,
         top: Math.max(toolbar.bottom, zoom.bottom) - map.top + 32,
         right: map.right - card.left + 32, bottom: 32 };
-      // Leave a full marker and breathing room above the card, away from controls.
-      return { left: 32, top: toolbar.bottom - map.top + 32,
-        right: map.right - zoom.left + 32, bottom: map.bottom - card.top + 32 };
+      // Diagnostic mode keeps zoom on the right beside its comparison panel.
+      if (zoom.left > map.left + map.width / 2) return { left: 32,
+        top: toolbar.bottom - map.top + 32, right: map.right - zoom.left + 32,
+        bottom: map.bottom - card.top + 32 };
+      // Keep the marker in the open lane between the left zoom control and
+      // bottom-right attribution, above the detail sheet.
+      const credit = $('#map .leaflet-control-attribution')?.getBoundingClientRect();
+      const creditCoversMap = credit && credit.top < card.top && credit.bottom > toolbar.bottom;
+      return { left: zoom.right - map.left + 32, top: toolbar.bottom - map.top + 24,
+        right: creditCoversMap ? map.right - credit.left + 32 : 32,
+        bottom: map.bottom - card.top + 32 };
     },
     onAnchorChange: point => renderDetail.setAnchor(point),
     onViewChange({ zoom }) { $('#camera-status').textContent = `View ${zoom.toFixed(2)}`; }
   });
-  if (service && !demoSample) {
+  const positionZoomControl = () => {
+    const zoom = $('#map .leaflet-control-zoom');
+    if (!zoom) return;
+    if (matchMedia('(max-width:720px)').matches) {
+      const map = $('#map').getBoundingClientRect();
+      const toolbar = $('.map-toolbar').getBoundingClientRect();
+      zoom.style.setProperty('margin-top', `${Math.ceil(toolbar.bottom - map.top + 12)}px`, 'important');
+    } else zoom.style.removeProperty('margin-top');
+    view.revealSelection();
+  };
+  positionZoomControl();
+  const toolbarResize = new ResizeObserver(positionZoomControl);
+  toolbarResize.observe($('.map-toolbar'));
+  window.addEventListener('resize', positionZoomControl);
+  matchMedia('(max-width:720px)').addEventListener('change', positionZoomControl);
+  if (service && !demoSample && !historical) {
     createSubmission({ service, neighborhood, chooseLocation: element => createLocationPicker({ leaflet: window.L, element, area, artwork }),
       onPublished(listing) {
         const pin = toPin(listing, pins.length);
@@ -165,7 +234,7 @@ async function start() {
         view.select(pin.id);
       }
     });
-  } else createSubmission();
+  } else if (!historical) createSubmission();
   initCommunityForms({ getSelected: () => selectedPin });
   $('[data-open-feedback]').disabled = false;
   initPhotoContribution({ getSelected: () => selectedPin, service: service && !demoSample ? service : null });
@@ -191,6 +260,9 @@ async function start() {
   $('#loading').remove();
 }
 start().catch(error => {
-  $('#loading').textContent = error.message + ' Start the included server and reload.';
+  const link = document.createElement('a');
+  link.href = './';
+  link.textContent = 'Open the map home';
+  $('#loading').replaceChildren(document.createTextNode(error.message + ' '), link);
   $('#loading').setAttribute('role', 'alert');
 });
