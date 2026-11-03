@@ -1,7 +1,18 @@
 # Changes to the production trust boundary require Spencer's review.
 /.github/workflows/ @spenceracaton
+/.github/CODEOWNERS @spenceracaton
+/AGENTS.md @spenceracaton
 /scripts/release.mjs @spenceracaton
+/scripts/configure-owner.mjs @spenceracaton
 /scripts/require-success.mjs @spenceracaton
+/server/ @spenceracaton
+/migrations/ @spenceracaton
 /package.json @spenceracaton
 /package-lock.json @spenceracaton
 /wrangler.jsonc @spenceracaton
+/tests/production/ @spenceracaton
+/tests/release.test.mjs @spenceracaton
+/tests/configure-owner.test.mjs @spenceracaton
+/tests/require-success.test.mjs @spenceracaton
+/playwright.production.config.mjs @spenceracaton
+/docs/service-setup.md @spenceracaton

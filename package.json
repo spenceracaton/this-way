@@ -5,19 +5,22 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "check": "node --test tests/*.test.mjs",
     "test:browser": "playwright test",
+    "test:service": "node scripts/test-service-browser.mjs",
     "test:production": "playwright test --config playwright.production.config.mjs",
     "release:prepare": "node scripts/release.mjs prepare",
     "release:verify": "node scripts/release.mjs verify"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
+    "esbuild": "0.28.0",
+    "miniflare": "5.20261023.3-beta",
     "wrangler": "4.156.0"
   }
 }
