@@ -1,0 +1,53 @@
+{
+  "id": "coquina-key",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "abc6dd2fe098f8f49d11af177d9419a4aec2da25e488d9ab7874927555f6019c",
+    "map-data.json": "a177fc96af3019cd370a5e86eb124cc8568c548ccae134c2cc9da3bf7e9c5e7c",
+    "buffer.mjs": "92a29cba7b1900e8604ecf326ba0f690acc9e5ef7c0f99661e9ddef47845a2dc",
+    "buffer-map-data.json": "b8d83feeb4a62a85388233441ffcff0e5067de05ed85760227f5a4527b3bafcb",
+    "source-geography.geojson": "f838c11e727c060d6ae9022b0d990bffa0fb06ae205d9f0183eb06fdabbd5805"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "33b5b8783b085452ccdf20997aafcf5fec83d555eb68c55eb3b63892c84888c8",
+  "nearbyMaskGeometrySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/coquina-key/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/coquina-key/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/coquina-key.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/coquina-key/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/coquina-key/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "941166e2873020da88a19a347015e0ec35184b645eda98c426a7eadb23bf0a30",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/coquina-key.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "3e40bbd5284f2029d169c60ebf24258f0f3b9a2eb0c578bdc46e9c8c727d106c",
+    "sha256": "5313379d9eb3d65212c1a08ba64f3525ab4ecd6db8a4c1181e79de8ce48f8ff4",
+    "bytes": 337380,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

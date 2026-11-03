@@ -1,0 +1,94 @@
+{
+  "id": "riviera-heights",
+  "name": "Riviera Heights",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": -306,
+    "right": 1306,
+    "top": -273,
+    "bottom": 1333
+  },
+  "projection": {
+    "lngOrigin": -82.82598720727782,
+    "latOrigin": 27.84920815796707,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 190908.45045713751,
+    "yScale": 215915.79750849042
+  },
+  "artwork": "./assets/neighborhoods/riviera-heights.svg",
+  "rasterArtwork": "./assets/neighborhoods/riviera-heights.webp",
+  "coreBoundary": [
+    [
+      119.99999999864355,
+      900.2101757748126
+    ],
+    [
+      241.09719093316534,
+      901.3711640521733
+    ],
+    [
+      645.2078536334931,
+      904.7922033117377
+    ],
+    [
+      875.9120171022371,
+      906.6721981757181
+    ],
+    [
+      877.97184925088,
+      532.4202013042304
+    ],
+    [
+      878.4591567290942,
+      443.3419363379392
+    ],
+    [
+      879.0237328149833,
+      339.9582026838584
+    ],
+    [
+      879.9999999986435,
+      158.10869371072334
+    ],
+    [
+      390.05142103600707,
+      154.97784806009616
+    ],
+    [
+      125.09956771156965,
+      153.3278018242819
+    ],
+    [
+      124.4746648406325,
+      244.7802928493182
+    ],
+    [
+      120.62298897617478,
+      808.7572691458711
+    ],
+    [
+      119.99999999864355,
+      900.2101757748126
+    ]
+  ],
+  "overviewBounds": {
+    "left": 119.99999999864355,
+    "right": 879.9999999986435,
+    "top": 153.3278018242819,
+    "bottom": 906.6721981757181
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "additionalAttributions": [
+    {
+      "label": "Pinellas County imagery"
+    }
+  ],
+  "sourceNotices": "./data/riviera-heights/source-notices.json"
+}

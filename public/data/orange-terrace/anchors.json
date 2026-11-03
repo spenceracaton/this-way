@@ -1,0 +1,58 @@
+[
+  {
+    "id": "orange-terrace-road-1",
+    "osmType": "way",
+    "osmId": "11232392",
+    "sourceGeographic": {
+      "lng": -82.8327191,
+      "lat": 27.8469238
+    },
+    "expectedSourcePoint": [
+      21.4,
+      1028.47
+    ],
+    "matchErrorPx": 0.000801
+  },
+  {
+    "id": "orange-terrace-road-2",
+    "osmType": "way",
+    "osmId": "11261619",
+    "sourceGeographic": {
+      "lng": -82.8305878,
+      "lat": 27.851091
+    },
+    "expectedSourcePoint": [
+      431.82,
+      120.89
+    ],
+    "matchErrorPx": 0.002144
+  },
+  {
+    "id": "orange-terrace-road-3",
+    "osmType": "way",
+    "osmId": "11261861",
+    "sourceGeographic": {
+      "lng": -82.8316417,
+      "lat": 27.8470042
+    },
+    "expectedSourcePoint": [
+      228.87,
+      1010.96
+    ],
+    "matchErrorPx": 0.002218
+  },
+  {
+    "id": "orange-terrace-road-4",
+    "osmType": "way",
+    "osmId": "11250935",
+    "sourceGeographic": {
+      "lng": -82.8311258,
+      "lat": 27.8478074
+    },
+    "expectedSourcePoint": [
+      328.22,
+      836.03
+    ],
+    "matchErrorPx": 0.002342
+  }
+]

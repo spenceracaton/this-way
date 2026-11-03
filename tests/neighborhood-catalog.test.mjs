@@ -19,16 +19,17 @@ const rel = path => path.replace(/^\.\//, 'public/');
 test('catalog matches the supported fixed-neighborhood set and preserves the two sample maps', async () => {
   const summary = await json('public/data/neighborhood-import.json');
   const ids = Object.keys(neighborhoods);
-  assert.equal(ids.length, 78);
+  assert.equal(ids.length, 87);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual([...ids].sort(), [...summary.supportedIds].sort());
   assert.deepEqual(summary.retainedSampleMaps, ['old-northeast', 'crescent-lake']);
   assert.equal(neighborhoods['old-northeast'].pins.length, 4);
   assert.equal(neighborhoods['crescent-lake'].pins.length, 4);
-  assert.equal(importedNeighborhoods.length, 76);
+  assert.equal(importedNeighborhoods.length, 85);
   const sourcePlan = await json('scripts/ftw-expansion-sources.json');
   for (const id of Object.keys(sourcePlan.mapPrefixes)) assert.ok(ids.includes(id), `${id} recovered map`);
-  for (const id of ['mystic-lake', 'stonesthrow', 'holiday-park']) assert.ok(ids.includes(id), `${id} verified source map`);
+  const readyPlan = await json('scripts/ftw-ready-geography-sources.json');
+  for (const id of Object.keys(readyPlan.mapPrefixes)) assert.ok(ids.includes(id), `${id} verified source map`);
 });
 
 test('every imported map configuration, artwork, provenance and anchor is internally consistent', async () => {
@@ -73,7 +74,17 @@ test('every imported map configuration, artwork, provenance and anchor is intern
     assert.equal(webp.toString('ascii', 0, 4), 'RIFF');
     assert.equal(webp.toString('ascii', 8, 12), 'WEBP');
     assert.equal(provenance.rasterArtwork.encoding, 'lossless WebP');
-    assert.match(config.attribution.label, /© OpenStreetMap contributors/);
+    if (item.id === 'feather-sound') {
+      assert.equal(config.attribution.label, 'Pinellas County eGIS');
+      assert.ok(config.additionalAttributions.some(credit => credit.label === 'U.S. Geological Survey National Hydrography Dataset'));
+      assert.doesNotMatch(config.license, /ODbL/);
+      for (const anchor of anchors) {
+        assert.equal(anchor.sourceType, 'Pinellas County RoadCenterline');
+        assert.match(anchor.sourceFeatureId, /^pinellas-road\/\d+\/\d+$/);
+        assert.equal(anchor.osmType, undefined);
+        assert.equal(anchor.osmId, undefined);
+      }
+    } else assert.match(config.attribution.label, /© OpenStreetMap contributors/);
     assert.match(config.attribution.href, /^https:\/\//);
     if (config.sourceNotices) {
       const notices = await json(rel(config.sourceNotices));

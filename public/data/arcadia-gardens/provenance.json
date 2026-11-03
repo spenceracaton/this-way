@@ -1,0 +1,58 @@
+{
+  "id": "arcadia-gardens",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "becaaa5a243d9f363d77103eef600457ffa709481a31ae3d91faa4e88daff663",
+    "map-data.json": "4702dac9b1b4d4e2bdaa6f0717bb4771a55748dab5d20a320144cac162873e04",
+    "buffer.mjs": "91cd5e0312c2039ac70179532a3db6fde59d4e7b91a0d6b580fe9acdbf256a02",
+    "buffer-map-data.json": "74c8b3c7fe9253cfaf7b949b5116d7815a12dd5be9b5c4b3bfecc39bf770998a",
+    "source-geography.geojson": "0e4585e3f47df03535dd37272181349dd0dde48ac29f0d441b6fde99779e7dab"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "a98a2b7f5e5988a858f39118a867d9afa416e341eeaeff12670e5e81cc5297ad",
+  "nearbyMaskGeometrySha256": "e2879efb60dbd59a85ce9dc604e29b62cc141917c8c3c48cf083ec2327d25700",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "OpenStreetMap contributors; City of St Petersburg boundary; Pinellas County address references",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D18&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery / Esri",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.64783761355146%2C27.812119805258487%2C-82.63760995432496%2C27.822209342862777&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/arcadia-gardens/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/arcadia-gardens/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/arcadia-gardens.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/arcadia-gardens/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/arcadia-gardens/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "c884893a5d55ddaab2bdcf8c25e3be6cc6bfebe9acf87091c32f684cb5b4e773",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/arcadia-gardens.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "b276a8026a77037f0479eb3e718013294c2a33ce8278e0b9bbc006aa7ad4ee16",
+    "sha256": "028120f094aa1033baf9e914542c44b8c667f40553b4bdebfbdf3249d3b6634e",
+    "bytes": 252450,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

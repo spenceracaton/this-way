@@ -1,0 +1,216 @@
+{
+  "source": {
+    "repository": "spenceracaton/fright-this-way-qa",
+    "revision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+    "prefix": "release-source/pipeline-a1a2-b61687a91bd3/current",
+    "directoryPath": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/st-pete-directory.json",
+    "directorySha256": "e5607d0ff80980d349d4d3d8e9138fb65e13cb10749920a79eefd803825aaafe"
+  },
+  "counts": {
+    "preparedMaps": 87,
+    "directoryEntries": 107,
+    "directoryEntriesMatched": 73,
+    "directoryOnlyEntriesRemaining": 34
+  },
+  "matchingMethod": {
+    "description": "A directory entry is covered by an exact ID match or by an exact normalized name/alias match to a current catalog or pinned pipeline registry entry.",
+    "idRule": "The directory ID prefix \"directory-\" is removed, then the remainder is compared exactly to current catalog IDs, ready source plan IDs, and pinned registry IDs.",
+    "nameRule": "Compare the directory name and each listed alias to catalog and registry entry names after Unicode accent folding, lowercase conversion, replacing punctuation with spaces, and collapsing spaces. No substring or geographic-proximity matching is used.",
+    "specialCases": [
+      {
+        "directoryName": "Edgemoor",
+        "directoryId": "directory-edgemoor",
+        "match": "Exact normalized name to pinned registry entry \"Edgemoor\" with ID \"area-1d493c7d21df8142133da1a7\"; the area ID itself does not imply the directory ID."
+      },
+      {
+        "directoryName": "Crossroads Area",
+        "directoryId": "directory-crossroads-area",
+        "match": "Exact ID and exact normalized name to pinned registry entry \"crossroads-area\"."
+      }
+    ]
+  },
+  "caveats": [
+    "This inventory identifies directory names without an exact catalog or pinned-registry ID/name/alias match. It does not claim the geography is absent from every external source or that an unmatched name is importable.",
+    "Names that share only a substring are not treated as matches (for example, Bayou Bonita is not matched to another Bayou-named neighborhood).",
+    "Directory source organization names and source record labels are not used as neighborhood aliases.",
+    "The ready plan contains recovered prepared geography; its recorded source fingerprints describe the audited QA snapshot and are not maintained production assertions."
+  ],
+  "directoryOnlyEntries": [
+    {
+      "id": "directory-americana-cove",
+      "name": "Americana Cove",
+      "aliases": []
+    },
+    {
+      "id": "directory-bayou-bonita",
+      "name": "Bayou Bonita",
+      "aliases": []
+    },
+    {
+      "id": "directory-bayou-shores",
+      "name": "Bayou Shores",
+      "aliases": []
+    },
+    {
+      "id": "directory-big-bayou",
+      "name": "Big Bayou",
+      "aliases": []
+    },
+    {
+      "id": "directory-bridgeton-north",
+      "name": "Bridgeton North",
+      "aliases": []
+    },
+    {
+      "id": "directory-broadwater",
+      "name": "Broadwater",
+      "aliases": []
+    },
+    {
+      "id": "directory-causeway-isles",
+      "name": "Causeway Isles",
+      "aliases": []
+    },
+    {
+      "id": "directory-caya-costa",
+      "name": "Caya Costa",
+      "aliases": []
+    },
+    {
+      "id": "directory-clam-bayou",
+      "name": "Clam Bayou",
+      "aliases": []
+    },
+    {
+      "id": "directory-downtown",
+      "name": "Downtown",
+      "aliases": []
+    },
+    {
+      "id": "directory-driftwood",
+      "name": "Driftwood",
+      "aliases": []
+    },
+    {
+      "id": "directory-eden-isles",
+      "name": "Eden Isles",
+      "aliases": [
+        "Eden Isle"
+      ]
+    },
+    {
+      "id": "directory-garden-manor-lake-estates",
+      "name": "Garden Manor Lake Estates",
+      "aliases": []
+    },
+    {
+      "id": "directory-glen-lakes-estates",
+      "name": "Glen Lakes Estates",
+      "aliases": []
+    },
+    {
+      "id": "directory-historic-roser-park",
+      "name": "Historic Roser Park",
+      "aliases": []
+    },
+    {
+      "id": "directory-isla-del-sol",
+      "name": "Isla del Sol",
+      "aliases": []
+    },
+    {
+      "id": "directory-lake-pasadena-estates",
+      "name": "Lake Pasadena Estates",
+      "aliases": []
+    },
+    {
+      "id": "directory-lakewood-estates",
+      "name": "Lakewood Estates",
+      "aliases": []
+    },
+    {
+      "id": "directory-lakewood-terrace",
+      "name": "Lakewood Terrace",
+      "aliases": []
+    },
+    {
+      "id": "directory-ling-a-mor-estate",
+      "name": "Ling-A-Mor Estate",
+      "aliases": []
+    },
+    {
+      "id": "directory-magnolia-ridge",
+      "name": "Magnolia Ridge",
+      "aliases": []
+    },
+    {
+      "id": "directory-marina-bay",
+      "name": "Marina Bay",
+      "aliases": []
+    },
+    {
+      "id": "directory-old-pasadena",
+      "name": "Old Pasadena",
+      "aliases": []
+    },
+    {
+      "id": "directory-pasadena-bear-creek-estates",
+      "name": "Pasadena Bear Creek Estates",
+      "aliases": [
+        "Pasadena Bear Creek"
+      ]
+    },
+    {
+      "id": "directory-placido-bayou",
+      "name": "Placido Bayou",
+      "aliases": []
+    },
+    {
+      "id": "directory-point-brittany",
+      "name": "Point Brittany",
+      "aliases": []
+    },
+    {
+      "id": "directory-renaissance",
+      "name": "Renaissance",
+      "aliases": []
+    },
+    {
+      "id": "directory-riviera-bay",
+      "name": "Riviera Bay",
+      "aliases": []
+    },
+    {
+      "id": "directory-sunset-drive-south",
+      "name": "Sunset Drive South",
+      "aliases": [
+        "Sunset Drive"
+      ]
+    },
+    {
+      "id": "directory-the-ahali-place",
+      "name": "The Ahali Place",
+      "aliases": []
+    },
+    {
+      "id": "directory-tropical-shores",
+      "name": "Tropical Shores",
+      "aliases": []
+    },
+    {
+      "id": "directory-twin-brooks",
+      "name": "Twin Brooks",
+      "aliases": []
+    },
+    {
+      "id": "directory-woodlawn-oaks",
+      "name": "Woodlawn Oaks",
+      "aliases": []
+    },
+    {
+      "id": "directory-yacht-club-estates",
+      "name": "Yacht Club Estates",
+      "aliases": []
+    }
+  ]
+}

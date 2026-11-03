@@ -1,0 +1,57 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coverageSources": [
+    "https://maps.pinellas.gov/gis/rest/services/AGO/Parcels/MapServer/0",
+    "https://maps.pinellas.gov/gis/rest/services/PublicWebGIS/Parcels/MapServer/0",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.831,27.844,-82.821,27.854"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://maps.pinellas.gov/gis/rest/services/AGO/Parcels/MapServer/0",
+      "https://maps.pinellas.gov/gis/rest/services/PublicWebGIS/Parcels/MapServer/0",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.831,27.844,-82.821,27.854"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://maps.pinellas.gov/gis/rest/services/AGO/Parcels/MapServer/0",
+      "https://maps.pinellas.gov/gis/rest/services/PublicWebGIS/Parcels/MapServer/0",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.831,27.844,-82.821,27.854"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      }
+    ]
+  }
+}

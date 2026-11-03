@@ -1,0 +1,58 @@
+[
+  {
+    "id": "riviera-heights-road-1",
+    "osmType": "way",
+    "osmId": "11243459",
+    "sourceGeographic": {
+      "lng": -82.8244372,
+      "lat": 27.8499013
+    },
+    "expectedSourcePoint": [
+      795.91,
+      380.34
+    ],
+    "matchErrorPx": 0.000601
+  },
+  {
+    "id": "riviera-heights-road-2",
+    "osmType": "way",
+    "osmId": "1460109293",
+    "sourceGeographic": {
+      "lng": -82.8235187,
+      "lat": 27.849589
+    },
+    "expectedSourcePoint": [
+      971.26,
+      447.77
+    ],
+    "matchErrorPx": 0.001117
+  },
+  {
+    "id": "riviera-heights-road-3",
+    "osmType": "way",
+    "osmId": "11242964",
+    "sourceGeographic": {
+      "lng": -82.8259872,
+      "lat": 27.847008
+    },
+    "expectedSourcePoint": [
+      500.0,
+      1005.05
+    ],
+    "matchErrorPx": 0.001796
+  },
+  {
+    "id": "riviera-heights-road-4",
+    "osmType": "way",
+    "osmId": "11243459",
+    "sourceGeographic": {
+      "lng": -82.8272401,
+      "lat": 27.8499164
+    },
+    "expectedSourcePoint": [
+      260.81,
+      377.08
+    ],
+    "matchErrorPx": 0.002284
+  }
+]

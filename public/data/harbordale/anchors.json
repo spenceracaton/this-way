@@ -1,0 +1,58 @@
+[
+  {
+    "id": "harbordale-road-1",
+    "osmType": "way",
+    "osmId": "45742094",
+    "sourceGeographic": {
+      "lng": -82.6455052,
+      "lat": 27.7442342
+    },
+    "expectedSourcePoint": [
+      223.96,
+      586.93
+    ],
+    "matchErrorPx": 0.000267
+  },
+  {
+    "id": "harbordale-road-2",
+    "osmType": "way",
+    "osmId": "11256833",
+    "sourceGeographic": {
+      "lng": -82.6439898,
+      "lat": 27.7430439
+    },
+    "expectedSourcePoint": [
+      367.61,
+      714.42
+    ],
+    "matchErrorPx": 0.000286
+  },
+  {
+    "id": "harbordale-road-3",
+    "osmType": "way",
+    "osmId": "35341221",
+    "sourceGeographic": {
+      "lng": -82.64132,
+      "lat": 27.7412445
+    },
+    "expectedSourcePoint": [
+      620.69,
+      907.15
+    ],
+    "matchErrorPx": 0.000291
+  },
+  {
+    "id": "harbordale-road-4",
+    "osmType": "way",
+    "osmId": "161484059",
+    "sourceGeographic": {
+      "lng": -82.6408896,
+      "lat": 27.7484774
+    },
+    "expectedSourcePoint": [
+      661.49,
+      132.45
+    ],
+    "matchErrorPx": 0.000566
+  }
+]

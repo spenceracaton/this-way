@@ -1,0 +1,53 @@
+{
+  "id": "orange-terrace",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "50d66580193ebe4d22e03fdacca4fa38bc351f74d98394370808c48981c9b268",
+    "map-data.json": "b95205e32a553fe0761d3ea56cff25a835aa81a8e505c21c0548604c2e77d40a",
+    "buffer.mjs": "e8ebd2d82120601baaa64cbb538264d1ddb73947982ea249a550d3c4922777b0",
+    "buffer-map-data.json": "ea958898e048be095187b5d3dc729bf6489dd98b9de754fff3942f4300ca39bf",
+    "source-geography.geojson": "6505f32daf82ccf112a386cea4bbc6505c69813569eb665c6b93f1f0fcde62f9"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-309 -293 1618 1646",
+  "coreMaskGeometrySha256": "0f35cfd78cb38d2989ab5a24d07456042229746f1e238f2070a3e534d4e2d104",
+  "nearbyMaskGeometrySha256": "a1980e2ca96c89f440d928863128be82f85b6069fc8113b06bc028f08cabde8f",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/orange-terrace/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/orange-terrace/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/orange-terrace.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/orange-terrace/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/orange-terrace/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "9bfdb06db82e18d8629f420c4f14498f59a9339d8073cbd5d52e878b908bc6d0",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/orange-terrace.webp",
+    "width": 3020,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "1bd040b35c6323039baa2ae18925d51fe77f34aa0462f3bb9390ee18cf7ee267",
+    "sha256": "06424af8901533a8fa590cedc93f2a7de9fa9982c2d1b784761054261641f40f",
+    "bytes": 210120,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

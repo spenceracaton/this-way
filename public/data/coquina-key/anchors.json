@@ -1,0 +1,58 @@
+[
+  {
+    "id": "coquina-key-road-1",
+    "osmType": "way",
+    "osmId": "11259182",
+    "sourceGeographic": {
+      "lng": -82.6373262,
+      "lat": 27.7309514
+    },
+    "expectedSourcePoint": [
+      280.48,
+      528.49
+    ],
+    "matchErrorPx": 0.000214
+  },
+  {
+    "id": "coquina-key-road-2",
+    "osmType": "way",
+    "osmId": "11246368",
+    "sourceGeographic": {
+      "lng": -82.634255,
+      "lat": 27.732848
+    },
+    "expectedSourcePoint": [
+      383.68,
+      456.49
+    ],
+    "matchErrorPx": 0.000233
+  },
+  {
+    "id": "coquina-key-road-3",
+    "osmType": "way",
+    "osmId": "1423416641",
+    "sourceGeographic": {
+      "lng": -82.6329798,
+      "lat": 27.7304517
+    },
+    "expectedSourcePoint": [
+      426.53,
+      547.46
+    ],
+    "matchErrorPx": 0.000287
+  },
+  {
+    "id": "coquina-key-road-4",
+    "osmType": "way",
+    "osmId": "11241796",
+    "sourceGeographic": {
+      "lng": -82.6335735,
+      "lat": 27.726869
+    },
+    "expectedSourcePoint": [
+      406.58,
+      683.47
+    ],
+    "matchErrorPx": 0.000398
+  }
+]

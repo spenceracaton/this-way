@@ -1,0 +1,57 @@
+{
+  "id": "bayou-highlands",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "940978966536e8fa3823b21b63e49ddc50ec6a8909198ce11281eee00d7ddbd7",
+    "map-data.json": "0757ecba688fe69cf3ddc34c0fd049fd14424ec293cdae1c785c6f3074e81d92",
+    "buffer.mjs": "abd90323a4b7092471d00dd09b9df6e9bbea43742738242853a61bdb8d329378",
+    "buffer-map-data.json": "ad2a45653523a882e34b799094bf9b3e1840d7c605fc2402afac9e00347fc13e",
+    "source-geography.geojson": "ea8849c317a10a58bb680ba85fe1fa15bb16ef56eb6d87d13406a70c4c07edd6"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "b1556b5b390f1408f7d5410430fc4c77bf6b99fedbe8df99426fcd8285206a93",
+  "nearbyMaskGeometrySha256": "210582b9f95c7c3be479bdba49c7234a78cf21295fbbd94b8efba90e179be71b",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=27&outFields=OBJECTID,NANAME,STATUS&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/bayou-highlands/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/bayou-highlands/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/bayou-highlands.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/bayou-highlands/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/bayou-highlands/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "dd4bed466846c6def56600f6d8687b667a10987dc173a1beba658b17556351e1",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/bayou-highlands.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "928894fd60f042b6b9be86874e59968dc60aec4bbff67c9674d5158940073bb2",
+    "sha256": "b5c402b58e6d64fa8edfca7375160be0cf033f9c854e2f142e26cad5a3243f29",
+    "bytes": 384518,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

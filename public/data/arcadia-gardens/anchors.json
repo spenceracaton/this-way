@@ -1,0 +1,58 @@
+[
+  {
+    "id": "arcadia-gardens-road-1",
+    "osmType": "way",
+    "osmId": "1148489847",
+    "sourceGeographic": {
+      "lng": -82.6462347,
+      "lat": 27.8212858
+    },
+    "expectedSourcePoint": [
+      185.24,
+      112.25
+    ],
+    "matchErrorPx": 0.000119
+  },
+  {
+    "id": "arcadia-gardens-road-2",
+    "osmType": "way",
+    "osmId": "11250007",
+    "sourceGeographic": {
+      "lng": -82.6421664,
+      "lat": 27.8121535
+    },
+    "expectedSourcePoint": [
+      549.97,
+      1037.95
+    ],
+    "matchErrorPx": 0.000487
+  },
+  {
+    "id": "arcadia-gardens-road-3",
+    "osmType": "way",
+    "osmId": "1148489848",
+    "sourceGeographic": {
+      "lng": -82.644301,
+      "lat": 27.8216222
+    },
+    "expectedSourcePoint": [
+      358.6,
+      78.15
+    ],
+    "matchErrorPx": 0.000608
+  },
+  {
+    "id": "arcadia-gardens-road-4",
+    "osmType": "way",
+    "osmId": "11253150",
+    "sourceGeographic": {
+      "lng": -82.647835,
+      "lat": 27.812381
+    },
+    "expectedSourcePoint": [
+      41.77,
+      1014.89
+    ],
+    "matchErrorPx": 0.000658
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bayou-highlands-road-1",
+    "osmType": "way",
+    "osmId": "11237299",
+    "sourceGeographic": {
+      "lng": -82.637111,
+      "lat": 27.723175
+    },
+    "expectedSourcePoint": [
+      961.79,
+      567.86
+    ],
+    "matchErrorPx": 0.000311
+  },
+  {
+    "id": "bayou-highlands-road-2",
+    "osmType": "way",
+    "osmId": "11237299",
+    "sourceGeographic": {
+      "lng": -82.6382177,
+      "lat": 27.7242503
+    },
+    "expectedSourcePoint": [
+      863.67,
+      460.16
+    ],
+    "matchErrorPx": 0.000374
+  },
+  {
+    "id": "bayou-highlands-road-3",
+    "osmType": "way",
+    "osmId": "11262464",
+    "sourceGeographic": {
+      "lng": -82.6430015,
+      "lat": 27.7260901
+    },
+    "expectedSourcePoint": [
+      439.54,
+      275.89
+    ],
+    "matchErrorPx": 0.000444
+  },
+  {
+    "id": "bayou-highlands-road-4",
+    "osmType": "way",
+    "osmId": "11232444",
+    "sourceGeographic": {
+      "lng": -82.6394231,
+      "lat": 27.7252644
+    },
+    "expectedSourcePoint": [
+      756.8,
+      358.59
+    ],
+    "matchErrorPx": 0.000552
+  }
+]
