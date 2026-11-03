@@ -6,17 +6,23 @@ on:
       operation:
         description: Guarded operation for the private approved-record pilot
         type: choice
-        options: [prepare, apply, status, restore]
+        options: [upload-key, prepare, apply, status, restore, revoke-key]
         required: true
       bundle_sha256:
         description: SHA-256 of the reviewed private pilot payload
         type: string
         required: true
       checkpoint_id:
-        description: Exact checkpoint ID from prepare; required except for prepare
+        description: Exact checkpoint ID from prepare; required for apply, status and restore
+        type: string
+      exchange_id:
+        description: Upload-key exchange ID; required for prepare, apply and revoke-key
+        type: string
+      encrypted_payload:
+        description: Sealed payload from the verified upload-key run; never paste plaintext
         type: string
       reason:
-        description: Required for restore; retained only in the private receipt
+        description: Required for restore; public workflow input, avoid private details
         type: string
 
 permissions:
@@ -52,7 +58,16 @@ jobs:
           PUBLISHING_PAUSED: ${{ vars.PRODUCTION_PUBLISHING_PAUSED }}
           GITHUB_TOKEN: ${{ github.token }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          THIS_WAY_FTW_PILOT_PAYLOAD: ${{ secrets.THIS_WAY_FTW_PILOT_PAYLOAD }}
+          UPLOAD_EXCHANGE_ID: ${{ inputs.exchange_id }}
+          ENCRYPTED_PAYLOAD: ${{ inputs.encrypted_payload }}
+      - name: Publish the public upload-key receipt
+        if: ${{ inputs.operation == 'upload-key' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ftw-upload-key
+          path: ${{ runner.temp }}/ftw-upload-key.json
+          if-no-files-found: error
+          retention-days: 1
       - name: Verify temporary Worker cleanup
         if: ${{ always() }}
         run: node scripts/run-ftw-operator.mjs cleanup

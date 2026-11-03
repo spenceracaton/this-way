@@ -23,40 +23,49 @@ permissions used by production deployment. The account and destination names
 are pinned. D1 resolves through the account list and its exact database UUID;
 neither D1 nor the photo bucket is created by this operator.
 
-Add one **production environment secret**, `THIS_WAY_FTW_PILOT_PAYLOAD`, containing
-the reviewed private payload JSON. The payload is a bounded source bundle plus
-exact approved photo download URLs. Keep its UTF-8 content at most 48 KiB. Its
-SHA-256 is calculated after trimming surrounding whitespace; do not otherwise
-reformat the reviewed file. No source records, photo keys or private payload
-files belong in Git, repository variables, workflow inputs or public artifacts.
+No new GitHub secret is required. The reviewed private payload stays in the cloud
+workspace. A protected `upload-key` run creates an RSA-3072 key pair for one
+payload digest and checked commit, with a one-hour admission lifetime. Only its
+public receipt is published in the `ftw-upload-key` artifact. Its private key is
+stored in the private control bucket, never in an artifact or workflow input.
+Keep the UTF-8 payload at most 40 KiB; its digest trims surrounding whitespace.
+Do not otherwise reformat the reviewed file or commit source records/photo keys.
 
-The prepared private pilot file and address-level review remain in the cloud
-workspace outside the checkout. Use the actual reviewed payload and digest,
-not a synthetic fixture. If configuring through an owner-authenticated CLI:
-
-```sh
-gh secret set THIS_WAY_FTW_PILOT_PAYLOAD \
-  --repo spenceracaton/this-way --env production < /private/path/payload.json
-```
-
-The coding integration can manage this repository's PRs and runs, but its
-production-secret listing returned HTTP 403. Secret management therefore needs
-an authorized repository owner session; a successful PR push does not establish
-secret-management permission. No token value is requested in chat or recovered
-from existing secrets.
-
-## Run prepare, then apply
+## Create a key, seal locally, then prepare and apply
 
 Merge this workflow through the release-sensitive owner-review path first.
 Wait for the exact `main` revision's normal production workflow and receipt to
-pass. The operator refuses a branch ref, stale local checkout, unvalidated main,
-unpublished main revision, or publishing pause. It rechecks admission after
-deployment of the temporary operator and before the operation.
+pass. Every operation refuses branch refs, stale/dirty checkouts, unchecked or
+unpublished main revisions, and a publishing pause. No production import is
+performed by installing this workflow.
 
 ```sh
 gh workflow run ftw-import.yml --ref main \
-  -f operation=prepare -f bundle_sha256=REVIEWED_PAYLOAD_SHA256
+  -f operation=upload-key -f bundle_sha256=REVIEWED_PAYLOAD_SHA256
 ```
+
+After that run succeeds, seal the actual reviewed payload in the cloud workspace:
+
+```sh
+node scripts/seal-ftw-operator-payload.mjs \
+  --input /private/path/payload.json --run-id UPLOAD_KEY_RUN_ID \
+  --expected-commit EXACT_LIVE_MAIN_SHA --output /private/path/prepare-inputs.json
+
+gh workflow run ftw-import.yml --ref main --json < /private/path/prepare-inputs.json
+```
+
+The sealer authenticates GitHub run metadata, current main, successful exact-SHA
+checks, live release and the run's unique public-key artifact before encryption.
+It refuses arbitrary pasted keys, wrong-run receipts, private keys and expired
+keys. The output contains ciphertext and public routing metadata only, created
+with mode 0600. Native AES-256-GCM protects the payload; RSA-OAEP/SHA-256 wraps a
+fresh random AES key. Both bind repository, commit, exchange, digest, fingerprint
+and expiry. Combined workflow inputs must fit GitHub's 65,535-byte limit.
+
+Do not paste plaintext into workflow inputs or chat. A changed main revision or
+expired key requires a fresh upload-key run and newly sealed inputs. Keep the
+old checkpoint ID for recovery; do not create a replacement checkpoint to hide
+an uncertain apply.
 
 Prepare downloads only the exact `https://frightthisway.com/api/photos/<id>`
 URLs in the private payload, refuses redirects, enforces byte limits, checks
@@ -73,9 +82,13 @@ and cleanup status. The receipt in the private control bucket contains the
 detailed result. Review the exact prepared selection and require zero updates.
 
 ```sh
-gh workflow run ftw-import.yml --ref main \
-  -f operation=apply -f bundle_sha256=REVIEWED_PAYLOAD_SHA256 \
-  -f checkpoint_id=EXACT_PREPARED_CHECKPOINT_ID
+node scripts/seal-ftw-operator-payload.mjs \
+  --input /private/path/payload.json --run-id UPLOAD_KEY_RUN_ID \
+  --expected-commit EXACT_LIVE_MAIN_SHA --operation apply \
+  --checkpoint-id EXACT_PREPARED_CHECKPOINT_ID \
+  --output /private/path/apply-inputs.json
+
+gh workflow run ftw-import.yml --ref main --json < /private/path/apply-inputs.json
 ```
 
 Apply is bound to that checkpoint and payload digest. Source bytes and fields
@@ -88,6 +101,21 @@ unrelated rows and gallery photos are retained.
 
 The pilot remains Halloween 2026. Its data is verified through the season-scoped
 listing/photo API; the default map remains configured for Christmas 2026.
+
+After durable apply, public verification and an exact retry succeed, explicitly
+revoke the exchange key:
+
+```sh
+gh workflow run ftw-import.yml --ref main \
+  -f operation=revoke-key -f bundle_sha256=REVIEWED_PAYLOAD_SHA256 \
+  -f exchange_id=EXACT_UPLOAD_EXCHANGE_ID
+```
+
+Expiry blocks new decryption but **does not delete the stored private key**.
+Revocation verifies matching exchange ownership and deletion without removing
+commands, receipts or checkpoints. Missing/unknown keys are not reported as
+verified owned deletions. Revoke unused or expired exchanges as well. Do not
+revoke after prepare or an uncertain apply until status/recovery is understood.
 
 ## Status and restore
 
@@ -102,6 +130,8 @@ gh workflow run ftw-import.yml --ref main \
   -f reason='Reviewed pilot recovery'
 ```
 
+Status and restore need no encrypted payload or exchange key, including after
+expiry/revocation. Restore reasons are public workflow inputs: keep them generic.
 Status reads the durable ledger; it does not assert that no later owner edits
 have occurred. Restore compares the checkpoint's post-import baseline and
 refuses intervening edits or dependent user data. It preserves immutable blobs
@@ -121,7 +151,8 @@ under the same `this-way-production` concurrency lock as releases. Secrets are
 injected only into the operator step, after dependency installation. Source
 records and detailed errors are never emitted to Actions logs or artifacts.
 
-Each run creates a uniquely named temporary Worker. Its workers.dev HTTPS
+Each prepare/apply/status/restore run creates a uniquely named temporary Worker.
+Upload-key and revoke-key use only the scoped account storage client. Its workers.dev HTTPS
 `POST /execute` endpoint requires a random 256-bit per-run bearer secret. The
 command is read from a private R2 object and pinned by raw SHA-256, run ID and
 deadline. Request bodies cannot choose commands, target accounts or SQL. The
@@ -158,7 +189,7 @@ original private-object evidence.
 
 ## Validation
 
-All 150 Node/local Worker checks pass, including bundled Worker authentication,
+Validation covers bundled Worker authentication,
 prepare/apply/status/restore across restarts, expiry/command tampering, account
 and scope checks, private control-bucket enforcement, cleanup ownership markers,
 payload/hash/current-source checks and public replay/restore verification. An

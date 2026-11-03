@@ -8,6 +8,7 @@ import { build } from 'esbuild';
 import { FtwOperatorCloudflare, executeOperatorRpc, OperatorTransportError } from './lib/ftw-operator-cloudflare.mjs';
 import { parseOperatorPayload, materializeOperatorPayload, limitedBytes } from './lib/ftw-operator-payload.mjs';
 import { OPERATOR_POLICY } from '../operator/policy.mjs';
+import { publishUploadKey, decryptUploadedPayload, revokeUploadKey } from './lib/ftw-operator-upload.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const repository = 'spenceracaton/this-way';
@@ -112,11 +113,11 @@ function publicSummary(operation, digest, response, receiptKey, cleanup, verific
 
 export async function runFtwOperator(env = process.env, fetcher = fetch) {
   const operation = env.OPERATOR_OPERATION;
-  if (!['prepare','apply','status','restore'].includes(operation)) fail('operator_operation_invalid');
+  if (!['upload-key','prepare','apply','status','restore','revoke-key'].includes(operation)) fail('operator_operation_invalid');
+  if (!/^[a-f0-9]{64}$/.test(env.EXPECTED_BUNDLE_SHA256 || '')) fail('pilot_payload_digest_invalid');
   const approvedId = env.APPROVED_CHECKPOINT_ID || '';
-  if (operation !== 'prepare' && !/^ftw_[a-f0-9]{32}$/.test(approvedId)) fail('approved_checkpoint_id_required');
+  if (['apply','status','restore'].includes(operation) && !/^ftw_[a-f0-9]{32}$/.test(approvedId)) fail('approved_checkpoint_id_required');
   if (operation === 'restore' && (!env.RESTORE_REASON?.trim() || env.RESTORE_REASON.length > 1000)) fail('restore_reason_required');
-  const payload = parseOperatorPayload(env.THIS_WAY_FTW_PILOT_PAYLOAD, env.EXPECTED_BUNDLE_SHA256);
   const admission = await verifyOperatorAdmission(env, fetcher);
   if (execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim() !== admission.commit
     || execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim()) fail('checkout_not_checked_main');
@@ -124,9 +125,30 @@ export async function runFtwOperator(env = process.env, fetcher = fetch) {
   if (config.name !== 'this-way' || config.account_id !== accountId) fail('destination_config_changed');
   const tempRoot = await realpath(env.RUNNER_TEMP);
   const directory = await mkdtemp(resolve(tempRoot, 'ftw-operator-'));
-  let materialized;
-  if (operation === 'prepare' || operation === 'apply') materialized = await materializeOperatorPayload(payload, { directory, fetcher });
   const runId = randomUUID().replaceAll('-', '');
+  const ownershipPath = resolve(tempRoot, 'this-way-ftw-operator-owned.json');
+  const client = new FtwOperatorCloudflare({ accountId, token: env.CLOUDFLARE_API_TOKEN, fetcher,
+    onClaimed: (name, ownershipMarker) => privateJson(ownershipPath, { version: 1, scriptName: name, ownershipMarker, accountId, runId, checkedCommit: admission.commit }) });
+  const target = await client.target();
+  if (operation === 'upload-key' || operation === 'revoke-key') {
+    await verifyOperatorAdmission(env, fetcher);
+    const result = operation === 'upload-key'
+      ? await publishUploadKey({ client, exchangeId: runId, bundleDigest: env.EXPECTED_BUNDLE_SHA256, admission, workflowRunId: env.GITHUB_RUN_ID })
+      : await revokeUploadKey({ client, exchangeId: env.UPLOAD_EXCHANGE_ID, bundleDigest: env.EXPECTED_BUNDLE_SHA256 });
+    if (operation === 'upload-key') {
+      await writeFile(resolve(tempRoot, 'ftw-upload-key.json'), JSON.stringify(result), { mode: 0o600, flag: 'wx' });
+    }
+    if (env.GITHUB_STEP_SUMMARY) await appendFile(env.GITHUB_STEP_SUMMARY, `### FTW encrypted handoff\n\n\`\`\`json\n${JSON.stringify(result, null, 2)}\n\`\`\`\n`);
+    console.log(`${operation === 'upload-key' ? 'FTW_UPLOAD_KEY=' : 'FTW_KEY_REVOKED='}${JSON.stringify(result)}`);
+    return result;
+  }
+  let materialized;
+  if (operation === 'prepare' || operation === 'apply') {
+    const raw = await decryptUploadedPayload({ client, exchangeId: env.UPLOAD_EXCHANGE_ID, encoded: env.ENCRYPTED_PAYLOAD,
+      bundleDigest: env.EXPECTED_BUNDLE_SHA256, commit: admission.commit });
+    const payload = parseOperatorPayload(raw, env.EXPECTED_BUNDLE_SHA256);
+    materialized = await materializeOperatorPayload(payload, { directory, fetcher });
+  }
   const scriptName = `this-way-ftw-op-${runId}`;
   const commandKey = `ftw-operator/${runId}/command.json`, receiptKey = `ftw-operator/${runId}/receipt.json`;
   const issuedAt = Date.now(), expiresAt = issuedAt + 10 * 60 * 1000;
@@ -137,10 +159,6 @@ export async function runFtwOperator(env = process.env, fetcher = fetch) {
       reconciliation: materialized.reconciliation, sourceRevalidation: materialized.revalidated, checkedCommit: admission.commit } } : {}) };
   const commandBytes = Buffer.from(JSON.stringify(command));
   if (commandBytes.byteLength > OPERATOR_POLICY.maxCommandBytes) fail('private_command_too_large');
-  const ownershipPath = resolve(tempRoot, 'this-way-ftw-operator-owned.json');
-  const client = new FtwOperatorCloudflare({ accountId, token: env.CLOUDFLARE_API_TOKEN, fetcher,
-    onClaimed: (name, ownershipMarker) => privateJson(ownershipPath, { version: 1, scriptName: name, ownershipMarker, accountId, runId, checkedCommit: admission.commit }) });
-  const target = await client.target();
   const compiled = await build({ entryPoints: [resolve(root, 'operator/worker.mjs')], bundle: true, write: false,
     platform: 'node', format: 'esm', target: 'es2022', external: ['node:*'], loader: { '.json': 'json' } });
   let response, errorCode, verification, cleanup = { verified: false };

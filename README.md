@@ -17,7 +17,7 @@ in [run 41570806085, attempt 4](https://github.com/spenceracaton/this-way/action
 Public API, owner sign-in/moderation access, and logout passed live checks.
 Production FTW records have not been migrated. An [isolated public-data rehearsal](docs/ftw-rehearsal-pilot.md) inspected 40 real listings, imported 31 eligible records and five photos into local storage, and verified a no-op rerun and persistence. Nine placements remain flagged; the rehearsal data and photos are private cloud artifacts, not public site assets.
 
-The [guarded checkpoint executor](docs/ftw-checkpoint-recovery.md) supports reviewed updates and recovery in isolated storage. The [authenticated pilot operator](docs/ftw-operator.md) adds a protected manual workflow for 5–10 selected approved Halloween records, using a private reviewed payload, exact checkpoint ID, temporary authenticated Worker and private control storage. Broader migration retains the [full source-export requirements](docs/ftw-source-export.md).
+The [guarded checkpoint executor](docs/ftw-checkpoint-recovery.md) supports reviewed updates and recovery in isolated storage. The [authenticated pilot operator](docs/ftw-operator.md) adds a protected manual workflow for 5–10 selected approved Halloween records, using a reviewed payload encrypted to a verified workflow public key, exact checkpoint ID, temporary authenticated Worker and private control storage. No new payload secret is required. Broader migration retains the [full source-export requirements](docs/ftw-source-export.md).
 
 ## Rebuild the imported geography
 

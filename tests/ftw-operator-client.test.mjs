@@ -402,3 +402,44 @@ test('public restore verification checks inserted IDs and photo routes without d
   await assert.rejects(verifyPublicRestore(checkpoint, fetcher), error => error.code === 'public_restore_photo_still_available');
   assert.ok(calls.every(call => call.method === 'GET'));
 });
+
+test('private exchange reads enforce privacy, exact path, streamed limits and fixed parse errors', async () => {
+  const exchange = 'e'.repeat(32), calls = [];
+  let body = '{}', publicBucket = false;
+  const client = cloudflare(async (url, init) => {
+    const path = new URL(url).pathname;
+    calls.push({ path, method: init.method || 'GET' });
+    if (path.endsWith('/domains/managed')) return ok({ enabled: publicBucket });
+    if (path.endsWith('/domains/custom')) return ok({ domains: [] });
+    assert.equal(path, `/client/v4/accounts/${acct}/r2/buckets/${privateBucket}/objects/ftw-operator/${exchange}/exchange.json`);
+    return body === null ? jsonError(404) : new Response(body);
+  });
+  assert.deepEqual(await client.readPrivateExchange(exchange), {});
+  body = null;
+  assert.equal(await client.readPrivateExchange(exchange), null);
+  for (body of ['invalid private data', 'x'.repeat(16 * 1024 + 1)]) {
+    await assert.rejects(client.readPrivateExchange(exchange), error => error.code === 'private_exchange_invalid' && !error.message.includes('private data'));
+  }
+  publicBucket = true;
+  const before = calls.filter(call => call.path.includes('/objects/')).length;
+  await assert.rejects(client.readPrivateExchange(exchange), error => error.code === 'control_storage_not_private');
+  assert.equal(calls.filter(call => call.path.includes('/objects/')).length, before);
+  await assert.rejects(client.readPrivateExchange('../command'), error => error.code === 'invalid_exchange_id');
+});
+
+test('exchange revocation touches only its exact private key and requires confirmed absence', async () => {
+  const exchange = 'e'.repeat(32), calls = [];
+  let stillPresent = false;
+  const client = cloudflare(async (url, init) => {
+    const path = new URL(url).pathname;
+    if (path.endsWith('/domains/managed')) return ok({ enabled: false });
+    if (path.endsWith('/domains/custom')) return ok({ domains: [] });
+    calls.push({ path, method: init.method || 'GET' });
+    assert.equal(path, `/client/v4/accounts/${acct}/r2/buckets/${privateBucket}/objects/ftw-operator/${exchange}/exchange.json`);
+    return init.method === 'DELETE' ? new Response(null, { status: 204 }) : jsonError(stillPresent ? 200 : 404);
+  });
+  assert.deepEqual(await client.deletePrivateExchange(exchange), { verified: true });
+  assert.deepEqual(calls.map(call => call.method), ['DELETE', 'GET']);
+  stillPresent = true;
+  await assert.rejects(client.deletePrivateExchange(exchange), error => error.code === 'exchange_revocation_unverified');
+});

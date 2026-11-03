@@ -84,7 +84,7 @@ export class FtwOperatorCloudflare {
   }
 
   async privateObject(key, bytes) {
-    if (!/^ftw-operator\/[a-f0-9]{32}\/(command|receipt)\.json$/.test(key)) throw new OperatorTransportError('invalid_private_object_key');
+    if (!/^ftw-operator\/[a-f0-9]{32}\/(command|receipt|exchange)\.json$/.test(key)) throw new OperatorTransportError('invalid_private_object_key');
     await this.assertPrivateControlBucket();
     const path = `/r2/buckets/${controlBucket}/objects/${key.split('/').map(encode).join('/')}`;
     const response = await this.request(path, { method: 'PUT', headers: {
@@ -94,6 +94,42 @@ export class FtwOperatorCloudflare {
     const stored = await this.request(path);
     const actual = new Uint8Array(await stored.arrayBuffer());
     if (sha(actual) !== sha(bytes)) throw new OperatorTransportError('private_object_verification_failed');
+  }
+
+  async readPrivateExchange(exchangeId) {
+    if (!/^[a-f0-9]{32}$/.test(exchangeId || '')) throw new OperatorTransportError('invalid_exchange_id');
+    await this.assertPrivateControlBucket();
+    const path = `/r2/buckets/${controlBucket}/objects/ftw-operator/${exchangeId}/exchange.json`;
+    const response = await this.request(path, {}, [200, 404]);
+    if (response.status === 404) { await response.body?.cancel(); return null; }
+    if (!response.body || Number(response.headers.get('content-length') || 0) > 16 * 1024) {
+      await response.body?.cancel();
+      throw new OperatorTransportError('private_exchange_invalid');
+    }
+    const reader = response.body.getReader();
+    const chunks = []; let size = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 16 * 1024) { await reader.cancel(); throw new OperatorTransportError('private_exchange_invalid'); }
+      chunks.push(value);
+    }
+    try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); }
+    catch { throw new OperatorTransportError('private_exchange_invalid'); }
+  }
+
+  async deletePrivateExchange(exchangeId) {
+    if (!/^[a-f0-9]{32}$/.test(exchangeId || '')) throw new OperatorTransportError('invalid_exchange_id');
+    await this.assertPrivateControlBucket();
+    const path = `/r2/buckets/${controlBucket}/objects/ftw-operator/${exchangeId}/exchange.json`;
+    const removed = await this.request(path, { method: 'DELETE' }, [200, 204, 404]);
+    await removed.body?.cancel();
+    const check = await this.request(path, {}, [200, 404]);
+    const verified = check.status === 404;
+    await check.body?.cancel();
+    if (!verified) throw new OperatorTransportError('exchange_revocation_unverified');
+    return { verified: true };
   }
 
   async deploy({ scriptName, source, target, command, commandKey, commandBytes }) {
