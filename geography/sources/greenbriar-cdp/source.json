@@ -3,7 +3,7 @@
   "name": "Greenbriar",
   "coverageKind": "census-designated-place",
   "coreFeatureId": "census-cdp/1227360",
-  "geographySha256": "911015020f40378f2fb3823c6d68b98634388edcb245adae87c186d53232fb38",
+  "geographySha256": "5456eadf54ed23d3b1daf51e4bcba76bd71dd969964dc35a51223de0aad1bdc8",
   "acquiredAt": "2026-11-03T15:29:12.266707Z",
   "rawSnapshotSha256": "849a562446ac68d2b589575aaeee1bf9779f494f6b8b525523a7f1c3472beeb5",
   "queryExtent": {

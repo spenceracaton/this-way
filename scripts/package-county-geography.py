@@ -313,7 +313,9 @@ def build_package(snapshot_path, output_path, package_id, package_name, county_t
     if len(all_ids) != len(set(all_ids)):
         raise PackageError("packaged geographic feature IDs are not unique")
     geography = {"type": "FeatureCollection", "features": features}
-    geography_bytes = (json.dumps(geography, indent=2, ensure_ascii=False, allow_nan=False) + "\n").encode()
+    # Water features can contain hundreds of thousands of positions. Compact
+    # JSON whitespace while retaining every coordinate and source attribute.
+    geography_bytes = (json.dumps(geography, separators=(",", ":"), ensure_ascii=False, allow_nan=False) + "\n").encode()
     geography_sha = hashlib.sha256(geography_bytes).hexdigest()
 
     layer_metadata = {}

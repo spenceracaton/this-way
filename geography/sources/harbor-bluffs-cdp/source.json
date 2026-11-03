@@ -3,7 +3,7 @@
   "name": "Harbor Bluffs",
   "coverageKind": "census-designated-place",
   "coreFeatureId": "census-cdp/1228650",
-  "geographySha256": "700a25f612627eaf1944ba015d7e85f65d0f4f18343e3712c63ddce50a97713d",
+  "geographySha256": "bc13bfd353033b5188c9b128c80aea0a10e188e85d3ed18335a2241f727f418f",
   "acquiredAt": "2026-11-03T16:00:09.322873Z",
   "rawSnapshotSha256": "56fe3b528cb2f5791077f33bd45b70e461e84baa0f7a18db5575b2c0e07bb221",
   "queryExtent": {

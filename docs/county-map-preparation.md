@@ -75,8 +75,9 @@ that blocker is resolved and requires no further environment configuration.
   polygon covers the complete core, not just its vertices.
 - Acquisition: 14 helper HTTP requests, 410 road records, three Waterbody and
   two Area records; complete object-ID reconciliation with no null-ID fallback.
-  The source snapshot is 56,795,636 bytes; the reusable geographic input is
-  16,995,524 bytes. All core/road/water geometry is valid under independent
+  The source snapshot is 56,795,636 bytes; the initial reusable package was
+  16,995,524 bytes. Its final GeoJSON is 7,050,822 bytes after removing JSON
+  whitespace, with every parsed feature/coordinate verified unchanged. All core/road/water geometry is valid under independent
   Shapely checks and matches the snapshot coordinates exactly.
 - Critique: coastal NHD features extend far outside this small coverage area.
   The two Area features contain 1,425 rings and 174,239 positions. Do not discard
@@ -89,6 +90,8 @@ that blocker is resolved and requires no further environment configuration.
 - Process reflection: use one immutable acquisition and reuse the same source
   package for artwork and review, avoiding duplicate requests. Record input bytes
   as well as record counts: five water features can outweigh hundreds of roads.
+  Compact serialization reduces transfer/storage overhead without simplifying
+  source coordinates; metadata stays human-readable.
   The portable packager now separately rejects malformed geometry even when a
   snapshot's checksums are internally consistent; valid parts, holes and Z remain.
 - Next iteration: inspect South Highpoint with the same verified metadata
