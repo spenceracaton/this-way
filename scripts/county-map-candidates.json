@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "scope": "Research candidates outside St. Petersburg; none is an accepted map or a verified countywide inventory.",
+  "iterationPolicy": "Complete and critique one candidate before starting the next; preserve failures and the specific improvement used in the next attempt.",
+  "referenceBoundaryKind": "Census-designated-place reference from FDOT; not an HOA, parcel, or surveyed neighborhood boundary",
+  "sourceServices": {
+    "referenceBoundaries": "https://gis.fdot.gov/arcgis/rest/services/Admin_Boundaries/FeatureServer/7",
+    "roads": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
+    "water": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer"
+  },
+  "candidates": [
+    {
+      "id": "greenbriar-cdp",
+      "name": "Greenbriar",
+      "order": 1,
+      "reason": "Compact inland candidate near Clearwater/Dunedin; validate its exact source identity before drawing.",
+      "status": "awaiting-source-verification"
+    },
+    {
+      "id": "harbor-bluffs-cdp",
+      "name": "Harbor Bluffs",
+      "order": 2,
+      "reason": "Candidate in the same reference-boundary source family; review coastal water geometry separately.",
+      "status": "queued-after-greenbriar-review"
+    },
+    {
+      "id": "south-highpoint-cdp",
+      "name": "South Highpoint",
+      "order": 3,
+      "reason": "Another compact candidate for testing whether the first map's source and rendering workflow is reusable.",
+      "status": "queued-after-harbor-bluffs-review"
+    }
+  ]
+}
