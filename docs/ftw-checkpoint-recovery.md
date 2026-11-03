@@ -1,13 +1,17 @@
 # Guarded FTW import checkpoints
 
-This is the next preparation step after the public-data rehearsal. The executor
-supports small inserts, reviewed source updates, exact retries and compensating
-restore against D1/R2 bindings. Its only executable command uses isolated local
-storage. No remote adapter, public import route or production content import is
-included. An authorized [source content export](ftw-source-export.md) and a reviewed
-operator connection to the intended destination remain required before a live
-import. Declared export provenance and hashes establish an operator's assertion
-and byte integrity; they do not prove authorization or source authenticity.
+The binding executor supports small inserts, reviewed source updates, exact
+retries and compensating restore against D1/R2. Its local command uses isolated
+storage. The separate [authenticated pilot operator](ftw-operator.md) connects
+an approved-only, selected 5–10-record scope through a manual workflow. It uses
+the supplied owner export and fresh public-field/photo checks, preserves Halloween
+identity, and permits inserts/skips only. Visitor application routes are unchanged.
+
+The pilot does not establish full source completeness or migrate excluded
+visitor-photo contributions. Broader migration still requires the
+[source content export](ftw-source-export.md) and source reconciliation described
+below. Declared provenance and hashes establish an operator assertion and byte
+integrity; they do not prove authorization or source authenticity.
 
 ## Checkpoint protocol
 
@@ -114,12 +118,14 @@ Larger or active datasets require a separately reviewed per-entity dependency
 and chunk protocol, not removal of these guards. There is no automatic source
 deletion inference when a row/photo is omitted from a later export.
 
-Before production use: acquire and reconcile the authentic export; resolve
+Before broader production migration: acquire and reconcile the authentic export; resolve
 coverage and missing/shared/removed-asset exceptions; review the exact small
 batch; and connect the binding executor through an authenticated operator
 transport that demonstrates D1 batch semantics. Cloudflare's generic SQL HTTP
 endpoint or a series of independent CLI SQL calls must not be treated as an
-equivalent transaction without proof. No remote adapter is shipped here.
+equivalent transaction without proof. The separately documented pilot operator
+uses the Worker D1 binding and proves its rollback behavior before preparation;
+arbitrary remote updates remain outside that operator's scope.
 
 The additive `0002_ftw_import_checkpoints.sql` migration creates only private
 checkpoint and transaction-assertion tables. Existing public/service queries

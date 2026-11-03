@@ -1,0 +1,60 @@
+name: FTW operator
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Guarded operation for the private approved-record pilot
+        type: choice
+        options: [prepare, apply, status, restore]
+        required: true
+      bundle_sha256:
+        description: SHA-256 of the reviewed private pilot payload
+        type: string
+        required: true
+      checkpoint_id:
+        description: Exact checkpoint ID from prepare; required except for prepare
+        type: string
+      reason:
+        description: Required for restore; retained only in the private receipt
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  operate:
+    if: ${{ github.repository == 'spenceracaton/this-way' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: this-way-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: production
+      url: https://this-way.spencercaton.workers.dev
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run the authenticated operator
+        run: node scripts/run-ftw-operator.mjs
+        env:
+          OPERATOR_OPERATION: ${{ inputs.operation }}
+          EXPECTED_BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+          APPROVED_CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+          RESTORE_REASON: ${{ inputs.reason }}
+          PUBLISHING_PAUSED: ${{ vars.PRODUCTION_PUBLISHING_PAUSED }}
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          THIS_WAY_FTW_PILOT_PAYLOAD: ${{ secrets.THIS_WAY_FTW_PILOT_PAYLOAD }}
+      - name: Verify temporary Worker cleanup
+        if: ${{ always() }}
+        run: node scripts/run-ftw-operator.mjs cleanup
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
