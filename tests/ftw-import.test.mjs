@@ -145,6 +145,46 @@ test('does not overwrite locally edited locations when source rows are replayed'
   assert.equal(conflict.locations.length, 0);
 });
 
+test('a reviewed location-only correction emits its mapped location without overwriting the listing, then skips on replay', () => {
+  const source = record({ photos: [] });
+  const initial = planFtwImport({ records: [source], assetManifest: { assets: [] }, now: 100 });
+  const initialLocation = initial.locations[0];
+  const mappedLocationId = 'existing-reviewed-location';
+  const mappings = initial.source_mappings.map(mapping => mapping.entity_type === 'location'
+    ? { ...mapping, canonical_id: mappedLocationId } : mapping);
+  const targets = [...initial.seasons,
+    { ...initialLocation, id: mappedLocationId },
+    { ...initial.listings[0], location_id: mappedLocationId }];
+  const locationManifest = { 'legacy-17:2026': {
+    neighborhoodId: 'historic-park-street', latitude: 27.771, longitude: -82.641
+  } };
+  const corrected = planFtwImport({ records: [source], assetManifest: { assets: [] },
+    existingMappings: mappings, targetRows: targets, locationManifest, now: 200 });
+  assert.deepEqual(corrected.conflicts, []);
+  assert.equal(corrected.decisions.find(item => item.entityType === 'listing').action, 'skip');
+  assert.equal(corrected.decisions.find(item => item.entityType === 'location').action, 'update');
+  assert.equal(corrected.listings.length, 0);
+  assert.equal(corrected.photos.length, 0);
+  assert.equal(corrected.seasons.length, 0);
+  assert.equal(corrected.locations.length, 1);
+  assert.equal(corrected.locations[0].id, mappedLocationId);
+  assert.equal(corrected.locations[0].neighborhood_id, 'historic-park-street');
+  assert.equal(corrected.locations[0].latitude, 27.771);
+  assert.equal(corrected.locations[0].longitude, -82.641);
+  assert.equal(corrected.source_mappings.length, 1);
+  assert.equal(corrected.source_mappings[0].entity_type, 'location');
+  assert.equal(corrected.source_mappings[0].canonical_id, mappedLocationId);
+  assert.notEqual(corrected.source_mappings[0].source_checksum, mappings.find(item => item.entity_type === 'location').source_checksum);
+
+  const savedMappings = mappings.map(mapping => mapping.entity_type === 'location' ? corrected.source_mappings[0] : mapping);
+  const savedTargets = targets.map(row => row.id === mappedLocationId ? corrected.locations[0] : row);
+  const replay = planFtwImport({ records: [source], assetManifest: { assets: [] },
+    existingMappings: savedMappings, targetRows: savedTargets, locationManifest, now: 300 });
+  assert.deepEqual(replay.conflicts, []);
+  assert.ok(replay.decisions.every(item => item.action === 'skip'));
+  for (const type of ['seasons', 'locations', 'listings', 'photos', 'source_mappings']) assert.equal(replay[type].length, 0);
+});
+
 test('reuses existing canonical IDs for mapped listings and their foreign keys', () => {
   const initial = planFtwImport({ records: [record()], assetManifest: assets, now: 100 });
   const ids = { listing: 'thisway-listing-id', location: 'thisway-location-id', photo: 'thisway-photo-id' };
@@ -201,4 +241,36 @@ test('rejects duplicate identities, unsupported statuses, malformed tags, and mi
   assert.throws(() => planFtwImport({ records: [record({ status: 'mystery', photos: [] })], assetManifest: { assets: [] }, now: 1 }), /unsupported status/);
   assert.throws(() => planFtwImport({ records: [record({ tags: '{"not":"array"}', photos: [] })], assetManifest: { assets: [] }, now: 1 }), /JSON array/);
   assert.throws(() => planFtwImport({ records: [record()], assetManifest: { assets: [] }, now: 1 }), /asset manifest is missing/);
+});
+
+test('rejects duplicate photo source identities within a record and across listings', () => {
+  const photo = record().photos[0];
+  assert.throws(() => planFtwImport({ records: [record({ photos: [photo, { ...photo, position: 1 }] })], assetManifest: assets }),
+    { name: 'TypeError', message: /duplicate source photo/ });
+  assert.throws(() => planFtwImport({ records: [record(), record({ id: 'legacy-18' })], assetManifest: assets }),
+    { name: 'TypeError', message: /duplicate source photo/ });
+});
+
+test('distinct canonical photos cannot share a destination object, including a preexisting object owner', () => {
+  const aliasAssets = { assets: [assets.assets[0], { ...assets.assets[0], sourceKey: 'legacy/alias.jpg' }] };
+  const second = { id: 'photo-2', object_key: 'legacy/alias.jpg', status: 'approved' };
+  assert.throws(() => planFtwImport({ records: [record({ photos: [record().photos[0], second] })], assetManifest: aliasAssets }),
+    { name: 'TypeError', message: /duplicate destination photo object key/ });
+  assert.throws(() => planFtwImport({ records: [record()], assetManifest: assets,
+    targetRows: [{ id: 'another-canonical-photo', object_key: 'ftw/photo-1.jpg' }] }),
+    { name: 'TypeError', message: /duplicate destination photo object key/ });
+});
+
+test('photo identities remain season-scoped when their destination objects are distinct and replay without emission', () => {
+  const nextAssets = { assets: [assets.assets[0], { ...assets.assets[0], sourceKey: 'legacy/next-year.jpg', objectKey: 'ftw/next-year.jpg' }] };
+  const records = [record(), record({ season_year: 2027, photos: [{ ...record().photos[0], object_key: 'legacy/next-year.jpg' }] })];
+  const initial = planFtwImport({ records, assetManifest: nextAssets, now: 100 });
+  assert.equal(initial.photos.length, 2);
+  assert.equal(new Set(initial.photos.map(photo => photo.id)).size, 2);
+  const replay = planFtwImport({ records, assetManifest: nextAssets, existingMappings: initial.source_mappings,
+    targetRows: [...initial.seasons, ...initial.locations, ...initial.listings, ...initial.photos], now: 200 });
+  assert.deepEqual(replay.conflicts, []);
+  assert.ok(replay.decisions.every(item => item.action === 'skip'));
+  assert.equal(replay.photos.length, 0);
+  assert.equal(replay.source_mappings.length, 0);
 });

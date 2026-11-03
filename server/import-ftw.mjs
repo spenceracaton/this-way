@@ -247,6 +247,39 @@ export function planFtwImport({ sourceSystem = DEFAULT_SOURCE, records, assetMan
     if (targetById.has(row.id)) throw new TypeError(`duplicate target row ${row.id}`);
     targetById.set(row.id, row);
   }
+  // Photo source identities and destination objects are unique across the whole
+  // batch, including rows that might later skip or conflict. Do not return a
+  // seemingly valid plan that can only fail a photo PK/object-key constraint.
+  const seenPhotoListings = new Set(), seenPhotos = new Set(), seenPhotoIds = new Set(), objectOwners = new Map();
+  for (const row of targetRows) {
+    if (typeof row.object_key !== 'string' || !row.object_key) continue;
+    const owner = objectOwners.get(row.object_key);
+    if (owner != null && owner !== row.id) throw new TypeError(`duplicate destination photo object key ${row.object_key}`);
+    objectOwners.set(row.object_key, row.id);
+  }
+  for (const record of records) {
+    const seasonYear = sourceSeason(record);
+    const listingSourceId = requiredString(String(record.id ?? record.source_id ?? ''), 'record id');
+    const listingKey = mappingKey({ source_system: sourceSystem, entity_type: 'listing', source_id: listingSourceId, source_season_id: String(seasonYear) });
+    if (seenPhotoListings.has(listingKey)) throw new TypeError(`duplicate source listing ${listingSourceId} in season ${seasonYear}`);
+    seenPhotoListings.add(listingKey);
+    for (const photo of sourcePhotoRows(record)) {
+      const sourceKey = String(photo.object_key ?? photo.objectKey ?? photo.photo_key ?? photo.key ?? '');
+      const sourceId = String(photo.id ?? sourceKey);
+      const identity = { sourceSystem, entityType: 'photo', sourceId, sourceSeasonId: String(seasonYear) };
+      const key = mappingKey({ source_system: sourceSystem, entity_type: 'photo', source_id: sourceId, source_season_id: String(seasonYear) });
+      if (seenPhotos.has(key)) throw new TypeError(`duplicate source photo ${sourceId} in season ${seasonYear}`);
+      seenPhotos.add(key);
+      const id = requiredString(String(mappings.get(key)?.canonical_id ?? stableId('photo', identity)), 'canonical photo id');
+      if (seenPhotoIds.has(id)) throw new TypeError(`duplicate canonical photo ${id}`);
+      seenPhotoIds.add(id);
+      const asset = assets.get(sourceKey);
+      if (!asset) throw new TypeError(`asset manifest is missing source key ${sourceKey || '(empty)'}`);
+      const owner = objectOwners.get(asset.object_key);
+      if (owner != null && owner !== id) throw new TypeError(`duplicate destination photo object key ${asset.object_key}`);
+      objectOwners.set(asset.object_key, id);
+    }
+  }
   const output = { seasons: [], locations: [], listings: [], photos: [], source_mappings: [], decisions: [], conflicts: [] };
   const seen = new Set();
   const emittedMappingKeys = new Set();
@@ -412,14 +445,15 @@ export function planFtwImport({ sourceSystem = DEFAULT_SOURCE, records, assetMan
     output.decisions.push({ entityType: 'listing', sourceId, seasonYear, canonicalId: listingId, sourceStatus: statusSource, visibility: status, action: listingAction, checksum: sourceChecksum });
     output.decisions.push({ entityType: 'season', sourceId: seasonSourceId, seasonYear, canonicalId: seasonId, action: seasonAction, checksum: seasonChecksum });
     output.decisions.push({ entityType: 'location', sourceId, seasonYear, canonicalId: locationId, action: locationAction, checksum: entities[1].source_checksum });
-    if (listingAction !== 'conflict' && listingAction !== 'skip') {
+    if (listingAction !== 'conflict') {
       if (seasonAction === 'insert' && !emittedSeasonIds.has(season.id)) {
         emittedSeasonIds.add(season.id);
         output.seasons.push(season);
       }
       if (locationAction === 'insert' || locationAction === 'update') output.locations.push(location);
-      output.listings.push(listing);
+      if (listingAction !== 'skip') output.listings.push(listing);
       for (const entity of entities) {
+        if (entity.entity_type === 'listing' && listingAction === 'skip') continue;
         if (entity.entity_type === 'season' && seasonAction !== 'insert' && seasonAction !== 'mapped') continue;
         if (entity.entity_type === 'location' && locationAction !== 'insert' && locationAction !== 'update') continue;
         const mapping = {

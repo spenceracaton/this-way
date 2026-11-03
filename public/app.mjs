@@ -174,6 +174,10 @@ async function start() {
     const creditResize = new ResizeObserver(() => $('.canvas').style.setProperty('--map-credit-height', credit.offsetHeight + 'px'));
     creditResize.observe(credit);
   }
+  const referenceResize = new ResizeObserver(() => {
+    $('.canvas').style.setProperty('--reference-height', $('.references').offsetHeight + 'px');
+  });
+  referenceResize.observe($('.references'));
   // A card can grow after fonts/images load or after viewport rotation. Only
   // layout changes reveal it again; ordinary user pan/zoom remains untouched.
   const sheetResize = new ResizeObserver(() => view.revealSelection());

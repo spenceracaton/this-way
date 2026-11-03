@@ -1,6 +1,6 @@
 # This Way map prototype
 
-94 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 92 maps contain geography only. No seasonal overlays or FTW listing records are imported.
+94 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 92 maps contain geography only. The public map bundles contain no seasonal overlays or imported FTW listing records.
 
 The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Three more maps—Mystic Lake, Stonesthrow, and Holiday Park—come from a complete audit of the pinned source cohorts. Those directories are historical inputs, not the current production source authority. The final nine-map batch completes all 12 recovered bundles, for 87 FTW-derived maps total. Seven independently prepared county/Census maps—Greenbriar, Harbor Bluffs, Bear Creek, Ridgecrest, Tierra Verde, Belleair Bluffs, and Belleair Beach—bring the catalog to 94. Their January 1, 2026 Census reference boundaries, County roads and USGS water are retained as reusable geographic inputs. The first five use CDP areas; Belleair Bluffs and Belleair Beach use explicitly classified incorporated-place areas. South Highpoint remains an unregistered multipart/holed source study. This is not a claim of complete current FTW coverage: 34 directory-only entries lack a verified reusable map definition. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, County/Esri, and USGS source credits are retained where applicable. Feather Sound uses County road centerlines and USGS water data with its declared mixed-source terms; it is not labeled OSM.
 
@@ -15,7 +15,7 @@ for authenticated owner review. See [service setup](docs/service-setup.md),
 Production activation was verified at commit `4ac4a28ea30b5227af250f96615102d2a167b374`
 in [run 41570806085, attempt 4](https://github.com/spenceracaton/this-way/actions/runs/41570806085).
 Public API, owner sign-in/moderation access, and logout passed live checks.
-Existing FTW records have not been migrated.
+Production FTW records have not been migrated. An [isolated public-data rehearsal](docs/ftw-rehearsal-pilot.md) inspected 40 real listings, imported 31 eligible records and five photos into local storage, and verified a no-op rerun and persistence. Nine placements remain flagged; the rehearsal data and photos are private cloud artifacts, not public site assets.
 
 ## Rebuild the imported geography
 
