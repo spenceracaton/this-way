@@ -59,6 +59,7 @@
 .house-copy p{margin:0}
 .house-copy p:empty{display:none}
 #selected-note:not(:empty){margin-top:8px}
+.house-copy #detail-season:not([hidden]){margin-top:3px;color:#775f70;font-size:11px;font-weight:600}
 .house-copy ul{display:flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:8px 0 0}
 .house-copy li{background:#e9dfce;border-radius:4px;padding:3px 7px;font-size:12px}
 .house-pane:has(#display-photos[hidden]) h2{padding-right:44px}
@@ -108,8 +109,11 @@
  .canvas{container-type:size}
 }
 @media(max-width:720px) and (min-width:560px) and (max-height:480px){
- .house-pane{top:64px;right:0;left:auto;bottom:auto;width:48%;max-height:calc(100% - 64px);border-radius:12px 0 0 0}
+ .house-pane{top:52px;right:0;left:auto;bottom:auto;width:43%;max-height:calc(100% - 52px);border-radius:12px 0 0 0}
  #display-photos{width:min(200px,calc(100% - 40px),36svh)}
- .house-copy{padding:16px}
- .house-copy h2{font-size:21px}
+ .house-copy{padding:10px 14px}
+ .house-copy h2{font-size:19px}
+ #detail-address a{min-height:36px;padding-block:4px}
+ #selected-note:not(:empty){margin-top:4px}
+ .house-actions #detail-add-photos{flex:0 0 72px;min-width:72px;padding-inline:4px;font-size:12px;white-space:nowrap}
 }
