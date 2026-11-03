@@ -1,0 +1,58 @@
+{
+  "id": "northeast-terraces",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "ba75e909ab11e44690efa0b2f956a54723bff1e06fa1f69c0e437d2a96817cd2",
+    "map-data.json": "724dfb2a2739364d0ae4497f4cb45bdced8abf6aafb29397f07d13aaf3eeb64f",
+    "buffer.mjs": "be082e8a22a3e64e64e311906a47fcea72d4bc30f77042a45c546d89ed747f08",
+    "buffer-map-data.json": "5846a7b3c6d182553ab47b106c5e8c7e0473ab817ed4e96e77bf40d92b2860e1",
+    "source-geography.geojson": "d092dd147cf8b020541af3e565ab86efcd62971defbd0c3756005ed2426128a4"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "9564f53e23638304ee0df8885ed3a6c8b7527c10f674d0b1cffec06b71067073",
+  "nearbyMaskGeometrySha256": "9a36ddeaab2ac7bc94121141238c1ad8a085b1c1d6818dd8c1a454f4999644de",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; County Aerials2025 original conservative lake trace where explicitly attributed",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query"
+      },
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer/exportImage"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-14131417d188/current/public/neighborhoods/northeast-terraces/review-map.svg",
+    "map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/northeast-terraces/map-data.json",
+    "buffer.mjs": "release-source/event-db-14131417d188/current/lib/neighborhood-buffers/northeast-terraces.mjs",
+    "buffer-map-data.json": "release-source/event-db-14131417d188/current/public/neighborhoods/northeast-terraces/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-14131417d188/current/public/neighborhoods/northeast-terraces/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "37674cf378608e3ab6c092992ff25fb22caf5551a4a8b5a03dfb1d60fa8879e9",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/northeast-terraces.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "0e436d5ba2b306be08fdcd660a299b2ebdf0f2d39638b20282f2dfbf4b66abb0",
+    "sha256": "a8ca933803c459361d40ac607ad32564c7a756f124bd4563bc2bf0952b0e57c5",
+    "bytes": 135104,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

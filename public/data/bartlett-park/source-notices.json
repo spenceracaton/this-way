@@ -1,0 +1,87 @@
+{
+  "attribution": "© OpenStreetMap contributors; original conservative channel interpretations from Pinellas County Aerials2025",
+  "license": "Mixed: OSM features ODbL-1.0; explicitly identified County-aerial-derived features are original approximate public-GIS reference interpretations, not OSM",
+  "coverageDerivation": {
+    "identity": "City Bartlett Park association envelope; only zero-address incumbent overlap slivers removed. Eligibility additionally requires reviewed dry coverage.",
+    "visibility": "Conservative20m dry nearby band, not neighborhood membership or route assurance.",
+    "water": "OSM ponds and original conservative County2025 channel/canopy exclusion traces; not surveyed banks. Bridges retain existing road artwork and interactions.",
+    "confidence": "High for retained County address controls and870; bank and canopy uncertainty conservatively excluded."
+  },
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=23&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+    "https://api.openstreetmap.org/api/0.6/map",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "source": "PGS"
+    },
+    {
+      "plant:source": "oil",
+      "source": "U.S. Energy Information Administration - EIA-860 - 2020"
+    },
+    {
+      "source": "Original conservative interpretation of Pinellas County Aerials2025; channel/bank/canopy corridor clipped to reviewed25m map-use envelope, not surveyed banks or OSM geometry",
+      "license": "Public GIS reference, as-is; original approximate interpretation"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors; original conservative channel interpretations from Pinellas County Aerials2025",
+    "license": "Mixed: OSM features ODbL-1.0; explicitly identified County-aerial-derived features are original approximate public-GIS reference interpretations, not OSM",
+    "coverageDerivation": {
+      "identity": "City Bartlett Park association envelope; only zero-address incumbent overlap slivers removed. Eligibility additionally requires reviewed dry coverage.",
+      "visibility": "Conservative20m dry nearby band, not neighborhood membership or route assurance.",
+      "water": "OSM ponds and original conservative County2025 channel/canopy exclusion traces; not surveyed banks. Bridges retain existing road artwork and interactions.",
+      "confidence": "High for retained County address controls and870; bank and canopy uncertainty conservatively excluded."
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=23&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source": "PGS"
+      },
+      {
+        "plant:source": "oil",
+        "source": "U.S. Energy Information Administration - EIA-860 - 2020"
+      },
+      {
+        "source": "Original conservative interpretation of Pinellas County Aerials2025; channel/bank/canopy corridor clipped to reviewed25m map-use envelope, not surveyed banks or OSM geometry",
+        "license": "Public GIS reference, as-is; original approximate interpretation"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors; original conservative channel interpretations from Pinellas County Aerials2025",
+    "license": "Mixed: OSM features ODbL-1.0; explicitly identified County-aerial-derived features are original approximate public-GIS reference interpretations, not OSM",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=23&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source": "PGS"
+      },
+      {
+        "plant:source": "oil",
+        "source": "U.S. Energy Information Administration - EIA-860 - 2020"
+      },
+      {
+        "source": "Original conservative interpretation of Pinellas County Aerials2025; channel/bank/canopy corridor clipped to reviewed25m map-use envelope, not surveyed banks or OSM geometry",
+        "license": "Public GIS reference, as-is; original approximate interpretation"
+      }
+    ]
+  }
+}

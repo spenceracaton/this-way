@@ -1,10 +1,12 @@
 # This Way map prototype
 
-59 source-supported neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 57 maps contain geography only. No seasonal overlays or FTW listing records are imported.
+75 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 73 maps contain geography only. No seasonal overlays or FTW listing records are imported.
 
-The catalog matches the fixed registry in the Fright This Way QA snapshot `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. FTW areas created only in its production database are outside this static snapshot. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM and the two maps' additional County GIS source credits are retained.
+The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Those directories are historical inputs, not the current production source authority. This is not a claim of complete current FTW coverage: ten more QA-referenced maps still need recoverable assets. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, and additional County/Esri source credits are retained where applicable.
 
-Only the selected map's configuration and artwork load. The 57 new lossless WebP images have a maximum 3072px long edge; their SVG sources remain available for diagnostics. The generated expansion adds about 26 MB of artwork to the checkout, rather than downloading that entire catalog in the browser.
+Only the selected map's configuration and artwork load. Imported lossless WebP images have a maximum 3072px long edge; their SVG sources remain available for diagnostics. The browser does not download the entire catalog's artwork.
+
+Each map is a separate data/artwork bundle. See [map reuse and coordinate format](docs/map-data.md) for using it outside this application, and [the expansion audit](docs/neighborhood-expansion.md) for recovered and pending areas. Artwork retains its permission-based license; technical portability does not grant reuse rights.
 
 ## Rebuild the imported geography
 
@@ -13,10 +15,12 @@ The committed assets run without QA-repository access or Python. Rebuilding them
 ```sh
 python3 scripts/fetch-ftw-geography.py --output /tmp/this-way-ftw-geography
 python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-geography/source --reference /tmp/this-way-ftw-geography/reference
+python3 scripts/fetch-ftw-geography.py --expansion --output /tmp/this-way-ftw-expansion
+python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-expansion/source --reference /tmp/this-way-ftw-expansion/reference
 node scripts/rasterize-neighborhoods.mjs
 ```
 
-Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The fetcher verifies Git blob hashes; each map records source checksums, preserved mask geometry, four independently matched road anchors, and raster checksums in its provenance. Valid raster outputs are reused when their source and dimensions are unchanged. The importer deliberately excludes listing data, executable SVG, external resources, textures, and seasonal decorations.
+Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The fetcher verifies Git blob hashes; the expansion plan also checks asset and registry/config fingerprints against maintained QA fixtures where available. Each map records source checksums, preserved mask geometry, four independently matched road anchors, and raster checksums in its provenance. Valid raster outputs are reused when their source and dimensions are unchanged. The importer deliberately excludes listing data, executable SVG, external resources, textures, and seasonal decorations. Use `--ids id-a id-b` to select a batch and `--output-root /tmp/map-preflight` to validate in a scratch output tree. A failing source/metadata preflight writes no batch outputs.
 
 ## Run
 
@@ -81,7 +85,7 @@ The inspected renderer's camera updates directly call detail-card layout, cluste
 
 The artwork already uses a fixed SVG coordinate system, and `lib/neighborhoods.mjs` defines an explicit affine longitude/latitude conversion. Leaflet's `CRS.Simple` and SVG overlay accept this without a map service or token. This was enough evidence to build one candidate; a second competing application was unnecessary.
 
-The same adapter now renders all 59 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
+The same adapter now renders all 75 prepared maps. Additional geography and richer interactions still require their own source and browser checks.
 
 ## Code boundaries
 

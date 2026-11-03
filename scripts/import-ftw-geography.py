@@ -12,7 +12,6 @@ import argparse
 import json
 import math
 import re
-import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -157,7 +156,8 @@ def anchors_for(map_data: dict, projection: dict, bounds: dict, svg: bytes, neig
     candidates = []
     for feature in map_data.get("features", []):
         props = feature.get("properties", {})
-        if props.get("osmType") != "way" or props.get("highway") in {None, "footway", "path", "steps"}:
+        source_way = re.fullmatch(r"way/(\d+)", str(feature.get("id", "")))
+        if not (props.get("osmType") == "way" or source_way) or props.get("highway") in {None, "footway", "path", "steps"}:
             continue
         coords = feature.get("geometry", {}).get("coordinates", [])
         if feature.get("geometry", {}).get("type") != "LineString":
@@ -176,7 +176,10 @@ def anchors_for(map_data: dict, projection: dict, bounds: dict, svg: bytes, neig
             match = min(nearby, key=lambda v: math.hypot(v[0]-xy[0], v[1]-xy[1]))
             distance = math.hypot(match[0]-xy[0], match[1]-xy[1])
             if distance <= .1:
-                candidates.append((distance, str(props.get("osmId", feature.get("id", "way"))), index, coord, match))
+                osm_id = props.get("osmId") or (source_way.group(1) if source_way else None)
+                if osm_id is None:
+                    continue
+                candidates.append((distance, str(osm_id), index, coord, match))
     # Select geographically separated matches; no computed-only anchors are emitted.
     selected = []
     for item in sorted(candidates):
@@ -190,32 +193,102 @@ def anchors_for(map_data: dict, projection: dict, bounds: dict, svg: bytes, neig
              "matchErrorPx": round(item[0], 6)} for i, item in enumerate(selected)]
 
 
-def run(source: Path, reference: Path):
+def source_notices(data: dict, metadata: dict) -> dict:
+    """Retain declared terms without applying one source's license to another."""
+    keys = ("attribution", "license", "licenseUrl", "sourceUrl", "sourceLicenses",
+            "licenses", "sourceBindings", "supplementalOriginalTraceLicense", "coverageDerivation")
+    notices = {key: data[key] for key in keys if key in data}
+    notices["coverageSources"] = metadata.get("coverageSources", [])
+    # Keep the distinct source/terms records attached to authored geography,
+    # without duplicating all road coordinates or any unrelated app data.
+    distinct = {}
+    for feature in data.get("features", []):
+        props = feature.get("properties", {})
+        record = {key: value for key, value in props.items()
+                  if re.search(r"source|licens|attribut|copyright|terms", key, re.I)}
+        if record:
+            distinct[json.dumps(record, sort_keys=True)] = record
+    notices["featureNotices"] = list(distinct.values())
+    return notices
+
+
+def reviewed_credits(notices: dict, map_data: dict) -> tuple[dict, list[dict]]:
+    text = json.dumps(notices, ensure_ascii=False).lower()
+    has_osm = "openstreetmap" in text or any(
+        feature.get("properties", {}).get("osmType") in {"way", "node", "relation"}
+        for feature in map_data.get("features", []))
+    if not has_osm:
+        raise ValueError("Unrecognized geography source; review attribution before importing")
+    primary = {"label": "© OpenStreetMap contributors", "href": "https://www.openstreetmap.org/copyright"}
+    additional = []
+    # This normalization is used only for the newly reviewed batches. Earlier
+    # maps keep their existing presentation. Exact wording/terms stay in the
+    # downloadable source notices, including missing/unspecified license fields.
+    city = next((url for url in notices["coverageSources"] if "egis.stpete.org" in url), None)
+    if city:
+        additional.append({"label": "City of St. Petersburg GIS", "href": city})
+    if any(word in text for word in ("pinellas", "county2026", "county2025", "county-aerial", "county/esri")):
+        label = "Pinellas County imagery" + (" / Esri" if "esri" in text or "arcgisonline" in text else "")
+        urls = re.findall(r'https://[^\s"<>]+', json.dumps(notices))
+        url = next((value for value in urls if "egis.pinellas.gov" in value), None)
+        url = url or next((value for value in urls if "services.arcgisonline.com" in value), None)
+        additional.append({"label": label, **({"href": url} if url else {})})
+    return primary, additional
+
+
+def run(source: Path, reference: Path, selected: list[str] | None = None, output: Path = ROOT):
     maps = load_json(reference / "neighborhood-maps.json")
     buffers = load_json(reference / "neighborhood-buffer-config.json")
     source_manifest = load_json(source / "manifest.json")
+    for filename, record in source_manifest.get("referenceFiles", {}).items():
+        if filename not in {"neighborhood-maps.json", "neighborhood-buffer-config.json"}:
+            continue
+        if hashlib.sha256((reference / filename).read_bytes()).hexdigest() != record["sha256"]:
+            raise ValueError(f"Reference checksum mismatch: {filename}")
     existing = {"old-northeast", "crescent-lake"}
-    ids = sorted(set(maps) - existing, key=lambda value: (maps[value]["name"].casefold(), value))
-    if len(ids) != 57:
-        raise ValueError(f"Expected 57 new fixed neighborhoods, found {len(ids)}")
+    requested = set(selected) if selected is not None else set(maps) - existing
+    if not requested or requested - set(maps) or requested & existing:
+        raise ValueError("Select nonempty prepared map IDs; sample maps cannot be replaced")
+    if any(not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", item) for item in requested):
+        raise ValueError("Invalid neighborhood ID")
+    ids = sorted(requested, key=lambda value: (maps[value]["name"].casefold(), value))
     file_manifest = {(item["id"], item["file"]): item for item in source_manifest.get("files", [])}
+    # Prepare and validate the entire batch before touching any output. A bad
+    # source in the last map must not partially publish the earlier maps.
+    writes = {}
     for neighborhood_id in ids:
         folder = source / neighborhood_id
         source_svg, data_path, buffer_path = folder / "review-map.svg", folder / "map-data.json", folder / "buffer.mjs"
         missing = [p for p in (source_svg, data_path, buffer_path) if not p.is_file()]
         if missing:
             raise FileNotFoundError(f"Missing source files for {neighborhood_id}: {missing}")
+        verified_hashes = {}
+        for (item_id, name), record in file_manifest.items():
+            if item_id != neighborhood_id:
+                continue
+            if Path(name).name != name:
+                raise ValueError(f"Invalid manifest filename: {name}")
+            digest = hashlib.sha256((folder / name).read_bytes()).hexdigest()
+            if record.get("sha256") != digest:
+                raise ValueError(f"Source checksum mismatch: {neighborhood_id}/{name}")
+            verified_hashes[name] = digest
         metadata = maps[neighborhood_id]
         buffer_config = buffers[neighborhood_id]
+        projection = metadata["projection"]
+        if not all(isinstance(value, (float, int)) and math.isfinite(value) for value in projection.values()):
+            raise ValueError(f"Invalid projection: {neighborhood_id}")
+        if projection["xScale"] <= 0 or projection["yScale"] <= 0:
+            raise ValueError(f"Invalid projection scales: {neighborhood_id}")
         map_data = load_json(data_path)
         buffer, buffer_payload_path = buffer_data(buffer_path)
         svg = clean_geography_svg(source_svg, buffer, buffer_config["bufferBounds"], metadata["bounds"])
-        svg_path = ROOT / "public/assets/neighborhoods" / f"{neighborhood_id}.svg"
-        config_path = ROOT / "public/data" / neighborhood_id
-        svg_path.parent.mkdir(parents=True, exist_ok=True)
-        config_path.mkdir(parents=True, exist_ok=True)
-        svg_path.write_bytes(svg)
+        svg_path = output / "public/assets/neighborhoods" / f"{neighborhood_id}.svg"
+        config_path = output / "public/data" / neighborhood_id
+        writes[svg_path] = svg
         attribution_label = map_data.get("attribution") or "Map data attribution unavailable"
+        is_expansion = source_manifest.get("normalizedSourceNotices", False)
+        if not is_expansion and (not map_data.get("attribution") or not map_data.get("license")):
+            raise ValueError(f"Missing geography source credit/license: {neighborhood_id}")
         attribution = {"label": attribution_label}
         if "aerials2026" in attribution_label.lower():
             county_source = next((url for url in metadata.get("coverageSources", [])
@@ -235,9 +308,20 @@ def run(source: Path, reference: Path):
         if attribution_label.startswith("© OpenStreetMap contributors;"):
             config["attribution"] = {"label": "© OpenStreetMap contributors", "href": "https://www.openstreetmap.org/copyright"}
             config["additionalAttributions"] = [{"label": attribution_label.split(";", 1)[1].strip(), **({"href": attribution["href"]} if attribution.get("href") else {})}]
-        (config_path / "neighborhood.json").write_text(json.dumps(config, indent=2) + "\n")
+        if is_expansion:
+            notices = source_notices(map_data, metadata)
+            for filename in ["buffer-map-data.json", "source-geography.geojson"]:
+                if filename in verified_hashes:
+                    notices[filename] = source_notices(load_json(folder / filename), metadata)
+            config["attribution"], config["additionalAttributions"] = reviewed_credits(notices, map_data)
+            config["license"] = map_data.get("license")
+            config["sourceNotices"] = f"./data/{neighborhood_id}/source-notices.json"
+            writes[config_path / "source-notices.json"] = (json.dumps(notices, indent=2, ensure_ascii=False) + "\n").encode()
+        writes[config_path / "neighborhood.json"] = (json.dumps(config, indent=2) + "\n").encode()
         anchors = anchors_for(map_data, metadata["projection"], metadata["bounds"], svg, neighborhood_id)
-        (config_path / "anchors.json").write_text(json.dumps(anchors, indent=2) + "\n")
+        if len(anchors) != 4:
+            raise ValueError(f"Expected four independently matched road anchors: {neighborhood_id}, found {len(anchors)}")
+        writes[config_path / "anchors.json"] = (json.dumps(anchors, indent=2) + "\n").encode()
         source_hashes = {name: hashlib.sha256(path.read_bytes()).hexdigest()
                          for name, path in (("review-map.svg", source_svg), ("map-data.json", data_path), ("buffer.mjs", buffer_path))}
         if buffer_payload_path != buffer_path:
@@ -246,6 +330,7 @@ def run(source: Path, reference: Path):
             expected = file_manifest.get((neighborhood_id, name))
             if not expected or expected.get("sha256") != digest:
                 raise ValueError(f"Source checksum mismatch: {neighborhood_id}/{name}")
+        source_hashes.update(verified_hashes)
         original_mask = ET.parse(source_svg).getroot().find(f".//{tag('mask')}[@id='spotlight']")
         mask_d = "\n".join(node.get("d", "") for node in original_mask.iter(tag("path")))
         nearby_root = ET.fromstring(f'<svg xmlns="{SVG_NS}">{buffer["artwork"]}</svg>')
@@ -258,33 +343,52 @@ def run(source: Path, reference: Path):
             "coreMaskGeometrySha256": hashlib.sha256(mask_d.encode()).hexdigest(),
             "nearbyMaskGeometrySha256": hashlib.sha256(nearby_d.encode()).hexdigest(),
             "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
-            "sourceGeoAttribution": {"originalCredit": attribution_label, "attribution": config["attribution"], "additionalAttributions": config.get("additionalAttributions", []), "license": config["license"], "licenseUrl": config["licenseUrl"]},
+            "sourceGeoAttribution": {"originalCredit": map_data.get("attribution"), "attribution": config["attribution"], "additionalAttributions": config.get("additionalAttributions", []), "license": config["license"], "licenseUrl": config["licenseUrl"]},
             "boundaryNote": "Approximate app coverage; not a legal boundary.",
             "anchors": len(anchors)}
+        provenance["sourcePaths"] = {name: file_manifest[(neighborhood_id, name)]["sourcePath"] for name in source_hashes}
+        if is_expansion:
+            provenance["sourceNoticesSha256"] = hashlib.sha256(writes[config_path / "source-notices.json"]).hexdigest()
         provenance_path = config_path / "provenance.json"
         if provenance_path.exists():
             prior = load_json(provenance_path)
             raster = prior.get("rasterArtwork", {})
             if raster.get("sourceSha256") == hashlib.sha256(svg).hexdigest():
                 provenance["rasterArtwork"] = raster
-        provenance_path.write_text(json.dumps(provenance, indent=2) + "\n")
+        writes[provenance_path] = (json.dumps(provenance, indent=2) + "\n").encode()
 
-    catalog = [{"id": item, "name": maps[item]["name"], "config": f"./data/{item}/neighborhood.json", "pins": []} for item in ids]
-    (ROOT / "public/neighborhood-catalog.mjs").write_text("// Fixed-neighborhood geography only; FTW database-only areas are not included.\nexport const importedNeighborhoods = " + json.dumps(catalog, indent=2, ensure_ascii=False) + ";\n")
-    (ROOT / "public/data/neighborhood-import.json").write_text(json.dumps({
+    summary_path = output / "public/data/neighborhood-import.json"
+    prior_summary = load_json(summary_path) if summary_path.exists() else {}
+    all_ids = sorted(set(prior_summary.get("importedIds", [])) | set(ids))
+    catalog = []
+    for item in all_ids:
+        path = output / "public/data" / item / "neighborhood.json"
+        config = json.loads(writes[path]) if path in writes else load_json(path)
+        catalog.append({"id": item, "name": config["name"], "config": f"./data/{item}/neighborhood.json", "pins": []})
+    catalog.sort(key=lambda item: (item["name"].casefold(), item["id"]))
+    catalog_path = output / "public/neighborhood-catalog.mjs"
+    writes[catalog_path] = ("// Prepared geography only; directory names without maps are excluded.\nexport const importedNeighborhoods = " + json.dumps(catalog, indent=2, ensure_ascii=False) + ";\n").encode()
+    batch = {
         "sourceRepository": source_manifest["repository"], "sourceRevision": source_manifest["revision"],
-        "supportedIds": sorted(["old-northeast", *maps]),
-        "retainedSampleMaps": ["old-northeast", "crescent-lake"], "importedIds": sorted(ids),
-        "listingRecordsImported": 0, "seasonalOverlaysImported": 0,
+        "importedIds": sorted(ids),
         "metadataSha256": hashlib.sha256((reference / "neighborhood-maps.json").read_bytes()).hexdigest(),
         "bufferConfigSha256": hashlib.sha256((reference / "neighborhood-buffer-config.json").read_bytes()).hexdigest(),
-        "scope": "Fixed source-reviewed registry; FTW database-only areas are excluded."
-    }, indent=2) + "\n")
+    }
+    batches = prior_summary.get("batches", [])
+    if not batches and prior_summary:
+        batches = [{key: prior_summary[key] for key in batch if key in prior_summary}]
+    batches = [item for item in batches if item != batch] + [batch]
+    summary = {"sourceRepository": source_manifest["repository"], "sourceRevision": source_manifest["revision"],
+        "supportedIds": sorted(existing | set(all_ids)), "retainedSampleMaps": sorted(existing),
+        "importedIds": all_ids, "listingRecordsImported": 0, "seasonalOverlaysImported": 0,
+        "batches": batches, "scope": "Prepared maps recovered from pinned QA inputs; directory-only areas are excluded."}
+    # Keep the retained sample ordering stable for consumers of this manifest.
+    summary["retainedSampleMaps"] = ["old-northeast", "crescent-lake"]
+    writes[summary_path] = (json.dumps(summary, indent=2) + "\n").encode()
+    for path, payload in writes.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(payload)
     print(f"Imported {len(ids)} fixed neighborhood maps.")
-    for item in ids:
-        anchors = load_json(ROOT / "public/data" / item / "anchors.json")
-        if len(anchors) < 3:
-            print(f"ANCHOR REVIEW: {item} has {len(anchors)} matched road anchors", file=sys.stderr)
 
 
 def root_view_box(source_svg: Path) -> str:
@@ -295,5 +399,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=SOURCE, help="Offline source bundle directory")
     parser.add_argument("--reference", type=Path, default=REFERENCE, help="Prepared reference directory")
+    parser.add_argument("--ids", nargs="+", help="Import only these map IDs, preserving the rest of the catalog")
+    parser.add_argument("--output-root", type=Path, default=ROOT, help="Output tree (use a scratch directory for preflight)")
     options = parser.parse_args()
-    run(options.source.resolve(), options.reference.resolve())
+    run(options.source.resolve(), options.reference.resolve(), options.ids, options.output_root.resolve())

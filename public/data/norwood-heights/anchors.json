@@ -1,0 +1,58 @@
+[
+  {
+    "id": "norwood-heights-road-1",
+    "osmType": "way",
+    "osmId": "639555154",
+    "sourceGeographic": {
+      "lng": -82.6662285,
+      "lat": 27.7989771
+    },
+    "expectedSourcePoint": [
+      323.05,
+      173.35
+    ],
+    "matchErrorPx": 0.000206
+  },
+  {
+    "id": "norwood-heights-road-2",
+    "osmType": "way",
+    "osmId": "11248501",
+    "sourceGeographic": {
+      "lng": -82.6693032,
+      "lat": 27.7946775
+    },
+    "expectedSourcePoint": [
+      34.71,
+      629.15
+    ],
+    "matchErrorPx": 0.000333
+  },
+  {
+    "id": "norwood-heights-road-3",
+    "osmType": "way",
+    "osmId": "1253395134",
+    "sourceGeographic": {
+      "lng": -82.6686297,
+      "lat": 27.799255
+    },
+    "expectedSourcePoint": [
+      97.87,
+      143.89
+    ],
+    "matchErrorPx": 0.000444
+  },
+  {
+    "id": "norwood-heights-road-4",
+    "osmType": "way",
+    "osmId": "1131862604",
+    "sourceGeographic": {
+      "lng": -82.6613538,
+      "lat": 27.7920635
+    },
+    "expectedSourcePoint": [
+      780.19,
+      906.26
+    ],
+    "matchErrorPx": 0.000654
+  }
+]

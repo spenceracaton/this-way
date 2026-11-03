@@ -19,13 +19,16 @@ const rel = path => path.replace(/^\.\//, 'public/');
 test('catalog matches the supported fixed-neighborhood set and preserves the two sample maps', async () => {
   const summary = await json('public/data/neighborhood-import.json');
   const ids = Object.keys(neighborhoods);
-  assert.equal(ids.length, 59);
+  assert.equal(ids.length, 75);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual([...ids].sort(), [...summary.supportedIds].sort());
   assert.deepEqual(summary.retainedSampleMaps, ['old-northeast', 'crescent-lake']);
   assert.equal(neighborhoods['old-northeast'].pins.length, 4);
   assert.equal(neighborhoods['crescent-lake'].pins.length, 4);
-  assert.equal(importedNeighborhoods.length, 57);
+  assert.equal(importedNeighborhoods.length, 73);
+  const sourcePlan = await json('scripts/ftw-expansion-sources.json');
+  for (const id of Object.keys(sourcePlan.mapPrefixes)) assert.ok(ids.includes(id), `${id} recovered map`);
+  for (const id of sourcePlan.unavailableIds) assert.ok(!ids.includes(id), `${id} must await real source assets`);
 });
 
 test('every imported map configuration, artwork, provenance and anchor is internally consistent', async () => {
@@ -72,6 +75,18 @@ test('every imported map configuration, artwork, provenance and anchor is intern
     assert.equal(provenance.rasterArtwork.encoding, 'lossless WebP');
     assert.match(config.attribution.label, /© OpenStreetMap contributors/);
     assert.match(config.attribution.href, /^https:\/\//);
+    if (config.sourceNotices) {
+      const notices = await json(rel(config.sourceNotices));
+      assert.equal(sha256(await read(rel(config.sourceNotices))), provenance.sourceNoticesSha256, `${item.id} source notice checksum`);
+      assert.ok(notices.coverageSources.length, `${item.id} source coverage references`);
+      assert.ok(notices.attribution || notices.featureNotices.length, `${item.id} source-specific notices`);
+      if (notices.coverageSources.some(url => url.includes('egis.stpete.org'))) {
+        assert.ok(config.additionalAttributions.some(credit => /City of St. Petersburg/.test(credit.label)), `${item.id} City source credit`);
+      }
+      // Missing source-wide license metadata must remain unspecified. A map
+      // with several sources must not acquire an invented blanket ODbL grant.
+      assert.equal(config.license, notices.license ?? null, `${item.id} original license statement`);
+    }
     assert.equal(anchors.length, 4, `${item.id} must have four independent anchors`);
 
     const p = config.projection;

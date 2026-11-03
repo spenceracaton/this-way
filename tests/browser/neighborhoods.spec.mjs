@@ -62,7 +62,7 @@ test('representative imported SVG diagnostics remain local and free of seasonal 
 test('long County GIS credits remain visible and separate from the empty state', async ({ page }) => {
   for (const [width, height] of [[320,568],[390,664],[664,390]]) {
     await page.setViewportSize({ width, height });
-    for (const id of ['childs-park', 'lake-maggiore-park']) {
+    for (const id of ['childs-park', 'lake-maggiore-park', 'azalea', 'harbor-isle', 'historic-park-street', 'bartlett-park']) {
       await page.goto(`/?neighborhood=${id}`);
       await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
       const credit = page.locator('.leaflet-control-attribution');

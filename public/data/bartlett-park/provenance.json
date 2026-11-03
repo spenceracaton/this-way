@@ -1,0 +1,58 @@
+{
+  "id": "bartlett-park",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "8263ed11d3af83f88f879727845eae908c8b1bc6f6c51000e5077464154b95b2",
+    "map-data.json": "fa7f05b8fbb57046969d752f4dba9b3fe462a8b60d340c471aa3664556a81c4d",
+    "buffer.mjs": "0bc2b62ac8c4320d137b74aa26a493baf4e2e863a1ab5d1c5ffcb5d0361aa523",
+    "buffer-map-data.json": "e5a00911db19788653efd38519a5d636749ab9d24b521dc7ee68d46ff6e76205",
+    "source-geography.geojson": "8901375f3d3a67333ef06c763226bd2abd4d7f9a9206439df336125fa6e29976"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "f693ce3e9718add45a9dac5cb28f50df94f304cb065d0fd015b6e6fede9a7517",
+  "nearbyMaskGeometrySha256": "b4c88d00f65fac1fb1b14bae859116dd5242bbcedd0da0a6f89af49b7d7c86ff",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors; original conservative channel interpretations from Pinellas County Aerials2025",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=23&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson"
+      },
+      {
+        "label": "Pinellas County imagery",
+        "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+      }
+    ],
+    "license": "Mixed: OSM features ODbL-1.0; explicitly identified County-aerial-derived features are original approximate public-GIS reference interpretations, not OSM",
+    "licenseUrl": null
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bartlett-park/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bartlett-park/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/bartlett-park.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bartlett-park/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bartlett-park/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "42aaced06105a03666c6691b4005dacc7d2eb893e783312ad6e149381f15badd",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/bartlett-park.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "a1ed77971bf0cbbf8039d018f9d9a645f3d2d4666929062f47028faade3021f4",
+    "sha256": "2886e1471ac934e8935b8b51cb86c14dd5aa54a5e34c455d18e334218ee1d615",
+    "bytes": 311790,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

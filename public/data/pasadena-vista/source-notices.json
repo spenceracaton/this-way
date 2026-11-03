@@ -1,0 +1,60 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=108&outFields=OBJECTID,NANAME,STATUS&outSR=4326&f=geojson",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.739,27.768,-82.726,27.781",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0"
+  ],
+  "featureNotices": [],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.739,27.768,-82.726,27.781",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=108&outFields=OBJECTID,NANAME,STATUS&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.739,27.768,-82.726,27.781",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source": "Bing"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.739,27.768,-82.726,27.781",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=108&outFields=OBJECTID,NANAME,STATUS&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.739,27.768,-82.726,27.781",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source": "Bing"
+      }
+    ]
+  }
+}

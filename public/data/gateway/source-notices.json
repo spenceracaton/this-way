@@ -1,0 +1,105 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "Mixed: OSM features ODbL-1.0; separately identified original County-aerial interpretation not OSM",
+  "coverageDerivation": {
+    "identity": "City Gateway association envelope unchanged. Eligibility additionally requires reviewed pond exclusion.",
+    "visibility": "Conservative20m dry nearby band, not neighborhood membership or route assurance.",
+    "water": "OSM pond and separately identified original conservative County2025 pond/bank/canopy exclusion; not surveyed banks.",
+    "confidence": "High for all1441 retained County address controls; pond bank/canopy uncertainty conservatively excluded."
+  },
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=106&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+    "https://api.openstreetmap.org/api/0.6/map",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+  ],
+  "featureNotices": [
+    {
+      "tiger:source": "tiger_import_dch_v0.6_20070809"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+    },
+    {
+      "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+    },
+    {
+      "source": "digitalglobe"
+    },
+    {
+      "source": "Original conservative County 2025 imagery interpretation; not surveyed bank",
+      "license": "Original public-GIS interpretation, not OSM"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "Mixed: OSM features ODbL-1.0; separately identified original County-aerial interpretation not OSM",
+    "coverageDerivation": {
+      "identity": "City Gateway association envelope unchanged. Eligibility additionally requires reviewed pond exclusion.",
+      "visibility": "Conservative20m dry nearby band, not neighborhood membership or route assurance.",
+      "water": "OSM pond and separately identified original conservative County2025 pond/bank/canopy exclusion; not surveyed banks.",
+      "confidence": "High for all1441 retained County address controls; pond bank/canopy uncertainty conservatively excluded."
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=106&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+    ],
+    "featureNotices": [
+      {
+        "tiger:source": "tiger_import_dch_v0.6_20070809"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source": "digitalglobe"
+      },
+      {
+        "source": "Original conservative County 2025 imagery interpretation; not surveyed bank",
+        "license": "Original public-GIS interpretation, not OSM"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "Mixed: OSM features ODbL-1.0; separately identified original County-aerial interpretation not OSM",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?objectIds=106&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=geojson",
+      "https://api.openstreetmap.org/api/0.6/map",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer"
+    ],
+    "featureNotices": [
+      {
+        "tiger:source": "tiger_import_dch_v0.6_20070809"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source:maxspeed": "FDOT \"Maximum Speed Limits\" GIS data, updated August 27, 2011: http://www.dot.state.fl.us/planning/statistics/gis/roaddata.shtm"
+      },
+      {
+        "source": "digitalglobe"
+      },
+      {
+        "source": "Original conservative County 2025 imagery interpretation; not surveyed bank",
+        "license": "Original public-GIS interpretation, not OSM"
+      }
+    ]
+  }
+}

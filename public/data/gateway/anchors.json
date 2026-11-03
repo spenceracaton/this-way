@@ -1,0 +1,58 @@
+[
+  {
+    "id": "gateway-road-1",
+    "osmType": "way",
+    "osmId": "11251412",
+    "sourceGeographic": {
+      "lng": -82.6494157,
+      "lat": 27.8491865
+    },
+    "expectedSourcePoint": [
+      112.53,
+      675.54
+    ],
+    "matchErrorPx": 0.00018
+  },
+  {
+    "id": "gateway-road-2",
+    "osmType": "way",
+    "osmId": "11242864",
+    "sourceGeographic": {
+      "lng": -82.6369838,
+      "lat": 27.848418
+    },
+    "expectedSourcePoint": [
+      845.7,
+      726.8
+    ],
+    "matchErrorPx": 0.000269
+  },
+  {
+    "id": "gateway-road-3",
+    "osmType": "way",
+    "osmId": "1095573132",
+    "sourceGeographic": {
+      "lng": -82.6381582,
+      "lat": 27.8515785
+    },
+    "expectedSourcePoint": [
+      776.44,
+      515.99
+    ],
+    "matchErrorPx": 0.000279
+  },
+  {
+    "id": "gateway-road-4",
+    "osmType": "way",
+    "osmId": "1263827680",
+    "sourceGeographic": {
+      "lng": -82.6496792,
+      "lat": 27.85754
+    },
+    "expectedSourcePoint": [
+      96.99,
+      118.35
+    ],
+    "matchErrorPx": 0.000408
+  }
+]

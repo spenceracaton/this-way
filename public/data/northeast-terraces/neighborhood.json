@@ -1,0 +1,135 @@
+{
+  "id": "northeast-terraces",
+  "name": "Northeast Terraces",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": 20,
+    "right": 980,
+    "top": 20,
+    "bottom": 1040
+  },
+  "projection": {
+    "lngOrigin": -82.632637027045,
+    "latOrigin": 27.84122888707474,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 188237.4345451395,
+    "yScale": 212879.24040380996
+  },
+  "artwork": "./assets/neighborhoods/northeast-terraces.svg",
+  "rasterArtwork": "./assets/neighborhoods/northeast-terraces.webp",
+  "coreBoundary": [
+    [
+      857.5851067576804,
+      918.153019404129
+    ],
+    [
+      812.8095747714342,
+      918.303791389144
+    ],
+    [
+      769.1617236624625,
+      918.4512194185977
+    ],
+    [
+      724.9322401244008,
+      918.60053912426
+    ],
+    [
+      682.1225652165316,
+      918.7449964483424
+    ],
+    [
+      638.766372981203,
+      918.8916429108575
+    ],
+    [
+      595.7398144404066,
+      919.037144071242
+    ],
+    [
+      550.9267939937683,
+      919.1886206962438
+    ],
+    [
+      508.444849181025,
+      919.3324239079185
+    ],
+    [
+      464.28703677239014,
+      919.4818739670056
+    ],
+    [
+      420.6418285753997,
+      919.6297103903506
+    ],
+    [
+      376.4474745840487,
+      919.779518854991
+    ],
+    [
+      331.41662186664746,
+      919.9323139632476
+    ],
+    [
+      286.0585284694845,
+      920.0864164893485
+    ],
+    [
+      241.3195703480336,
+      920.238112490973
+    ],
+    [
+      197.1612944048032,
+      920.3883185873699
+    ],
+    [
+      147.5671966882714,
+      920.5570254057774
+    ],
+    [
+      120.00000000000006,
+      921.3151037639263
+    ],
+    [
+      123.51238212427506,
+      142.38354600984866
+    ],
+    [
+      880.0,
+      138.6848962353173
+    ],
+    [
+      880.0,
+      918.041536195647
+    ],
+    [
+      857.5851067576804,
+      918.153019404129
+    ]
+  ],
+  "overviewBounds": {
+    "left": 120.00000000000006,
+    "right": 880.0,
+    "top": 138.6848962353173,
+    "bottom": 921.3151037639263
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "additionalAttributions": [
+    {
+      "label": "City of St. Petersburg GIS",
+      "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query"
+    },
+    {
+      "label": "Pinellas County imagery",
+      "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2025/ImageServer/exportImage"
+    }
+  ],
+  "sourceNotices": "./data/northeast-terraces/source-notices.json"
+}

@@ -1,0 +1,66 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID+IN+%282%2C22%2C120%29&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.66593676,27.79629567,-82.65196162,27.80960998",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6651%2C27.7974%2C-82.6528%2C27.8085&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6610%2C27.8082%2C-82.6599%2C27.8104&bboxSR=4326&imageSR=4326&size=700%2C1400&format=jpg",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.6631%2C27.7991%2C-82.6547%2C27.8068&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnIdsOnly=true",
+    "https://api.openstreetmap.org/api/0.6/relation/15583798/full"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID+IN+%282%2C22%2C120%29&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.66593676,27.79629567,-82.65196162,27.80960998",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6651%2C27.7974%2C-82.6528%2C27.8085&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6610%2C27.8082%2C-82.6599%2C27.8104&bboxSR=4326&imageSR=4326&size=700%2C1400&format=jpg",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.6631%2C27.7991%2C-82.6547%2C27.8068&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnIdsOnly=true",
+      "https://api.openstreetmap.org/api/0.6/relation/15583798/full"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID+IN+%282%2C22%2C120%29&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.66593676,27.79629567,-82.65196162,27.80960998",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6651%2C27.7974%2C-82.6528%2C27.8085&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6610%2C27.8082%2C-82.6599%2C27.8104&bboxSR=4326&imageSR=4326&size=700%2C1400&format=jpg",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query?f=json&where=STATUS+%3D+%27Current%27&geometry=-82.6631%2C27.7991%2C-82.6547%2C27.8068&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnIdsOnly=true",
+      "https://api.openstreetmap.org/api/0.6/relation/15583798/full"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "source:ref:pinellas": "http://www.pinellascounty.org/code/CH170.pdf"
+      }
+    ]
+  }
+}

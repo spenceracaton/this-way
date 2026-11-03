@@ -1,0 +1,58 @@
+[
+  {
+    "id": "harbor-isle-road-1",
+    "osmType": "way",
+    "osmId": "523465550",
+    "sourceGeographic": {
+      "lng": -82.6111901,
+      "lat": 27.844392
+    },
+    "expectedSourcePoint": [
+      609.5,
+      256.99
+    ],
+    "matchErrorPx": 0.000285
+  },
+  {
+    "id": "harbor-isle-road-2",
+    "osmType": "way",
+    "osmId": "41937008",
+    "sourceGeographic": {
+      "lng": -82.613836,
+      "lat": 27.831718
+    },
+    "expectedSourcePoint": [
+      480.73,
+      954.54
+    ],
+    "matchErrorPx": 0.000294
+  },
+  {
+    "id": "harbor-isle-road-3",
+    "osmType": "way",
+    "osmId": "11242057",
+    "sourceGeographic": {
+      "lng": -82.616801,
+      "lat": 27.837002
+    },
+    "expectedSourcePoint": [
+      336.43,
+      663.72
+    ],
+    "matchErrorPx": 0.000357
+  },
+  {
+    "id": "harbor-isle-road-4",
+    "osmType": "way",
+    "osmId": "11232232",
+    "sourceGeographic": {
+      "lng": -82.6201743,
+      "lat": 27.8450957
+    },
+    "expectedSourcePoint": [
+      172.26,
+      218.26
+    ],
+    "matchErrorPx": 0.000599
+  }
+]

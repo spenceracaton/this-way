@@ -13,7 +13,7 @@ test('picker search, current selection and dismissal preserve map context', asyn
   await expect(dialog(page).getByRole('heading', { name: 'Neighborhoods' })).toBeFocused();
   await expect(trigger(page)).toHaveAttribute('aria-expanded', 'true');
   await expect(dialog(page).getByRole('option', { selected: true })).toContainText('Old Northeast');
-  await expect(dialog(page).getByRole('option')).toHaveCount(59);
+  await expect(dialog(page).getByRole('option')).toHaveCount(75);
   await search(page).fill('CrEsCeNt-Lake');
   await expect(dialog(page).getByRole('option')).toHaveCount(1);
   await expect(dialog(page).getByRole('option')).toContainText('Crescent Lake');
@@ -49,6 +49,35 @@ test('picker keyboard selection preserves diagnostics and clears the previous sa
   expect(params.get('artwork')).toBe('raster');
   expect(params.has('sample')).toBe(false);
   await expect(page.locator('#selection')).toBeHidden();
+});
+
+test('picker opens a recovered map-only neighborhood and clears the sample card', async ({ page }) => {
+  await page.goto('/?sample=c');
+  await expect(page.locator('#selection')).toHaveAttribute('data-selected', 'c');
+  await trigger(page).click();
+  await search(page).fill('Harbor Isle');
+  await expect(dialog(page).getByRole('option')).toHaveCount(1);
+  await dialog(page).getByRole('option', { name: /Harbor Isle/ }).click();
+  await expect(page).toHaveTitle('This Way · Harbor Isle');
+  await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
+  await expect(page.locator('#selection')).toBeHidden();
+  await expect(page.locator('.map-pin')).toHaveCount(0);
+  await expect(page.locator('#reference-list')).toContainText('No sample addresses here yet.');
+  expect(new URL(page.url()).searchParams.has('sample')).toBe(false);
+});
+
+test('wrapped neighborhood titles keep both icons aligned with the first line', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  for (const id of ['historic-park-street', 'lake-maggiore-shores', 'northeast-terraces']) {
+    await page.goto(`/?neighborhood=${id}`);
+    const name = await page.locator('#neighborhood-name').boundingBox();
+    for (const icon of ['.neighborhood-pin', '.neighborhood-chevron']) {
+      const box = await page.locator(`#neighborhood-select ${icon}`).boundingBox();
+      expect(Math.abs(box.y + box.height / 2 - name.y - 14.4)).toBeLessThanOrEqual(1);
+    }
+    await trigger(page).click();
+    await expect(dialog(page)).toBeVisible();
+  }
 });
 
 test('picker fits narrow, short and desktop viewports without moving on search', async ({ page }) => {

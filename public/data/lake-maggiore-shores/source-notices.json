@@ -1,0 +1,2142 @@
+{
+  "attribution": "© OpenStreetMap contributors; additional original approximate channel-bank coordinates derived from Pinellas County 2026 aerial reference imagery. Original trace geometry is separately attributed; County source image pixels are not included in application artwork.",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "supplementalOriginalTraceLicense": "ODbL-1.0 for original authored coordinate geometry only; County source imagery is not relicensed or included in product artwork.",
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?f=geojson&where=1%3D1&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.66561365288514,27.738693981669115,-82.64387325547342,27.750958636320036",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.6797041,27.7152886,-82.6419414,27.7430199",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6653%2C27.739%2C-82.6442%2C27.7507&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6572%2C27.748%2C-82.653%2C27.7488&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.66045%2C27.7417%2C-82.65955%2C27.743&bboxSR=4326&imageSR=4326&size=1200%2C1200&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+  ],
+  "featureNotices": [
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+    },
+    {
+      "source": "digitalglobe"
+    },
+    {
+      "sourceType": "original-approximate-aerial-trace",
+      "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "sourceRetrievedAt": "2026-10-23T00:41:15.681162+00:00",
+      "sourceImageSha256": "64d786bc1262b22039881743f1b27f78bc9dbcb1156d7ee43a2fd860ef3335ab",
+      "geometryLicense": "ODbL-1.0",
+      "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+      "sourcePixelCoordinates": [
+        [
+          0,
+          1027
+        ],
+        [
+          80,
+          990
+        ],
+        [
+          160,
+          972
+        ],
+        [
+          205,
+          972
+        ],
+        [
+          250,
+          961
+        ],
+        [
+          350,
+          951
+        ],
+        [
+          461,
+          948
+        ],
+        [
+          461,
+          991
+        ],
+        [
+          350,
+          1003
+        ],
+        [
+          250,
+          1024
+        ],
+        [
+          210,
+          1040
+        ],
+        [
+          150,
+          1057
+        ],
+        [
+          80,
+          1084
+        ],
+        [
+          0,
+          1124
+        ],
+        [
+          0,
+          1027
+        ]
+      ],
+      "sourceExtent": {
+        "xmin": -82.6477,
+        "ymin": 27.742625,
+        "xmax": -82.6443,
+        "ymax": 27.746025,
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        }
+      },
+      "sourceImageDimensions": [
+        1600,
+        1600
+      ],
+      "independentSourceCenterline": "way/128952747"
+    },
+    {
+      "sourceType": "original-approximate-aerial-trace",
+      "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "sourceRetrievedAt": "2026-10-23T00:41:15.681162+00:00",
+      "sourceImageSha256": "64d786bc1262b22039881743f1b27f78bc9dbcb1156d7ee43a2fd860ef3335ab",
+      "geometryLicense": "ODbL-1.0",
+      "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+      "sourcePixelCoordinates": [
+        [
+          604,
+          954
+        ],
+        [
+          700,
+          961
+        ],
+        [
+          800,
+          956
+        ],
+        [
+          850,
+          945
+        ],
+        [
+          900,
+          932
+        ],
+        [
+          950,
+          912
+        ],
+        [
+          1000,
+          884
+        ],
+        [
+          1050,
+          847
+        ],
+        [
+          1100,
+          807
+        ],
+        [
+          1200,
+          721
+        ],
+        [
+          1300,
+          639
+        ],
+        [
+          1400,
+          561
+        ],
+        [
+          1420,
+          548
+        ],
+        [
+          1500,
+          492
+        ],
+        [
+          1600,
+          426
+        ],
+        [
+          1600,
+          480
+        ],
+        [
+          1500,
+          544
+        ],
+        [
+          1445,
+          581
+        ],
+        [
+          1400,
+          609
+        ],
+        [
+          1300,
+          683
+        ],
+        [
+          1200,
+          765
+        ],
+        [
+          1100,
+          849
+        ],
+        [
+          1050,
+          890
+        ],
+        [
+          1000,
+          924
+        ],
+        [
+          950,
+          948
+        ],
+        [
+          900,
+          966
+        ],
+        [
+          850,
+          979
+        ],
+        [
+          800,
+          989
+        ],
+        [
+          700,
+          990
+        ],
+        [
+          604,
+          984
+        ],
+        [
+          604,
+          954
+        ]
+      ],
+      "sourceExtent": {
+        "xmin": -82.6477,
+        "ymin": 27.742625,
+        "xmax": -82.6443,
+        "ymax": 27.746025,
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        }
+      },
+      "sourceImageDimensions": [
+        1600,
+        1600
+      ],
+      "independentSourceCenterline": "way/128952747"
+    },
+    {
+      "sourceType": "original-approximate-aerial-trace",
+      "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "sourceRetrievedAt": "2026-10-23T00:41:06.070717+00:00",
+      "sourceImageSha256": "23d8ed38c14af158f95000fe474c5478a274078949960b41900bb491c600c445",
+      "geometryLicense": "ODbL-1.0",
+      "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+      "sourcePixelCoordinates": [
+        [
+          0,
+          355
+        ],
+        [
+          100,
+          393
+        ],
+        [
+          200,
+          447
+        ],
+        [
+          300,
+          484
+        ],
+        [
+          400,
+          559
+        ],
+        [
+          500,
+          613
+        ],
+        [
+          590,
+          680
+        ],
+        [
+          650,
+          727
+        ],
+        [
+          710,
+          775
+        ],
+        [
+          760,
+          816
+        ],
+        [
+          810,
+          867
+        ],
+        [
+          844,
+          899
+        ],
+        [
+          866,
+          910
+        ],
+        [
+          866,
+          944
+        ],
+        [
+          825,
+          941
+        ],
+        [
+          780,
+          924
+        ],
+        [
+          743,
+          922
+        ],
+        [
+          720,
+          866
+        ],
+        [
+          667,
+          846
+        ],
+        [
+          615,
+          815
+        ],
+        [
+          565,
+          793
+        ],
+        [
+          520,
+          749
+        ],
+        [
+          490,
+          715
+        ],
+        [
+          450,
+          694
+        ],
+        [
+          400,
+          670
+        ],
+        [
+          300,
+          589
+        ],
+        [
+          200,
+          549
+        ],
+        [
+          100,
+          476
+        ],
+        [
+          0,
+          428
+        ],
+        [
+          0,
+          355
+        ]
+      ],
+      "sourceExtent": {
+        "xmin": -82.66499999999999,
+        "ymin": 27.740249999999996,
+        "xmax": -82.66249999999998,
+        "ymax": 27.742750000000008,
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        }
+      },
+      "sourceImageDimensions": [
+        1400,
+        1400
+      ],
+      "independentSourceCenterline": "way/41001809"
+    },
+    {
+      "sourceType": "original-approximate-aerial-trace",
+      "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "sourceRetrievedAt": "2026-10-23T00:41:06.070717+00:00",
+      "sourceImageSha256": "23d8ed38c14af158f95000fe474c5478a274078949960b41900bb491c600c445",
+      "geometryLicense": "ODbL-1.0",
+      "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+      "sourcePixelCoordinates": [
+        [
+          935,
+          915
+        ],
+        [
+          980,
+          914
+        ],
+        [
+          1050,
+          927
+        ],
+        [
+          1120,
+          941
+        ],
+        [
+          1200,
+          958
+        ],
+        [
+          1250,
+          970
+        ],
+        [
+          1300,
+          987
+        ],
+        [
+          1355,
+          980
+        ],
+        [
+          1400,
+          957
+        ],
+        [
+          1400,
+          1056
+        ],
+        [
+          1350,
+          1049
+        ],
+        [
+          1300,
+          1034
+        ],
+        [
+          1250,
+          1028
+        ],
+        [
+          1200,
+          1016
+        ],
+        [
+          1120,
+          1001
+        ],
+        [
+          1050,
+          983
+        ],
+        [
+          980,
+          968
+        ],
+        [
+          935,
+          945
+        ],
+        [
+          935,
+          915
+        ]
+      ],
+      "sourceExtent": {
+        "xmin": -82.66499999999999,
+        "ymin": 27.740249999999996,
+        "xmax": -82.66249999999998,
+        "ymax": 27.742750000000008,
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        }
+      },
+      "sourceImageDimensions": [
+        1400,
+        1400
+      ],
+      "independentSourceCenterline": "way/41001809"
+    },
+    {
+      "sourceType": "original-approximate-aerial-trace",
+      "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.66045%2C27.7417%2C-82.65955%2C27.743&bboxSR=4326&imageSR=4326&size=1200%2C1200&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "sourceRetrievedAt": "2026-10-23T00:41:11.962723+00:00",
+      "sourceImageSha256": "d7c210a06b7a748c6cc9e6048a0fff878d88880c35a950e1db8c94a2abd8b56a",
+      "geometryLicense": "ODbL-1.0",
+      "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+      "sourcePixelCoordinates": [
+        [
+          570,
+          251
+        ],
+        [
+          626,
+          282
+        ],
+        [
+          680,
+          318
+        ],
+        [
+          705,
+          353
+        ],
+        [
+          709,
+          383
+        ],
+        [
+          685,
+          411
+        ],
+        [
+          646,
+          437
+        ],
+        [
+          614,
+          461
+        ],
+        [
+          607,
+          495
+        ],
+        [
+          605,
+          533
+        ],
+        [
+          622,
+          574
+        ],
+        [
+          625,
+          620
+        ],
+        [
+          613,
+          668
+        ],
+        [
+          609,
+          712
+        ],
+        [
+          605,
+          747
+        ],
+        [
+          596,
+          787
+        ],
+        [
+          591,
+          830
+        ],
+        [
+          600,
+          870
+        ],
+        [
+          608,
+          915
+        ],
+        [
+          610,
+          964
+        ],
+        [
+          620,
+          1009
+        ],
+        [
+          630,
+          1080
+        ],
+        [
+          551,
+          1100
+        ],
+        [
+          551,
+          1045
+        ],
+        [
+          542,
+          994
+        ],
+        [
+          537,
+          950
+        ],
+        [
+          526,
+          916
+        ],
+        [
+          517,
+          875
+        ],
+        [
+          520,
+          832
+        ],
+        [
+          532,
+          788
+        ],
+        [
+          549,
+          746
+        ],
+        [
+          563,
+          707
+        ],
+        [
+          574,
+          665
+        ],
+        [
+          581,
+          621
+        ],
+        [
+          578,
+          585
+        ],
+        [
+          563,
+          551
+        ],
+        [
+          551,
+          513
+        ],
+        [
+          554,
+          474
+        ],
+        [
+          566,
+          439
+        ],
+        [
+          601,
+          406
+        ],
+        [
+          646,
+          377
+        ],
+        [
+          652,
+          358
+        ],
+        [
+          634,
+          339
+        ],
+        [
+          601,
+          319
+        ],
+        [
+          564,
+          276
+        ],
+        [
+          570,
+          251
+        ]
+      ],
+      "sourceExtent": {
+        "xmin": -82.66064999999999,
+        "ymin": 27.741700000000005,
+        "xmax": -82.65934999999999,
+        "ymax": 27.743000000000002,
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        }
+      },
+      "sourceImageDimensions": [
+        1200,
+        1200
+      ],
+      "independentSourceCenterline": "way/228620853"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors; additional original approximate channel-bank coordinates derived from Pinellas County 2026 aerial reference imagery. Original trace geometry is separately attributed; County source image pixels are not included in application artwork.",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "supplementalOriginalTraceLicense": "ODbL-1.0 for original authored coordinate geometry only; County source imagery is not relicensed or included in product artwork.",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?f=geojson&where=1%3D1&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.66561365288514,27.738693981669115,-82.64387325547342,27.750958636320036",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.6797041,27.7152886,-82.6419414,27.7430199",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6653%2C27.739%2C-82.6442%2C27.7507&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6572%2C27.748%2C-82.653%2C27.7488&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.66045%2C27.7417%2C-82.65955%2C27.743&bboxSR=4326&imageSR=4326&size=1200%2C1200&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source": "digitalglobe"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:15.681162+00:00",
+        "sourceImageSha256": "64d786bc1262b22039881743f1b27f78bc9dbcb1156d7ee43a2fd860ef3335ab",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            0,
+            1027
+          ],
+          [
+            80,
+            990
+          ],
+          [
+            160,
+            972
+          ],
+          [
+            205,
+            972
+          ],
+          [
+            250,
+            961
+          ],
+          [
+            350,
+            951
+          ],
+          [
+            461,
+            948
+          ],
+          [
+            461,
+            991
+          ],
+          [
+            350,
+            1003
+          ],
+          [
+            250,
+            1024
+          ],
+          [
+            210,
+            1040
+          ],
+          [
+            150,
+            1057
+          ],
+          [
+            80,
+            1084
+          ],
+          [
+            0,
+            1124
+          ],
+          [
+            0,
+            1027
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.6477,
+          "ymin": 27.742625,
+          "xmax": -82.6443,
+          "ymax": 27.746025,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1600,
+          1600
+        ],
+        "independentSourceCenterline": "way/128952747"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:15.681162+00:00",
+        "sourceImageSha256": "64d786bc1262b22039881743f1b27f78bc9dbcb1156d7ee43a2fd860ef3335ab",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            604,
+            954
+          ],
+          [
+            700,
+            961
+          ],
+          [
+            800,
+            956
+          ],
+          [
+            850,
+            945
+          ],
+          [
+            900,
+            932
+          ],
+          [
+            950,
+            912
+          ],
+          [
+            1000,
+            884
+          ],
+          [
+            1050,
+            847
+          ],
+          [
+            1100,
+            807
+          ],
+          [
+            1200,
+            721
+          ],
+          [
+            1300,
+            639
+          ],
+          [
+            1400,
+            561
+          ],
+          [
+            1420,
+            548
+          ],
+          [
+            1500,
+            492
+          ],
+          [
+            1600,
+            426
+          ],
+          [
+            1600,
+            480
+          ],
+          [
+            1500,
+            544
+          ],
+          [
+            1445,
+            581
+          ],
+          [
+            1400,
+            609
+          ],
+          [
+            1300,
+            683
+          ],
+          [
+            1200,
+            765
+          ],
+          [
+            1100,
+            849
+          ],
+          [
+            1050,
+            890
+          ],
+          [
+            1000,
+            924
+          ],
+          [
+            950,
+            948
+          ],
+          [
+            900,
+            966
+          ],
+          [
+            850,
+            979
+          ],
+          [
+            800,
+            989
+          ],
+          [
+            700,
+            990
+          ],
+          [
+            604,
+            984
+          ],
+          [
+            604,
+            954
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.6477,
+          "ymin": 27.742625,
+          "xmax": -82.6443,
+          "ymax": 27.746025,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1600,
+          1600
+        ],
+        "independentSourceCenterline": "way/128952747"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:06.070717+00:00",
+        "sourceImageSha256": "23d8ed38c14af158f95000fe474c5478a274078949960b41900bb491c600c445",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            0,
+            355
+          ],
+          [
+            100,
+            393
+          ],
+          [
+            200,
+            447
+          ],
+          [
+            300,
+            484
+          ],
+          [
+            400,
+            559
+          ],
+          [
+            500,
+            613
+          ],
+          [
+            590,
+            680
+          ],
+          [
+            650,
+            727
+          ],
+          [
+            710,
+            775
+          ],
+          [
+            760,
+            816
+          ],
+          [
+            810,
+            867
+          ],
+          [
+            844,
+            899
+          ],
+          [
+            866,
+            910
+          ],
+          [
+            866,
+            944
+          ],
+          [
+            825,
+            941
+          ],
+          [
+            780,
+            924
+          ],
+          [
+            743,
+            922
+          ],
+          [
+            720,
+            866
+          ],
+          [
+            667,
+            846
+          ],
+          [
+            615,
+            815
+          ],
+          [
+            565,
+            793
+          ],
+          [
+            520,
+            749
+          ],
+          [
+            490,
+            715
+          ],
+          [
+            450,
+            694
+          ],
+          [
+            400,
+            670
+          ],
+          [
+            300,
+            589
+          ],
+          [
+            200,
+            549
+          ],
+          [
+            100,
+            476
+          ],
+          [
+            0,
+            428
+          ],
+          [
+            0,
+            355
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.66499999999999,
+          "ymin": 27.740249999999996,
+          "xmax": -82.66249999999998,
+          "ymax": 27.742750000000008,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1400,
+          1400
+        ],
+        "independentSourceCenterline": "way/41001809"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:06.070717+00:00",
+        "sourceImageSha256": "23d8ed38c14af158f95000fe474c5478a274078949960b41900bb491c600c445",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            935,
+            915
+          ],
+          [
+            980,
+            914
+          ],
+          [
+            1050,
+            927
+          ],
+          [
+            1120,
+            941
+          ],
+          [
+            1200,
+            958
+          ],
+          [
+            1250,
+            970
+          ],
+          [
+            1300,
+            987
+          ],
+          [
+            1355,
+            980
+          ],
+          [
+            1400,
+            957
+          ],
+          [
+            1400,
+            1056
+          ],
+          [
+            1350,
+            1049
+          ],
+          [
+            1300,
+            1034
+          ],
+          [
+            1250,
+            1028
+          ],
+          [
+            1200,
+            1016
+          ],
+          [
+            1120,
+            1001
+          ],
+          [
+            1050,
+            983
+          ],
+          [
+            980,
+            968
+          ],
+          [
+            935,
+            945
+          ],
+          [
+            935,
+            915
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.66499999999999,
+          "ymin": 27.740249999999996,
+          "xmax": -82.66249999999998,
+          "ymax": 27.742750000000008,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1400,
+          1400
+        ],
+        "independentSourceCenterline": "way/41001809"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.66045%2C27.7417%2C-82.65955%2C27.743&bboxSR=4326&imageSR=4326&size=1200%2C1200&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:11.962723+00:00",
+        "sourceImageSha256": "d7c210a06b7a748c6cc9e6048a0fff878d88880c35a950e1db8c94a2abd8b56a",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            570,
+            251
+          ],
+          [
+            626,
+            282
+          ],
+          [
+            680,
+            318
+          ],
+          [
+            705,
+            353
+          ],
+          [
+            709,
+            383
+          ],
+          [
+            685,
+            411
+          ],
+          [
+            646,
+            437
+          ],
+          [
+            614,
+            461
+          ],
+          [
+            607,
+            495
+          ],
+          [
+            605,
+            533
+          ],
+          [
+            622,
+            574
+          ],
+          [
+            625,
+            620
+          ],
+          [
+            613,
+            668
+          ],
+          [
+            609,
+            712
+          ],
+          [
+            605,
+            747
+          ],
+          [
+            596,
+            787
+          ],
+          [
+            591,
+            830
+          ],
+          [
+            600,
+            870
+          ],
+          [
+            608,
+            915
+          ],
+          [
+            610,
+            964
+          ],
+          [
+            620,
+            1009
+          ],
+          [
+            630,
+            1080
+          ],
+          [
+            551,
+            1100
+          ],
+          [
+            551,
+            1045
+          ],
+          [
+            542,
+            994
+          ],
+          [
+            537,
+            950
+          ],
+          [
+            526,
+            916
+          ],
+          [
+            517,
+            875
+          ],
+          [
+            520,
+            832
+          ],
+          [
+            532,
+            788
+          ],
+          [
+            549,
+            746
+          ],
+          [
+            563,
+            707
+          ],
+          [
+            574,
+            665
+          ],
+          [
+            581,
+            621
+          ],
+          [
+            578,
+            585
+          ],
+          [
+            563,
+            551
+          ],
+          [
+            551,
+            513
+          ],
+          [
+            554,
+            474
+          ],
+          [
+            566,
+            439
+          ],
+          [
+            601,
+            406
+          ],
+          [
+            646,
+            377
+          ],
+          [
+            652,
+            358
+          ],
+          [
+            634,
+            339
+          ],
+          [
+            601,
+            319
+          ],
+          [
+            564,
+            276
+          ],
+          [
+            570,
+            251
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.66064999999999,
+          "ymin": 27.741700000000005,
+          "xmax": -82.65934999999999,
+          "ymax": 27.743000000000002,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1200,
+          1200
+        ],
+        "independentSourceCenterline": "way/228620853"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors; additional original approximate channel-bank coordinates derived from Pinellas County 2026 aerial reference imagery. Original trace geometry is separately attributed; County source image pixels are not included in application artwork.",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "supplementalOriginalTraceLicense": "ODbL-1.0 for original authored coordinate geometry only; County source imagery is not relicensed or included in product artwork.",
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?f=geojson&where=1%3D1&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.66561365288514,27.738693981669115,-82.64387325547342,27.750958636320036",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.6797041,27.7152886,-82.6419414,27.7430199",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6653%2C27.739%2C-82.6442%2C27.7507&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6572%2C27.748%2C-82.653%2C27.7488&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.66045%2C27.7417%2C-82.65955%2C27.743&bboxSR=4326&imageSR=4326&size=1200%2C1200&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      },
+      {
+        "source": "digitalglobe"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:15.681162+00:00",
+        "sourceImageSha256": "64d786bc1262b22039881743f1b27f78bc9dbcb1156d7ee43a2fd860ef3335ab",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            0,
+            1027
+          ],
+          [
+            80,
+            990
+          ],
+          [
+            160,
+            972
+          ],
+          [
+            205,
+            972
+          ],
+          [
+            250,
+            961
+          ],
+          [
+            350,
+            951
+          ],
+          [
+            461,
+            948
+          ],
+          [
+            461,
+            991
+          ],
+          [
+            350,
+            1003
+          ],
+          [
+            250,
+            1024
+          ],
+          [
+            210,
+            1040
+          ],
+          [
+            150,
+            1057
+          ],
+          [
+            80,
+            1084
+          ],
+          [
+            0,
+            1124
+          ],
+          [
+            0,
+            1027
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.6477,
+          "ymin": 27.742625,
+          "xmax": -82.6443,
+          "ymax": 27.746025,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1600,
+          1600
+        ],
+        "independentSourceCenterline": "way/128952747"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6477%2C27.74345%2C-82.6443%2C27.7452&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:15.681162+00:00",
+        "sourceImageSha256": "64d786bc1262b22039881743f1b27f78bc9dbcb1156d7ee43a2fd860ef3335ab",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            604,
+            954
+          ],
+          [
+            700,
+            961
+          ],
+          [
+            800,
+            956
+          ],
+          [
+            850,
+            945
+          ],
+          [
+            900,
+            932
+          ],
+          [
+            950,
+            912
+          ],
+          [
+            1000,
+            884
+          ],
+          [
+            1050,
+            847
+          ],
+          [
+            1100,
+            807
+          ],
+          [
+            1200,
+            721
+          ],
+          [
+            1300,
+            639
+          ],
+          [
+            1400,
+            561
+          ],
+          [
+            1420,
+            548
+          ],
+          [
+            1500,
+            492
+          ],
+          [
+            1600,
+            426
+          ],
+          [
+            1600,
+            480
+          ],
+          [
+            1500,
+            544
+          ],
+          [
+            1445,
+            581
+          ],
+          [
+            1400,
+            609
+          ],
+          [
+            1300,
+            683
+          ],
+          [
+            1200,
+            765
+          ],
+          [
+            1100,
+            849
+          ],
+          [
+            1050,
+            890
+          ],
+          [
+            1000,
+            924
+          ],
+          [
+            950,
+            948
+          ],
+          [
+            900,
+            966
+          ],
+          [
+            850,
+            979
+          ],
+          [
+            800,
+            989
+          ],
+          [
+            700,
+            990
+          ],
+          [
+            604,
+            984
+          ],
+          [
+            604,
+            954
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.6477,
+          "ymin": 27.742625,
+          "xmax": -82.6443,
+          "ymax": 27.746025,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1600,
+          1600
+        ],
+        "independentSourceCenterline": "way/128952747"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:06.070717+00:00",
+        "sourceImageSha256": "23d8ed38c14af158f95000fe474c5478a274078949960b41900bb491c600c445",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            0,
+            355
+          ],
+          [
+            100,
+            393
+          ],
+          [
+            200,
+            447
+          ],
+          [
+            300,
+            484
+          ],
+          [
+            400,
+            559
+          ],
+          [
+            500,
+            613
+          ],
+          [
+            590,
+            680
+          ],
+          [
+            650,
+            727
+          ],
+          [
+            710,
+            775
+          ],
+          [
+            760,
+            816
+          ],
+          [
+            810,
+            867
+          ],
+          [
+            844,
+            899
+          ],
+          [
+            866,
+            910
+          ],
+          [
+            866,
+            944
+          ],
+          [
+            825,
+            941
+          ],
+          [
+            780,
+            924
+          ],
+          [
+            743,
+            922
+          ],
+          [
+            720,
+            866
+          ],
+          [
+            667,
+            846
+          ],
+          [
+            615,
+            815
+          ],
+          [
+            565,
+            793
+          ],
+          [
+            520,
+            749
+          ],
+          [
+            490,
+            715
+          ],
+          [
+            450,
+            694
+          ],
+          [
+            400,
+            670
+          ],
+          [
+            300,
+            589
+          ],
+          [
+            200,
+            549
+          ],
+          [
+            100,
+            476
+          ],
+          [
+            0,
+            428
+          ],
+          [
+            0,
+            355
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.66499999999999,
+          "ymin": 27.740249999999996,
+          "xmax": -82.66249999999998,
+          "ymax": 27.742750000000008,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1400,
+          1400
+        ],
+        "independentSourceCenterline": "way/41001809"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.665%2C27.7407%2C-82.6625%2C27.7423&bboxSR=4326&imageSR=4326&size=1400%2C1400&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:06.070717+00:00",
+        "sourceImageSha256": "23d8ed38c14af158f95000fe474c5478a274078949960b41900bb491c600c445",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            935,
+            915
+          ],
+          [
+            980,
+            914
+          ],
+          [
+            1050,
+            927
+          ],
+          [
+            1120,
+            941
+          ],
+          [
+            1200,
+            958
+          ],
+          [
+            1250,
+            970
+          ],
+          [
+            1300,
+            987
+          ],
+          [
+            1355,
+            980
+          ],
+          [
+            1400,
+            957
+          ],
+          [
+            1400,
+            1056
+          ],
+          [
+            1350,
+            1049
+          ],
+          [
+            1300,
+            1034
+          ],
+          [
+            1250,
+            1028
+          ],
+          [
+            1200,
+            1016
+          ],
+          [
+            1120,
+            1001
+          ],
+          [
+            1050,
+            983
+          ],
+          [
+            980,
+            968
+          ],
+          [
+            935,
+            945
+          ],
+          [
+            935,
+            915
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.66499999999999,
+          "ymin": 27.740249999999996,
+          "xmax": -82.66249999999998,
+          "ymax": 27.742750000000008,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1400,
+          1400
+        ],
+        "independentSourceCenterline": "way/41001809"
+      },
+      {
+        "sourceType": "original-approximate-aerial-trace",
+        "sourceURL": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.66045%2C27.7417%2C-82.65955%2C27.743&bboxSR=4326&imageSR=4326&size=1200%2C1200&format=jpg&interpolation=%2BRSP_BilinearInterpolation",
+        "sourceRetrievedAt": "2026-10-23T00:41:11.962723+00:00",
+        "sourceImageSha256": "d7c210a06b7a748c6cc9e6048a0fff878d88880c35a950e1db8c94a2abd8b56a",
+        "geometryLicense": "ODbL-1.0",
+        "licenseScope": "Original authored coordinates only. County imagery is reference-only evidence, not relicensed or copied into application artwork.",
+        "sourcePixelCoordinates": [
+          [
+            570,
+            251
+          ],
+          [
+            626,
+            282
+          ],
+          [
+            680,
+            318
+          ],
+          [
+            705,
+            353
+          ],
+          [
+            709,
+            383
+          ],
+          [
+            685,
+            411
+          ],
+          [
+            646,
+            437
+          ],
+          [
+            614,
+            461
+          ],
+          [
+            607,
+            495
+          ],
+          [
+            605,
+            533
+          ],
+          [
+            622,
+            574
+          ],
+          [
+            625,
+            620
+          ],
+          [
+            613,
+            668
+          ],
+          [
+            609,
+            712
+          ],
+          [
+            605,
+            747
+          ],
+          [
+            596,
+            787
+          ],
+          [
+            591,
+            830
+          ],
+          [
+            600,
+            870
+          ],
+          [
+            608,
+            915
+          ],
+          [
+            610,
+            964
+          ],
+          [
+            620,
+            1009
+          ],
+          [
+            630,
+            1080
+          ],
+          [
+            551,
+            1100
+          ],
+          [
+            551,
+            1045
+          ],
+          [
+            542,
+            994
+          ],
+          [
+            537,
+            950
+          ],
+          [
+            526,
+            916
+          ],
+          [
+            517,
+            875
+          ],
+          [
+            520,
+            832
+          ],
+          [
+            532,
+            788
+          ],
+          [
+            549,
+            746
+          ],
+          [
+            563,
+            707
+          ],
+          [
+            574,
+            665
+          ],
+          [
+            581,
+            621
+          ],
+          [
+            578,
+            585
+          ],
+          [
+            563,
+            551
+          ],
+          [
+            551,
+            513
+          ],
+          [
+            554,
+            474
+          ],
+          [
+            566,
+            439
+          ],
+          [
+            601,
+            406
+          ],
+          [
+            646,
+            377
+          ],
+          [
+            652,
+            358
+          ],
+          [
+            634,
+            339
+          ],
+          [
+            601,
+            319
+          ],
+          [
+            564,
+            276
+          ],
+          [
+            570,
+            251
+          ]
+        ],
+        "sourceExtent": {
+          "xmin": -82.66064999999999,
+          "ymin": 27.741700000000005,
+          "xmax": -82.65934999999999,
+          "ymax": 27.743000000000002,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "sourceImageDimensions": [
+          1200,
+          1200
+        ],
+        "independentSourceCenterline": "way/228620853"
+      }
+    ]
+  }
+}

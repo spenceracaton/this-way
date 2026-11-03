@@ -1,0 +1,123 @@
+{
+  "id": "oakwood-gardens",
+  "name": "Oakwood Gardens",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": -112,
+    "right": 1112,
+    "top": -94,
+    "bottom": 1154
+  },
+  "projection": {
+    "lngOrigin": -82.65896342368427,
+    "latOrigin": 27.80292283669471,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 95569.75883134767,
+    "yScale": 108042.48809668641
+  },
+  "artwork": "./assets/neighborhoods/oakwood-gardens.svg",
+  "rasterArtwork": "./assets/neighborhoods/oakwood-gardens.webp",
+  "coreBoundary": [
+    [
+      145.28215987480417,
+      921.5187904412471
+    ],
+    [
+      283.039384741028,
+      921.6037372217653
+    ],
+    [
+      532.8304959769976,
+      921.8877482368209
+    ],
+    [
+      879.4636485910312,
+      920.0075739925368
+    ],
+    [
+      880.0000000006792,
+      919.9944047481345
+    ],
+    [
+      879.9971815890945,
+      919.1189854679576
+    ],
+    [
+      879.8633839265252,
+      875.0808673194654
+    ],
+    [
+      879.7964850952405,
+      854.8229008014318
+    ],
+    [
+      879.576674650755,
+      786.2915506019222
+    ],
+    [
+      879.375978156901,
+      722.8922185867148
+    ],
+    [
+      878.7547747247075,
+      526.5682134662002
+    ],
+    [
+      878.6018631101485,
+      478.38126377505984
+    ],
+    [
+      878.4489514955897,
+      429.34077842796114
+    ],
+    [
+      878.133571292514,
+      329.02332823012796
+    ],
+    [
+      877.6366085462159,
+      174.31728952447816
+    ],
+    [
+      877.5247518726915,
+      138.11225176317907
+    ],
+    [
+      120.00000000067905,
+      138.11225176317907
+    ],
+    [
+      120.26881412478656,
+      139.15980386023284
+    ],
+    [
+      145.28215987480417,
+      921.5187904412471
+    ]
+  ],
+  "overviewBounds": {
+    "left": 120.00000000067905,
+    "right": 880.0000000006792,
+    "top": 138.11225176317907,
+    "bottom": 921.8877482368209
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "additionalAttributions": [
+    {
+      "label": "City of St. Petersburg GIS",
+      "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID+IN+%282%2C22%2C120%29&outFields=OBJECTID%2CNANAME%2CSTATUS&returnGeometry=true&outSR=4326"
+    },
+    {
+      "label": "Pinellas County imagery / Esri",
+      "href": "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=json&bbox=-82.6651%2C27.7974%2C-82.6528%2C27.8085&bboxSR=4326&imageSR=4326&size=1800%2C1800&format=jpg"
+    }
+  ],
+  "sourceNotices": "./data/oakwood-gardens/source-notices.json"
+}

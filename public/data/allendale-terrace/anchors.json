@@ -1,0 +1,58 @@
+[
+  {
+    "id": "allendale-terrace-road-1",
+    "osmType": "way",
+    "osmId": "11224658",
+    "sourceGeographic": {
+      "lng": -82.6427041,
+      "lat": 27.8071244
+    },
+    "expectedSourcePoint": [
+      875.04,
+      270.7
+    ],
+    "matchErrorPx": 0.000116
+  },
+  {
+    "id": "allendale-terrace-road-2",
+    "osmType": "way",
+    "osmId": "11248045",
+    "sourceGeographic": {
+      "lng": -82.6454054,
+      "lat": 27.8053308
+    },
+    "expectedSourcePoint": [
+      585.01,
+      488.41
+    ],
+    "matchErrorPx": 0.000257
+  },
+  {
+    "id": "allendale-terrace-road-3",
+    "osmType": "way",
+    "osmId": "353271870",
+    "sourceGeographic": {
+      "lng": -82.6460827,
+      "lat": 27.8021659
+    },
+    "expectedSourcePoint": [
+      512.29,
+      872.57
+    ],
+    "matchErrorPx": 0.000349
+  },
+  {
+    "id": "allendale-terrace-road-4",
+    "osmType": "way",
+    "osmId": "1149901951",
+    "sourceGeographic": {
+      "lng": -82.6487433,
+      "lat": 27.8075453
+    },
+    "expectedSourcePoint": [
+      226.63,
+      219.61
+    ],
+    "matchErrorPx": 0.00042
+  }
+]

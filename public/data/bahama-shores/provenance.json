@@ -1,0 +1,58 @@
+{
+  "id": "bahama-shores",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "d1c384ad17f944968c9534dc3c0d07f87ee823a3eae157b8c03e4bcb33c6d760",
+    "map-data.json": "4afb8c594691388d1ed2114d7e085367a5cc3b68afe05e2dc4e104e78467a9c1",
+    "buffer.mjs": "c3a0b88a4d42a74ad78bfbf852d3ebed35579cde0c13ac7c7f8d3beac2cf8d59",
+    "buffer-map-data.json": "68fde387a31423ef1b69282606a468ae28c1983fba752a7d06f025c767de7842",
+    "source-geography.geojson": "34f37a4aff9656a236b6a2d12d7ce235d48d201870a2fa15d7f84ec823aae9d1"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "3 -78 977 1211",
+  "coreMaskGeometrySha256": "a6b5ed2cc7387ea2041d0bd181a5a37e7553015e9188025a4c28bb01d7cddc7e",
+  "nearbyMaskGeometrySha256": "1425a235258e1e9ba4fc600934ce3be25a16b89797ad1d4fc2ac29779830c956",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "City of St. Petersburg Neighborhood Relations; \u00a9OpenStreetMap contributors; Pinellas County2025 Orthos viaEsriWorldImagery, conservative derived creek/canal footprints",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=92&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json"
+      },
+      {
+        "label": "Pinellas County imagery / Esri",
+        "href": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.641%2C27.7170%2C-82.6378%2C27.7192&bboxSR=4326&imageSR=4326&size=1400%2C1000&format=png32&f=json"
+      }
+    ],
+    "license": "Mixed source: ODbL applies to original OSM features only; City public GIS and County/Esri-derived reference vectors have separate attribution/terms",
+    "licenseUrl": null
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bahama-shores/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bahama-shores/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/bahama-shores.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bahama-shores/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/bahama-shores/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "0db8aa590cd3fe64392360aaa9efeb4ac7260124718cd65133f79d2de2329288",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/bahama-shores.webp",
+    "width": 2478,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "a1dd973669e404e0df4aa9f5f562b5f6ff45927d132eb05d97265dfb25ca2df8",
+    "sha256": "888e38e1c891e3e52967cfc12d2c42a34525148500cb31cf3ba762ac32c65eb4",
+    "bytes": 249292,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

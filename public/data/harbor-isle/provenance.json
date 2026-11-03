@@ -1,0 +1,57 @@
+{
+  "id": "harbor-isle",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "0c7507d383861b5368e514aea24ef22109344449712c1e12c8d8c8465d7c9130",
+    "map-data.json": "a58e6bef8954c15c781e6884a45e65bb3b8eaa171069b3b6397903eea5235deb",
+    "buffer.mjs": "ffc07b11100afb9a4f702129518e55a6b1af70b9361f7a6eeb998a14d1bc4867",
+    "buffer-map-data.json": "7868f702ae57c5dd5b75e39eec10056d51fe3f2c767b0160d150bc0ae7bb88a8",
+    "source-geography.geojson": "e3cf73c3a3e139f7385c764ba9f4459d7d8ab86ef9d564cc1ead5b130cd95edd"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "-16 20 996 1020",
+  "coreMaskGeometrySha256": "f1db7210ebe93d60c2bea794b9f95905af70e7624c036b51022e7309ae1c18c6",
+  "nearbyMaskGeometrySha256": "b7b19c44b678301eb96e7087ca9535892736b6fe1ff42c1f6ed6ae99251fb708",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors (ODbL 1.0); original source ways plus separately attributed County2026 manually derived pond-water patch. Complete wetland relations retained separately in source-exclusions.geojson; artwork land footprint retains wetlands as land, not open water.",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=91&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json"
+      },
+      {
+        "label": "Pinellas County imagery"
+      }
+    ],
+    "license": null,
+    "licenseUrl": null
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/harbor-isle/review-map.svg",
+    "map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/harbor-isle/map-data.json",
+    "buffer.mjs": "release-source/event-db-b383f9ea60f2/baseline/lib/neighborhood-buffers/harbor-isle.mjs",
+    "buffer-map-data.json": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/harbor-isle/buffer-map-data.json",
+    "source-geography.geojson": "release-source/event-db-b383f9ea60f2/baseline/public/neighborhoods/harbor-isle/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "b992a779fa1b77c58768c7e35e0fcd40d716a6d947d2dd7e99920b2de1b8dc96",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/harbor-isle.webp",
+    "width": 3000,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "5b1e085fd505474c5cc3f05d37770b7389fb5b9d6402a0c24e065165363eae31",
+    "sha256": "a9001469c2228dd4bb7d85ab5ca6dd861e65a2fcaf89f1a138e5e610adf24197",
+    "bytes": 342736,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "historic-uptown-road-1",
+    "osmType": "way",
+    "osmId": "177058162",
+    "sourceGeographic": {
+      "lng": -82.6385375,
+      "lat": 27.7775614
+    },
+    "expectedSourcePoint": [
+      880.2,
+      708.34
+    ],
+    "matchErrorPx": 0.000202
+  },
+  {
+    "id": "historic-uptown-road-2",
+    "osmType": "way",
+    "osmId": "11252051",
+    "sourceGeographic": {
+      "lng": -82.6536619,
+      "lat": 27.7798861
+    },
+    "expectedSourcePoint": [
+      178.02,
+      586.35
+    ],
+    "matchErrorPx": 0.000228
+  },
+  {
+    "id": "historic-uptown-road-3",
+    "osmType": "way",
+    "osmId": "11233757",
+    "sourceGeographic": {
+      "lng": -82.6427874,
+      "lat": 27.7830432
+    },
+    "expectedSourcePoint": [
+      682.89,
+      420.68
+    ],
+    "matchErrorPx": 0.0003
+  },
+  {
+    "id": "historic-uptown-road-4",
+    "osmType": "way",
+    "osmId": "1376098332",
+    "sourceGeographic": {
+      "lng": -82.642096,
+      "lat": 27.7803244
+    },
+    "expectedSourcePoint": [
+      714.99,
+      563.35
+    ],
+    "matchErrorPx": 0.000302
+  }
+]

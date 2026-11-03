@@ -1,0 +1,218 @@
+{
+  "attribution": "City of St. Petersburg Neighborhood Relations; ©OpenStreetMap contributors; Pinellas County2025 Orthos viaEsriWorldImagery, conservative derived creek/canal footprints",
+  "license": "Mixed source: ODbL applies to original OSM features only; City public GIS and County/Esri-derived reference vectors have separate attribution/terms",
+  "licenses": {
+    "osm": {
+      "license": "ODbL-1.0",
+      "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+    },
+    "city": "Public GIS reference as-is; no survey or blanket public-domain assertion",
+    "countyImageryDerived": {
+      "sourceItem": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+      "useCases": "https://www.arcgis.com/home/item.html?id=8e90a00a0a6845a49262e0b756f57a10",
+      "scope": "Derived conservative vectors from reference imagery; no rasterpixels redistributed, not ODbL claimed"
+    }
+  },
+  "sourceBindings": {
+    "localExtract": {
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.707,-82.628,27.722",
+      "retrievedAt": "2026-10-25T23:48:09.504019+00:00",
+      "sha256": "f229b6db52f0f27bd71cfbf46e4eac9e0311e7c9c8103d44716fcd3b9f68c6fb"
+    },
+    "residentialRelation": {
+      "url": "https://api.openstreetmap.org/api/0.6/relation/16185722/full",
+      "sha256": "389906daad177ea6e418f6bcf673886455cfcaae5efc8be76c1a745affdd740f"
+    }
+  },
+  "coverageDerivation": {
+    "identity": "Exact City Bahama Shores association envelope; administrative identity includes water, eligible membership is reviewed dryland only",
+    "shoreline": "Coastal source-bound mainland, island and opposite-shore components; complete pond innerisland and observed/inferred creek/canal footprints preserved",
+    "visibility": "200m nearby visibility clipped to reviewed drygeometry with crosswater interval checks; not membership or walking-route assurance",
+    "precision": "Conservative app coverage and approximate source-informed water traces, not surveyed banks",
+    "paint": "Reviewed land clipped only to presentation rectangle beyond allcore/nearby; membership geometry remains unchanged"
+  },
+  "coverageSources": [
+    "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=92&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.707,-82.628,27.722"
+  ],
+  "featureNotices": [
+    {
+      "sourceLicense": "ODbL-1.0",
+      "license": "ODbL-1.0"
+    },
+    {
+      "source": "Bing",
+      "sourceLicense": "ODbL-1.0",
+      "license": "ODbL-1.0"
+    },
+    {
+      "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+      "sourceLicense": "ODbL-1.0",
+      "license": "ODbL-1.0"
+    },
+    {
+      "source": "PGS",
+      "sourceLicense": "ODbL-1.0",
+      "license": "ODbL-1.0"
+    },
+    {
+      "source": "maxar",
+      "sourceLicense": "ODbL-1.0",
+      "license": "ODbL-1.0"
+    },
+    {
+      "source": "Pinellas County2025 orthophotography viaEsriWorldImagery, source-informed conservative trace",
+      "sourceDate": "2025-01-25",
+      "license": "Derived vector reference; no rasterpixels redistributed, not ODbL claimed"
+    },
+    {
+      "source": "Pinellas County2025 orthophotography viaEsriWorldImagery, conservative approximate trace",
+      "sourceDate": "2025-01-25",
+      "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.641%2C27.7170%2C-82.6378%2C27.7192&bboxSR=4326&imageSR=4326&size=1400%2C1000&format=png32&f=json",
+      "license": "Derivedreferencevector; no rasterpixels redistributed, not ODbL claimed"
+    }
+  ],
+  "buffer-map-data.json": {
+    "attribution": "City of St. Petersburg Neighborhood Relations; ©OpenStreetMap contributors; Pinellas County2025 Orthos viaEsriWorldImagery, conservative derived creek/canal footprints",
+    "license": "Mixed source: ODbL applies to original OSM features only; City public GIS and County/Esri-derived reference vectors have separate attribution/terms",
+    "licenses": {
+      "osm": {
+        "license": "ODbL-1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "city": "Public GIS reference as-is; no survey or blanket public-domain assertion",
+      "countyImageryDerived": {
+        "sourceItem": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+        "useCases": "https://www.arcgis.com/home/item.html?id=8e90a00a0a6845a49262e0b756f57a10",
+        "scope": "Derived conservative vectors from reference imagery; no rasterpixels redistributed, not ODbL claimed"
+      }
+    },
+    "sourceBindings": {
+      "localExtract": {
+        "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.707,-82.628,27.722",
+        "retrievedAt": "2026-10-25T23:48:09.504019+00:00",
+        "sha256": "f229b6db52f0f27bd71cfbf46e4eac9e0311e7c9c8103d44716fcd3b9f68c6fb"
+      },
+      "residentialRelation": {
+        "url": "https://api.openstreetmap.org/api/0.6/relation/16185722/full",
+        "sha256": "389906daad177ea6e418f6bcf673886455cfcaae5efc8be76c1a745affdd740f"
+      }
+    },
+    "coverageDerivation": {
+      "identity": "Exact City Bahama Shores association envelope; administrative identity includes water, eligible membership is reviewed dryland only",
+      "shoreline": "Coastal source-bound mainland, island and opposite-shore components; complete pond innerisland and observed/inferred creek/canal footprints preserved",
+      "visibility": "200m nearby visibility clipped to reviewed drygeometry with crosswater interval checks; not membership or walking-route assurance",
+      "precision": "Conservative app coverage and approximate source-informed water traces, not surveyed banks",
+      "paint": "Reviewed land clipped only to presentation rectangle beyond allcore/nearby; membership geometry remains unchanged"
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=92&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.707,-82.628,27.722"
+    ],
+    "featureNotices": [
+      {
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "Bing",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "PGS",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "maxar",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography viaEsriWorldImagery, source-informed conservative trace",
+        "sourceDate": "2025-01-25",
+        "license": "Derived vector reference; no rasterpixels redistributed, not ODbL claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography viaEsriWorldImagery, conservative approximate trace",
+        "sourceDate": "2025-01-25",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.641%2C27.7170%2C-82.6378%2C27.7192&bboxSR=4326&imageSR=4326&size=1400%2C1000&format=png32&f=json",
+        "license": "Derivedreferencevector; no rasterpixels redistributed, not ODbL claimed"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "City of St. Petersburg Neighborhood Relations; ©OpenStreetMap contributors; Pinellas County2025 Orthos viaEsriWorldImagery, conservative derived creek/canal footprints",
+    "license": "Mixed source: ODbL applies to original OSM features only; City public GIS and County/Esri-derived reference vectors have separate attribution/terms",
+    "licenses": {
+      "osm": {
+        "license": "ODbL-1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "city": "Public GIS reference as-is; no survey or blanket public-domain assertion",
+      "countyImageryDerived": {
+        "sourceItem": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+        "useCases": "https://www.arcgis.com/home/item.html?id=8e90a00a0a6845a49262e0b756f57a10",
+        "scope": "Derived conservative vectors from reference imagery; no rasterpixels redistributed, not ODbL claimed"
+      }
+    },
+    "sourceBindings": {
+      "localExtract": {
+        "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.707,-82.628,27.722",
+        "retrievedAt": "2026-10-25T23:48:09.504019+00:00",
+        "sha256": "f229b6db52f0f27bd71cfbf46e4eac9e0311e7c9c8103d44716fcd3b9f68c6fb"
+      },
+      "residentialRelation": {
+        "url": "https://api.openstreetmap.org/api/0.6/relation/16185722/full",
+        "sha256": "389906daad177ea6e418f6bcf673886455cfcaae5efc8be76c1a745affdd740f"
+      }
+    },
+    "coverageSources": [
+      "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/NeighborhoodRelations/MapServer/22/query?objectIds=92&outFields=NANAME,STATUS&returnGeometry=true&outSR=4326&f=json",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.641,27.707,-82.628,27.722"
+    ],
+    "featureNotices": [
+      {
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "Bing",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "PGS",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "maxar",
+        "sourceLicense": "ODbL-1.0",
+        "license": "ODbL-1.0"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography viaEsriWorldImagery, source-informed conservative trace",
+        "sourceDate": "2025-01-25",
+        "license": "Derived vector reference; no rasterpixels redistributed, not ODbL claimed"
+      },
+      {
+        "source": "Pinellas County2025 orthophotography viaEsriWorldImagery, conservative approximate trace",
+        "sourceDate": "2025-01-25",
+        "sourceUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.641%2C27.7170%2C-82.6378%2C27.7192&bboxSR=4326&imageSR=4326&size=1400%2C1000&format=png32&f=json",
+        "license": "Derivedreferencevector; no rasterpixels redistributed, not ODbL claimed"
+      }
+    ]
+  }
+}

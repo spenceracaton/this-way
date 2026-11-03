@@ -1,0 +1,44 @@
+{
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "coverageSources": [
+    "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+    "https://api.openstreetmap.org/api/0.6/map?bbox=-82.67144344%2C27.78922865%2C-82.65723976%2C27.80199693",
+    "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+    "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.67042687%2C27.79012793%2C-82.65825633%2C27.80109765&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+  ],
+  "featureNotices": [],
+  "buffer-map-data.json": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.67144344%2C27.78922865%2C-82.65723976%2C27.80199693",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.67042687%2C27.79012793%2C-82.65825633%2C27.80109765&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      }
+    ]
+  },
+  "source-geography.geojson": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "coverageSources": [
+      "https://services2.arcgis.com/9qPLjNtocjo438CJ/arcgis/rest/services/NeighborhoodAssociations_view/FeatureServer/0/query",
+      "https://api.openstreetmap.org/api/0.6/map?bbox=-82.67144344%2C27.78922865%2C-82.65723976%2C27.80199693",
+      "https://services.arcgis.com/f5HgUpxURgEzTccH/arcgis/rest/services/Pinellas_SiteAddressPoint_view/FeatureServer/0/query",
+      "https://egis.pinellas.gov/gis/rest/services/Aerials2026/ImageServer/exportImage?f=image&bbox=-82.67042687%2C27.79012793%2C-82.65825633%2C27.80109765&bboxSR=4326&imageSR=4326&size=1600%2C1600&format=jpg&interpolation=RSP_BilinearInterpolation"
+    ],
+    "featureNotices": [
+      {
+        "source:hgv": "https://forwardpinellas.org/document-portal/truck-route-map/?ind=1613086709435&filename=Truck-Route-Map.pdf&wpdmdl=47472&refresh=67dd5dc7bee921742560711"
+      }
+    ]
+  }
+}
