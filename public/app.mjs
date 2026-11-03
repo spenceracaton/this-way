@@ -51,6 +51,9 @@ async function start() {
   }
   if (!pins.length) {
     $('.canvas').classList.add('map-only');
+    // Keep the empty state outside the canvas so mobile can reserve a row
+    // below the map, including after the visitor zooms.
+    $('.canvas').after($('.references'));
     $('#references-title').textContent = 'Explore the map';
     $('.references-heading .eyebrow').textContent = 'NEIGHBORHOOD MAP';
     $('.references-heading > span').hidden = true;
@@ -119,6 +122,14 @@ async function start() {
   renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins, artwork,
     onSelect: selectionChanged,
+    overviewInsets() {
+      if (!matchMedia('(max-width:720px)').matches || !$('.canvas').classList.contains('map-only')) return;
+      const map = $('#map').getBoundingClientRect();
+      const toolbar = $('.map-toolbar').getBoundingClientRect();
+      const credit = $('.leaflet-control-attribution')?.getBoundingClientRect();
+      return { left: 28, right: 28, top: Math.max(28, toolbar.bottom - map.top + 12),
+        bottom: Math.max(28, (credit?.height || 0) + 20) };
+    },
     selectionInsets() {
       const sheet = $('#selection');
       if (!matchMedia('(max-width:720px)').matches || sheet.hidden) return;
@@ -143,6 +154,7 @@ async function start() {
         const pin = toPin(listing, pins.length);
         pins = [...pins, pin]; view.setPins(pins); renderList(pins);
         if (pins.length === 1) {
+          $('.canvas').insertBefore($('.references'), $('#selection'));
           $('.canvas').classList.remove('map-only');
           $('#references-title').textContent = 'Live displays';
           $('.references-heading .eyebrow').textContent = 'COMMUNITY MAP';

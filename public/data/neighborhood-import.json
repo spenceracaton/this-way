@@ -36,7 +36,9 @@
     "greater-grovemont",
     "greater-pinellas-point",
     "greater-woodlawn",
+    "greenbriar-cdp",
     "gulfport",
+    "harbor-bluffs-cdp",
     "harbor-isle",
     "harbordale",
     "harris-park",
@@ -128,7 +130,9 @@
     "greater-grovemont",
     "greater-pinellas-point",
     "greater-woodlawn",
+    "greenbriar-cdp",
     "gulfport",
+    "harbor-bluffs-cdp",
     "harbor-isle",
     "harbordale",
     "harris-park",
@@ -313,5 +317,20 @@
       "bufferConfigSha256": "ce8ea3e7c710f3a5e4635e1a6123a12334ec0ebedd733ca82485c3acd9f2731b"
     }
   ],
-  "scope": "Prepared maps recovered from pinned QA inputs; directory-only areas are excluded."
+  "scope": "Prepared QA maps plus independently source-reviewed county CDP maps; directory-only areas are excluded.",
+  "additionalSourceBatches": [
+    {
+      "sourceProfile": "county-census-usgs-v1",
+      "importedIds": [
+        "greenbriar-cdp",
+        "harbor-bluffs-cdp"
+      ],
+      "sourcePackages": "geography/sources/",
+      "sources": [
+        "U.S. Census Bureau TIGERweb January 1, 2026 CDPs",
+        "Pinellas County RoadCenterline",
+        "USGS National Hydrography Dataset"
+      ]
+    }
+  ]
 }

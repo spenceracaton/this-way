@@ -2,8 +2,9 @@
 
 The imported maps are stored separately from the UI, sample listings, and seasonal
 content. Reading the committed bundle does not require GitHub credentials, an API,
-Python, or Leaflet. Rebuilding from the original inputs currently requires access
-to the private FTW QA repository.
+Python, or Leaflet. Rebuilding the older FTW-derived bundles requires access
+to the private QA repository. New county/CDP maps retain their minimal original
+geographic inputs in `geography/sources/{id}/` and rebuild offline without it.
 
 ## Files
 
@@ -17,7 +18,8 @@ Read `public/data/neighborhood-import.json` for `importedIds` and the two
 | `assets/neighborhoods/{id}.webp` | Lossless display image, capped at a 3072px long edge |
 | `data/{id}/anchors.json` | Four geographic road vertices matched to SVG coordinates |
 | `data/{id}/provenance.json` | Input hashes, mask hashes, transform notes, raster dimensions and checksums; newer batches also record exact source paths |
-| `data/{id}/source-notices.json` | Newer batches' original source/feature credit and license statements, without copying all source geometry |
+| `data/{id}/source-notices.json` | Source-specific credit, terms, evidence URLs, retrieval time and checksums |
+| `data/{id}/geography.geojson` | County/CDP batches: original longitude/latitude core, roads and water, with source identities and a geographic property allowlist |
 
 Paths beginning `./` in a configuration resolve relative to `public/`, not relative
 to the configuration file. For example, Harbor Isle's `artwork` is
@@ -48,7 +50,7 @@ assume all artwork fills the nominal `width` and `height`. `overviewBounds` fram
 the core; `bounds` includes nearby artwork. To place the WebP, stretch it over the
 same bounds. `coreBoundary` is in drawing coordinates. Independent anchors can
 check a new renderer's coordinate conversion. OSM-derived anchors carry `osmType`
-and `osmId`. Feather Sound anchors instead carry `sourceType`, `sourceId`, and
+and `osmId`. Feather Sound and county/CDP anchors instead carry `sourceType`, `sourceId`, and
 `sourceFeatureId` from the County road centerlines; consumers must not assume
 every anchor is an OSM feature.
 
@@ -70,3 +72,32 @@ an authorized bundle. A missing overall license field, such as Harbor Isle's,
 does not imply an ODbL grant for its separately attributed County-derived patch.
 The source notices preserve what the source actually declared. Original aerial
 imagery pixels, FTW listings, and seasonal overlays are not included.
+
+## County/CDP source packages
+
+`geography/sources/{id}/geography.geojson` is a standard GeoJSON FeatureCollection
+in longitude/latitude (EPSG:4326). It preserves the Census CDP core, County road
+parts, and USGS water components and holes. Source IDs distinguish Census GEOID,
+County centerline/object IDs, and USGS layer/object/permanent IDs. These inputs
+have no listings, editor identities, address ranges, photos or seasonal styling.
+`source.json` pins the geographic bytes and source evidence, counts, extent,
+retrieval time, and per-source notices. The public GeoJSON has identical bytes.
+
+For an offline rebuild, choose an accepted county ID and run:
+
+```sh
+python3 scripts/build-county-map.py --source geography/sources/greenbriar-cdp --output-root /tmp/county-preview
+```
+
+The renderer verifies the package hash and refuses multipart/holed core coverage
+until the application's coverage model explicitly supports it. It preserves
+multipart/holed water. Rasterize with `scripts/rasterize-neighborhoods.mjs` in an
+output tree containing the catalog/runtime dependencies. Source acquisition and
+packaging are documented in [the county preparation log](county-map-preparation.md).
+The acquisition snapshot additionally retains raw response metadata and file
+hashes outside the public tree; the compact package is the committed rebuild input.
+
+These maps use dated Census-designated-place reference areas, which may differ
+from neighborhood association definitions. County/USGS/Census credit and terms
+remain separate. `license: null` means no single source-wide license was asserted;
+it does not remove the County accuracy disclaimer or grant artwork rights.

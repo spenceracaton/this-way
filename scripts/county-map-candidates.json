@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "scope": "Research candidates outside St. Petersburg; none is an accepted map or a verified countywide inventory.",
+  "scope": "First three research candidates outside St. Petersburg; two source-reviewed maps and one deferred study, not a verified countywide inventory.",
   "iterationPolicy": "Complete and critique one candidate before starting the next; preserve failures and the specific improvement used in the next attempt.",
-  "referenceBoundaryKind": "Census-designated-place reference from FDOT; not an HOA, parcel, or surveyed neighborhood boundary",
+  "referenceBoundaryKind": "January 1, 2026 Census-designated-place reference; not an HOA, parcel, or surveyed neighborhood boundary",
   "sourceServices": {
-    "referenceBoundaries": "https://gis.fdot.gov/arcgis/rest/services/Admin_Boundaries/FeatureServer/7",
+    "referenceBoundaries": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5",
     "roads": "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0",
     "water": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer"
   },
@@ -14,21 +14,24 @@
       "name": "Greenbriar",
       "order": 1,
       "reason": "Compact inland candidate near Clearwater/Dunedin; validate its exact source identity before drawing.",
-      "status": "awaiting-source-verification"
+      "status": "source-and-mobile-review-passed",
+      "sourceGeoId": "1227360"
     },
     {
       "id": "harbor-bluffs-cdp",
       "name": "Harbor Bluffs",
       "order": 2,
       "reason": "Candidate in the same reference-boundary source family; review coastal water geometry separately.",
-      "status": "queued-after-greenbriar-review"
+      "status": "source-and-mobile-review-passed",
+      "sourceGeoId": "1228650"
     },
     {
       "id": "south-highpoint-cdp",
       "name": "South Highpoint",
       "order": 3,
       "reason": "Another compact candidate for testing whether the first map's source and rendering workflow is reusable.",
-      "status": "queued-after-harbor-bluffs-review"
+      "status": "deferred-multipart-and-holed-core",
+      "sourceGeoId": "1267462"
     }
   ]
 }

@@ -127,8 +127,13 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   .references-heading { margin:0 0 6px; }
   .references-heading h2 { font-size:14px; }
   .map-only .leaflet-bottom.leaflet-right{bottom:max(6px,env(safe-area-inset-bottom))}
-  .map-only .references{bottom:calc(var(--map-credit-height,24px) + max(6px,env(safe-area-inset-bottom)) + 8px)}
   .map-only #reference-list{font-size:12px;line-height:1.4}
+  .map-panel:has(.canvas.map-only){display:grid;grid-template-rows:minmax(0,1fr) auto;height:calc(100svh - 64px);min-height:0}
+  .map-panel:has(.canvas.map-only) .canvas{height:100%;min-height:0}
+  .map-panel:has(.canvas.map-only)>.references{position:static;inset:auto;width:auto;max-height:none;margin:0;padding:9px 15px;border-inline:0;border-bottom:0;border-radius:0;box-shadow:none;background:var(--paper-strong)}
+  .map-panel:has(.canvas.map-only) .references-heading{margin-bottom:3px}
+  .map-panel:has(.canvas.map-only) .references-heading .eyebrow{display:none}
+  .map-panel:has(.canvas.map-only) #reference-list{font-size:12px;line-height:1.4}
   #reference-list { display:flex; gap:5px; overflow-x:auto; scrollbar-width:none; }
   #reference-list::-webkit-scrollbar { display:none; }
   #reference-list button { flex:0 0 auto; width:auto; max-width:190px; padding:5px 8px; background:rgba(247,241,226,.72); }
@@ -145,9 +150,6 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
   footer { padding:0 15px; font-size:8px; }
 }
 @media(max-width:720px) and (min-width:560px) and (max-height:480px){
- .map-only .references{right:auto;width:max-content;max-width:calc(50% - 24px);padding:8px 10px}
- .map-only .references-heading{margin-bottom:3px}
- .map-only .references-heading .eyebrow{display:none}
  .canvas:has(.house-pane:not([hidden])) .leaflet-top.leaflet-right{left:0;right:auto}
  #artwork-diagnostic[hidden] ~ .canvas:has(.house-pane:not([hidden])) .leaflet-control-zoom{margin:67px 0 0 12px!important}
  .canvas:has(.house-pane:not([hidden])) .reset-button{left:68px;right:auto}

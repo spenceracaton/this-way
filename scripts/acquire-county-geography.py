@@ -17,7 +17,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-FDOT_LAYER = "https://gis.fdot.gov/arcgis/rest/services/Admin_Boundaries/FeatureServer/7"
+CENSUS_LAYER = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5"
 ROADS_LAYER = "https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0"
 NHD_SERVICE = "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer"
 
@@ -75,8 +75,8 @@ def arcgis_query(base, params, fetch=None):
     return data
 
 
-def acquire_layer(base, extent, fetch=None, allow_empty=False):
-    meta, meta_sha, meta_raw = metadata(base, fetch)
+def acquire_layer(base, extent, fetch=None, allow_empty=False, metadata_snapshot=None, requested_fields=None):
+    meta, meta_sha, meta_raw = metadata_snapshot or metadata(base, fetch)
     oid = meta.get("objectIdField") or meta.get("objectIdFieldName")
     if not oid:
         oid_fields = [f["name"] for f in meta.get("fields", []) if f.get("type") == "esriFieldTypeOID"]
@@ -88,10 +88,30 @@ def acquire_layer(base, extent, fetch=None, allow_empty=False):
         raise AcquisitionError(f"invalid maxRecordCount in {base}")
     # A service's record limit can exceed practical GET URL lengths for an ID list.
     page_size = min(page_size, 200)
-    ids_result = arcgis_query(base, {"where": "1=1", "geometry": extent, "geometryType": "esriGeometryEnvelope", "spatialRel": "esriSpatialRelIntersects", "returnIdsOnly": "true", "returnGeometry": "false", "inSR": 4326, "outSR": 4326}, fetch)
+    if requested_fields is not None:
+        available = [field.get("name") for field in meta.get("fields", [])]
+        if (not isinstance(requested_fields, list) or not requested_fields or
+                any(name not in available for name in requested_fields) or
+                len(requested_fields) != len(set(requested_fields)) or oid not in requested_fields):
+            raise AcquisitionError(f"requested fields are absent, duplicated, or omit the object ID in {base}")
+        out_fields = ",".join(requested_fields)
+    else:
+        out_fields = "*"
+    extent_query = {"where": "1=1", "geometry": extent, "geometryType": "esriGeometryEnvelope", "spatialRel": "esriSpatialRelIntersects", "inSR": 4326, "outSR": 4326}
+    ids_result = arcgis_query(base, {**extent_query, "returnIdsOnly": "true", "returnGeometry": "false"}, fetch)
     if ids_result.get("exceededTransferLimit"):
         raise AcquisitionError(f"source ID query exceeded transfer limit in {base}")
     ids = ids_result.get("objectIds")
+    if ids is None:
+        if not allow_empty:
+            raise AcquisitionError(f"source ID query returned null object IDs in {base}")
+        count_result = arcgis_query(base, {**extent_query, "returnCountOnly": "true", "returnGeometry": "false"}, fetch)
+        if count_result.get("exceededTransferLimit"):
+            raise AcquisitionError(f"source count query exceeded transfer limit in {base}")
+        count = count_result.get("count")
+        if type(count) is not int or count != 0:
+            raise AcquisitionError(f"null object IDs were not confirmed empty by an exact zero count in {base}")
+        ids = []
     if not isinstance(ids, list) or any(type(value) is not int for value in ids) or len(ids) != len(set(ids)):
         raise AcquisitionError(f"missing or duplicate object IDs in {base}")
     ids = sorted(ids)
@@ -100,7 +120,7 @@ def acquire_layer(base, extent, fetch=None, allow_empty=False):
     all_features = []
     for start in range(0, len(ids), page_size):
         batch = ids[start:start + page_size]
-        page = arcgis_query(base, {"objectIds": ",".join(map(str, batch)), "outFields": "*", "returnGeometry": "true", "where": "1=1", "inSR": 4326, "outSR": 4326}, fetch)
+        page = arcgis_query(base, {"objectIds": ",".join(map(str, batch)), "outFields": out_fields, "returnGeometry": "true", "where": "1=1", "inSR": 4326, "outSR": 4326}, fetch)
         if page.get("exceededTransferLimit"):
             raise AcquisitionError(f"transfer limit exceeded despite object-ID paging in {base}")
         rows = page.get("features")
@@ -123,8 +143,8 @@ def field_binding(meta, override=None, purpose="name"):
     fields = meta.get("fields", [])
     if override:
         matches = [f for f in fields if f.get("name", "").casefold() == override.casefold()]
-        if len(matches) != 1:
-            raise AcquisitionError(f"configured {purpose} field {override!r} is absent from source metadata")
+        if len(matches) != 1 or not str(matches[0].get("type", "")).endswith("String"):
+            raise AcquisitionError(f"configured {purpose} field {override!r} is absent or not a string in source metadata")
         return matches[0]["name"]
     # Bind from actual source metadata only. Multiple plausible fields require an explicit override.
     token = "name" if purpose == "road-name" else "class"
@@ -197,11 +217,32 @@ def run(args, fetch=None, now=None):
     if output.exists():
         raise AcquisitionError(f"refusing to overwrite existing snapshot set: {output}")
 
-    core_url, roads_url, nhd_url = args.fdot_layer, args.roads_layer, args.nhd_service
+    core_url, roads_url, nhd_url = args.boundary_layer, args.roads_layer, args.nhd_service
     core_meta, core_sha, core_meta_raw = metadata(core_url, fetch)
     field = name_field(core_meta, args.boundary_name_field)
     escaped = args.name.replace("'", "''")
-    core_result = arcgis_query(core_url, {"where": f"{field}='{escaped}'", "outFields": "*", "returnGeometry": "true", "returnDistinctValues": "false", "outSR": 4326}, fetch)
+    core_oid = core_meta.get("objectIdField") or core_meta.get("objectIdFieldName")
+    if not core_oid:
+        oid_fields = [f["name"] for f in core_meta.get("fields", []) if f.get("type") == "esriFieldTypeOID"]
+        if len(oid_fields) != 1:
+            raise AcquisitionError(f"cannot identify stable object ID in {core_url}")
+        core_oid = oid_fields[0]
+    core_fields = [core_oid] + ([] if field == core_oid else [field])
+    where = f"{field}='{escaped}'"
+    id_field, identity = args.boundary_id_field, args.boundary_id
+    if bool(id_field) != bool(identity):
+        raise AcquisitionError("boundary ID and its metadata field must be supplied together")
+    available_core_fields = {f["name"] for f in core_meta.get("fields", [])}
+    if id_field:
+        if id_field not in available_core_fields:
+            raise AcquisitionError("boundary ID field is absent from source metadata")
+        escaped_id = identity.replace("'", "''")
+        where += f" AND {id_field}='{escaped_id}'"
+        core_fields.append(id_field)
+    # Preserve geographic identity/classification, not arbitrary source attributes.
+    core_fields += sorted(available_core_fields & {"GEOID", "STATE", "STATEFP", "PLACE", "PLACEFP", "NAME", "NAMELSAD", "LSAD", "LSADC", "CLASSFP", "PLACECC", "MTFCC", "FUNCSTAT"})
+    core_fields = list(dict.fromkeys(core_fields))
+    core_result = arcgis_query(core_url, {"where": where, "outFields": ",".join(core_fields), "returnGeometry": "true", "returnDistinctValues": "false", "outSR": 4326}, fetch)
     if core_result.get("geometryType") not in ("esriGeometryPolygon", "esriGeometryMultipolygon"):
         raise AcquisitionError(f"unsupported core boundary geometry type: {core_result.get('geometryType')}")
     core_rows = core_result.get("features")
@@ -211,6 +252,8 @@ def run(args, fetch=None, now=None):
     if core_result.get("exceededTransferLimit"):
         raise AcquisitionError("core boundary query exceeded transfer limit")
     core_rows = [f for f in core_rows if str(f.get("attributes", {}).get(field, "")).casefold() == args.name.casefold()]
+    if id_field:
+        core_rows = [f for f in core_rows if str(f.get("attributes", {}).get(id_field, "")) == identity]
     if len(core_rows) != 1:
         raise AcquisitionError(f"expected exactly one exact-name core boundary, found {len(core_rows)}")
     geom = core_rows[0].get("geometry")
@@ -238,28 +281,57 @@ def run(args, fetch=None, now=None):
     layers = nhd_meta.get("layers")
     if not isinstance(layers, list):
         raise AcquisitionError("NHD metadata has no layers list")
-    wanted = {"nhdwaterbody", "nhdarea"}
+    role_aliases = {
+        "waterbody": {"nhdwaterbody", "canonicalnhdwaterbody", "waterbody - large scale"},
+        "area": {"nhdarea", "canonicalnhdarea", "area - large scale"},
+    }
     selected = {}
-    for layer in layers:
-        lname = str(layer.get("name", "")).casefold()
-        if lname in wanted:
-            selected[lname] = layer.get("id")
-    if set(selected) != wanted:
-        raise AcquisitionError(f"NHD metadata missing exact required layers: {sorted(wanted - set(selected))}")
+    for role, aliases in role_aliases.items():
+        matches = [layer for layer in layers if str(layer.get("name", "")).strip().casefold() in aliases]
+        if len(matches) != 1:
+            raise AcquisitionError(f"NHD metadata must identify exactly one {role} layer by reviewed name (found {len(matches)})")
+        layer = matches[0]
+        if layer.get("geometryType") not in ("esriGeometryPolygon", "esriGeometryMultipolygon"):
+            raise AcquisitionError(f"NHD {role} layer is not polygon geometry: {layer.get('name')}")
+        selected[role] = layer
 
-    core = {"serviceUrl": core_url, "metadataSha256": core_sha, "nameField": field, "query": {"where": f"{field}='{escaped}'", "outFields": "*"}, "requestedName": args.name, "expectedFeatureCount": 1, "retrievedFeatureCount": 1, "feature": core_rows[0]}
-    roads = acquire_layer(roads_url, extent_arg, fetch)
-    road_name = field_binding(roads["metadata"], args.road_name_field, "road-name")
-    road_class = field_binding(roads["metadata"], args.road_class_field, "road-class") if args.road_class_field else None
-    # Include only geometry plus stable ID, street name, class and a recognized centerline ID.
-    centerline_candidates = [f["name"] for f in roads["metadata"].get("fields", []) if "centerline" in (f.get("name", "") + " " + f.get("alias", "")).casefold() and f.get("type", "").endswith("String")]
-    centerline = centerline_candidates[0] if len(centerline_candidates) == 1 else None
+    core = {"serviceUrl": core_url, "metadataSha256": core_sha, "nameField": field, "idField": id_field, "requestedId": identity, "query": {"where": where, "outFields": ",".join(core_fields)}, "requestedName": args.name, "expectedFeatureCount": 1, "retrievedFeatureCount": 1, "feature": core_rows[0]}
+    # Fetch County road metadata once, bind the exact geographic fields, and
+    # request only those fields plus the stable object ID on every page.
+    roads_meta_snapshot = metadata(roads_url, fetch)
+    roads_meta = roads_meta_snapshot[0]
+    road_name = field_binding(roads_meta, args.road_name_field, "road-name")
+    road_class = field_binding(roads_meta, args.road_class_field, "road-class")
+    centerline_exact = [f["name"] for f in roads_meta.get("fields", [])
+                        if str(f.get("name", "")).casefold() == "centerlineid" and
+                        str(f.get("type", "")).endswith("String")]
+    if len(centerline_exact) > 1:
+        raise AcquisitionError("road metadata has ambiguous CENTERLINEID fields")
+    centerline = centerline_exact[0] if centerline_exact else None
+    roads_oid = roads_meta.get("objectIdField") or roads_meta.get("objectIdFieldName")
+    if not roads_oid:
+        oid_fields = [f["name"] for f in roads_meta.get("fields", []) if f.get("type") == "esriFieldTypeOID"]
+        if len(oid_fields) != 1:
+            raise AcquisitionError(f"cannot identify stable object ID in {roads_url}")
+        roads_oid = oid_fields[0]
+    requested_road_fields = list(dict.fromkeys([roads_oid, road_name, *([road_class] if road_class else []), *([centerline] if centerline else [])]))
+    roads = acquire_layer(roads_url, extent_arg, fetch, metadata_snapshot=roads_meta_snapshot, requested_fields=requested_road_fields)
+    # Keep only geometry, stable object ID, name, class, and the selected current centerline ID.
     road_properties = lambda a: {k: a[k] for k in [roads["objectIdField"], road_name, *([road_class] if road_class else []), *([centerline] if centerline else [])] if k in a}
     water = {}
-    for lname, layer_id in selected.items():
-        water[lname] = acquire_layer(nhd_url.rstrip("/") + "/" + str(layer_id), extent_arg, fetch, allow_empty=True)
-        if water[lname]["geometryType"] not in ("esriGeometryPolygon", "esriGeometryMultipolygon"):
-            raise AcquisitionError(f"unsupported NHD polygon layer geometry type for {lname}: {water[lname]['geometryType']}")
+    for role, layer_meta in selected.items():
+        lname = layer_meta["name"]
+        layer_id = layer_meta["id"]
+        layer_base = nhd_url.rstrip("/") + "/" + str(layer_id)
+        water_snapshot = metadata(layer_base, fetch)
+        water_fields = [f["name"] for f in water_snapshot[0].get("fields", [])
+                        if str(f["name"]).casefold() in {"objectid", "gnis_name", "gnis_id", "fdate", "ftype", "fcode", "permanent_identifier"}]
+        water_oid = water_snapshot[0].get("objectIdField") or water_snapshot[0].get("objectIdFieldName")
+        if water_oid:
+            water_fields.insert(0, water_oid)
+        water[lname] = acquire_layer(layer_base, extent_arg, fetch, allow_empty=True,
+                                     metadata_snapshot=water_snapshot,
+                                     requested_fields=list(dict.fromkeys(water_fields)))
     acquired_at = (now or dt.datetime.now(dt.timezone.utc)).astimezone(dt.timezone.utc).isoformat().replace("+00:00", "Z")
     snapshot = {"schemaVersion": 1, "candidate": {"id": args.candidate_id, "name": args.name}, "acquiredAt": acquired_at, "spatialQuery": {"sourceBoundaryExtent": bbox, "bufferDegreesApprox150m": {"longitude": dx, "latitude": dy}, "extent": padded, "note": "Approximate 150 m degree buffer; source boundary rings are retained unchanged."}, "sources": {"coreBoundary": core, "roads": roads, "nhdService": {"serviceUrl": nhd_url, "metadataSha256": nhd_sha, "layers": water}}, "bindings": {"boundaryNameField": field, "roadObjectIdField": roads["objectIdField"], "roadNameField": road_name, "roadClassField": road_class, "roadCenterlineIdField": centerline}}
     water_rows = [(lname, layer, feature) for lname, layer in water.items() for feature in layer["features"]]
@@ -304,10 +376,12 @@ def main():
     parser.add_argument("--name", required=True, help="Exact candidate boundary name")
     parser.add_argument("--candidate-id", required=True, help="Review-only candidate ID")
     parser.add_argument("--output", required=True, help="New snapshot directory outside public/")
-    parser.add_argument("--fdot-layer", default=FDOT_LAYER)
+    parser.add_argument("--boundary-layer", "--fdot-layer", dest="boundary_layer", default=CENSUS_LAYER)
     parser.add_argument("--roads-layer", default=ROADS_LAYER)
     parser.add_argument("--nhd-service", default=NHD_SERVICE)
     parser.add_argument("--boundary-name-field", help="Exact string field from inspected boundary service metadata")
+    parser.add_argument("--boundary-id-field", help="Exact stable geographic ID field from boundary metadata")
+    parser.add_argument("--boundary-id", help="Exact geographic ID, used together with the name to disambiguate places")
     parser.add_argument("--road-name-field", help="Exact source metadata field for street name")
     parser.add_argument("--road-class-field", help="Exact source metadata field for road class")
     args = parser.parse_args()
