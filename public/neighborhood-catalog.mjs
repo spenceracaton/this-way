@@ -223,6 +223,12 @@ export const importedNeighborhoods = [
     "pins": []
   },
   {
+    "id": "holiday-park",
+    "name": "Holiday Park",
+    "config": "./data/holiday-park/neighborhood.json",
+    "pins": []
+  },
+  {
     "id": "jungle-prada",
     "name": "Jungle Prada",
     "config": "./data/jungle-prada/neighborhood.json",
@@ -298,6 +304,12 @@ export const importedNeighborhoods = [
     "id": "mission-hills",
     "name": "Mission Hills",
     "config": "./data/mission-hills/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "mystic-lake",
+    "name": "Mystic Lake",
+    "config": "./data/mystic-lake/neighborhood.json",
     "pins": []
   },
   {
@@ -394,6 +406,12 @@ export const importedNeighborhoods = [
     "id": "station-view",
     "name": "Station View",
     "config": "./data/station-view/neighborhood.json",
+    "pins": []
+  },
+  {
+    "id": "stonesthrow",
+    "name": "Stonesthrow",
+    "config": "./data/stonesthrow/neighborhood.json",
     "pins": []
   },
   {

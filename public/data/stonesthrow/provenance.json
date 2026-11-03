@@ -1,0 +1,57 @@
+{
+  "id": "stonesthrow",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "1bb75a21557d1b56072eaabf5ed91cb45949b0ae0f921a3b964d4ecce8efdd88",
+    "map-data.json": "7d464251b768f15d9caf1ee9d63d955108fb4b6851ec60fdf0ca9221fb6683f4",
+    "buffer.mjs": "4ec69a737deafe898ef0656283724209a1698881db6a47f9455b9d22064e0f47",
+    "buffer-map-data.json": "8b080ad4e0ae7a2d4db666b2ba1a2c2d80058ca84a70e50f04654ffb11f48df3",
+    "source-geography.geojson": "11acced6146cd184771764b57b0a8b8e1a0c21af3232a070a3e6240d01c454c4"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "a1b978a36b2cc7b42834562958e0175abdddf2c1b052b81410923a3c4a3af1fb",
+  "nearbyMaskGeometrySha256": "68312ba3a9800e8a92b6c6e821120bfc4599513bfe111713fbc6bedaed605b4d",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D323&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery / Esri"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/stonesthrow/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/stonesthrow/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/stonesthrow.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/stonesthrow/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/stonesthrow/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "1e72a543eb1c5c900e752187c90f69a57b7d21f9779ff637dde4e862a3b91e05",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/stonesthrow.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "7581f46af926f8a6d606f6800daf0d083746ecb345e7265b6f342563c8c8322b",
+    "sha256": "de080a86f34b062ad595198e044659c57c0439f9533f7b408f9aecd6dabcbd90",
+    "bytes": 156034,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}

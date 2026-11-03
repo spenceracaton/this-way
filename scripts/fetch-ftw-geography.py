@@ -28,14 +28,20 @@ def fetch(path, destination, prefix=PREFIX):
     return {'sourcePath': prefix + path, 'gitBlobSha': digest, 'sha256': hashlib.sha256(data).hexdigest(), 'size': len(data)}
 
 
-def expansion(output):
-    plan = json.loads(Path(__file__).with_name('ftw-expansion-sources.json').read_text())
+def expansion(output, plan_path=None, selected_ids=None):
+    plan_path = plan_path or Path(__file__).with_name('ftw-expansion-sources.json')
+    plan = json.loads(plan_path.read_text())
     if plan['repository'] != REPOSITORY or plan['revision'] != REVISION:
         raise ValueError('Expansion source plan must use the pinned QA repository revision')
     reference, source = output / 'reference', output / 'source'
+    selected = set(selected_ids) if selected_ids else set(plan['mapPrefixes'])
+    unknown = selected - set(plan['mapPrefixes'])
+    if unknown:
+        raise ValueError('IDs absent from source plan: ' + ', '.join(sorted(unknown)))
+    prefixes = {id: plan['mapPrefixes'][id] for id in plan['mapPrefixes'] if id in selected}
     maps, buffers, reference_sources = {}, {}, []
     snapshots = {}
-    for prefix in sorted(set(plan['mapPrefixes'].values())):
+    for prefix in sorted(set(prefixes.values())):
         prefix += '/'
         snapshots[prefix] = {}
         for filename in ['neighborhood-maps.json', 'neighborhood-buffer-config.json']:
@@ -43,14 +49,16 @@ def expansion(output):
             record = fetch('lib/' + filename, destination, prefix)
             reference_sources.append({'prefix': prefix, 'file': filename, **record})
             snapshots[prefix][filename] = json.loads(destination.read_text())
-    for id, prefix in plan['mapPrefixes'].items():
+    for id, prefix in prefixes.items():
         maps[id] = snapshots[prefix + '/']['neighborhood-maps.json'][id]
         buffers[id] = snapshots[prefix + '/']['neighborhood-buffer-config.json'][id]
         for key, metadata in [('expectedMapEntry', maps[id]), ('expectedBufferEntry', buffers[id])]:
-            expected = plan.get('qaMetadataHashes', {}).get(id, {}).get(key)
+            recorded = 'recordedSourceMetadataHashes' in plan
+            expected = plan.get('recordedSourceMetadataHashes', plan.get('qaMetadataHashes', {})).get(id, {}).get(key)
             digest = hashlib.sha256(json.dumps(metadata, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
             if expected and digest != expected:
-                raise ValueError(f'Maintained QA metadata mismatch: {id}/{key}')
+                label = 'Recorded source metadata fingerprint' if recorded else 'Maintained QA metadata'
+                raise ValueError(f'{label} mismatch: {id}/{key}')
     reference_files = {}
     for filename, data in [('neighborhood-maps.json', maps), ('neighborhood-buffer-config.json', buffers)]:
         payload = (json.dumps(data, indent=2) + '\n').encode()
@@ -61,10 +69,14 @@ def expansion(output):
     def download(item):
         id, filename = item
         path = ('lib/neighborhood-buffers/' + id + '.mjs') if filename == 'buffer.mjs' else ('public/neighborhoods/' + id + '/' + filename)
-        record = fetch(path, source / id / filename, plan['mapPrefixes'][id] + '/')
-        expected = plan.get('qaAssetHashes', {}).get(id, {}).get(filename)
-        if expected and expected != record['sha256']:
-            raise ValueError(f'Maintained QA asset mismatch: {id}/{filename}')
+        record = fetch(path, source / id / filename, prefixes[id] + '/')
+        recorded = 'recordedSourceAssetHashes' in plan
+        expected = plan.get('recordedSourceAssetHashes', {}).get(id, {}).get(filename, {})
+        expected_sha = expected.get('sha256') if isinstance(expected, dict) else expected
+        expected_sha = expected_sha or plan.get('qaAssetHashes', {}).get(id, {}).get(filename)
+        if expected_sha and expected_sha != record['sha256']:
+            label = 'Recorded source asset fingerprint' if recorded else 'Maintained QA asset'
+            raise ValueError(f'{label} mismatch: {id}/{filename}')
         return {'id': id, 'file': filename, **record}
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         files = list(pool.map(download, tasks))
@@ -73,11 +85,11 @@ def expansion(output):
         match = re.search(r"from ['\"]\./([a-z0-9-]+\.json)['\"]", wrapper)
         if match:
             name = match[1]
-            record = fetch('lib/neighborhood-buffers/' + name, source / id / name, plan['mapPrefixes'][id] + '/')
+            record = fetch('lib/neighborhood-buffers/' + name, source / id / name, prefixes[id] + '/')
             files.append({'id': id, 'file': name, **record})
     (source / 'manifest.json').write_text(json.dumps({
         'repository': REPOSITORY, 'revision': REVISION, 'normalizedSourceNotices': True,
-        'sourcePrefixes': plan['mapPrefixes'], 'referenceSources': reference_sources,
+        'sourcePrefixes': prefixes, 'referenceSources': reference_sources,
         'referenceFiles': reference_files, 'files': files,
     }, indent=2) + '\n')
     print(json.dumps({'maps': len(maps), 'files': len(files), 'output': str(output)}))
@@ -112,5 +124,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=Path('/tmp/this-way-ftw-geography'))
     parser.add_argument('--expansion', action='store_true', help='Fetch the reviewed additional-map source plan instead of the original 57-map bundle')
+    parser.add_argument('--plan', type=Path, help='Fetch a specific checked-in geography source plan')
+    parser.add_argument('--ids', nargs='+', help='Restrict --plan/--expansion to these map IDs')
     args = parser.parse_args()
-    (expansion if args.expansion else run)(args.output.resolve())
+    if args.plan and not args.expansion:
+        expansion(args.output.resolve(), args.plan.resolve(), args.ids)
+    elif args.expansion:
+        expansion(args.output.resolve(), selected_ids=args.ids)
+    elif args.ids:
+        parser.error('--ids requires --plan or --expansion')
+    else:
+        run(args.output.resolve())

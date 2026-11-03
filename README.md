@@ -1,8 +1,8 @@
 # This Way map prototype
 
-75 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 73 maps contain geography only. No seasonal overlays or FTW listing records are imported.
+78 prepared neighborhood maps using reused illustrated geography and Leaflet 1.9.4. Old Northeast and Crescent Lake retain their sample addresses; the other 76 maps contain geography only. No seasonal overlays or FTW listing records are imported.
 
-The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Those directories are historical inputs, not the current production source authority. This is not a claim of complete current FTW coverage: ten more QA-referenced maps still need recoverable assets. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, and additional County/Esri source credits are retained where applicable.
+The catalog combines the original 59-map import with 16 additional maps recovered from pinned retained source directories in Fright This Way QA revision `00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8`. Three more maps—Mystic Lake, Stonesthrow, and Holiday Park—come from a complete audit of the pinned source cohorts. Those directories are historical inputs, not the current production source authority. Nine further complete map bundles are verified and queued for the next batch; this is not a claim of complete current FTW coverage. Coverage shading represents approximate app coverage, not legal neighborhood boundaries or a surveyed shoreline. OSM, City GIS, and additional County/Esri source credits are retained where applicable.
 
 Only the selected map's configuration and artwork load. Imported lossless WebP images have a maximum 3072px long edge; their SVG sources remain available for diagnostics. The browser does not download the entire catalog's artwork.
 
@@ -12,8 +12,10 @@ The same-origin Worker adds durable listings in D1 and private photo storage in
 R2. Valid text/address submissions publish immediately; photos wait separately
 for authenticated owner review. See [service setup](docs/service-setup.md),
 [API contracts](docs/service-api.md), and [FTW migration planning](docs/ftw-migration.md).
-Production activation requires the owner setup and manually reviewed release
-changes. This branch does not migrate existing FTW records.
+Production activation was verified at commit `4ac4a28ea30b5227af250f96615102d2a167b374`
+in [run 41570806085, attempt 4](https://github.com/spenceracaton/this-way/actions/runs/41570806085).
+Public API, owner sign-in/moderation access, and logout passed live checks.
+Existing FTW records have not been migrated.
 
 ## Rebuild the imported geography
 
@@ -24,10 +26,13 @@ python3 scripts/fetch-ftw-geography.py --output /tmp/this-way-ftw-geography
 python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-geography/source --reference /tmp/this-way-ftw-geography/reference
 python3 scripts/fetch-ftw-geography.py --expansion --output /tmp/this-way-ftw-expansion
 python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-expansion/source --reference /tmp/this-way-ftw-expansion/reference
+python3 scripts/fetch-ftw-geography.py --plan scripts/ftw-ready-geography-sources.json --ids mystic-lake stonesthrow holiday-park --output /tmp/this-way-ftw-ready
+python3 scripts/import-ftw-geography.py --source /tmp/this-way-ftw-ready/source --reference /tmp/this-way-ftw-ready/reference
 node scripts/rasterize-neighborhoods.mjs
+node scripts/build-service-geography.mjs
 ```
 
-Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The fetcher verifies Git blob hashes; the expansion plan also checks asset and registry/config fingerprints against maintained QA fixtures where available. Each map records source checksums, preserved mask geometry, four independently matched road anchors, and raster checksums in its provenance. Valid raster outputs are reused when their source and dimensions are unchanged. The importer deliberately excludes listing data, executable SVG, external resources, textures, and seasonal decorations. Use `--ids id-a id-b` to select a batch and `--output-root /tmp/map-preflight` to validate in a scratch output tree. A failing source/metadata preflight writes no batch outputs.
+Set `CHROMIUM_EXECUTABLE_PATH` when using an existing Chromium installation. The fetcher verifies Git blob hashes; the original expansion plan also checks maintained QA fixture fingerprints where available. The ready-geography plan checks recorded source asset and metadata fingerprints; these do not imply additional maintained fixture coverage. Each map records source checksums, preserved mask geometry, four independently matched road anchors, and raster checksums in its provenance. Valid raster outputs are reused when their source and dimensions are unchanged. The importer deliberately excludes listing data, executable SVG, external resources, textures, and seasonal decorations. Use `--ids id-a id-b` to select a batch and `--output-root /tmp/map-preflight` to validate in a scratch output tree. A failing source/metadata preflight writes no batch outputs.
 
 ## Run
 

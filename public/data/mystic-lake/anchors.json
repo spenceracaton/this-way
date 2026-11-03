@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mystic-lake-road-1",
+    "osmType": "way",
+    "osmId": "11248214",
+    "sourceGeographic": {
+      "lng": -82.6379668,
+      "lat": 27.8291245
+    },
+    "expectedSourcePoint": [
+      366.27,
+      867.21
+    ],
+    "matchErrorPx": 0.000457
+  },
+  {
+    "id": "mystic-lake-road-2",
+    "osmType": "way",
+    "osmId": "11244889",
+    "sourceGeographic": {
+      "lng": -82.633073,
+      "lat": 27.832568
+    },
+    "expectedSourcePoint": [
+      861.89,
+      472.85
+    ],
+    "matchErrorPx": 0.000501
+  },
+  {
+    "id": "mystic-lake-road-3",
+    "osmType": "way",
+    "osmId": "11238141",
+    "sourceGeographic": {
+      "lng": -82.633433,
+      "lat": 27.8284979
+    },
+    "expectedSourcePoint": [
+      825.43,
+      938.97
+    ],
+    "matchErrorPx": 0.000758
+  },
+  {
+    "id": "mystic-lake-road-4",
+    "osmType": "way",
+    "osmId": "11241911",
+    "sourceGeographic": {
+      "lng": -82.6371674,
+      "lat": 27.8324826
+    },
+    "expectedSourcePoint": [
+      447.23,
+      482.63
+    ],
+    "matchErrorPx": 0.00076
+  }
+]

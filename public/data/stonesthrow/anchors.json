@@ -1,0 +1,58 @@
+[
+  {
+    "id": "stonesthrow-road-1",
+    "osmType": "way",
+    "osmId": "1168490168",
+    "sourceGeographic": {
+      "lng": -82.7341604,
+      "lat": 27.7882164
+    },
+    "expectedSourcePoint": [
+      805.98,
+      850.06
+    ],
+    "matchErrorPx": 0.000514
+  },
+  {
+    "id": "stonesthrow-road-2",
+    "osmType": "way",
+    "osmId": "1152344353",
+    "sourceGeographic": {
+      "lng": -82.7355549,
+      "lat": 27.7882223
+    },
+    "expectedSourcePoint": [
+      452.46,
+      848.37
+    ],
+    "matchErrorPx": 0.001013
+  },
+  {
+    "id": "stonesthrow-road-3",
+    "osmType": "way",
+    "osmId": "1069162621",
+    "sourceGeographic": {
+      "lng": -82.7337814,
+      "lat": 27.7879254
+    },
+    "expectedSourcePoint": [
+      902.06,
+      933.45
+    ],
+    "matchErrorPx": 0.001255
+  },
+  {
+    "id": "stonesthrow-road-4",
+    "osmType": "way",
+    "osmId": "11250698",
+    "sourceGeographic": {
+      "lng": -82.7351937,
+      "lat": 27.7892595
+    },
+    "expectedSourcePoint": [
+      544.03,
+      551.15
+    ],
+    "matchErrorPx": 0.001339
+  }
+]

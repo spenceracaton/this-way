@@ -1,0 +1,58 @@
+[
+  {
+    "id": "holiday-park-road-1",
+    "osmType": "way",
+    "osmId": "11262540",
+    "sourceGeographic": {
+      "lng": -82.719763,
+      "lat": 27.799783
+    },
+    "expectedSourcePoint": [
+      784.05,
+      349.81
+    ],
+    "matchErrorPx": 0.000169
+  },
+  {
+    "id": "holiday-park-road-2",
+    "osmType": "way",
+    "osmId": "11248515",
+    "sourceGeographic": {
+      "lng": -82.721388,
+      "lat": 27.794482
+    },
+    "expectedSourcePoint": [
+      685.75,
+      712.31
+    ],
+    "matchErrorPx": 0.000267
+  },
+  {
+    "id": "holiday-park-road-3",
+    "osmType": "way",
+    "osmId": "11256784",
+    "sourceGeographic": {
+      "lng": -82.7321431,
+      "lat": 27.7968159
+    },
+    "expectedSourcePoint": [
+      35.15,
+      552.71
+    ],
+    "matchErrorPx": 0.000277
+  },
+  {
+    "id": "holiday-park-road-4",
+    "osmType": "way",
+    "osmId": "1034401444",
+    "sourceGeographic": {
+      "lng": -82.7285071,
+      "lat": 27.8025034
+    },
+    "expectedSourcePoint": [
+      255.1,
+      163.78
+    ],
+    "matchErrorPx": 0.000375
+  }
+]

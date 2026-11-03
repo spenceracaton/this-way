@@ -1,0 +1,74 @@
+{
+  "id": "stonesthrow",
+  "name": "Stonesthrow",
+  "width": 1000,
+  "height": 1060,
+  "bounds": {
+    "left": 20,
+    "right": 980,
+    "top": 20,
+    "bottom": 1040
+  },
+  "projection": {
+    "lngOrigin": -82.7353673762722,
+    "latOrigin": 27.78933330664501,
+    "xOrigin": 500,
+    "yOrigin": 530,
+    "xScale": 253509.93826635368,
+    "yScale": 286559.4770278437
+  },
+  "artwork": "./assets/neighborhoods/stonesthrow.svg",
+  "rasterArtwork": "./assets/neighborhoods/stonesthrow.webp",
+  "coreBoundary": [
+    [
+      133.20756926145833,
+      868.9605855783284
+    ],
+    [
+      877.2462353339204,
+      873.1614069764266
+    ],
+    [
+      879.9999999981987,
+      534.9813731627553
+    ],
+    [
+      515.4281208385901,
+      532.4463939953514
+    ],
+    [
+      518.2147823673961,
+      189.59993333948762
+    ],
+    [
+      119.99999999819869,
+      186.83859302357342
+    ],
+    [
+      133.20756926145833,
+      868.9605855783284
+    ]
+  ],
+  "overviewBounds": {
+    "left": 119.99999999819869,
+    "right": 879.9999999981987,
+    "top": 186.83859302357342,
+    "bottom": 873.1614069764266
+  },
+  "attribution": {
+    "label": "\u00a9 OpenStreetMap contributors",
+    "href": "https://www.openstreetmap.org/copyright"
+  },
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "additionalAttributions": [
+    {
+      "label": "City of St. Petersburg GIS",
+      "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D323&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+    },
+    {
+      "label": "Pinellas County imagery / Esri"
+    }
+  ],
+  "sourceNotices": "./data/stonesthrow/source-notices.json"
+}

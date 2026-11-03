@@ -1,0 +1,57 @@
+{
+  "id": "mystic-lake",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": {
+    "review-map.svg": "58db9db77106ed3f1bb633b0736cf516ceee8359a207d6a9c0dfe4b8bba6efea",
+    "map-data.json": "91287c8fac35cb444d57b91cec12df56e0a770fbbbd9e34b5659054893dd9375",
+    "buffer.mjs": "46becabff4a71a7716c572482de6f92ce10fc8ab50bc52a39ae878624742d1a3",
+    "buffer-map-data.json": "c759a76b79acead5ec2b5067b16f459474248fb634fe7cb50aed6402c62e570d",
+    "source-geography.geojson": "9f78fa8d63917f83f59f9bb4e4ef4aa27063d6029b5e5a93cdf982db5ed45d0a"
+  },
+  "sourceManifestRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceViewBox": "0 0 1000 1060",
+  "finalViewBox": "20 20 960 1020",
+  "coreMaskGeometrySha256": "e2de00780e1e7d51a1b4f88b2492294fdc66b938010f20a0515b44c5c396db7c",
+  "nearbyMaskGeometrySha256": "d794bd3aa04b5ad125ef9ccbc24a4841f794f0bd12a9a9ce06888bae1fc0e7fa",
+  "transformNotes": "Source SVG coordinates and core/nearby mask paths are preserved. Projection comes from the prepared fixed-neighborhood metadata; bounds come from the configured buffer viewBox. Overview bounds project the core coverage coordinates.",
+  "sourceGeoAttribution": {
+    "originalCredit": "\u00a9 OpenStreetMap contributors",
+    "attribution": {
+      "label": "\u00a9 OpenStreetMap contributors",
+      "href": "https://www.openstreetmap.org/copyright"
+    },
+    "additionalAttributions": [
+      {
+        "label": "City of St. Petersburg GIS",
+        "href": "https://egis.stpete.org/arcgis/rest/services/ServicesDOTS/GoogleGen/MapServer/15/query?f=geojson&where=OBJECTID%3D56&outFields=OBJECTID,NANAME,STATUS&outSR=4326"
+      },
+      {
+        "label": "Pinellas County imagery / Esri"
+      }
+    ],
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+  },
+  "boundaryNote": "Approximate app coverage; not a legal boundary.",
+  "anchors": 4,
+  "sourcePaths": {
+    "review-map.svg": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/mystic-lake/review-map.svg",
+    "map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/mystic-lake/map-data.json",
+    "buffer.mjs": "release-source/pipeline-a1a2-b61687a91bd3/current/lib/neighborhood-buffers/mystic-lake.mjs",
+    "buffer-map-data.json": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/mystic-lake/buffer-map-data.json",
+    "source-geography.geojson": "release-source/pipeline-a1a2-b61687a91bd3/current/public/neighborhoods/mystic-lake/source-geography.geojson"
+  },
+  "sourceNoticesSha256": "c6d7af56e9b942406eb1e58ffbdcb0dc3a96e72c2096cb4c1903dbd2f32d55d7",
+  "rasterArtwork": {
+    "path": "./assets/neighborhoods/mystic-lake.webp",
+    "width": 2891,
+    "height": 3072,
+    "encoding": "lossless WebP",
+    "sourceSha256": "5259d96d6650149d2d19abbd351260ce40d48294cfb103b5a309d9a52dfa5ca4",
+    "sha256": "79c2d32a8e8e456240298302c513d51d4874491b359e1ad1f1bf4737167df529",
+    "bytes": 305636,
+    "renderer": "154.0.8037.57",
+    "pillowVersion": "12.3.0"
+  }
+}
