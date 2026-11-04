@@ -25,6 +25,7 @@ const neighborhoodCopy = {
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const point = ([lng, lat]) => ({ x: 520 + (lng + 82.73) * 1700 * Math.cos(27.9 * Math.PI / 180), y: 590 + (27.91 - lat) * 1700 });
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const mobileMapInset = 24;
 let data, places, regions, state, view, animation = 0, resizeFrame;
 const counts = new Map();
 const countPending = new Set();
@@ -157,6 +158,12 @@ function matchAspect(box) {
  if(w/h>aspect)h=w/aspect;else w=h*aspect;
  return{x:center.x-w/2,y:center.y-h/2,w,h};
 }
+function fittedBounds(){
+ const box=matchAspect(shapeBounds());
+ if(!state.region||state.place||!matchMedia('(max-width:720px)').matches)return box;
+ const factor=surface.clientHeight/(surface.clientHeight-2*mobileMapInset);
+ return{x:box.x-box.w*(factor-1)/2,y:box.y-box.h*(factor-1)/2,w:box.w*factor,h:box.h*factor};
+}
 function applyView(next){if(!surface.clientWidth||!surface.clientHeight)return;view=next;$('#atlas-map').setAttribute('viewBox',[view.x,view.y,view.w,view.h].join(' '));renderMarkers();renderCities();}
 function animateTo(target){
  cancelAnimationFrame(animation);
@@ -165,7 +172,7 @@ function animateTo(target){
  function step(now){const t=Math.min(1,(now-time)/430),ease=1-Math.pow(1-t,3);applyView(Object.fromEntries(['x','y','w','h'].map(key=>[key,start[key]+(target[key]-start[key])*ease])));if(t<1)animation=requestAnimationFrame(step);}
  animation=requestAnimationFrame(step);
 }
-function fitView(){if(surface.clientWidth&&surface.clientHeight)animateTo(matchAspect(shapeBounds()));}
+function fitView(){if(surface.clientWidth&&surface.clientHeight)animateTo(fittedBounds());}
 function screenPoint(place){const p=point([place.lng,place.lat]);return{x:(p.x-view.x)/view.w*surface.clientWidth,y:(p.y-view.y)/view.h*surface.clientHeight};}
 function makeMarker(x,y,content,className,label,color){
  const button=document.createElement('button');button.type='button';button.className=className;button.style.left=x+'px';button.style.top=y+'px';button.style.setProperty('--region-color',color);button.setAttribute('aria-label',label);button.innerHTML=content;return button;
@@ -190,7 +197,9 @@ function renderMarkers(){
  } else {
   const shown=availablePlaces().filter(place=>!state.search || place.region===state.region).sort((a,b)=>a.name.localeCompare(b.name));
   const groups=[];
-  for(const place of shown){const p=screenPoint(place);if(p.x<23||p.x>width-23||p.y<65||p.y>height-45)continue;let group=groups.find(g=>Math.hypot(p.x-g.x,p.y-g.y)<38);if(!group){group={x:p.x,y:p.y,items:[]};groups.push(group);}group.items.push(place);}
+  const compact=matchMedia('(max-width:720px)').matches;
+  const insetTop=compact?mobileMapInset:65,insetBottom=compact?mobileMapInset:45;
+  for(const place of shown){const p=screenPoint(place);if(p.x<23||p.x>width-23||p.y<insetTop||p.y>height-insetBottom)continue;let group=groups.find(g=>Math.hypot(p.x-g.x,p.y-g.y)<38);if(!group){group={x:p.x,y:p.y,items:[]};groups.push(group);}group.items.push(place);}
   for(const group of groups){const many=group.items.length>1,place=group.items[0];
    const button=makeMarker(group.x,group.y,many?String(group.items.length):'<span class="place-label">'+esc(place.name)+'</span>','place-marker'+(many?' cluster':''),many?group.items.length+' nearby neighborhood maps':place.name,colors[state.region]);
    if(many)button.dataset.cluster=String(group.items.length);else button.dataset.place=place.id;
@@ -228,7 +237,7 @@ async function boot(){
  $('#county-button').addEventListener('click',()=>navigate({region:null,place:null,focusIds:null,search:''}));
  $('#zoom-in').addEventListener('click',()=>zoom(.7));$('#zoom-out').addEventListener('click',()=>zoom(1.4));$('#fit-map').addEventListener('click',fitView);
  window.addEventListener('popstate',event=>{const saved=event.state?.atlas;state=saved&&(!saved.region||regions.has(saved.region))&&(!saved.place||places.has(saved.place))?saved:readState();navigate({},false,false);});
- new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{cancelAnimationFrame(animation);if(surface.clientWidth&&surface.clientHeight)applyView(matchAspect(shapeBounds()));});}).observe(surface);
+ new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{cancelAnimationFrame(animation);if(surface.clientWidth&&surface.clientHeight)applyView(fittedBounds());});}).observe(surface);
  matchMedia('(max-width:720px)').addEventListener('change',renderResults);
  document.body.dataset.ready='true';
 }
