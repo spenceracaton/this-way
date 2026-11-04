@@ -82,7 +82,8 @@ test('Cloudflare target rejects duplicate exact D1 names and does not create a d
   assert.equal(calls.some(call => /\/d1\/database$/.test(new URL(call.url).pathname) && call.method !== 'GET'), false);
 });
 
-test('deployment uploads multipart metadata, verifies private object bytes, and enables only after secret setup', async () => {
+for (const [workerStatus, secretStatus] of [[200,200], [201,200], [200,201], [201,201]]) {
+test(`deployment accepts Worker ${workerStatus}/secret ${secretStatus}, verifies private bytes, and enables only after authentication`, async () => {
   const events = [];
   let marker;
   let objectBytes;
@@ -111,12 +112,12 @@ test('deployment uploads multipart metadata, verifies private object bytes, and 
         ['PHOTOS', 'this-way-photos'], ['CONTROL', privateBucket]
       ]);
       assert.equal(metadata.observability.enabled, false);
-      return ok({});
+      return ok({}, workerStatus);
     }
     if (path === `/workers/scripts/${script}/secrets`) {
       assert.equal(init.method, 'PUT');
       assert.equal(JSON.parse(init.body).name, 'OPERATOR_TOKEN');
-      return ok({});
+      return ok({}, secretStatus);
     }
     if (path === `/workers/scripts/${script}/subdomain`) {
       const enabled = JSON.parse(init.body).enabled;
@@ -146,6 +147,8 @@ test('deployment uploads multipart metadata, verifies private object bytes, and 
   ]);
   assert.equal(events.find(event => event.path.includes('/objects/') && event.method === 'PUT').headers['if-none-match'], '*');
 });
+
+}
 
 test('cleanup requires the exact owner marker before disabling or deleting', async () => {
   const calls = [];
