@@ -1,6 +1,6 @@
 const $ = selector => document.querySelector(selector);
 const svgNS = 'http://www.w3.org/2000/svg';
-const colors = { north: '#78856a', central: '#a5804d', south: '#745c7d', coast: '#607e87' };
+const colors = { north: '#5d704f', central: '#8b632d', south: '#745c7d', coast: '#476b76' };
 const arrow = '<svg class="row-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5"/></svg>';
 const back = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m11 5-5 5 5 5M6 10h10"/></svg>';
 const searchIcon = '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>';
@@ -26,6 +26,22 @@ const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&
 const point = ([lng, lat]) => ({ x: 520 + (lng + 82.73) * 1700 * Math.cos(27.9 * Math.PI / 180), y: 590 + (27.91 - lat) * 1700 });
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const mobileMapInset = 24;
+const cities = [
+ {name:'Tarpon Springs',lng:-82.755,lat:28.148},
+ {name:'Dunedin',lng:-82.774,lat:28.025},
+ {name:'Clearwater',lng:-82.795,lat:27.98},
+ {name:'Largo',lng:-82.79,lat:27.91},
+ {name:'St. Petersburg',lng:-82.635,lat:27.75}
+];
+const regionAliases = {
+ north:['North Pinellas','Tarpon Springs','Dunedin'],
+ central:['Central Pinellas','Clearwater','Largo'],
+ south:['South Pinellas','St. Petersburg','Saint Petersburg','St Pete'],
+ coast:['Pinellas beaches','Beaches','Islands','Gulf beaches','Tierra Verde','Belleair Beach']
+};
+const normalize = value => value.normalize('NFKD').toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+const searchKey = value => normalize(value).replaceAll(' ','');
+const mapCount = count => count+' neighborhood '+(count===1?'map':'maps');
 let data, places, regions, state, view, animation = 0, resizeFrame;
 const counts = new Map();
 const countPending = new Set();
@@ -37,7 +53,7 @@ function readState() {
  return { region: place?.region || (regions.has(query.get('region')) ? query.get('region') : null), place: place?.id || null, focusIds: null, search: '', limit: 6 };
 }
 function searchMarkup() {
- return '<div class="search-wrap">'+searchIcon+'<input id="atlas-search" type="search" autocomplete="off" placeholder="Find a neighborhood" aria-label="Find a neighborhood" value="'+esc(state.search)+'"><button class="clear-search" type="button" aria-label="Clear neighborhood search" '+(!state.search?'hidden':'')+'>×</button></div>';
+ return '<div class="search-wrap">'+searchIcon+'<input id="atlas-search" type="search" autocomplete="off" placeholder="Find a city or neighborhood" aria-label="Find a city or neighborhood" value="'+esc(state.search)+'"><button class="clear-search" type="button" aria-label="Clear neighborhood search" '+(!state.search?'hidden':'')+'>×</button></div>';
 }
 function regionRow(region, index) {
  const count = data.neighborhoods.filter(place => place.region === region.id).length;
@@ -47,10 +63,28 @@ function neighborhoodRow(place) {
  return '<button type="button" class="neighborhood-row" data-place="'+esc(place.id)+'" style="--region-color:'+colors[place.region]+'"><span class="ready-dot" aria-hidden="true"></span><span><span class="row-name">'+esc(place.name)+'</span><span class="row-meta">'+esc(regions.get(place.region).name)+'</span></span>'+arrow+'</button>';
 }
 function availablePlaces() {
- const query = state.search.trim().toLocaleLowerCase();
- if (query) return data.neighborhoods.filter(place => place.name.toLocaleLowerCase().includes(query));
+ const query = searchKey(state.search);
+ if (state.search.trim()) return query?data.neighborhoods.filter(place => searchKey(place.name).includes(query)):[];
  if (!state.region) return [];
  return data.neighborhoods.filter(place => place.region === state.region && (!state.focusIds || state.focusIds.includes(place.id)));
+}
+function matchingRegions(){
+ const query=searchKey(state.search);
+ return query.length<3?[]:data.regions.filter(region=>[region.name,...regionAliases[region.id]].some(alias=>searchKey(alias).includes(query)));
+}
+function areaLabel(items){
+ const center={lng:items.reduce((sum,p)=>sum+p.lng,0)/items.length,lat:items.reduce((sum,p)=>sum+p.lat,0)/items.length};
+ const nearest=[...cities].sort((a,b)=>Math.hypot((a.lng-center.lng)*.88,a.lat-center.lat)-Math.hypot((b.lng-center.lng)*.88,b.lat-center.lat))[0];
+ const dx=(center.lng-nearest.lng)*.88,dy=center.lat-nearest.lat;
+ if(Math.hypot(dx,dy)<.018)return 'Near '+nearest.name;
+ const vertical=Math.abs(dy)>.45*Math.abs(dx)?(dy>0?'North':'South'):'';
+ const horizontal=Math.abs(dx)>.45*Math.abs(dy)?(dx>0?'east':'west'):'';
+ const direction=vertical?vertical+horizontal:horizontal[0].toUpperCase()+horizontal.slice(1);
+ return direction+' of '+nearest.name;
+}
+function focusLabel(){return areaLabel(state.focusIds.map(id=>places.get(id)));}
+function highlightPlace(id){
+ $('#map-markers').querySelectorAll('button').forEach(button=>button.classList.toggle('is-linked',Boolean(id)&&(button.dataset.place===id||button.dataset.members?.split(' ').includes(id))));
 }
 function renderResults() {
  const host = $('#atlas-results');
@@ -60,13 +94,25 @@ function renderResults() {
  if (!state.region && !isSearch) {
   host.innerHTML = '<div class="list-heading"><span>Choose a region</span><span>'+data.neighborhoods.length+' neighborhood maps</span></div><div class="region-list">'+data.regions.map(regionRow).join('')+'</div>';
  } else {
-  const shown = availablePlaces().sort((a,b) => a.name.localeCompare(b.name));
+  const queryKey=searchKey(state.search);
+  const shown = availablePlaces().sort((a,b) => Number(searchKey(b.name)===queryKey)-Number(searchKey(a.name)===queryKey)||a.name.localeCompare(b.name));
   const visible=matchMedia('(max-width:720px)').matches?shown.slice(0,state.limit||6):shown;
-  host.innerHTML = '<div class="list-heading"><span>'+(isSearch?'Across Pinellas':state.focusIds?'A little closer':'Neighborhoods')+'</span><span>'+shown.length+' '+(shown.length===1?'map':'maps')+'</span></div>'+(shown.length?'<div class="neighborhood-list">'+visible.map(neighborhoodRow).join('')+'</div>'+(visible.length<shown.length?'<button type="button" class="more-neighborhoods" id="atlas-more">Show '+Math.min(6,shown.length-visible.length)+' more neighborhoods <span>'+visible.length+' of '+shown.length+' shown</span></button>':''):'<div class="list-empty">'+(isSearch?'No neighborhood by that name. Try another name or explore a region.':'We’re still drawing this part of the atlas. There are more maps nearby.<br><button type="button" data-region="central">Explore Clearwater & Largo →</button>')+'</div>');
+  const suggestions=isSearch?matchingRegions():[];
+  host.innerHTML = (suggestions.length?'<div id="region-suggestions"><div class="list-heading"><span>Explore a region</span></div><div class="region-list">'+suggestions.map(region=>regionRow(region,data.regions.indexOf(region))).join('')+'</div></div>':'')+(shown.length?'<div class="list-heading"><span>'+(isSearch?'Neighborhood matches':state.focusIds?esc(focusLabel()):'Neighborhoods')+'</span><span>'+shown.length+' '+(shown.length===1?'map':'maps')+'</span></div><div class="neighborhood-list">'+visible.map(neighborhoodRow).join('')+'</div>'+(visible.length<shown.length?'<button type="button" class="more-neighborhoods" id="atlas-more">Show '+Math.min(6,shown.length-visible.length)+' more neighborhoods <span>'+visible.length+' of '+shown.length+' shown</span></button>':''):suggestions.length?'':'<div class="list-empty">'+(isSearch?'No city or neighborhood by that name. Try another name or clear your search to explore a region.':'We’re still drawing this part of the atlas. There are more maps nearby.<br><button type="button" data-region="central">Explore Clearwater & Largo →</button>')+'</div>');
  }
  host.querySelectorAll('[data-region]').forEach(button => button.addEventListener('click', () => navigate({region:button.dataset.region,place:null,focusIds:null,search:'',limit:6},false)));
- host.querySelectorAll('[data-place]').forEach(button => button.addEventListener('click', () => choosePlace(button.dataset.place)));
- $('#atlas-more')?.addEventListener('click',()=>{state.limit=(state.limit||6)+6;history.replaceState({atlas:{...state}},'',location.href);renderResults();$('#atlas-more')?.focus({preventScroll:true});$('#view-status').textContent=state.limit+' neighborhood maps shown.';});
+ host.querySelectorAll('[data-place]').forEach(button => {
+  button.addEventListener('click', () => choosePlace(button.dataset.place));
+  for(const event of ['pointerenter','focus'])button.addEventListener(event,()=>highlightPlace(button.dataset.place));
+  for(const event of ['pointerleave','blur'])button.addEventListener(event,()=>highlightPlace(null));
+ });
+ $('#atlas-more')?.addEventListener('click',()=>{
+  const total=availablePlaces().length,previous=Math.min(state.limit||6,total);
+  state.limit=Math.min(previous+6,total);writeHistory(true);renderResults();
+  const next=host.querySelectorAll('.neighborhood-row')[previous];
+  next?.focus({preventScroll:true});next?.scrollIntoView({block:'nearest',behavior:'instant'});
+  $('#view-status').textContent=state.limit===total?'All '+mapCount(total)+' shown.':state.limit+' of '+mapCount(total)+' shown.';
+ });
  const clear = $('.clear-search');
  if (clear) clear.hidden = !state.search;
 }
@@ -106,7 +152,14 @@ function renderPanel() {
   input.addEventListener('input', () => { state.search=input.value;state.limit=6;writeHistory(true);renderResults(); });
   input.addEventListener('keydown', event => {
    if (event.key==='Escape') {state.search='';input.value='';writeHistory(true);renderResults();}
-   if (event.key==='Enter') { const first=$('#atlas-results [data-place]'); if(first){event.preventDefault();choosePlace(first.dataset.place);} }
+   if (event.key==='Enter') {
+    const matches=[...$('#atlas-results').querySelectorAll('[data-place]')];
+    const exact=matches.find(button=>searchKey(places.get(button.dataset.place).name)===searchKey(state.search));
+    const suggestions=[...($('#region-suggestions')?.querySelectorAll('[data-region]')||[])];
+    const first=exact||(suggestions.length===1?suggestions[0]:suggestions.length?null:matches[0]);
+    if(first){event.preventDefault();first.click();}
+    else if(suggestions.length){event.preventDefault();suggestions[0].focus();}
+   }
   });
   $('.clear-search').addEventListener('click', () => { state.search='';input.value='';writeHistory(true);renderResults();input.focus(); });
  }
@@ -128,10 +181,11 @@ function navigate(next, scroll=false, record=true) {
  if(record)writeHistory();
  renderPanel();
  const region=regions.get(state.region), place=places.get(state.place);
- $('#map-view-label').textContent=place?.name || region?.name || 'Choose a region';
- $('#map-hint').textContent=place?'A whole neighborhood awaits.':region?'Tap a group, or scroll for neighborhood names.':'Four regions. Plenty of little places.';
+ $('#map-view-label').textContent=place?.name || (state.focusIds?focusLabel():region?.name) || 'Choose a region';
+ $('#map-hint').textContent=place?'Selected in '+region.name:state.focusIds?focusLabel():region?'Tap a group, or choose a neighborhood.':'Four regions. Choose a number or a region.';
+ $('#map-instruction').textContent=region?'Tap a dot or group':'Tap a number';
  surface.classList.toggle('is-regional',Boolean(region));
- $('#view-status').textContent=place?place.name+' preview opened.':region?region.name+' — '+availablePlaces().length+' neighborhood maps.':'Pinellas overview. Choose one of four regions.';
+ $('#view-status').textContent=place?place.name+' preview opened.':region?(state.focusIds?focusLabel():region.name)+' — '+mapCount(availablePlaces().length)+'.':'Pinellas overview. Choose one of four regions.';
  fitView();
  if (record) $('#panel-title').focus({preventScroll:true});
  if (matchMedia('(max-width:720px)').matches) {
@@ -148,8 +202,7 @@ function projectBounds(bounds) {
  return {x:a.x,y:a.y,w:b.x-a.x,h:b.y-a.y};
 }
 function shapeBounds() {
- if(state.place){const p=point([places.get(state.place).lng,places.get(state.place).lat]);return{x:p.x-90,y:p.y-90,w:180,h:180};}
- if(state.focusIds){const points=state.focusIds.map(id=>places.get(id)).filter(Boolean).map(p=>point([p.lng,p.lat]));const xs=points.map(p=>p.x),ys=points.map(p=>p.y);return{x:Math.min(...xs)-30,y:Math.min(...ys)-30,w:Math.max(60,Math.max(...xs)-Math.min(...xs)+60),h:Math.max(60,Math.max(...ys)-Math.min(...ys)+60)};}
+ if(state.focusIds&&!state.place){const points=state.focusIds.map(id=>places.get(id)).filter(Boolean).map(p=>point([p.lng,p.lat]));const xs=points.map(p=>p.x),ys=points.map(p=>p.y);return{x:Math.min(...xs)-30,y:Math.min(...ys)-30,w:Math.max(60,Math.max(...xs)-Math.min(...xs)+60),h:Math.max(60,Math.max(...ys)-Math.min(...ys)+60)};}
  const bounds={north:[-82.88,27.98,-82.60,28.20],central:[-82.90,27.83,-82.58,28.04],south:[-82.81,27.68,-82.52,27.89],coast:[-82.91,27.59,-82.68,28.04]};
  return state.region?projectBounds(bounds[state.region]):projectBounds([-82.94,27.57,-82.50,28.21]);
 }
@@ -175,7 +228,7 @@ function animateTo(target){
 function fitView(){if(surface.clientWidth&&surface.clientHeight)animateTo(fittedBounds());}
 function screenPoint(place){const p=point([place.lng,place.lat]);return{x:(p.x-view.x)/view.w*surface.clientWidth,y:(p.y-view.y)/view.h*surface.clientHeight};}
 function makeMarker(x,y,content,className,label,color){
- const button=document.createElement('button');button.type='button';button.className=className;button.style.left=x+'px';button.style.top=y+'px';button.style.setProperty('--region-color',color);button.setAttribute('aria-label',label);button.innerHTML=content;return button;
+ const button=document.createElement('button');button.type='button';button.className=className;button.style.left=x+'px';button.style.top=y+'px';button.style.setProperty('--region-color',color);button.setAttribute('aria-label',label);button.title=label;button.innerHTML=content;return button;
 }
 function renderMarkers(){
  if(!view||!data)return;
@@ -185,7 +238,7 @@ function renderMarkers(){
    const anchor=region.id==='south'?[-82.66,27.70]:region.id==='coast'?[-82.86,27.825]:region.anchor;
    const p=screenPoint({lng:anchor[0],lat:anchor[1]});const count=data.neighborhoods.filter(place=>place.region===region.id).length;
    const compact=matchMedia('(max-width:720px)').matches;
-   const positions={north:[.60,.18],central:[.36,.42],south:[.61,.76],coast:[.22,.70]};
+   const positions={north:[.60,.18],central:[.36,.42],south:[.55,.81],coast:[.22,.70]};
    const [x,y]=compact?[width*positions[region.id][0],height*positions[region.id][1]]:[Math.max(80,Math.min(width-80,p.x)),Math.max(85,Math.min(height-65,p.y))];
    const button=makeMarker(x,y,'<span class="region-number">0'+(index+1)+'</span><span><span class="region-marker-name">'+esc(region.name)+'</span><span class="region-marker-count">'+count+' '+(count===1?'map':'maps')+'</span></span>','region-marker',region.name+', '+count+' maps',colors[region.id]);
    button.dataset.region=region.id;button.addEventListener('click',()=>navigate({region:region.id,place:null,focusIds:null,search:'',limit:6},false));fragment.append(button);
@@ -201,7 +254,8 @@ function renderMarkers(){
   const insetTop=compact?mobileMapInset:65,insetBottom=compact?mobileMapInset:45;
   for(const place of shown){const p=screenPoint(place);if(p.x<23||p.x>width-23||p.y<insetTop||p.y>height-insetBottom)continue;let group=groups.find(g=>Math.hypot(p.x-g.x,p.y-g.y)<38);if(!group){group={x:p.x,y:p.y,items:[]};groups.push(group);}group.items.push(place);}
   for(const group of groups){const many=group.items.length>1,place=group.items[0];
-   const button=makeMarker(group.x,group.y,many?String(group.items.length):'<span class="place-label">'+esc(place.name)+'</span>','place-marker'+(many?' cluster':''),many?group.items.length+' nearby neighborhood maps':place.name,colors[state.region]);
+   const button=makeMarker(group.x,group.y,many?String(group.items.length):'<span class="place-label">'+esc(place.name)+'</span>','place-marker'+(many?' cluster':''),many?group.items.length+' nearby neighborhood maps, '+areaLabel(group.items):place.name,colors[state.region]);
+   button.dataset.members=group.items.map(item=>item.id).join(' ');
    if(many)button.dataset.cluster=String(group.items.length);else button.dataset.place=place.id;
    button.addEventListener('click',()=>many?navigate({focusIds:group.items.map(p=>p.id),place:null,search:'',limit:6},false):choosePlace(place.id));fragment.append(button);
   }
@@ -222,12 +276,39 @@ function drawCounty(){
  $('#roads').replaceChildren();
 }
 function renderCities(){
- const cities=[['Tarpon Springs',-82.755,28.148],['Dunedin',-82.774,28.025],['Clearwater',-82.795,27.98],['Largo',-82.79,27.91],['St. Petersburg',-82.635,27.75]];
  const group=$('#city-labels');group.replaceChildren();
- if(state.place)return;
+ if(!surface.clientWidth||!surface.clientHeight)return;
  const scale=view.h/surface.clientHeight;
  const shown=matchMedia('(max-width:720px)').matches&&!state.region?cities.filter((_,index)=>[0,2,4].includes(index)):cities;
- for(const [name,lng,lat] of shown){const p=point([lng,lat]);const circle=document.createElementNS(svgNS,'circle');circle.setAttribute('cx',p.x);circle.setAttribute('cy',p.y);circle.setAttribute('r',2*scale);const text=document.createElementNS(svgNS,'text');text.setAttribute('x',p.x+6*scale);text.setAttribute('y',p.y+4*scale);text.setAttribute('font-size',Math.min(24,10*scale));text.textContent=name;group.append(circle,text);}
+ const frame=surface.getBoundingClientRect(),width=surface.clientWidth,height=surface.clientHeight;
+ const blocked=[...surface.parentElement.querySelectorAll('.map-markers button,.place-label,.map-tools,.north-arrow,.map-topline,.water-word')].filter(node=>{
+  const style=getComputedStyle(node);return style.display!=='none'&&style.visibility!=='hidden'&&Number(style.opacity)>0;
+ }).map(node=>{const r=node.getBoundingClientRect();return{x:r.x-frame.x-3,y:r.y-frame.y-3,w:r.width+6,h:r.height+6};});
+ const overlaps=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
+ for(const city of shown){
+  const p=point([city.lng,city.lat]),screen=screenPoint(city);
+  if(screen.x<8||screen.x>width-8||screen.y<8||screen.y>height-8)continue;
+  const text=document.createElementNS(svgNS,'text');text.setAttribute('font-size',11*scale);text.setAttribute('stroke-width',3*scale);text.setAttribute('letter-spacing',.2*scale);text.textContent=city.name;group.append(text);
+  const metrics=text.getBBox(),w=metrics.width/scale,h=metrics.height/scale;
+  const candidates=[];
+  for(const gap of [8,32,56,80]){
+   for(const dy of [-h/2,-h-10,10,-h-28,28]){
+    for(const side of [1,-1]){
+     const candidate={x:screen.x+(side===1?gap:-gap-w),y:screen.y+dy,w,h};
+     if(candidate.x>=10&&candidate.x+w<=width-10&&candidate.y>=10&&candidate.y+h<=height-10&&!blocked.some(rect=>overlaps(candidate,rect)))candidates.push({...candidate,cost:Math.hypot(gap,dy+h/2)+Math.abs(dy+h/2)*.5});
+    }
+   }
+  }
+  const label=candidates.sort((a,b)=>a.cost-b.cost)[0];
+  if(!label){text.remove();continue;}
+  text.setAttribute('x',view.x+label.x*scale-metrics.x);text.setAttribute('y',view.y+label.y*scale-metrics.y);
+  const end={x:Math.max(label.x,Math.min(screen.x,label.x+w)),y:Math.max(label.y,Math.min(screen.y,label.y+h))};
+  if(Math.hypot(end.x-screen.x,end.y-screen.y)>12){
+   const line=document.createElementNS(svgNS,'line');line.setAttribute('x1',p.x);line.setAttribute('y1',p.y);line.setAttribute('x2',view.x+end.x*scale);line.setAttribute('y2',view.y+end.y*scale);line.setAttribute('stroke-width',scale);group.insertBefore(line,text);
+  }
+  const circle=document.createElementNS(svgNS,'circle');circle.setAttribute('cx',p.x);circle.setAttribute('cy',p.y);circle.setAttribute('r',2*scale);group.insertBefore(circle,text);
+  blocked.push({x:label.x-3,y:label.y-3,w:w+6,h:h+6});
+ }
 }
 function zoom(factor){if(!view)return;cancelAnimationFrame(animation);const w=view.w*factor,h=view.h*factor;animateTo({x:view.x+(view.w-w)/2,y:view.y+(view.h-h)/2,w,h});}
 async function boot(){
@@ -240,5 +321,6 @@ async function boot(){
  new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{cancelAnimationFrame(animation);if(surface.clientWidth&&surface.clientHeight)applyView(fittedBounds());});}).observe(surface);
  matchMedia('(max-width:720px)').addEventListener('change',renderResults);
  document.body.dataset.ready='true';
+ document.fonts.ready.then(()=>{if(surface.clientWidth&&surface.clientHeight)renderCities();});
 }
 boot().catch(error=>{$('#panel-content').innerHTML='<h1>The atlas couldn’t load.</h1><p>'+esc(error.message)+'</p><p><a href="/?season=halloween-2026">Open the neighborhood maps</a></p>';$('#view-status').textContent='The atlas could not load.';});

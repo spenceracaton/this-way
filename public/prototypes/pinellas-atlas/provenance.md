@@ -7,3 +7,5 @@ Source: [2024 Census county cartographic boundaries](https://www2.census.gov/geo
 Neighborhood centers use the polygon centroid of each prepared map’s coreBoundary, calculated in its map projection and converted back to longitude/latitude. Crescent Lake predates coreBoundary storage, so its prepared serviceCoverage ring supplies its centroid directly. Each atlas item links to that neighborhood’s existing raster map artwork.
 
 Browse regions are conceptual groups, not official boundaries. Beaches & Islands includes Belleair Beach and Tierra Verde. The remaining groups use center latitude: 28.00° and above for North Pinellas; 27.84° to below 28.00° for Clearwater & Largo; below 27.84° for St. Petersburg & South. The longitude cutoff alone would incorrectly group inland neighborhoods such as Ridgecrest and Orange Terrace with the barrier beaches.
+
+City labels are approximate orientation references. City searches offer the corresponding browse region rather than filtering by municipal boundaries. Cluster area cues describe the group's center relative to the nearest orientation city; they are not official district or neighborhood names.
