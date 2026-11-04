@@ -68,6 +68,23 @@ test('mobile search and preview actions stay visible and back restores the query
  await expect(result).toBeInViewport({ratio:1});
  await page.locator('.clear-search').click();await expect(page.locator('.map-stage')).toBeVisible();
 });
+test('every mobile region exposes its prepared maps as tappable pins',async({page})=>{
+ await page.setViewportSize({width:320,height:568});
+ for(const region of ['north','central','south','coast']){
+  await open(page,'?region='+region);
+  const markers=page.locator('#map-markers .place-marker');
+  await expect.poll(()=>markers.count()).toBeGreaterThan(0);
+  const expected=region==='north'?1:region==='coast'?2:null;
+  if(expected!==null)await expect(markers).toHaveCount(expected);
+  for(const marker of await markers.all())await expect(marker).toBeInViewport({ratio:1});
+  const first=markers.first();let id=await first.getAttribute('data-place');await first.click();
+  if(!id){const result=page.locator('.neighborhood-row').first();id=await result.getAttribute('data-place');await result.click();}
+  await expect(page.locator('body')).toHaveAttribute('data-view','preview');
+  await expect(page.locator('.open-map')).toHaveAttribute('href','/?neighborhood='+id+'&season=halloween-2026');
+  await expect.poll(()=>page.locator('.preview-image img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+  await page.locator('#panel-back').click();await expect(page.locator('body')).toHaveAttribute('data-view','region');
+ }
+});
 test('mobile region list uses page scrolling and explicitly reveals more maps',async({page})=>{
  await page.setViewportSize({width:390,height:844});await open(page,'?region=south');
  await expect(page.locator('.neighborhood-row')).toHaveCount(6);

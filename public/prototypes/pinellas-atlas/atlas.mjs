@@ -190,7 +190,9 @@ function renderMarkers(){
  } else {
   const shown=availablePlaces().filter(place=>!state.search || place.region===state.region).sort((a,b)=>a.name.localeCompare(b.name));
   const groups=[];
-  for(const place of shown){const p=screenPoint(place);if(p.x<23||p.x>width-23||p.y<65||p.y>height-45)continue;let group=groups.find(g=>Math.hypot(p.x-g.x,p.y-g.y)<38);if(!group){group={x:p.x,y:p.y,items:[]};groups.push(group);}group.items.push(place);}
+  const compact=matchMedia('(max-width:720px)').matches;
+  const insetTop=compact?24:65,insetBottom=compact?24:45;
+  for(const place of shown){const p=screenPoint(place);if(p.x<23||p.x>width-23||p.y<insetTop||p.y>height-insetBottom)continue;let group=groups.find(g=>Math.hypot(p.x-g.x,p.y-g.y)<38);if(!group){group={x:p.x,y:p.y,items:[]};groups.push(group);}group.items.push(place);}
   for(const group of groups){const many=group.items.length>1,place=group.items[0];
    const button=makeMarker(group.x,group.y,many?String(group.items.length):'<span class="place-label">'+esc(place.name)+'</span>','place-marker'+(many?' cluster':''),many?group.items.length+' nearby neighborhood maps':place.name,colors[state.region]);
    if(many)button.dataset.cluster=String(group.items.length);else button.dataset.place=place.id;
