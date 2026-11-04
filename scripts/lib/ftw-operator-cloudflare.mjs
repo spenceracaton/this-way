@@ -164,9 +164,9 @@ export class FtwOperatorCloudflare {
     this.claimedScripts.add(scriptName);
     this.ownershipMarkers.set(scriptName, ownershipMarker);
     await this.onClaimed(scriptName, ownershipMarker);
-    await this.json(scriptPath, { method: 'PUT', headers: {}, body: form });
+    await this.json(scriptPath, { method: 'PUT', headers: {}, body: form }, [200, 201]);
     await this.json(`${scriptPath}/subdomain`, { method: 'POST', body: JSON.stringify({ enabled: false, previews_enabled: false }) });
-    await this.json(`${scriptPath}/secrets`, { method: 'PUT', body: JSON.stringify({ name: 'OPERATOR_TOKEN', type: 'secret_text', text: token }) });
+    await this.json(`${scriptPath}/secrets`, { method: 'PUT', body: JSON.stringify({ name: 'OPERATOR_TOKEN', type: 'secret_text', text: token }) }, [200, 201]);
     await this.json(`${scriptPath}/subdomain`, { method: 'POST', body: JSON.stringify({ enabled: true, previews_enabled: false }) });
     return { url: `https://${scriptName}.${target.subdomain}.workers.dev/execute`, token };
   }
