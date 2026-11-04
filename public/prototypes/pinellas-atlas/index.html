@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An illustrated county atlas: discover a region of Pinellas, then explore its neighborhood maps.">
+<title>The Pinellas atlas · This Way</title>
+<link rel="stylesheet" href="./atlas.css"><script type="module" src="./atlas.mjs"></script>
+</head>
+<body>
+<header class="topbar"><a href="./" class="brand" aria-label="This Way atlas home">this way <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a><span class="atlas-title">THE PINELLAS ATLAS</span><span class="concept-badge">A working sketch</span></header>
+<main class="atlas-layout">
+<aside class="side-panel" aria-label="Explore the atlas">
+ <div id="panel-content"></div>
+ <p class="snapshot-note">A concept for finding your way into a neighborhood.<br>Opening a map takes you to the existing neighborhood view.</p>
+</aside>
+<section class="map-stage" aria-label="Illustrated Pinellas overview">
+ <div class="map-topline"><button id="county-button" class="county-button" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m11 5-5 5 5 5M6 10h10"/></svg> All Pinellas</button><span id="map-view-label">Choose a region</span></div>
+ <div class="map-surface" id="map-surface">
+ <svg id="atlas-map" viewBox="100 30 850 1250" role="img" aria-labelledby="map-title map-description"><title id="map-title">Pinellas County and its neighborhood maps</title><desc id="map-description">A county overview with four exploration regions. Choose a region using the map buttons or the list.</desc>
+ <defs><pattern id="water-lines" width="55" height="55" patternUnits="userSpaceOnUse"><path d="M0 28q14-6 27 0t28 0" fill="none" stroke="#a4b6bb" stroke-width="1" opacity=".2"/></pattern></defs>
+ <rect x="-3000" y="-3000" width="7000" height="7000" fill="#e7ece8"/><rect x="-3000" y="-3000" width="7000" height="7000" fill="url(#water-lines)"/>
+ <g id="county-shadow"></g><g id="county-land"></g><g id="county-wash"></g><g id="roads"></g><g id="city-labels"></g>
+ </svg>
+ <div id="map-markers" class="map-markers"></div>
+ <div class="water-word gulf" aria-hidden="true">Gulf of<br>Mexico</div><div class="water-word bay" aria-hidden="true">Tampa<br>Bay</div>
+ <div class="map-tools" aria-label="Map controls"><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="fit-map" type="button" aria-label="Fit current area"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5"/></svg></button></div>
+ <div id="map-hint" class="map-hint">Four regions. Plenty of little places.</div>
+ <span class="north-arrow" aria-hidden="true"><svg viewBox="0 0 16 30"><path d="m8 1 6 16-6-3-6 3Z" fill="currentColor"/><path d="M8 14v14" stroke="currentColor"/></svg>N</span>
+ </div>
+ <div class="map-caption"><span><i></i> Neighborhood maps available</span><span>County outline · U.S. Census Bureau</span></div>
+</section>
+</main>
+<div id="view-status" class="sr-only" role="status" aria-live="polite"></div>
+<noscript><p class="no-script">This interactive sketch needs JavaScript. <a href="/?season=halloween-2026">Open the neighborhood maps.</a></p></noscript>
+</body></html>
