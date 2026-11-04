@@ -70,12 +70,13 @@ test('mobile search and preview actions stay visible and back restores the query
 });
 test('every mobile region exposes its prepared maps as tappable pins',async({page})=>{
  await page.setViewportSize({width:320,height:568});
+ const data=await (await page.request.get('/prototypes/pinellas-atlas/atlas-data.json')).json();
  for(const region of ['north','central','south','coast']){
   await open(page,'?region='+region);
   const markers=page.locator('#map-markers .place-marker');
   await expect.poll(()=>markers.count()).toBeGreaterThan(0);
-  const expected=region==='north'?1:region==='coast'?2:null;
-  if(expected!==null)await expect(markers).toHaveCount(expected);
+  const expected=data.neighborhoods.filter(place=>place.region===region).length;
+  await expect.poll(()=>markers.evaluateAll(nodes=>nodes.reduce((sum,node)=>sum+Number(node.getAttribute('aria-label').match(/^(\d+) nearby/)?.[1]||1),0))).toBe(expected);
   for(const marker of await markers.all())await expect(marker).toBeInViewport({ratio:1});
   const first=markers.first();let id=await first.getAttribute('data-place');await first.click();
   if(!id){const result=page.locator('.neighborhood-row').first();id=await result.getAttribute('data-place');await result.click();}
