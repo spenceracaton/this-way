@@ -24,17 +24,49 @@ test('county search spans regions and unknown places safely open the overview',a
  await expect(page.locator('#panel-title')).toHaveText('Belleair Beach');
  await expect(page).toHaveURL(/region=coast/);
  await page.locator('#panel-back').click();
- await expect(page.locator('#atlas-results [data-place]')).toHaveCount(2);
+ await expect(page.locator('#atlas-search')).toHaveValue('Belleair Beach');
+ await expect(page.locator('#atlas-results [data-place]')).toHaveCount(1);
+ await page.locator('.clear-search').click();
+ await expect(page.locator('.region-row')).toHaveCount(4);
 });
-test('narrow county choices and map tools do not overlap and have touch targets',async({page})=>{
- await page.setViewportSize({width:320,height:568});await open(page);
+for(const viewport of [{width:390,height:650},{width:375,height:600},{width:320,height:568}]){
+test(`mobile discovery fits the first ${viewport.width}x${viewport.height} screen`,async({page})=>{
+ await page.setViewportSize(viewport);await open(page);
+ const search=page.locator('#atlas-search');
+ await expect(search).toBeInViewport({ratio:1});
+ const map=await page.locator('.map-surface').boundingBox();
+ const searchBox=await search.boundingBox();
+ expect(searchBox.y+searchBox.height).toBeLessThan(map.y);
+ for(const choice of await page.locator('.region-row').all()){
+  await expect(choice).toBeInViewport({ratio:1});
+  const box=await choice.boundingBox();expect(box.height).toBeGreaterThanOrEqual(44);
+  expect(box.y+box.height).toBeLessThanOrEqual(viewport.height-12);
+ }
  await expect.poll(async()=>{
   const boxes=await page.locator('#map-markers .region-marker').evaluateAll(nodes=>nodes.map(node=>{const r=node.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};}));
   let overlap=0;for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];overlap+=Math.max(0,Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x))*Math.max(0,Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y));}
   return overlap;
  }).toBe(0);
- for(const button of await page.locator('.map-tools button').all()){const rect=await button.boundingBox();expect(rect.width).toBeGreaterThanOrEqual(44);expect(rect.height).toBeGreaterThanOrEqual(44);}
+ let covered=0;
+ for(const button of await page.locator('.region-marker').all()){
+  const rect=await button.boundingBox();expect(rect.width).toBeGreaterThanOrEqual(44);expect(rect.height).toBeGreaterThanOrEqual(44);covered+=rect.width*rect.height;
+ }
+ expect(covered/(map.width*map.height)).toBeLessThan(.18);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+}
+test('mobile search and preview actions stay visible and back restores the query',async({page})=>{
+ await page.setViewportSize({width:320,height:568});await open(page);
+ await page.locator('#atlas-search').fill('Old Northeast');
+ await expect(page.locator('.map-stage')).toBeHidden();
+ const result=page.locator('#atlas-results [data-place="old-northeast"]');
+ await expect(result).toBeInViewport({ratio:1});await result.click();
+ await expect(page.locator('.map-stage')).toBeHidden();
+ await expect(page.locator('.open-map')).toBeInViewport({ratio:1});
+ await page.locator('#panel-back').click();
+ await expect(page.locator('#atlas-search')).toHaveValue('Old Northeast');
+ await expect(result).toBeInViewport({ratio:1});
+ await page.locator('.clear-search').click();await expect(page.locator('.map-stage')).toBeVisible();
 });
 test('mobile region list uses page scrolling and explicitly reveals more maps',async({page})=>{
  await page.setViewportSize({width:390,height:844});await open(page,'?region=south');

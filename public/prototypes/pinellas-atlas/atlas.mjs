@@ -40,7 +40,7 @@ function searchMarkup() {
 }
 function regionRow(region, index) {
  const count = data.neighborhoods.filter(place => place.region === region.id).length;
- return '<button type="button" class="region-row" data-region="'+region.id+'" style="--region-color:'+colors[region.id]+'"><span class="region-symbol" aria-hidden="true"><svg viewBox="0 0 26 26">'+icons[region.id]+'</svg></span><span><span class="row-name">'+esc(region.name)+'</span><span class="row-meta">'+count+' neighborhood '+(count===1?'map':'maps')+'</span></span>'+arrow+'</button>';
+ return '<button type="button" class="region-row" data-region="'+region.id+'" style="--region-color:'+colors[region.id]+'"><span class="region-symbol" aria-hidden="true"><span class="region-index">0'+(index+1)+'</span><svg viewBox="0 0 26 26">'+icons[region.id]+'</svg></span><span><span class="row-name">'+esc(region.name)+'</span><span class="row-meta">'+count+' '+(count===1?'map':'maps')+'</span></span>'+arrow+'</button>';
 }
 function neighborhoodRow(place) {
  return '<button type="button" class="neighborhood-row" data-place="'+esc(place.id)+'" style="--region-color:'+colors[place.region]+'"><span class="ready-dot" aria-hidden="true"></span><span><span class="row-name">'+esc(place.name)+'</span><span class="row-meta">'+esc(regions.get(place.region).name)+'</span></span>'+arrow+'</button>';
@@ -55,8 +55,9 @@ function renderResults() {
  const host = $('#atlas-results');
  if (!host) return;
  const isSearch = Boolean(state.search.trim());
+ document.body.dataset.search = String(isSearch);
  if (!state.region && !isSearch) {
-  host.innerHTML = '<div class="list-heading"><span>Start somewhere</span><span>'+data.neighborhoods.length+' maps to explore</span></div><div class="region-list">'+data.regions.map(regionRow).join('')+'</div>';
+  host.innerHTML = '<div class="list-heading"><span>Choose a region</span><span>'+data.neighborhoods.length+' neighborhood maps</span></div><div class="region-list">'+data.regions.map(regionRow).join('')+'</div>';
  } else {
   const shown = availablePlaces().sort((a,b) => a.name.localeCompare(b.name));
   const visible=matchMedia('(max-width:720px)').matches?shown.slice(0,state.limit||6):shown;
@@ -92,24 +93,24 @@ function renderPanel() {
  if (place) {
   markup = '<button class="back-link" type="button" id="panel-back">'+back+'Neighborhoods</button><div class="preview-image"><img src="'+esc(place.artwork)+'" alt="Illustrated street map of '+esc(place.name)+'"><span class="preview-stamp">A closer look</span></div><p class="preview-credit">'+(place.credits||[]).map(credit=>'<a href="'+esc(credit.href)+'" target="_blank" rel="noopener">'+esc(credit.label)+'</a>').join(' · ')+'</p><span class="preview-region-chip" style="--region-color:'+colors[place.region]+'">'+esc(region.name)+'</span><h1 id="panel-title" class="preview-title" tabindex="-1">'+esc(place.name)+'</h1><p class="preview-copy">'+esc(neighborhoodCopy[place.id] || 'A neighborhood of its own, with an illustrated map to help you find your way.')+'</p><p class="preview-stat"><i aria-hidden="true"></i><span id="preview-count">'+statText(place.id)+'</span></p><a class="open-map" target="_blank" rel="noopener" href="/?neighborhood='+encodeURIComponent(place.id)+'&season=halloween-2026">Open neighborhood map <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 15 15 5M6 5h9v9"/></svg></a><p class="preview-footnote">Opens in a new tab, so your place in the atlas stays here.</p>';
  } else if (region) {
-  markup = '<button class="back-link" type="button" id="panel-back">'+back+(state.focusIds?'All '+esc(region.name):'All Pinellas')+'</button><p class="eyebrow">'+esc(region.kicker)+'</p><h1 id="panel-title" class="region-name" tabindex="-1">'+esc(region.name)+'</h1><p class="intro">'+regionCopy[region.id]+'</p>'+searchMarkup()+'<div id="atlas-results"></div><p class="browse-note">Select a dot or a name for a closer look.</p>';
+  markup = '<div class="panel-heading"><button class="back-link" type="button" id="panel-back">'+back+(state.focusIds?'All '+esc(region.name):'All Pinellas')+'</button><p class="eyebrow">'+esc(region.kicker)+'</p><h1 id="panel-title" class="region-name" tabindex="-1">'+esc(region.name)+'</h1><p class="intro">'+regionCopy[region.id]+'</p>'+searchMarkup()+'</div><div id="atlas-results"></div><p class="browse-note">Select a dot or a name for a closer look.</p>';
  } else {
-  markup = '<p class="eyebrow">An illustrated field guide</p><h1 id="panel-title" tabindex="-1">Find your corner of Pinellas.</h1><p class="intro">Start with a region. Find a neighborhood. See where the little streets lead.</p>'+searchMarkup()+'<div id="atlas-results"></div>';
+  markup = '<div class="panel-heading"><p class="eyebrow">An illustrated field guide</p><h1 id="panel-title" tabindex="-1"><span class="desktop-title">Find your corner of Pinellas.</span><span class="mobile-title">Explore Pinellas</span></h1><p class="intro">Start with a region. Find a neighborhood. See where the little streets lead.</p>'+searchMarkup()+'</div><div id="atlas-results"></div>';
  }
  $('#panel-content').innerHTML = markup;
  if (place) loadCount(place.id);
  else {
   renderResults();
   const input = $('#atlas-search');
-  input.addEventListener('input', () => { state.search=input.value;state.limit=6;renderResults(); });
+  input.addEventListener('input', () => { state.search=input.value;state.limit=6;writeHistory(true);renderResults(); });
   input.addEventListener('keydown', event => {
-   if (event.key==='Escape') {state.search='';input.value='';renderResults();}
+   if (event.key==='Escape') {state.search='';input.value='';writeHistory(true);renderResults();}
    if (event.key==='Enter') { const first=$('#atlas-results [data-place]'); if(first){event.preventDefault();choosePlace(first.dataset.place);} }
   });
-  $('.clear-search').addEventListener('click', () => { state.search='';input.value='';renderResults();input.focus(); });
+  $('.clear-search').addEventListener('click', () => { state.search='';input.value='';writeHistory(true);renderResults();input.focus(); });
  }
  $('#panel-back')?.addEventListener('click', () => {
-  if (state.place) navigate({place:null,search:''},true);
+  if (state.place) navigate({...state.returnBrowse,place:null,returnBrowse:null,search:state.returnBrowse?.search||''},true);
   else if (state.focusIds) navigate({focusIds:null,search:''},true);
   else navigate({region:null,place:null,focusIds:null,search:''},false);
  });
@@ -121,6 +122,8 @@ function writeHistory(replace=false) {
 }
 function navigate(next, scroll=false, record=true) {
  state={...state,...next};
+ document.body.dataset.view=state.place?'preview':state.region?'region':'county';
+ document.body.dataset.search=String(Boolean(state.search.trim()));
  if(record)writeHistory();
  renderPanel();
  const region=regions.get(state.region), place=places.get(state.place);
@@ -131,13 +134,13 @@ function navigate(next, scroll=false, record=true) {
  fitView();
  if (record) $('#panel-title').focus({preventScroll:true});
  if (matchMedia('(max-width:720px)').matches) {
-  if(scroll) $('.side-panel').scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
-  else if(!state.place) window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});
+  window.scrollTo({top:0,behavior:'instant'});
  }
 }
 function choosePlace(id) {
  const place=places.get(id);if(!place)return;
- navigate({region:place.region,place:id,focusIds:state.region===place.region&&state.focusIds?.includes(place.id)?state.focusIds:null,search:''},true);
+ const returnBrowse={region:state.region,focusIds:state.focusIds,search:state.search,limit:state.limit};
+ navigate({region:place.region,place:id,focusIds:state.region===place.region&&state.focusIds?.includes(place.id)?state.focusIds:null,search:'',returnBrowse},true);
 }
 function projectBounds(bounds) {
  const [west,south,east,north]=bounds, a=point([west,north]),b=point([east,south]);
@@ -154,7 +157,7 @@ function matchAspect(box) {
  if(w/h>aspect)h=w/aspect;else w=h*aspect;
  return{x:center.x-w/2,y:center.y-h/2,w,h};
 }
-function applyView(next){view=next;$('#atlas-map').setAttribute('viewBox',[view.x,view.y,view.w,view.h].join(' '));renderMarkers();renderCities();}
+function applyView(next){if(!surface.clientWidth||!surface.clientHeight)return;view=next;$('#atlas-map').setAttribute('viewBox',[view.x,view.y,view.w,view.h].join(' '));renderMarkers();renderCities();}
 function animateTo(target){
  cancelAnimationFrame(animation);
  if(!view||reduced.matches){applyView(target);return;}
@@ -162,7 +165,7 @@ function animateTo(target){
  function step(now){const t=Math.min(1,(now-time)/430),ease=1-Math.pow(1-t,3);applyView(Object.fromEntries(['x','y','w','h'].map(key=>[key,start[key]+(target[key]-start[key])*ease])));if(t<1)animation=requestAnimationFrame(step);}
  animation=requestAnimationFrame(step);
 }
-function fitView(){animateTo(matchAspect(shapeBounds()));}
+function fitView(){if(surface.clientWidth&&surface.clientHeight)animateTo(matchAspect(shapeBounds()));}
 function screenPoint(place){const p=point([place.lng,place.lat]);return{x:(p.x-view.x)/view.w*surface.clientWidth,y:(p.y-view.y)/view.h*surface.clientHeight};}
 function makeMarker(x,y,content,className,label,color){
  const button=document.createElement('button');button.type='button';button.className=className;button.style.left=x+'px';button.style.top=y+'px';button.style.setProperty('--region-color',color);button.setAttribute('aria-label',label);button.innerHTML=content;return button;
@@ -174,7 +177,10 @@ function renderMarkers(){
   data.regions.forEach((region,index)=>{
    const anchor=region.id==='south'?[-82.66,27.70]:region.id==='coast'?[-82.86,27.825]:region.anchor;
    const p=screenPoint({lng:anchor[0],lat:anchor[1]});const count=data.neighborhoods.filter(place=>place.region===region.id).length;
-   const button=makeMarker(Math.max(80,Math.min(width-80,p.x)),Math.max(85,Math.min(height-65,p.y)),'<span class="region-number">0'+(index+1)+'</span><span><span class="region-marker-name">'+esc(region.name)+'</span><span class="region-marker-count">'+count+' '+(count===1?'map':'maps')+'</span></span>','region-marker',region.name+', '+count+' maps',colors[region.id]);
+   const compact=matchMedia('(max-width:720px)').matches;
+   const positions={north:[.60,.18],central:[.36,.42],south:[.61,.76],coast:[.22,.70]};
+   const [x,y]=compact?[width*positions[region.id][0],height*positions[region.id][1]]:[Math.max(80,Math.min(width-80,p.x)),Math.max(85,Math.min(height-65,p.y))];
+   const button=makeMarker(x,y,'<span class="region-number">0'+(index+1)+'</span><span><span class="region-marker-name">'+esc(region.name)+'</span><span class="region-marker-count">'+count+' '+(count===1?'map':'maps')+'</span></span>','region-marker',region.name+', '+count+' maps',colors[region.id]);
    button.dataset.region=region.id;button.addEventListener('click',()=>navigate({region:region.id,place:null,focusIds:null,search:'',limit:6},false));fragment.append(button);
   });
  } else if(state.place){
@@ -211,7 +217,8 @@ function renderCities(){
  const group=$('#city-labels');group.replaceChildren();
  if(state.place)return;
  const scale=view.h/surface.clientHeight;
- for(const [name,lng,lat] of cities){const p=point([lng,lat]);const circle=document.createElementNS(svgNS,'circle');circle.setAttribute('cx',p.x);circle.setAttribute('cy',p.y);circle.setAttribute('r',2*scale);const text=document.createElementNS(svgNS,'text');text.setAttribute('x',p.x+6*scale);text.setAttribute('y',p.y+4*scale);text.setAttribute('font-size',Math.min(24,10*scale));text.textContent=name;group.append(circle,text);}
+ const shown=matchMedia('(max-width:720px)').matches&&!state.region?cities.filter((_,index)=>[0,2,4].includes(index)):cities;
+ for(const [name,lng,lat] of shown){const p=point([lng,lat]);const circle=document.createElementNS(svgNS,'circle');circle.setAttribute('cx',p.x);circle.setAttribute('cy',p.y);circle.setAttribute('r',2*scale);const text=document.createElementNS(svgNS,'text');text.setAttribute('x',p.x+6*scale);text.setAttribute('y',p.y+4*scale);text.setAttribute('font-size',Math.min(24,10*scale));text.textContent=name;group.append(circle,text);}
 }
 function zoom(factor){if(!view)return;cancelAnimationFrame(animation);const w=view.w*factor,h=view.h*factor;animateTo({x:view.x+(view.w-w)/2,y:view.y+(view.h-h)/2,w,h});}
 async function boot(){
@@ -221,7 +228,7 @@ async function boot(){
  $('#county-button').addEventListener('click',()=>navigate({region:null,place:null,focusIds:null,search:''}));
  $('#zoom-in').addEventListener('click',()=>zoom(.7));$('#zoom-out').addEventListener('click',()=>zoom(1.4));$('#fit-map').addEventListener('click',fitView);
  window.addEventListener('popstate',event=>{const saved=event.state?.atlas;state=saved&&(!saved.region||regions.has(saved.region))&&(!saved.place||places.has(saved.place))?saved:readState();navigate({},false,false);});
- new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{cancelAnimationFrame(animation);applyView(matchAspect(shapeBounds()));});}).observe(surface);
+ new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{cancelAnimationFrame(animation);if(surface.clientWidth&&surface.clientHeight)applyView(matchAspect(shapeBounds()));});}).observe(surface);
  matchMedia('(max-width:720px)').addEventListener('change',renderResults);
  document.body.dataset.ready='true';
 }
