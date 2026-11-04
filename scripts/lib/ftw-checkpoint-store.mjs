@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
 import { sanitizeImage } from '../../server/image.mjs';
 import { planFtwImport } from '../../server/import-ftw.mjs';
+import geography from '../../server/neighborhoods.json' with { type: 'json' };
 
 const TABLES = ['seasons', 'locations', 'listings', 'photos', 'source_mappings'];
 const COLUMNS = {
@@ -169,8 +169,7 @@ async function validatedAssets(bucket, plan, assets) {
 }
 
 function assertCoverage(snapshot) {
-  return readFile(new URL('../../server/neighborhoods.json', import.meta.url), 'utf8').then(raw => {
-    const geography = JSON.parse(raw);
+  return Promise.resolve().then(() => {
     const locations = new Map(snapshot.locations.map(x => [x.id, x]));
     for (const listing of snapshot.listings) if (listing.status === 'published') {
       const loc = locations.get(listing.location_id);

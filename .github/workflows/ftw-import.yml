@@ -1,0 +1,75 @@
+name: FTW operator
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Guarded operation for the private approved-record pilot
+        type: choice
+        options: [upload-key, prepare, apply, status, restore, revoke-key]
+        required: true
+      bundle_sha256:
+        description: SHA-256 of the reviewed private pilot payload
+        type: string
+        required: true
+      checkpoint_id:
+        description: Exact checkpoint ID from prepare; required for apply, status and restore
+        type: string
+      exchange_id:
+        description: Upload-key exchange ID; required for prepare, apply and revoke-key
+        type: string
+      encrypted_payload:
+        description: Sealed payload from the verified upload-key run; never paste plaintext
+        type: string
+      reason:
+        description: Required for restore; public workflow input, avoid private details
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  operate:
+    if: ${{ github.repository == 'spenceracaton/this-way' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: this-way-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: production
+      url: https://this-way.spencercaton.workers.dev
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run the authenticated operator
+        run: node scripts/run-ftw-operator.mjs
+        env:
+          OPERATOR_OPERATION: ${{ inputs.operation }}
+          EXPECTED_BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+          APPROVED_CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+          RESTORE_REASON: ${{ inputs.reason }}
+          PUBLISHING_PAUSED: ${{ vars.PRODUCTION_PUBLISHING_PAUSED }}
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          UPLOAD_EXCHANGE_ID: ${{ inputs.exchange_id }}
+          ENCRYPTED_PAYLOAD: ${{ inputs.encrypted_payload }}
+      - name: Publish the public upload-key receipt
+        if: ${{ inputs.operation == 'upload-key' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ftw-upload-key
+          path: ${{ runner.temp }}/ftw-upload-key.json
+          if-no-files-found: error
+          retention-days: 1
+      - name: Verify temporary Worker cleanup
+        if: ${{ always() }}
+        run: node scripts/run-ftw-operator.mjs cleanup
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
