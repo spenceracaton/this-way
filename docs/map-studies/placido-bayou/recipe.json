@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "placido-bayou",
+  "name": "Placido Bayou",
+  "status": "draft-source-review",
+  "acceptedForCatalog": false,
+  "sourceGeometrySha256": "010b95b0b5f72157787ad0fbb8fb675b46a77c2361b1c5e798bf74440a8e071c",
+  "coreFeatureId": "way/468834847",
+  "coreName": "Placido Bayou",
+  "coreLanduse": "residential",
+  "sourceRepository": "spenceracaton/fright-this-way-qa",
+  "sourceRevision": "00ba22299bdedd5bd7e3c2548b90e4e7e74d86d8",
+  "sourceFiles": [
+    {
+      "id": "northeast-park",
+      "file": "map-data.json",
+      "sourcePath": "release-source/current/public/neighborhoods/northeast-park/map-data.json",
+      "gitBlobSha": "2db291dc4f087b50b9fd820f412e21f894fc2157",
+      "sha256": "2f575d2c2e7606059ec309e5d79fcb2f52cccd6f01ffddfd7909f2443102c403",
+      "size": 738735
+    },
+    {
+      "id": "area-1d493c7d21df8142133da1a7",
+      "file": "map-data.json",
+      "sourcePath": "release-source/current/public/neighborhoods/area-1d493c7d21df8142133da1a7/map-data.json",
+      "gitBlobSha": "4fcbcf2f3aae68ee5043b6facb855e5131251df1",
+      "sha256": "071e5ee0d96f1ff2422c1df7b27d4c066c0fbaf78d89127f9c7c11c7ad0abfac",
+      "size": 478779
+    }
+  ],
+  "mergePolicy": "Northeast Park input first; add previously absent IDs from Edgemoor. No selected source geometry conflicts found. Retain only geography intersecting the core bounds plus 0.004 degrees.",
+  "coverageKind": "named-osm-residential-landuse",
+  "coreValidation": {
+    "tool": "Shapely 2.1.2",
+    "isValid": true,
+    "rings": 1,
+    "vertices": 133
+  },
+  "knownLimitations": [
+    "The named OSM residential land-use polygon is approximate study coverage, not a verified City or association boundary.",
+    "The cache contains roads and water but complete original extract coverage is unverified; missing streets remain possible.",
+    "No public access, walking route, residence eligibility, or display participation is implied."
+  ],
+  "requiredBeforePromotion": [
+    "Verify original extract completeness or acquire a complete neighborhood extract.",
+    "Review the approximate coverage identity and source terms.",
+    "Pass mobile UX/visual review and ordinary exact-main delivery checks."
+  ]
+}
