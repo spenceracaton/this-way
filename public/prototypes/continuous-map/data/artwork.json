@@ -1,0 +1,68 @@
+[
+  {
+    "id": "old-northeast",
+    "name": "Old Northeast",
+    "url": "./art/old-northeast.webp",
+    "bounds": [
+      [
+        27.774824675324677,
+        -82.64182352941177
+      ],
+      [
+        27.802279220779223,
+        -82.61814705882354
+      ]
+    ],
+    "width": 1560,
+    "height": 2048,
+    "bytes": 171598,
+    "decodedBytes": 12779520,
+    "sourceSha256": "7606caa6ce0604db91b7c8ad2c563c3b051d6df4856ac0a9ccaa696fa5746162",
+    "sourceRasterSha256": "7790a22ca78cb8b08c1dd56c7994a2ef075d7e565dda8abddc88e1f706194d9d",
+    "spotlightUrl": "./art/old-northeast-spotlight.webp",
+    "maskBytes": 158946,
+    "maskDecodedBytes": 12779520,
+    "maskStatus": {
+      "status": "source-spotlight-extracted",
+      "sourceSvgId": "spotlight",
+      "meaning": "Authored visual emphasis mask only; not a service-eligibility or official neighborhood boundary."
+    },
+    "original": {
+      "width": 3220,
+      "height": 4228
+    }
+  },
+  {
+    "id": "crescent-lake",
+    "name": "Crescent Lake",
+    "url": "./art/crescent-lake.webp",
+    "bounds": [
+      [
+        27.782905056097565,
+        -82.64806374862282
+      ],
+      [
+        27.79311774390244,
+        -82.63719885137719
+      ]
+    ],
+    "width": 1928,
+    "height": 2048,
+    "bytes": 112054,
+    "decodedBytes": 15794176,
+    "sourceSha256": "611325def3a0949c8dc1840c79acc078c4753a27ac2b7587e7d6432be9de2a72",
+    "sourceRasterSha256": "10cbacf4911e6377b64a1b068b93fa1b370c9d03a16278fd171e5736179e62bc",
+    "spotlightUrl": "./art/crescent-lake-spotlight.webp",
+    "maskBytes": 85720,
+    "maskDecodedBytes": 15794176,
+    "maskStatus": {
+      "status": "source-spotlight-extracted",
+      "sourceSvgId": "spotlight",
+      "meaning": "Authored visual emphasis mask only; not a service-eligibility or official neighborhood boundary."
+    },
+    "original": {
+      "width": 3840,
+      "height": 4080
+    }
+  }
+]

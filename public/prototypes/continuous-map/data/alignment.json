@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "coordinateModel": "per-source affine longitude/latitude; inverse of projection applied to image bounds",
+  "artworkBounds": {
+    "old-northeast": [
+      [
+        27.774824675324677,
+        -82.64182352941177
+      ],
+      [
+        27.802279220779223,
+        -82.61814705882354
+      ]
+    ],
+    "crescent-lake": [
+      [
+        27.782905056097565,
+        -82.64806374862282
+      ],
+      [
+        27.79311774390244,
+        -82.63719885137719
+      ]
+    ]
+  },
+  "unionBounds": [
+    [
+      27.774824675324677,
+      -82.64806374862282
+    ],
+    [
+      27.802279220779223,
+      -82.61814705882354
+    ]
+  ],
+  "overlap": {
+    "rectangularBoundsOverlap": [
+      [
+        27.782905056097565,
+        -82.64182352941177
+      ],
+      [
+        27.79311774390244,
+        -82.63719885137719
+      ]
+    ],
+    "overlapPercent": {
+      "overlapPercentOfOldNortheastRect": 7.27,
+      "overlapPercentOfCrescentLakeRect": 42.57
+    },
+    "meaning": "Rectangle intersection only; not proof that rendered roads, labels, or landmarks agree."
+  },
+  "sources": {
+    "old-northeast": {
+      "svg": {
+        "path": "public/assets/old-northeast.svg",
+        "sha256": "7606caa6ce0604db91b7c8ad2c563c3b051d6df4856ac0a9ccaa696fa5746162",
+        "bytes": 195885
+      },
+      "raster": {
+        "path": "public/assets/old-northeast.webp",
+        "sha256": "7790a22ca78cb8b08c1dd56c7994a2ef075d7e565dda8abddc88e1f706194d9d",
+        "width": 3220,
+        "height": 4228,
+        "bytes": 558384
+      }
+    },
+    "crescent-lake": {
+      "svg": {
+        "path": "public/assets/crescent-lake.svg",
+        "sha256": "611325def3a0949c8dc1840c79acc078c4753a27ac2b7587e7d6432be9de2a72",
+        "bytes": 43723
+      },
+      "raster": {
+        "path": "public/assets/crescent-lake.webp",
+        "sha256": "10cbacf4911e6377b64a1b068b93fa1b370c9d03a16278fd171e5736179e62bc",
+        "width": 3840,
+        "height": 4080,
+        "bytes": 289486
+      }
+    }
+  },
+  "registration": {
+    "fitting": "Not performed. Existing projection parameters retained.",
+    "heldOutAnchorSet": {
+      "status": "blocked-awaiting-independent-street-intersections",
+      "anchors": [],
+      "reason": "No independent held-out street-intersection coordinates are retained for these two maps. Source-derived pins or fit anchors cannot validate geographic accuracy."
+    },
+    "frozenCriteria": {
+      "declaredZoomLevels": [
+        15,
+        16,
+        17
+      ],
+      "maxHeldOutResidualMeters": 10,
+      "maxHeldOutResidualPixelsAtZoom16": 5,
+      "readability": "At all three zoom levels, inspect source artwork and neutral base context on both sides of the crossing; require distinct street paths, no duplicated/conflicting road or place labels, and visible context through the overlap and one deliberately unillustrated gap. Any ambiguous road continuation or landmark displacement is a fail.",
+      "ownership": "Review the crossing in full-art and each authored spotlight mode; spotlight edges are aesthetic emphasis, never neighborhood eligibility edges.",
+      "independence": "Freeze a minimum of 8 named street intersections per image (4 near the footprint edges and 4 internal), sourced from independently documented street-centerline data. Reserve at least 4 further intersections per image for held-out validation; do not tune on those points.",
+      "status": "Criteria recorded before fitting; the named independent coordinates must be added and hashed before any fitting begins."
+    }
+  },
+  "limits": [
+    "Rectangular overlap is not a visual seam or registration finding.",
+    "Source spotlight masks retain the SVG visual-emphasis geometry, including its authored stroke; they are not official neighborhood boundaries.",
+    "No held-out geographic accuracy or seamless cross-map ownership has been established."
+  ],
+  "sourceRoadAgreement": {
+    "method": "All vertices from retained named source road features are measured to the nearest segment among County road features with exactly equal normalized full names. Distances use a local equirectangular metric approximation centered on each vertex.",
+    "normalization": "Case/punctuation insensitive; numeric ordinal and spelled ordinal normalization; full direction and road-type words normalize to County abbreviations. No substring or partial-token matching.",
+    "countyFeatures": 1786,
+    "countyNamedRoadKeys": 229,
+    "inputs": {
+      "countyContext": {
+        "path": "public/prototypes/continuous-map/data/context.geojson",
+        "sha256": "82c07746ef04a9b0b332a7ad6eab65cf59cf409e04d608e2aef3eb80620ddda4"
+      },
+      "old-northeast": {
+        "path": "public/data/geography.json",
+        "sha256": "0e61eea7e542123915a752a63e9977d116a67a67127de98d152d5af9c2bb4ae7"
+      },
+      "crescent-lake": {
+        "path": "public/data/crescent-lake/geography.json",
+        "sha256": "9283d5b071d0abb28e21d778081e458b40b2d086d666fe4c067e6aa0c333332b"
+      }
+    },
+    "maps": {
+      "old-northeast": {
+        "sourceRoadFeatures": 274,
+        "sameNormalizedNameRoadFeatures": 262,
+        "missingCountyNameRoadFeatures": 12,
+        "missingRoadNames": [
+          "32nd Avenue Northeast",
+          "Bay Shore Drive Northeast",
+          "Coffee Pot Riviera Avenue",
+          "Coffee Pot Riviera Street Northeast",
+          "Monterey Point Northeast",
+          "Regent Lane"
+        ],
+        "sourceVerticesInMatchedRoads": 2311,
+        "sourceVerticesWithinCountyContextBounds": 2221,
+        "sourceVerticesOutsideCountyContextBounds": 90,
+        "distanceMeters": {
+          "median": 1.14,
+          "p95": 19.746,
+          "max": 865.583
+        },
+        "withinContextBoundsDistanceMeters": {
+          "median": 1.083,
+          "p95": 7.944,
+          "max": 114.0
+        },
+        "distanceCssPixelsByZoom": {
+          "15": {
+            "median": 0.27,
+            "p95": 4.67,
+            "max": 204.81
+          },
+          "16": {
+            "median": 0.54,
+            "p95": 9.34,
+            "max": 409.62
+          },
+          "17": {
+            "median": 1.08,
+            "p95": 18.69,
+            "max": 819.24
+          }
+        }
+      },
+      "crescent-lake": {
+        "sourceRoadFeatures": 4,
+        "sameNormalizedNameRoadFeatures": 4,
+        "missingCountyNameRoadFeatures": 0,
+        "missingRoadNames": [],
+        "sourceVerticesInMatchedRoads": 21,
+        "sourceVerticesWithinCountyContextBounds": 21,
+        "sourceVerticesOutsideCountyContextBounds": 0,
+        "distanceMeters": {
+          "median": 0.545,
+          "p95": 5.194,
+          "max": 5.31
+        },
+        "withinContextBoundsDistanceMeters": {
+          "median": 0.545,
+          "p95": 5.194,
+          "max": 5.31
+        },
+        "distanceCssPixelsByZoom": {
+          "15": {
+            "median": 0.13,
+            "p95": 1.23,
+            "max": 1.26
+          },
+          "16": {
+            "median": 0.26,
+            "p95": 2.46,
+            "max": 2.51
+          },
+          "17": {
+            "median": 0.52,
+            "p95": 4.92,
+            "max": 5.03
+          }
+        }
+      }
+    },
+    "limitations": [
+      "This is broad source-road agreement, not independent held-out intersection validation. The source coordinates and County lines are separate retained datasets, but this report does not validate the affine image transforms or fit/correct them.",
+      "Name-matched lines may be only partial county coverage. Missing names and vertices beyond the County context bounds are not treated as accuracy failures or omitted from the reported missing-name counts.",
+      "Every source vertex is weighted equally; distances are to nearest same-name County line segment, not necessarily the corresponding segment along a long or repeated street name."
+    ]
+  }
+}
