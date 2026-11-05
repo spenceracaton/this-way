@@ -1,5 +1,9 @@
 export const countyBounds = [[27.605, -82.864], [28.181, -82.576]];
 export const startView = {lat:27.789, lng:-82.642, zoom:13.5};
+// Keep Pinellas substantial on screen; its ends can be reached by panning.
+// Short landscape viewports need a little more vertical geographic context.
+export const minimumOverviewZoom = height => height < 480 ? 9.75 : 10.25;
+export const streetDetailZoom = 14.5;
 export const cities = [
   {id:'st-petersburg', name:'St. Petersburg', aliases:['St Pete','Saint Petersburg'], lat:27.773, lng:-82.645, zoom:13.5},
   {id:'clearwater', name:'Clearwater', aliases:[], lat:27.966, lng:-82.789, zoom:13.5},

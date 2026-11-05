@@ -12,7 +12,7 @@ async function open(page,query=''){await page.goto(path+query);await expect(page
 async function settled(page){await expect(page.locator('body')).toHaveAttribute('data-feeds','ready');}
 async function search(page,value){await page.locator('#open-search').click();await page.locator('#search-input').fill(value);}
 
-test('St Pete opens as a full screen map and zooms out to the entire county',async({page})=>{
+test('St Pete opens as a full screen map and zooms out to a county overview',async({page})=>{
   await feeds(page);await open(page);await settled(page);
   const initial=await page.evaluate(()=>discoveryMap.camera());expect(initial.zoom).toBeGreaterThan(13);
   await page.locator('#all-pinellas').click();
@@ -22,15 +22,17 @@ test('St Pete opens as a full screen map and zooms out to the entire county',asy
   await page.locator('#map').focus();await page.keyboard.press('-');
   await expect.poll(()=>page.evaluate(()=>discoveryMap.camera().zoom)).toBeLessThan(initial.zoom-1);
 });
-test('county city and neighborhood search retain a continuous camera and expose an honest empty feed',async({page})=>{
+test('county city and neighborhood search move the map without a neighborhood pane',async({page})=>{
   await feeds(page);await open(page);
   await search(page,'All Pinellas');
   await page.locator('[data-result=county]').click();
   await search(page,'Greenbriar');await page.locator('[data-result=greenbriar-cdp]').click();
-  await expect(page.locator('#place-title')).toHaveText('Greenbriar');
-  await expect(page.locator('#place-status')).toContainText('No published Halloween 2026 displays');
-  await expect(page.locator('#place-art')).toHaveAttribute('href','/?neighborhood=greenbriar-cdp&season=halloween-2026');
-  await page.locator('#close-place').click();
+  await expect.poll(()=>page.evaluate(()=>discoveryMap.camera().lat)).toBeCloseTo(28.012,2);
+  await settled(page);
+  await expect(page.locator('#coverage-text')).toContainText('0 displays loaded');
+  await expect(page.locator('#place-card')).toHaveCount(0);
+  await expect(page.locator('#selection')).toBeHidden();
+  await expect(page.locator('#all-pinellas')).toBeVisible();
   await search(page,'St Pete');await page.locator('#search-input').press('Enter');
   await expect.poll(()=>page.evaluate(()=>discoveryMap.camera().lat)).toBeCloseTo(27.773,2);
   expect(await page.locator('#map').count()).toBe(1);
@@ -84,16 +86,34 @@ for(const viewport of [{width:390,height:650},{width:320,height:568},{width:667,
 test('search history restores county then closes selection without inventing camera steps',async({page})=>{
   await feeds(page);await open(page);await page.locator('#all-pinellas').click();
   await search(page,'Old Northeast');await page.locator('[data-result=old-northeast]').click();
-  await expect(page.locator('#place-card')).toBeVisible();await page.goBack();
-  await expect(page.locator('#place-card')).toBeHidden();await expect.poll(()=>page.evaluate(()=>discoveryMap.camera().zoom)).toBeLessThan(12);
+  await expect(page).toHaveURL(/neighborhood=old-northeast/);await page.goBack();
+  await expect(page.locator('#place-card')).toHaveCount(0);await expect.poll(()=>page.evaluate(()=>discoveryMap.camera().zoom)).toBeLessThan(12);
 });
-test('the county fits inside short landscape and normal phone viewports',async({page})=>{
+test('the zoom-out floor keeps the county large while both ends remain reachable',async({page})=>{
   await feeds(page);
   for(const viewport of [{width:390,height:650},{width:320,height:568},{width:667,height:375}]){
     await page.setViewportSize(viewport);await open(page);await page.locator('#all-pinellas').click();
     const corners=await page.evaluate(()=>discoveryMap.diagnostics().countyCorners);
-    for(const p of corners){expect(p.x).toBeGreaterThanOrEqual(0);expect(p.x).toBeLessThanOrEqual(viewport.width);expect(p.y).toBeGreaterThanOrEqual(65);expect(p.y).toBeLessThanOrEqual(viewport.height-20);}
+    expect(Math.abs(corners[0].y-corners[1].y)).toBeGreaterThan(viewport.height*.7);
+    const overview=await page.evaluate(()=>discoveryMap.camera());
+    await page.locator('#map').focus();for(let i=0;i<8;i++)await page.keyboard.press('-');
+    expect((await page.evaluate(()=>discoveryMap.camera())).zoom).toBe(overview.zoom);
+    for(const [lat,corner] of [[28.1,1],[27.68,0]]){
+      await page.evaluate(({lat,lng,zoom})=>{discoveryMap.setView(lat,lng,zoom);},{lat,lng:overview.lng,zoom:overview.zoom});
+      const position=(await page.evaluate(()=>discoveryMap.diagnostics().countyCorners))[corner];
+      expect(position.y).toBeGreaterThan(75);expect(position.y).toBeLessThan(viewport.height-25);
+    }
   }
+});
+test('neighborhood labels fade out at street level while display targets remain',async({page})=>{
+  await feeds(page);await open(page);await settled(page);
+  await page.locator('.neighborhood-button[data-place=old-northeast]').click();
+  await expect(page.locator('#place-card')).toHaveCount(0);await expect(page.locator('#selection')).toBeHidden();
+  await page.evaluate(()=>{discoveryMap.setView(27.7885,-82.6396,14.5);});
+  await expect(page.locator('.neighborhood-button')).toHaveCount(0);await expect(page.locator('.view-caption')).toBeHidden();
+  await expect.poll(()=>page.locator('.display-button').count()).toBeGreaterThan(0);
+  await page.evaluate(()=>{discoveryMap.setView(27.789,-82.642,13.5);});
+  await expect.poll(()=>page.locator('.neighborhood-button').count()).toBeGreaterThan(0);
 });
 test('published photo IDs with underscores work and pending or remote photos never load',async({page})=>{
   const requested=[];page.on('request',request=>{if(request.url().includes('/api/photos/'))requested.push(new URL(request.url()).pathname);});
