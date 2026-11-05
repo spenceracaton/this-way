@@ -24,7 +24,7 @@ Two derivatives together estimate 28,573,696 bytes (27.25 MiB) of RGBA buffers, 
 
 See [the alignment protocol](continuous-canvas-alignment.md) and the public `data/alignment.json` for source hashes, limits and the independent-centerline comparison. The comparison uses nearest same-name road geometry; it is not a held-out intersection/image-registration pass. No fit/correction has been performed, and the frozen independent-anchor gate remains unpassed. Typical source agreement cannot certify outliers, the painted street edges or a readable seam.
 
-Cloud Chromium/WebKit checks and independent rendered UX/visual critiques are useful evidence about this diagnostic UI. The revision adds synthetic touch at dense coordinates, keyboard own-record selection, feed/asset failures and retries, rapid source changes, genuine empty-season handling, and selected-record updates. These do not establish physical-iPhone gesture, browser-chrome, memory or VoiceOver behavior, nor that visitors discover displays more easily.
+Cloud Chromium/WebKit checks and independent rendered UX/visual critiques are useful evidence about this diagnostic UI. The revision adds synthetic touch at dense coordinates, keyboard and semantic own-record selection, feed/asset failures and retries, rapid source changes, genuine empty-season handling, and selected-record updates. A reproduced release bug interpreted a semantic click's absent pointer coordinates as a map position and selected a different record; non-pointer activation now keeps the activated record's identity. These checks do not establish physical-iPhone gesture, browser-chrome, memory or VoiceOver behavior, nor that visitors discover displays more easily.
 
 ## Sources and regeneration
 

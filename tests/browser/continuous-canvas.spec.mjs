@@ -57,6 +57,13 @@ test('the existing neighborhood-map link keeps the chosen season, artwork area a
   await expect(page.locator('.existing-map-link')).toHaveAttribute('href',/neighborhood=crescent-lake&season=christmas-2026&listing=fixture-b/);
 });
 
+test('semantic activation without pointer coordinates selects the activated record', async ({page}) => {
+  await feeds(page);await page.goto(route);await expect(page.locator('body')).toHaveAttribute('data-feeds','complete');
+  await page.locator('.display-pin[data-id="fixture-a"]').evaluate(button=>button.click());
+  await expect(page.locator('#pin-address')).toHaveText('Fixture display A');
+  await expect(page.locator('.display-pin[data-id="fixture-a"]')).toHaveAttribute('aria-pressed','true');
+});
+
 test('selected coordinates remain exposed after a long address and orientation change', async ({page}) => {
   const location={id:'long-fixture',address:'Fixture long address at the corner of two unusually named streets, St. Petersburg',latitude:27.7888,longitude:-82.6397};
   await page.setViewportSize({width:320,height:568});

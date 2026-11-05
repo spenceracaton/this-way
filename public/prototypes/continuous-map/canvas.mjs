@@ -101,6 +101,9 @@ function renderPins() {
       // at overview scale. Resolve the actual pointer to the closest true
       // anchor so an adjacent rectangle cannot steal a tap on a visible dot.
       const original = event.originalEvent;
+      // Assistive/semantic clicks have no pointer position. Their (0, 0)
+      // coordinates must not be interpreted as a tap on another map record.
+      if (original?.detail === 0 && !original?.changedTouches?.length) { select(record.id); return; }
       const pointer = original?.changedTouches?.[0] || original;
       if (!Number.isFinite(pointer?.clientX) || !Number.isFinite(pointer?.clientY)) { select(record.id); return; }
       const bounds = $('#map').getBoundingClientRect();
