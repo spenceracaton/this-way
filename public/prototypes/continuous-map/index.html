@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="An experimental shared map of Old Northeast and Crescent Lake.">
+  <title>This Way · Shared canvas study</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="./canvas.css">
+  <script src="../../vendor/leaflet/leaflet.js" defer></script>
+  <script type="module" src="./canvas.mjs"></script>
+</head>
+<body>
+  <header class="study-header">
+    <a class="wordmark" href="/" aria-label="This Way home">this way<span aria-hidden="true">↗</span></a>
+    <div class="study-label"><h1>Shared canvas study</h1><p id="feed-status" role="status">Loading published displays…</p></div>
+  </header>
+  <main id="canvas-shell">
+    <div id="map" tabindex="0" role="region" aria-label="Old Northeast and Crescent Lake shared map. Arrow keys pan; plus and minus zoom. Home returns to the crossing." aria-busy="true"></div>
+    <p id="loading" role="status">Preparing the shared map…</p>
+    <div class="scope-label"><span class="scope-dot" aria-hidden="true"></span>Old Northeast + Crescent Lake <span class="scope-note">· limited coverage</span><small>Tap a display dot or pin for its address.</small></div>
+    <section id="feed-error" class="notice" role="status" hidden><span id="feed-error-copy"></span><button id="retry-feeds" type="button">Retry displays</button></section>
+    <section id="art-error" class="notice art-notice" role="status" hidden><span id="art-error-copy"></span><button id="retry-art" type="button">Retry artwork</button></section>
+    <button class="options-button" id="open-options" type="button" aria-label="Map views, artwork layers and reset" aria-haspopup="dialog" aria-controls="study-options"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></svg>Views &amp; reset</button>
+    <section id="pin-card" class="pin-card" aria-labelledby="pin-address" hidden>
+      <div><p id="pin-neighborhood" class="eyebrow"></p><h2 id="pin-address"></h2><p id="pin-season"></p></div>
+      <button id="close-pin" type="button" aria-label="Close display identifier">×</button>
+    </section>
+    <span id="map-announcement" class="sr-only" role="status"></span>
+  </main>
+  <dialog id="study-options" aria-labelledby="options-title">
+    <div class="dialog-heading"><div><p class="eyebrow">Two-neighborhood experiment</p><h2 id="options-title">Compare the canvas</h2></div><button id="close-options" type="button" aria-label="Close map options">×</button></div>
+    <p class="dialog-intro">Test the artwork crossing and nearby streets. The original illustrations have different label sizes and visible edges; these views expose those differences for review.</p>
+    <fieldset><legend>Go to</legend><div class="destination-buttons"><button type="button" data-view="crossing">The crossing</button><button type="button" data-view="gap">Unillustrated streets</button><button type="button" data-view="pair">Both maps</button></div></fieldset>
+    <fieldset><legend>Artwork</legend><div class="field-pair"><label for="art-mode">Show<select id="art-mode"><option value="both">Both neighborhoods</option><option value="old-northeast">Old Northeast only</option><option value="crescent-lake">Crescent Lake only</option><option value="base">Base map only</option></select></label><label for="art-treatment">Treatment<select id="art-treatment"><option value="spotlight">Source spotlight masks</option><option value="full">Full original coverage</option></select></label></div><p class="field-note">Spotlight masks come from the original illustrations. They are presentation shapes, not official boundaries.</p></fieldset>
+    <section class="study-readout" aria-label="Study status"><p id="art-status">Preparing artwork…</p><p id="data-scope"></p><p id="camera-readout"></p><p>Physical-iPhone gestures and memory behavior have not been verified.</p></section>
+    <details id="display-list"><summary>Published display coordinates <span id="list-count"></span></summary><p class="field-note">Zoom in to separate nearby displays, or choose any address here.</p><div id="coordinate-list"></div></details>
+    <details><summary>Map sources and coverage</summary><div id="source-notices"></div><p class="field-note">The base covers only this experiment’s bounded area. Gray space beyond it is outside the study, not an area with zero displays. No walking route or official neighborhood boundaries are shown.</p></details>
+    <a class="existing-map-link" href="/?neighborhood=old-northeast&season=halloween-2026">Open the existing neighborhood map ↗</a>
+  </dialog>
+</body>
+</html>
