@@ -38,15 +38,15 @@ Suggested minimal contract, not a general wrapper framework:
 {
   id: 'old-northeast',
   name: 'Old Northeast',
-  locator: { lat: 27.0, lng: -82.0 }, // replace with verified values
+  locator: null, // populate with a verified { lat, lng }
   href: '/?neighborhood=old-northeast',
   available: true,
-  geometry: { type: 'MultiPolygon', coordinates: [] }, // sourced or null
+  geometry: null, // populate with a sourced Polygon/MultiPolygon
   source: { label: 'City neighborhood association', url: '…', retrievedAt: '…', featureId: '…', note: '…' }
 }
 ```
 
-The numbers above are placeholders and must never ship as coordinates. One small pilot data file can hold the three records; avoid configuration machinery until another use demands it.
+One small pilot data file can hold the three records; avoid configuration machinery until another use demands it.
 
 An experience supplies `seasonId`, item terminology, public item data, marker presentation, filters, copy, theme, and actions. Count distinct **public** item IDs per neighborhood for that experience and season. A regional total uses a set of stable IDs across all memberships. Preserve an item’s legitimate multiple neighborhood assignments. If the service only exposes per-neighborhood lists, the pilot may request three lists and deduplicate by ID; a broader overview should use a bounded server aggregate rather than 94 requests. Show “Count unavailable” when a real service fails, and label sample counts as samples. Do not show the mock’s 42/21/13 as data.
 
