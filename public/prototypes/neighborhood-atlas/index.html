@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Neighborhood atlas · This Way</title>
+  <meta name="description" content="Choose a neighborhood and explore its original illustrated map. A two-map concept.">
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css"><link rel="stylesheet" href="./atlas.css">
+  <script src="/vendor/leaflet/leaflet.js" defer></script><script type="module" src="./atlas.mjs"></script>
+</head>
+<body>
+  <main>
+    <div id="atlas" tabindex="0" role="region" aria-label="Neighborhood atlas. Pan with arrow keys and zoom with plus and minus."></div>
+    <header><a class="brand" href="./index.html">this way <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 17 17 3M5 3h12v12"/></svg></a><span>NEIGHBORHOOD ATLAS</span></header>
+    <div class="map-heading"><h1 id="view-title">St. Petersburg</h1><p id="view-help">Choose a neighborhood to explore its illustrated map.</p></div>
+    <button id="change-view" type="button">Pinellas</button>
+    <p class="scope">Two-map concept · illustrated areas are approximate</p>
+    <p id="loading" role="status">Loading the atlas…</p>
+  </main>
+</body>
+</html>
