@@ -1,7 +1,7 @@
 import {seasonFor} from '/season-config.mjs';
 import {mountGallery} from '/gallery.mjs';
 import {unobscuredPoint} from '../continuous-map/canvas-model.mjs';
-import {countyBounds, cities, searchPlaces, clusterPoints, readCamera, publishedRecords} from './discovery-model.mjs';
+import {countyBounds, cities, searchPlaces, clusterPoints, readCamera, publishedRecords, minimumOverviewZoom, streetDetailZoom} from './discovery-model.mjs';
 
 const $=selector=>document.querySelector(selector);
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -55,25 +55,17 @@ function frameCounty(push=true) {
   if(push)writeUrl(true);
 }
 function focusPlace(place,push=true) {
-  dismiss(false);focused=place;$('#place-card').hidden=false;
-  document.body.dataset.card='place';$('#place-title').textContent=place.name;
-  $('#place-art').href=existingUrl(place);updatePlace();
-  map.fitBounds(place.bounds,{paddingTopLeft:[30,135],paddingBottomRight:[55,215],maxZoom:15.75,animate:false});
+  dismiss(false);focused=place;
+  const short=map.getSize().y<480;
+  map.fitBounds(place.bounds,{paddingTopLeft:short?[24,80]:[30,115],paddingBottomRight:[60,75],maxZoom:15.75,animate:false});
   ensureFeed(place,true);if(push)writeUrl(true);settle();
-  $('#place-title').focus({preventScroll:true});
-}
-function updatePlace() {
-  if(!focused)return;
-  const feed=feeds.get(feedKey(focused.id));
-  $('#place-status').textContent=feed?.state==='ready'
-    ? feed.records.length?`${feed.records.length} published ${season.name} ${feed.records.length===1?'display':'displays'}. Tap a display on the map.`:`No published ${season.name} displays in this neighborhood.`
-    :feed?.state==='error'?'Display data is unavailable here. You can retry from map context.':'Checking published displays…';
+  $('#map').focus({preventScroll:true});
 }
 function dismiss(update=true) {
   selectionRequest++;
   const prior=selected;
   selected=null;focused=null;gallery?.destroy();gallery=null;
-  $('#selection').hidden=true;$('#place-card').hidden=true;$('#display-photos').replaceChildren();
+  $('#selection').hidden=true;$('#display-photos').replaceChildren();
   delete document.body.dataset.card;document.documentElement.style.setProperty('--card-height','0px');
   if(update){renderMarkers();renderLabels();writeUrl();}
   return prior;
@@ -99,7 +91,7 @@ function selectRecord(record,update=true) {
   requestAnimationFrame(()=>{revealSelected();if(update)writeUrl(!hadSelection);});
 }
 function obstacles() {
-  return [...document.querySelectorAll('.topbar,.view-caption,.map-actions,.map-status,.leaflet-control-zoom,.leaflet-control-attribution,#selection,#place-card')]
+  return [...document.querySelectorAll('.topbar,.view-caption,.map-actions,.map-status,.leaflet-control-zoom,.leaflet-control-attribution,#selection')]
     .filter(el=>!el.hidden&&getComputedStyle(el).visibility!=='hidden')
     .map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);
 }
@@ -130,7 +122,7 @@ function pumpFeeds() {
         if(selected?.neighborhoodId===feed.place.id){const next=feed.records.find(r=>r.id===selected.id);if(next)selectRecord(next,false);else dismiss();}
       }
     }).catch(()=>{feed.state='error';}).finally(()=>{
-      activeFeeds--;pumpFeeds();renderMarkers();updateStatus();updatePlace();
+      activeFeeds--;pumpFeeds();renderMarkers();updateStatus();
     });
   }
   updateStatus();
@@ -188,7 +180,7 @@ function renderMarkers() {
   const active=document.activeElement?.dataset.record;
   neighborhoodLayers.clearLayers();displayLayers.clearLayers();
   const zoom=map.getZoom(), viewport=map.getBounds().pad(.2);
-  const available=places.filter(p=>viewport.contains([p.lat,p.lng]));
+  const available=zoom<streetDetailZoom?places.filter(p=>viewport.contains([p.lat,p.lng])):[];
   const inView=zoom>=13?records().filter(r=>viewport.contains([r.lat,r.lng])):[];
   const displayGroups=clusterPoints(inView,point,46);
   const preferredIds=new Set(zoom>=13&&zoom<15.5?inView.map(record=>record.neighborhoodId):[]);
@@ -277,7 +269,8 @@ function renderLabels() {
   for(const node of document.querySelectorAll('.neighborhood-button,.display-button'))occupied.push(node.getBoundingClientRect());
   const zoom=map.getZoom();
   if(zoom<14)for(const city of cities)addLabel(city.lat,city.lng,city.name,'city-label',occupied);
-  if(zoom<12&&map.getBounds().contains(L.latLngBounds(countyBounds))){
+  if(zoom<12&&map.getBounds().getWest()<=countyBounds[0][1]&&map.getBounds().getEast()>=countyBounds[1][1]
+    &&map.getBounds().getSouth()<27.85&&map.getBounds().getNorth()>27.95){
     const size=map.getSize(), west=point({lat:27.91,lng:countyBounds[0][1]}).x, east=point({lat:27.85,lng:countyBounds[1][1]}).x;
     const gulf=map.containerPointToLatLng([Math.max(50,Math.min(size.x*.25,west-60)),size.y*.55]);
     const bay=map.containerPointToLatLng([Math.min(size.x-50,Math.max(size.x*.75,east+60)),size.y*.68]);
@@ -328,8 +321,9 @@ function settle() {
   if(!map)return;
   const c=map.getCenter(), zoom=map.getZoom();document.body.dataset.zoom=zoom.toFixed(2);
   const nearest=[...cities].sort((a,b)=>map.distance(c,[a.lat,a.lng])-map.distance(c,[b.lat,b.lng]))[0];
-  $('#view-name').textContent=selected?.neighborhood||focused?.name||(zoom<12?'Pinellas County':nearest.name);
-  $('#view-hint').textContent=zoom<12?'A county of little places. Zoom into one.':zoom<14?'Pan to wander. Zoom to explore.':'Neighborhood streets. Displays worth a detour.';
+  $('.view-caption').hidden=zoom>=streetDetailZoom;
+  $('#view-name').textContent=zoom<12?'Pinellas County':nearest.name;
+  $('#view-hint').textContent=zoom<12?'Pan north or south to explore the county.':zoom<14?'Pan to wander. Zoom to explore.':'Neighborhood streets. Displays worth a detour.';
   clearTimeout(redrawTimer);redrawTimer=setTimeout(()=>{renderRoads();renderMarkers();loadVisibleFeeds();loadVisibleTiles();writeUrl();},50);
 }
 
@@ -365,7 +359,10 @@ async function restoreUrl() {
     if(params.has('listing')){
       const id=params.get('listing'), request=selectionRequest, requestedSeason=season.id;ensureFeed(place,true);
       const check=()=>{if(request!==selectionRequest||requestedSeason!==season.id)return;const feed=feeds.get(requestedSeason+':'+place.id);if(['queued','loading'].includes(feed?.state)){setTimeout(check,80);return;}const record=feed?.records?.find(record=>record.id===id);if(record)selectRecord(record,false);else notice('This display is unavailable in the selected neighborhood and season.');};check();
-    }else{focused=place;$('#place-card').hidden=false;document.body.dataset.card='place';$('#place-title').textContent=place.name;$('#place-art').href=existingUrl(place);ensureFeed(place,true);updatePlace();}
+    }else{
+      focused=place;ensureFeed(place,true);
+      if(!['lat','lng','z'].every(key=>params.has(key)))focusPlace(place,false);
+    }
   }
   restore=false;settle();
 }
@@ -374,7 +371,6 @@ function bindEvents() {
   $('#search-input').oninput=renderSearch;$('#search-input').onkeydown=event=>{if(event.key==='Enter'){$('#search-results .search-result')?.click();event.preventDefault();}};
   $('#coverage').onclick=()=>{$('#about-dialog').showModal();};$('#close-about').onclick=()=>$('#about-dialog').close();
   $('#all-pinellas').onclick=()=>frameCounty();
-  $('#close-place').onclick=()=>{dismiss();$('#map').focus({preventScroll:true});};
   $('#detail-close').onclick=()=>{const prior=dismiss();(document.querySelector(`[data-record="${CSS.escape(prior?.id||'')}"]`)||$('#map')).focus({preventScroll:true});};
   $('#retry-feeds').onclick=()=>{
     for(const place of visibleAreas)ensureFeed(place,false,true);
@@ -405,14 +401,19 @@ function bindEvents() {
     if(event.key==='Home'&&event.target===$('#map')){event.preventDefault();frameCounty();}
   });
   addEventListener('popstate',restoreUrl);
-  const observer=new ResizeObserver(()=>{map.invalidateSize({pan:false});revealSelected();settle();});observer.observe($('.map-app'));observer.observe($('#selection'));
+  const observer=new ResizeObserver(()=>{
+    map.invalidateSize({pan:false});
+    const minimum=minimumOverviewZoom(map.getSize().y);
+    if(map.getMinZoom()!==minimum)map.setMinZoom(minimum);
+    revealSelected();settle();
+  });observer.observe($('.map-app'));observer.observe($('#selection'));
 }
 
 async function start() {
   if(!season)throw new Error('Unsupported season');
   const [geography,catalog,tiles,notices]=await Promise.all([json('./data/context.geojson'),json('./data/places.json'),json('./data/context-tiles.json'),json('./data/source-notices.json')]);
   sourceContext=geography;places=catalog.places;tileManifest=tiles;
-  map=L.map('map',{minZoom:9,maxZoom:18,zoomSnap:.25,zoomDelta:.5,zoomControl:false,attributionControl:false,zoomAnimation:false,markerZoomAnimation:false,preferCanvas:true,
+  map=L.map('map',{minZoom:minimumOverviewZoom($('#map').clientHeight),maxZoom:18,zoomSnap:.25,zoomDelta:.5,zoomControl:false,attributionControl:false,zoomAnimation:false,markerZoomAnimation:false,preferCanvas:true,
     maxBounds:[[27.4,-83.1],[28.4,-82.35]],maxBoundsViscosity:.8});
   L.control.zoom({position:'bottomright'}).addTo(map);
   L.control.attribution({position:'bottomleft',prefix:false}).addAttribution('<a href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html" target="_blank" rel="noopener">U.S. Census</a> · <a href="https://services.arcgis.com/f5HgUpxURgEzTccH/ArcGIS/rest/services/Pinellas_RoadCenterline_view/FeatureServer/0" target="_blank" rel="noopener">Pinellas GIS</a> · USGS').addTo(map);
