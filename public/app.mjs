@@ -21,6 +21,18 @@ function selectionChanged(pin) {
 async function start() {
   const query = new URLSearchParams(location.search);
   const neighborhood = neighborhoodFor(location.search);
+  const fromAtlas = query.get('atlas') === '1';
+  let atlasReturn;
+  if (fromAtlas) {
+    document.body.dataset.atlas = 'true';
+    atlasReturn = new URL('/prototypes/neighborhood-atlas/index.html', location.origin);
+    const lat=Number(query.get('atlas_lat')),lng=Number(query.get('atlas_lng')),zoom=Number(query.get('atlas_z'));
+    if (['atlas_lat','atlas_lng','atlas_z'].every(key=>query.has(key)) && Number.isFinite(lat) && lat>=27.4 && lat<=28.4 && Number.isFinite(lng) && lng>=-83.1 && lng<=-82.35 && Number.isFinite(zoom) && zoom>=9.75 && zoom<=15) {
+      atlasReturn.searchParams.set('lat',String(lat));atlasReturn.searchParams.set('lng',String(lng));atlasReturn.searchParams.set('z',String(zoom));
+    }
+    const back=$('.primary-nav a');back.textContent='← Explore nearby';back.href=atlasReturn.pathname+atlasReturn.search;back.removeAttribute('aria-current');
+    $('.wordmark').href=back.href;
+  }
   const samplePins = neighborhood.pins;
   const requestedSeason = query.get('season');
   if (requestedSeason && !seasonFor(requestedSeason)) throw new Error(`Unknown season “${requestedSeason}”.`);
@@ -37,6 +49,11 @@ async function start() {
   if (!selectedSeason) throw new Error(`The listing service returned an unsupported season “${selectedSeasonId}”.`);
   if (requestedSeason && !service && !demoSample) throw new Error('Season listings are unavailable right now. Reload when the listing service is available.');
   const historical = Boolean(service && !demoSample && selectedSeasonId !== service.season.id);
+  if (atlasReturn) {
+    atlasReturn.searchParams.set('season',selectedSeasonId);
+    $('.primary-nav a').href=atlasReturn.pathname+atlasReturn.search;
+    $('.wordmark').href=atlasReturn.pathname+atlasReturn.search;
+  }
   const seasonSelect = $('#season-select');
   if (![...seasonSelect.options].some(option => option.value === selectedSeasonId)) {
     const option = document.createElement('option');
@@ -80,6 +97,7 @@ async function start() {
   $('#map-title').textContent = neighborhood.name;
   createNeighborhoodPicker(neighborhood);
   $('#sample-count').textContent = service && !demoSample ? `${pins.length} ${historical ? `${selectedSeason.name} displays` : `live ${pins.length === 1 ? 'display' : 'displays'}`}` : (pins.length ? `${pins.length} sample addresses` : 'Map only');
+  if (fromAtlas) $('#sample-count').textContent = `${historical?'Past season · ':''}${selectedSeason.name}`;
   $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} map${pins.length ? ` with ${service && !demoSample ? historical ? 'past-season displays' : 'live displays' : 'sample addresses'}` : ''}. Arrow keys pan, plus and minus zoom, Home resets.`);
   if (service && !demoSample) {
     $('#references-title').textContent = historical ? `${selectedSeason.name} displays` : 'Live displays';
@@ -167,6 +185,7 @@ async function start() {
     : 'No sample addresses here yet.');
   renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id, season: selectedSeason, historical });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins, artwork,
+    preferNearestPin: fromAtlas,
     onSelect: selectionChanged,
     overviewInsets() {
       if (!matchMedia('(max-width:720px)').matches || !$('.canvas').classList.contains('map-only')) return;

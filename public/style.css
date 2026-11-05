@@ -111,6 +111,24 @@ footer { min-height:42px; padding:0 25px; display:flex; align-items:center; just
 .footer-tools{display:flex;align-items:center;gap:16px}
 .footer-tools a,.footer-tools button{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px}
 
+/* The two-map atlas reuses this local map with one clear way back. */
+body[data-atlas] {height:100dvh;overflow:hidden}
+body[data-atlas] .site-header {grid-template-columns:1fr auto}
+body[data-atlas] .primary-nav {display:flex}
+body[data-atlas] .primary-nav a {min-width:0;padding:0 4px;font-size:12px}
+body[data-atlas] .future-action,body[data-atlas] footer,body[data-atlas] .references,body[data-atlas] .season-control,body[data-atlas] .reset-button {display:none}
+body[data-atlas] .map-shell,body[data-atlas] .map-panel {min-height:0}
+body[data-atlas] .canvas {height:calc(100dvh - 76px);min-height:0}
+body[data-atlas] .map-toolbar {display:flex;flex-direction:column;align-items:flex-start;gap:0;width:max-content;max-width:calc(100% - 100px)}
+body[data-atlas] .sample-count {display:block;padding:0;border:0;font-size:10px}
+body[data-atlas] .map-pin {font-size:0}
+body[data-atlas] .map-pin:before {inset:14px;border-width:2px}
+body[data-atlas] .map-pin.is-selected:before {inset:10px}
+body[data-atlas] .canvas:not(.map-only) .leaflet-bottom.leaflet-right {bottom:8px}
+body[data-atlas] .canvas:has(.house-pane:not([hidden])) .leaflet-bottom.leaflet-right {bottom:calc(var(--house-height,0px) + 8px)}
+@media(max-width:720px){body[data-atlas] .canvas{height:calc(100dvh - 64px)}}
+@media(max-width:720px) and (min-width:560px) and (max-height:480px){body[data-atlas] .canvas{height:calc(100dvh - 52px)}body[data-atlas] .canvas:has(.house-pane:not([hidden])) .leaflet-bottom.leaflet-right{bottom:8px}}
+
 @media (max-width:720px) {
   .site-header { height:64px; padding:0 15px; grid-template-columns:1fr auto; }
   .wordmark-name { font-size:27px; }

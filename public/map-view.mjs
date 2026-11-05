@@ -25,7 +25,7 @@ export async function createLocationPicker({ leaflet: L, element, area, artwork 
 }
 
 // The complete renderer boundary. No data fetching, forms, storage, or detail-card DOM.
-export function createMap({ leaflet: L, element, area, pins: initialPins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets, overviewInsets }) {
+export function createMap({ leaflet: L, element, area, pins: initialPins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets, overviewInsets, preferNearestPin = false }) {
   let pins = [...initialPins];
   const bounds = L.latLngBounds(mapBounds(area.bounds));
   const overviewBounds = area.overviewBounds ? L.latLngBounds(mapBounds(area.overviewBounds)) : bounds;
@@ -95,7 +95,18 @@ export function createMap({ leaflet: L, element, area, pins: initialPins, artwor
     button.textContent = pin.label;
     const icon = L.divIcon({ className: 'reference-marker', iconSize: [44, 44], iconAnchor: [22, 22], html: button.outerHTML });
     const marker = L.marker(mapPoint(project(pin, area.projection)), { icon, keyboard: false, title: pin.name })
-      .on('click', () => select(pin.id))
+      .on('click', event => {
+        let id=pin.id;
+        const original=event?.originalEvent, pointer=original?.changedTouches?.[0]||original;
+        if(preferNearestPin && original?.detail!==0 && Number.isFinite(pointer?.clientX) && Number.isFinite(pointer?.clientY)) {
+          const point=map.mouseEventToContainerPoint(pointer);let distance=32**2;
+          for(const[key,candidate]of markers) {
+            const anchor=map.latLngToContainerPoint(candidate.getLatLng()),d=(point.x-anchor.x)**2+(point.y-anchor.y)**2;
+            if(d<distance){distance=d;id=key;}
+          }
+        }
+        select(id);
+      })
       .on('add', event => {
         event.target.getElement().querySelector('button').addEventListener('keydown', key => {
           if (key.key === 'Enter' || key.key === ' ') {
