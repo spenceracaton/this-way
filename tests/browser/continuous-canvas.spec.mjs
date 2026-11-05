@@ -13,11 +13,71 @@ async function feeds(page, handler) {
   });
 }
 async function open(page) {
-  await page.goto(route);
+  await page.goto(route+'?art=both');
   await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   await expect(page.locator('body')).toHaveAttribute('data-art-loaded', '2');
 }
 async function options(page) { await page.locator('#open-options').click(); await expect(page.locator('#study-options')).toBeVisible(); }
+
+test('arrival uses a coherent street map and direct named artwork choices preserve the camera and records', async ({page}) => {
+  const images=[];page.on('request',request=>{if(request.url().includes('/continuous-map/art/'))images.push(request.url());});
+  await feeds(page);await page.goto(route);
+  await expect(page.locator('body')).toHaveAttribute('data-feeds','complete');
+  await expect(page.locator('body')).toHaveAttribute('data-art','base');
+  await expect(page.locator('body')).toHaveAttribute('data-art-loaded','0');
+  expect(images).toEqual([]);
+  const camera=await page.evaluate(()=>canvasStudy.camera());
+  for(const mode of ['old-northeast','crescent-lake','base']){
+    await page.locator(`[data-art-mode="${mode}"]`).click();
+    await expect(page.locator('body')).toHaveAttribute('data-art-loaded',mode==='base'?'0':'1');
+    await expect(page.locator(`[data-art-mode="${mode}"]`)).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('.display-pin')).toHaveCount(2);
+    expect(await page.evaluate(()=>canvasStudy.camera())).toEqual(camera);
+  }
+});
+
+test('a transparent illustration margin does not erase the base street labels', async ({page}) => {
+  const image=await page.evaluate(()=>{const canvas=document.createElement('canvas');canvas.width=canvas.height=1;return canvas.toDataURL('image/png').split(',')[1];});
+  await page.route('**/art/crescent-lake-spotlight.webp',request=>request.fulfill({contentType:'image/png',body:Buffer.from(image,'base64')}));
+  await feeds(page);await page.goto(route);await expect(page.locator('body')).toHaveAttribute('data-feeds','complete');
+  const before=await page.locator('.base-label').allTextContents();expect(before.length).toBeGreaterThan(0);
+  await page.locator('[data-art-mode="crescent-lake"]').click();
+  await expect(page.locator('body')).toHaveAttribute('data-art-loaded','1');
+  expect(await page.locator('.base-label').allTextContents()).toEqual(before);
+});
+
+test('the existing neighborhood-map link keeps the chosen season, artwork area and selected record', async ({page}) => {
+  await feeds(page);await page.goto(route+'?season=christmas-2026');
+  await expect(page.locator('body')).toHaveAttribute('data-feeds','complete');
+  await page.locator('[data-art-mode="crescent-lake"]').click();
+  await options(page);
+  await expect(page.locator('.existing-map-link')).toHaveAttribute('href',/neighborhood=crescent-lake&season=christmas-2026/);
+  await page.locator('#display-list summary').click();await page.locator('#coordinate-list button').nth(1).click();
+  await options(page);
+  await expect(page.locator('.existing-map-link')).toHaveAttribute('href',/neighborhood=crescent-lake&season=christmas-2026&listing=fixture-b/);
+});
+
+test('semantic activation without pointer coordinates selects the activated record', async ({page}) => {
+  await feeds(page);await page.goto(route);await expect(page.locator('body')).toHaveAttribute('data-feeds','complete');
+  await page.locator('.display-pin[data-id="fixture-a"]').evaluate(button=>button.click());
+  await expect(page.locator('#pin-address')).toHaveText('Fixture display A');
+  await expect(page.locator('.display-pin[data-id="fixture-a"]')).toHaveAttribute('aria-pressed','true');
+});
+
+test('selected coordinates remain exposed after a long address and orientation change', async ({page}) => {
+  const location={id:'long-fixture',address:'Fixture long address at the corner of two unusually named streets, St. Petersburg',latitude:27.7888,longitude:-82.6397};
+  await page.setViewportSize({width:320,height:568});
+  await feeds(page,(request,id)=>request.fulfill({json:{listings:id==='old-northeast'?[location]:[]}}));
+  await page.goto(route);await expect(page.locator('body')).toHaveAttribute('data-feeds','complete');
+  await options(page);await page.locator('#display-list summary').click();await page.locator('#coordinate-list button').click();
+  await page.setViewportSize({width:667,height:375});
+  await expect.poll(()=>page.evaluate(point=>{
+    const p=canvasStudy.project(point),b=document.querySelector('#map').getBoundingClientRect();
+    return [[0,0],[-20,0],[20,0],[0,-20],[0,20]].every(([x,y])=>document.elementFromPoint(b.x+p.x+x,b.y+p.y+y)?.closest('.display-pin')?.dataset.id==='long-fixture');
+  },[location.latitude,location.longitude])).toBe(true);
+  const camera=await page.evaluate(()=>canvasStudy.camera());await page.locator('#close-pin').click();
+  expect(await page.evaluate(()=>canvasStudy.camera())).toEqual(camera);
+});
 
 test('one geographic camera keeps record pins stable when artwork is changed or hidden', async ({page}) => {
   await feeds(page); await open(page);
@@ -59,7 +119,7 @@ test('one failed public feed stays incomplete and retry never substitutes sample
 test('artwork failure preserves usable base context and independent published pins', async ({page}) => {
   await feeds(page);
   await page.route('**/art/*-spotlight.webp', request => request.fulfill({status:503,body:'Fixture outage'}));
-  await page.goto(route);
+  await page.goto(route+'?art=both');
   await expect(page.locator('body')).toHaveAttribute('data-ready', 'true');
   await expect(page.locator('body')).toHaveAttribute('data-feeds', 'complete');
   await expect(page.locator('#art-error')).toBeVisible();
