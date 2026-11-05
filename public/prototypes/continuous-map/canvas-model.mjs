@@ -41,3 +41,22 @@ export function imageBoundsFromConfig({ bounds: b, projection: p }) {
     [p.latOrigin - (b.top - p.yOrigin) / p.yScale, p.lngOrigin + (b.right - p.xOrigin) / p.xScale]
   ];
 }
+
+// Keep a marker's actual anchor visible without reserving a whole strip for a
+// small card/control. Prefer the smallest camera adjustment around real UI boxes.
+export function unobscuredPoint(point, size, obstacles, radius = 25) {
+  const clamp = (value, limit) => Math.max(radius, Math.min(limit - radius, value));
+  const xs = [clamp(point.x, size.x)], ys = [clamp(point.y, size.y)];
+  for (const box of obstacles) {
+    xs.push(box.left - radius - 2, box.right + radius + 2);
+    ys.push(box.top - radius - 2, box.bottom + radius + 2);
+  }
+  let best = null, distance = Infinity;
+  for (const x of xs) for (const y of ys) {
+    if (x < radius || x > size.x - radius || y < radius || y > size.y - radius) continue;
+    if (obstacles.some(box => x + radius > box.left && x - radius < box.right && y + radius > box.top && y - radius < box.bottom)) continue;
+    const next = (x-point.x)**2 + (y-point.y)**2;
+    if (next < distance) { best = {x,y}; distance = next; }
+  }
+  return best || {x:clamp(point.x,size.x), y:clamp(point.y,size.y)};
+}

@@ -1,15 +1,16 @@
 import { api } from '../../service-client.mjs';
 import { seasonFor } from '../../season-config.mjs';
-import { studyNeighborhoods, studyViews, mergePublicFeeds } from './canvas-model.mjs';
+import { studyNeighborhoods, studyViews, mergePublicFeeds, unobscuredPoint } from './canvas-model.mjs';
 
 const $ = selector => document.querySelector(selector);
 const L = window.L;
 const query = new URLSearchParams(location.search);
 const season = seasonFor(query.get('season') || 'halloween-2026');
-let map, context, artEntries = [], records = [], selected = null;
+let map, context, baseContext, artEntries = [], records = [], selected = null;
 let artRevision = 0, activeArt = [], pins = new Map(), feedRevision = 0;
 let loadedBounds, loadingLayers = 0, peakDecodedBytes = 0;
 let expandedPins = false;
+let roadLabels = [], labelMeasure;
 const pendingImages = new Set();
 const options = $('#study-options');
 const artLayers = L.layerGroup();
@@ -41,6 +42,30 @@ function goTo(view) {
   }
 }
 function closeOptions() { options.close(); openOptions.focus({ preventScroll: true }); }
+function syncExistingMapLink() {
+  const mode=$('#art-mode').value;
+  const id=selected?.neighborhoodId || (studyNeighborhoods.some(area=>area.id===mode)?mode:'old-northeast');
+  const area=studyNeighborhoods.find(area=>area.id===id);
+  const params=new URLSearchParams({neighborhood:id,season:season.id});
+  if (selected) params.set('listing',selected.id);
+  $('.existing-map-link').href=`/?${params}`;
+  $('.existing-map-link').textContent=`Open ${area.name} map ↗`;
+}
+function overlayBoxes() {
+  const origin = $('#map').getBoundingClientRect();
+  return [...document.querySelectorAll('#map-toolbar, #pin-card, #open-options, .leaflet-control-zoom, .leaflet-control-attribution, .map-hint, .notice')]
+    .filter(node => !node.hidden && node.getBoundingClientRect().width)
+    .map(node => {
+      const box = node.getBoundingClientRect();
+      return {left:box.left-origin.left, top:box.top-origin.top, right:box.right-origin.left, bottom:box.bottom-origin.top};
+    });
+}
+function revealRecord(record) {
+  if (!record) return;
+  const point = map.latLngToContainerPoint([record.lat, record.lng]);
+  const target = unobscuredPoint(point, map.getSize(), overlayBoxes());
+  if (Math.abs(point.x-target.x) > 1 || Math.abs(point.y-target.y) > 1) map.panBy([point.x-target.x, point.y-target.y], {animate:false});
+}
 function select(id) {
   selected = records.find(record => record.id === id) || null;
   for (const [key, marker] of pins) {
@@ -48,14 +73,17 @@ function select(id) {
     marker.setZIndexOffset(key === selected?.id ? 1000 : 0);
   }
   selectedCard.hidden = !selected;
-  if (!selected) return;
+  syncExistingMapLink();
+  if (!selected) { if (Number.isFinite(map?.getZoom())) renderLabels(); return; }
   $('#pin-neighborhood').textContent = selected.neighborhood;
   $('#pin-address').textContent = selected.address;
   $('#pin-season').textContent = `${season.name} · published display`;
-  map.panInside([selected.lat, selected.lng], { paddingTopLeft: [48, 72], paddingBottomRight: [88, Math.min(230, map.getSize().y * .48)], animate: false });
+  revealRecord(selected);
+  renderLabels();
   announce(`${selected.address}, ${selected.neighborhood}. Published ${season.name} display.`);
 }
 function renderPins() {
+  const selectedId = selected?.id;
   pinLayers.clearLayers(); pins.clear();
   const list = $('#coordinate-list'); list.replaceChildren();
   records.forEach((record, index) => {
@@ -91,7 +119,7 @@ function renderPins() {
         if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); select(record.id); }
       });
       control.addEventListener('focus', () => {
-        if (control.matches(':focus-visible')) map.panInside([record.lat, record.lng], { paddingTopLeft: [48,72], paddingBottomRight: [88, selected ? Math.min(230, map.getSize().y*.48) : 125], animate: false });
+        if (control.matches(':focus-visible')) revealRecord(record);
       });
     });
     marker.addTo(pinLayers); pins.set(record.id, marker);
@@ -102,9 +130,11 @@ function renderPins() {
     choice.addEventListener('click', () => { closeOptions(); select(record.id); });
     list.append(choice);
   });
-  if (!records.length) list.textContent = 'No coordinates loaded. See the display service status above.';
+  if (!records.length) list.textContent = 'No display coordinates are loaded. See the feed status above.';
   $('#list-count').textContent = `(${records.length})`;
-  if (selected && !records.some(record => record.id === selected.id)) select(null);
+  // Re-resolve by ID after every fetch; retaining the prior DTO leaves a stale
+  // address/card and can strand a selected pin at its old camera position.
+  select(selectedId);
   document.body.dataset.pins = String(records.length);
 }
 async function loadPins() {
@@ -135,7 +165,26 @@ async function loadPins() {
   $('#feed-error-copy').textContent = conflict ? 'Display coordinates conflict. Counts are unavailable.'
     : loaded.length ? 'One neighborhood’s displays could not load. Counts are incomplete.' : 'Displays could not load. The map is still available.';
   $('#data-scope').textContent = `${season.name}; ${loaded.length} of 2 neighborhood feeds loaded. ${complete ? 'Counts cover these two areas only.' : 'Counts are unavailable or incomplete.'}`;
+  if (complete && !records.length) $('#coordinate-list').textContent = `No published ${season.name} displays in these two neighborhoods.`;
   $('#retry-feeds').disabled = false;
+}
+function sampleImageAlpha(layer) {
+  const canvas = document.createElement('canvas'); canvas.width = canvas.height = 256;
+  const ctx = canvas.getContext('2d', {willReadFrequently:true});
+  ctx.drawImage(layer.getElement(),0,0,256,256);
+  const rgba = ctx.getImageData(0,0,256,256).data;
+  const alpha = new Uint8Array(256*256);
+  for (let i=0;i<alpha.length;i++) alpha[i]=rgba[i*4+3];
+  return alpha;
+}
+function viewSummary(mode, state = 'ready') {
+  const name = studyNeighborhoods.find(area => area.id === mode)?.name;
+  const text = mode === 'base' ? 'Old Northeast & Crescent Lake · study area'
+    : mode === 'both' ? 'Original overlap comparison · edges differ'
+    : `${name} · original art overlay`;
+  $('#view-summary').textContent = state === 'loading' ? `${name || 'Comparison'} artwork loading…`
+    : state === 'failed' ? `${name || 'Comparison'} incomplete · street map available` : text;
+  for (const button of document.querySelectorAll('[data-art-mode]')) button.setAttribute('aria-pressed',String(button.dataset.artMode===mode));
 }
 function image(entry, url) {
   return new Promise((resolve, reject) => {
@@ -149,7 +198,11 @@ function image(entry, url) {
     };
     const timeout = setTimeout(() => { release(); layer.remove(); reject(new Error(`${entry.name} artwork timed out.`)); }, 20000);
     pendingImages.add(cancel);
-    layer.once('load', () => { release(); resolve(layer); });
+    layer.once('load', () => {
+      release();
+      try { resolve({layer, alpha:sampleImageAlpha(layer)}); }
+      catch { layer.remove(); reject(new Error(`${entry.name} artwork could not be sampled.`)); }
+    });
     layer.once('error', () => { release(); layer.remove(); reject(new Error(`${entry.name} artwork could not load.`)); });
     layer.addTo(artLayers);
   });
@@ -157,20 +210,29 @@ function image(entry, url) {
 async function updateArt() {
   const revision = ++artRevision;
   const mode = $('#art-mode').value, spotlight = $('#art-treatment').value === 'spotlight';
+  const url=new URL(location.href);
+  if (mode==='base') url.searchParams.delete('art'); else url.searchParams.set('art',mode);
+  history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+  const focused=studyNeighborhoods.some(area=>area.id===mode);
+  baseContext.setStyle(feature=>feature.properties.kind==='water'
+    ? {stroke:true,color:'#b7b0c7',weight:1,fillColor:'#d7d1e2',fillOpacity:1}
+    : {color:'#c5c6ab',weight:focused?1.5:2,opacity:focused ? .55 : .9,lineCap:'round',fill:false});
+  syncExistingMapLink();
   for (const cancel of [...pendingImages]) cancel();
   artLayers.clearLayers(); activeArt = [];
   $('#art-error').hidden = true; $('#art-treatment').disabled = mode === 'base';
   document.body.dataset.art = mode;
-  if (mode === 'base') { loadingLayers = 0; document.body.dataset.artLoaded = '0'; $('#art-status').textContent = 'Base geography only. Artwork images removed; geographic pins stay in place.'; renderLabels(); return; }
+  if (mode === 'base') { loadingLayers = 0; document.body.dataset.artLoaded = '0'; viewSummary(mode); $('#art-status').textContent = 'Street map. No artwork images attached; geographic pins stay in place.'; renderLabels(); return; }
   const targets = artEntries.filter(entry => mode === 'both' || entry.id === mode);
   document.body.dataset.artLoaded = 'loading';
   loadingLayers = targets.length;
+  viewSummary(mode,'loading');
   $('#art-status').textContent = 'Loading artwork; geographic pins stay in place…';
   const results = await Promise.allSettled(targets.map(async entry => {
     const url = spotlight ? entry.spotlightUrl : entry.url;
     if (!url) throw new Error(`${entry.name} has no verified spotlight derivative.`);
-    const layer = await image(entry, url);
-    return { entry, layer };
+    const result = await image(entry, url);
+    return { entry, ...result };
   }));
   if (revision !== artRevision) { for (const result of results) if (result.status === 'fulfilled') result.value.layer.remove(); return; }
   loadingLayers = 0;
@@ -182,32 +244,49 @@ async function updateArt() {
     $('#art-error').hidden = false;
     $('#art-error-copy').textContent = 'Some artwork could not load. Geographic context and pins remain available.';
   }
+  viewSummary(mode, activeArt.length === targets.length ? 'ready' : 'failed');
   document.body.dataset.artLoaded = String(activeArt.length);
   renderLabels();
 }
-function renderLabels() {
-  if (!map || !context) return;
-  labelLayers.clearLayers();
+function prepareLabels() {
   const groups = new Map();
   for (const feature of context.features) {
     if (feature.properties.kind !== 'road' || !feature.properties.name) continue;
     const coordinates = feature.geometry.type === 'LineString' ? feature.geometry.coordinates : feature.geometry.type === 'MultiLineString' ? feature.geometry.coordinates.flat() : [];
-    if (!coordinates.length) continue;
-    const key = feature.properties.name;
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(...coordinates);
+    const name = feature.properties.name;
+    if (!groups.has(name)) groups.set(name, []);
+    groups.get(name).push(...coordinates);
   }
+  roadLabels = [...groups.entries()].sort((a,b)=>b[1].length-a[1].length);
+  labelMeasure = document.createElement('canvas').getContext('2d');
+  labelMeasure.font = '550 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+}
+function hasPaintedArtwork(point) {
+  const world = map.containerPointToLayerPoint(point);
+  return activeArt.some(({entry,alpha}) => {
+    const b=L.latLngBounds(entry.bounds), tl=map.latLngToLayerPoint(b.getNorthWest()), br=map.latLngToLayerPoint(b.getSouthEast());
+    const x=Math.floor((world.x-tl.x)/(br.x-tl.x)*256), y=Math.floor((world.y-tl.y)/(br.y-tl.y)*256);
+    return x>=0 && x<256 && y>=0 && y<256 && alpha[y*256+x]>=64;
+  });
+}
+function renderLabels() {
+  if (!map || !context) return;
+  labelLayers.clearLayers();
   const occupied = [];
-  const candidates = [...groups.entries()].sort((a, b) => b[1].length - a[1].length);
-  for (const [name, coordinates] of candidates) {
+  const blockers=overlayBoxes();
+  for (const [name, coordinates] of roadLabels) {
     const inside = coordinates.filter(([lng, lat]) => map.getBounds().contains([lat, lng]));
     if (!inside.length) continue;
     const [lng, lat] = inside[Math.floor(inside.length / 2)];
-    if (activeArt.some(({entry}) => L.latLngBounds(entry.bounds).contains([lat, lng]))) continue;
     const point = map.latLngToContainerPoint([lat, lng]);
-    const width = Math.min(160, name.length * 6.5);
+    const width = Math.ceil(labelMeasure.measureText(name).width)+4;
     const box = { x: point.x, y: point.y, width, height: 20 };
-    if (point.x < 10 || point.y < 60 || point.x + width > map.getSize().x - 60 || point.y > map.getSize().y - 130) continue;
+    if (point.x < 10 || point.y < 10 || point.x + width > map.getSize().x - 10 || point.y + 18 > map.getSize().y - 10) continue;
+    if (blockers.some(other => box.x < other.right+4 && box.x+width > other.left-4 && box.y < other.bottom+4 && box.y+18 > other.top-4)) continue;
+    // A transparent spotlight margin must not suppress the street map's labels.
+    // Check the real loaded alpha footprint, not the image's whole rectangle.
+    if ([0,.25,.5,.75,1].some(ratio => hasPaintedArtwork(L.point(point.x+width*ratio,point.y+7)))) continue;
+    if (records.some(record => { const p=map.latLngToContainerPoint([record.lat,record.lng]); return p.x>box.x-22 && p.x<box.x+width+22 && p.y>box.y-22 && p.y<box.y+38; })) continue;
     if (occupied.some(other => box.x < other.x + other.width + 20 && box.x + box.width + 20 > other.x && box.y < other.y + 32 && box.y + 32 > other.y)) continue;
     occupied.push(box);
     L.marker([lat, lng], { icon: textIcon(name, 'base-label'), interactive: false, keyboard: false }).addTo(labelLayers);
@@ -248,6 +327,7 @@ async function start() {
   if (!season) throw new Error('Unknown display season. Use halloween-2026 or christmas-2026.');
   const [geography, artwork, notices] = await Promise.all([json('./data/context.geojson'), json('./data/artwork.json'), json('./data/source-notices.json')]);
   context = geography; artEntries = artwork;
+  prepareLabels();
   const bbox = context.bbox;
   if (!Array.isArray(bbox) || bbox.length !== 4) throw new Error('The context coverage bounds are missing.');
   loadedBounds = L.latLngBounds([[bbox[1], bbox[0]], [bbox[3], bbox[2]]]);
@@ -262,18 +342,18 @@ async function start() {
   map.getPane('studyArt').style.zIndex = '450';
   L.rectangle(loadedBounds, { stroke: true, color: '#b9bfa6', weight: 1, dashArray: '4 5', fill: true, fillColor: '#f0efd9', fillOpacity: 1, interactive: false }).addTo(map);
   const renderer = L.canvas({ padding: .3 });
-  L.geoJSON(context, {
+  baseContext = L.geoJSON(context, {
     renderer,
     interactive: false,
     style: feature => feature.properties.kind === 'water'
-      ? { stroke: true, color: '#bdcfca', weight: 1, fillColor: '#dce6e1', fillOpacity: 1 }
+      ? { stroke: true, color: '#b7b0c7', weight: 1, fillColor: '#d7d1e2', fillOpacity: 1 }
       : { color: '#c5c6ab', weight: 2, opacity: .9, lineCap: 'round', fill: false }
   }).addTo(map);
   artLayers.addTo(map); labelLayers.addTo(map); pinLayers.addTo(map);
   renderCredits(notices);
   map.on('moveend zoomend', () => { renderLabels(); cameraReadout(); });
   map.on('click', () => select(null));
-  const resize = new ResizeObserver(() => map.invalidateSize({ pan: false })); resize.observe($('#map'));
+  const resize = new ResizeObserver(() => { map.invalidateSize({ pan: false }); revealRecord(selected); }); resize.observe($('#map'));
   $('#map').addEventListener('keydown', event => {
     if (event.key === 'Home' && event.target === $('#map')) { event.preventDefault(); goTo(studyViews.crossing); }
     if (event.key === 'Escape') { select(null); }
@@ -283,9 +363,12 @@ async function start() {
   options.addEventListener('click', event => { if (event.target === options) { const b = options.getBoundingClientRect(); if (event.clientX < b.left || event.clientX > b.right || event.clientY < b.top || event.clientY > b.bottom) closeOptions(); } });
   for (const button of document.querySelectorAll('[data-view]')) button.addEventListener('click', () => { goTo(studyViews[button.dataset.view]); closeOptions(); });
   $('#art-mode').addEventListener('change', updateArt); $('#art-treatment').addEventListener('change', updateArt);
+  for (const button of document.querySelectorAll('[data-art-mode]')) button.addEventListener('click',()=>{ $('#art-mode').value=button.dataset.artMode; updateArt(); });
   $('#retry-art').addEventListener('click', updateArt); $('#retry-feeds').addEventListener('click', loadPins);
   $('#close-pin').addEventListener('click', () => { const id = selected?.id; select(null); pins.get(id)?.getElement()?.querySelector('button')?.focus({ preventScroll: true }); });
   goTo(studyViews[query.get('view')] || studyViews.crossing);
+  const requestedArt=query.get('art');
+  if (['base','both',...studyNeighborhoods.map(area=>area.id)].includes(requestedArt)) $('#art-mode').value=requestedArt;
   $('#loading').hidden = true; $('#map').setAttribute('aria-busy', 'false');
   document.body.dataset.ready = 'true';
   // Read-only diagnostics for cloud/device acceptance; no private DTOs, photos,

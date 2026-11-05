@@ -2,10 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { mergePublicFeeds, imageBoundsFromConfig, studyNeighborhoods } from '../public/prototypes/continuous-map/canvas-model.mjs';
+import { mergePublicFeeds, imageBoundsFromConfig, studyNeighborhoods, unobscuredPoint } from '../public/prototypes/continuous-map/canvas-model.mjs';
 
 const first = { id: 'one', address: 'Test coordinate A', latitude: 27.79, longitude: -82.64 };
 const feed = (listings, index = 0) => ({ neighborhood: studyNeighborhoods[index], listings });
+
+test('an exposed marker stays still and an obstructed marker takes a short visible path around actual controls', () => {
+  const size = {x:667,y:320};
+  const obstacles = [{left:12,top:8,right:655,bottom:64},{left:12,top:140,right:322,bottom:208},{left:607,top:160,right:655,bottom:248}];
+  assert.deepEqual(unobscuredPoint({x:450,y:120},size,obstacles),{x:450,y:120});
+  const moved=unobscuredPoint({x:150,y:175},size,obstacles);
+  assert.ok(moved.x>=25 && moved.x<=size.x-25 && moved.y>=25 && moved.y<=size.y-25);
+  assert.ok(!obstacles.some(box=>moved.x+25>box.left&&moved.x-25<box.right&&moved.y+25>box.top&&moved.y-25<box.bottom));
+  assert.ok(Math.hypot(moved.x-150,moved.y-175)<100);
+});
 
 test('canonical records dedupe across feeds without merging coincident distinct IDs', () => {
   const records = mergePublicFeeds([feed([first]), feed([first, { ...first, id: 'two' }], 1)]);
