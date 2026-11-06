@@ -66,7 +66,7 @@ test('season links load their own listings and history actions keep the selected
   await expect(page.locator('#reference-list')).toContainText('Synthetic Halloween Lane');
   expect(requested[0]).toEqual({ season: 'halloween-2026', neighborhood: 'old-northeast' });
 
-  await page.locator('#reference-list button').first().click();
+  await page.locator('[data-pin=halloween-fixture]').click();
   await expect(page.locator('#detail-season')).toHaveText('Past season · Halloween 2026');
   await expect(page.locator('#detail-report')).toBeEnabled();
   await page.locator('#detail-heart').click();

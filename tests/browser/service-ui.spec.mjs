@@ -83,7 +83,7 @@ async function enableService(page, { listings = [], failListingFetch = false, lo
   return writes;
 }
 
-test('populated phone display carousel stays clear of attribution and its third address remains selectable', async ({ page }) => {
+test('community map fills the phone, keeps its controls clear, and selects displays without a directory', async ({ page }) => {
   const displays = [1,2,3].map(number => ({ ...listing, id:`fixture-${number}`, locationId:`fixture-location-${number}`,
     title:'', address:`${number} Synthetic long display address, St Petersburg` }));
   await enableService(page,{listings:displays});
@@ -91,28 +91,29 @@ test('populated phone display carousel stays clear of attribution and its third 
     await page.setViewportSize({width,height});
     await page.goto('/');
     await expect(page.locator('#map')).toHaveAttribute('aria-busy','false');
-    await expect(page.locator('#references-title')).toHaveText('Live displays');
-    const clear = async () => {
-      await expect.poll(async () => {
-        const card = await page.locator('.references').boundingBox();
-        const credit = await page.locator('.leaflet-control-attribution').boundingBox();
-        return card.y-credit.y-credit.height;
-      }).toBeGreaterThanOrEqual(6);
-      const credit = await page.locator('.leaflet-control-attribution').boundingBox();
-      const zoom = await page.locator('.leaflet-control-zoom').boundingBox();
-      const overlapWidth=Math.max(0,Math.min(credit.x+credit.width,zoom.x+zoom.width)-Math.max(credit.x,zoom.x));
-      const overlapHeight=Math.max(0,Math.min(credit.y+credit.height,zoom.y+zoom.height)-Math.max(credit.y,zoom.y));
-      expect(overlapWidth*overlapHeight).toBe(0);
-    };
-    await clear();
-    const third=page.locator('#reference-list button').nth(2);
-    await third.scrollIntoViewIfNeeded();
-    const box=await third.boundingBox();
-    expect(await page.evaluate(({x,y})=>document.elementFromPoint(x,y)?.closest('button')?.dataset.id,{x:box.x+box.width/2,y:box.y+box.height/2})).toBe('fixture-3');
-    await third.click();
+    await expect(page.locator('body')).toHaveAttribute('data-experience','neighborhood');
+    await expect(page.locator('.references')).toBeHidden();
+    await expect(page.locator('#sample-count')).toHaveText('3 live displays');
+    for (const selector of ['#add-display','#neighborhood-select','#season-select','.leaflet-control-zoom','.leaflet-control-attribution']) {
+      await expect(page.locator(selector)).toBeInViewport({ratio:1});
+    }
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    const canvas=await page.locator('.canvas').boundingBox();
+    expect(canvas.y+canvas.height).toBeCloseTo(height,0);
+    const credit = await page.locator('.leaflet-control-attribution').boundingBox();
+    const zoom = await page.locator('.leaflet-control-zoom').boundingBox();
+    const overlapWidth=Math.max(0,Math.min(credit.x+credit.width,zoom.x+zoom.width)-Math.max(credit.x,zoom.x));
+    const overlapHeight=Math.max(0,Math.min(credit.y+credit.height,zoom.y+zoom.height)-Math.max(credit.y,zoom.y));
+    expect(overlapWidth*overlapHeight).toBe(0);
+    // Coincident fixtures remain individually reachable using the existing keyboard targets.
+    await page.locator('[data-pin="fixture-3"]').focus();
+    await page.keyboard.press('Enter');
     await expect(page.locator('#selected-name')).toHaveText(displays[2].address);
+    for (const selector of ['#add-display','#season-select','#neighborhood-select']) {
+      await expect(page.locator(selector)).toBeInViewport({ratio:1});
+    }
     await page.locator('#detail-close').click();
-    await clear();
+    await expect(page.locator('#selection')).toBeHidden();
   }
 });
 
@@ -134,8 +135,9 @@ test('nearby real-world-scale display positions can be zoomed apart and selected
     await zoom.click();
   }
   expect(await separation()).toBeGreaterThanOrEqual(48);
-  // Reference selection brings the now-separated neighbors into the camera.
-  await page.locator('#reference-list button').first().click();
+  // Keyboard selection brings the now-separated neighbors into the camera.
+  await page.locator('.map-pin').first().focus();
+  await page.keyboard.press('Enter');
   await page.locator('#detail-close').click();
   for(const row of neighbors){
     await page.locator(`.map-pin[data-pin="${row.id}"]`).click();
@@ -151,7 +153,8 @@ test('live map starts empty, publishes immediately, safely renders addresses, an
   await expect(page.locator('#sample-count')).toHaveText('0 live displays');
   await expect(page.locator('#reference-list')).toHaveText('No live displays here yet.');
   await expect(page.locator('#reference-list')).not.toContainText('255 9th Ave NE');
-  await expect(page.locator('.map-panel > .references')).toBeVisible();
+  await expect(page.locator('.map-panel > .references')).toBeHidden();
+  await expect(page.locator('#sample-count')).toBeVisible();
 
   await page.getByRole('button', { name: 'Add a display', exact: true }).click();
   const modal = page.getByRole('dialog', { name: 'Add a display' });

@@ -44,6 +44,11 @@ async function start() {
   $('.references-heading > span').hidden = true;
   const service = await loadService();
   const demoSample = samplePins.some(pin => pin.id === query.get('sample'));
+  const neighborhoodExperience = Boolean(service && !demoSample && !fromAtlas && query.get('diagnostic') !== '1');
+  if (neighborhoodExperience) {
+    document.body.dataset.experience = 'neighborhood';
+    $('.primary-nav').append($('.season-control'));
+  }
   const selectedSeasonId = requestedSeason || service?.season?.id || activeSeasonId;
   const selectedSeason = seasonFor(selectedSeasonId) || (!requestedSeason ? service?.season : null);
   if (!selectedSeason) throw new Error(`The listing service returned an unsupported season “${selectedSeasonId}”.`);
@@ -185,10 +190,19 @@ async function start() {
     : 'No sample addresses here yet.');
   renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id, season: selectedSeason, historical });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins, artwork,
-    preferNearestPin: fromAtlas,
+    preferNearestPin: fromAtlas || neighborhoodExperience,
+    // FTW's original Old Northeast resetCamera framing, in the same artwork
+    // coordinates. Other maps retain their existing authored overview bounds.
+    openingCamera: neighborhoodExperience && neighborhood.id === 'old-northeast' ? (width, height) => {
+      const mobile = matchMedia('(max-width:720px)').matches;
+      const scale = Math.max(Math.max(width / 680, height / 965) * 1.12, height / 595);
+      const tx = Math.max(width - 775 * scale, Math.min(-95 * scale, width / 2 - 385 * scale));
+      const ty = Math.max(height - 1045 * scale, Math.min(-80 * scale, height / 2 - (mobile ? 570 : 600) * scale));
+      return { x: (width / 2 - tx) / scale, y: (height / 2 - ty) / scale, zoom: Math.log2(scale) };
+    } : undefined,
     onSelect: selectionChanged,
     overviewInsets() {
-      if (!matchMedia('(max-width:720px)').matches || !$('.canvas').classList.contains('map-only')) return;
+      if (!neighborhoodExperience && (!matchMedia('(max-width:720px)').matches || !$('.canvas').classList.contains('map-only'))) return;
       const map = $('#map').getBoundingClientRect();
       const toolbar = $('.map-toolbar').getBoundingClientRect();
       const credit = $('.leaflet-control-attribution')?.getBoundingClientRect();
