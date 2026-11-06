@@ -7,12 +7,16 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { chromium } from '@playwright/test';
 import { importedNeighborhoods } from '../public/neighborhood-catalog.mjs';
+import { neighborhoods } from '../public/neighborhoods.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const hash = value => createHash('sha256').update(value).digest('hex');
 if (process.argv.includes('--help')) {
-  console.log('Rebuild changed map WebP files: node scripts/rasterize-neighborhoods.mjs\nRequires Playwright Chromium and Python Pillow. Set CHROMIUM_EXECUTABLE_PATH to use an existing Chromium binary.');
+  console.log('Rebuild changed map WebP files: node scripts/rasterize-neighborhoods.mjs [neighborhood-id ...]\nWithout IDs, rebuild imported maps. IDs can also select old-northeast or crescent-lake.\nRequires Playwright Chromium and Python Pillow. Set CHROMIUM_EXECUTABLE_PATH to use an existing Chromium binary.');
   process.exit(0);
 }
+const requestedIds = [...new Set(process.argv.slice(2))];
+for (const id of requestedIds) if (!Object.hasOwn(neighborhoods, id)) throw new Error(`Unknown neighborhood: ${id}`);
+const queue = requestedIds.length ? requestedIds.map(id => ({ id, ...neighborhoods[id] })) : [...importedNeighborhoods];
 const browser = await chromium.launch(process.env.CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.CHROMIUM_EXECUTABLE_PATH } : {});
 let rendered = 0, retained = 0;
 function encode(png, rasterPath) {
@@ -27,7 +31,6 @@ function encode(png, rasterPath) {
     child.stdin.end(png);
   });
 }
-const queue = [...importedNeighborhoods];
 try {
   await Promise.all(Array.from({ length: 3 }, async () => {
     const page = await browser.newPage();
@@ -37,10 +40,11 @@ try {
     const config = JSON.parse(await readFile(path.join(root, 'public', area.config), 'utf8'));
     const svgPath = path.join(root, 'public', config.artwork);
     const rasterPath = path.join(root, 'public', config.rasterArtwork);
-    const provenancePath = path.join(root, 'public/data', area.id, 'provenance.json');
+    const provenancePath = path.join(root, 'public', path.dirname(area.config), 'provenance.json');
     const provenance = JSON.parse(await readFile(provenancePath, 'utf8'));
     const svg = await readFile(svgPath, 'utf8'), sourceSha256 = hash(svg);
-    const w = config.bounds.right - config.bounds.left, h = config.bounds.bottom - config.bounds.top;
+    const bounds = config.artworkBounds || config.bounds;
+    const w = bounds.right - bounds.left, h = bounds.bottom - bounds.top;
     const scale = Math.min(4, 3072 / Math.max(w, h));
     const width = Math.round(w * scale), height = Math.round(h * scale);
     try {
@@ -68,7 +72,7 @@ try {
       } finally { URL.revokeObjectURL(url); }
     }, { svg, width, height });
     const pillowVersion = await encode(png, rasterPath);
-    provenance.rasterArtwork = { path: config.rasterArtwork, width, height, encoding: 'lossless WebP', sourceSha256, sha256: hash(await readFile(rasterPath)), bytes: (await stat(rasterPath)).size, renderer: browser.version(), pillowVersion };
+    provenance.rasterArtwork = { ...provenance.rasterArtwork, path: config.rasterArtwork, width, height, encoding: 'lossless WebP', sourceSha256, sha256: hash(await readFile(rasterPath)), bytes: (await stat(rasterPath)).size, renderer: browser.version(), pillowVersion };
     await writeFile(provenancePath, JSON.stringify(provenance, null, 2) + '\n');
     rendered++;
     }

@@ -11,3 +11,8 @@
 @media(max-width:380px){.service-tabs{gap:0}.service-tabs button{padding:0 9px;font-size:13px}.owner-badge{font-size:11px}.service-review-layout .filters{overflow-x:auto}.service-review-layout .filters button{white-space:nowrap}}
 @media(max-height:560px) and (min-width:761px){.service-review-layout .record-list{max-height:42vh}.private-photo{height:190px;min-height:120px}.workspace{padding-top:18px}.page-heading{margin-bottom:14px}}
 .workspace[data-review-loading]>*{display:none}.workspace[data-review-loading]>.review-bootstrap{display:block;margin:20px 0;padding:14px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--muted);font-size:14px}
+.inbox-message { white-space:pre-wrap; overflow-wrap:anywhere; }
+.wordmark-arrow { width:20px; height:20px; fill:none; stroke:#bd6038; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.inbox-detail .detail-copy { overflow-wrap:anywhere; }
+.service-tabs { flex-wrap:wrap; }
+.record-theme { overflow-wrap:anywhere; }

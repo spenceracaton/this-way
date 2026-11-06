@@ -1,15 +1,34 @@
 import { project, mapPoint, mapBounds } from './coordinates.mjs';
 
+// Match the reference neighborhood cameras in artwork coordinates. The compact
+// mobile header leaves 93px more map visible than FTW; using its camera height
+// keeps the same street scale while showing the extra neighborhood around it.
+export function neighborhoodOpeningCamera(area, width, height, mobile = false) {
+  if (area.overviewBounds) {
+    const b = area.overviewBounds;
+    const px = Math.min(32, width * .12), top = Math.min(48, height * .15), bottom = Math.min(32, height * .12);
+    const scale = Math.min((width - 2 * px) / (b.right - b.left), (height - top - bottom) / (b.bottom - b.top));
+    return { x: (b.left + b.right) / 2, y: (b.top + b.bottom) / 2 - (top - bottom) / (2 * scale), zoom: Math.log2(scale) };
+  }
+  if (area.id !== 'old-northeast') return;
+  const cameraHeight = mobile ? Math.max(1, height - 93) : height;
+  const scale = Math.max(Math.max(width / 680, cameraHeight / 965) * 1.12, cameraHeight / 595);
+  const tx = Math.max(width - 775 * scale, Math.min(-95 * scale, width / 2 - 385 * scale));
+  const ty = Math.max(height - 1045 * scale, Math.min(-80 * scale, height / 2 - (mobile ? 570 : 600) * scale));
+  return { x: (width / 2 - tx) / scale, y: (height / 2 - ty) / scale, zoom: Math.log2(scale) };
+}
+
 // A compact neighborhood-local pin picker used from the submission dialog.
 // Its crosshair represents the map center, so keyboard panning and zooming
 // work through Leaflet's normal accessible map controls.
 export async function createLocationPicker({ leaflet: L, element, area, artwork }) {
   const bounds = L.latLngBounds(mapBounds(area.bounds));
+  const artworkBounds = L.latLngBounds(mapBounds(area.artworkBounds || area.bounds));
   const map = L.map(element, { crs: L.CRS.Simple, minZoom: -3, maxZoom: 2, zoomSnap: 0.5,
     zoomControl: false, attributionControl: true, keyboard: true, maxBounds: bounds, maxBoundsViscosity: 1 });
   L.control.zoom({ position: 'topleft' }).addTo(map);
   const overlayArtwork = artwork.localName === 'svg' ? artwork.cloneNode(true) : artwork;
-  (artwork.localName === 'svg' ? L.svgOverlay(overlayArtwork, bounds, { interactive: false }) : L.imageOverlay(overlayArtwork.src, bounds, { interactive: false })).addTo(map);
+  (artwork.localName === 'svg' ? L.svgOverlay(overlayArtwork, artworkBounds, { interactive: false }) : L.imageOverlay(overlayArtwork.src, artworkBounds, { interactive: false })).addTo(map);
   const pickerCredits = [attributionLink(area.attribution) || attributionLink({ label: '© OpenStreetMap contributors', href: 'https://www.openstreetmap.org/copyright' }), attributionLink(area.license && area.licenseUrl ? { label: area.license, href: area.licenseUrl } : null), ...(Array.isArray(area.additionalAttributions) ? area.additionalAttributions.map(attributionLink) : [])].filter(Boolean);
   if (pickerCredits.length) map.attributionControl.addAttribution(pickerCredits.join(' · '));
   map.fitBounds(bounds, { padding: [14, 14], animate: false });
@@ -28,6 +47,7 @@ export async function createLocationPicker({ leaflet: L, element, area, artwork 
 export function createMap({ leaflet: L, element, area, pins: initialPins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets, overviewInsets, preferNearestPin = false, openingCamera }) {
   let pins = [...initialPins];
   const bounds = L.latLngBounds(mapBounds(area.bounds));
+  const artworkBounds = L.latLngBounds(mapBounds(area.artworkBounds || area.bounds));
   const overviewBounds = area.overviewBounds ? L.latLngBounds(mapBounds(area.overviewBounds)) : bounds;
   const map = L.map(element, {
     crs: L.CRS.Simple, minZoom: -4, maxZoom: 4,
@@ -40,8 +60,8 @@ export function createMap({ leaflet: L, element, area, pins: initialPins, artwor
   });
   L.control.zoom({ position: 'topright' }).addTo(map);
   const artworkOverlay = artwork.localName === 'svg'
-    ? L.svgOverlay(artwork, bounds, { interactive: false })
-    : L.imageOverlay(artwork, bounds, { interactive: false });
+    ? L.svgOverlay(artwork, artworkBounds, { interactive: false })
+    : L.imageOverlay(artwork, artworkBounds, { interactive: false });
   artworkOverlay.addTo(map);
   // Attribution comes from a small, validated text/link structure in map
   // configuration; never insert configuration-provided HTML.
@@ -54,6 +74,7 @@ export function createMap({ leaflet: L, element, area, pins: initialPins, artwor
   map.attributionControl.addAttribution([attribution, ...additional, license].filter(Boolean).join(' · '));
 
   let selected = null;
+  let locationDot = null, locationAccuracy = null;
   const markers = new Map();
   let sheetBounds = false;
   function select(id) {
@@ -155,6 +176,22 @@ export function createMap({ leaflet: L, element, area, pins: initialPins, artwor
       else onSelect(null);
     },
     revealSelection,
+    showLocation(position) {
+      const point = mapPoint(project(position, area.projection));
+      const p = area.projection;
+      const metersPerDegree = 111320;
+      const unitsPerMeter = (Math.abs(p.yScale) / metersPerDegree + Math.abs(p.xScale) / (metersPerDegree * Math.cos(position.lat * Math.PI / 180))) / 2;
+      const radius = Number.isFinite(position.accuracy) ? Math.max(0, position.accuracy) * unitsPerMeter : 0;
+      if (!locationAccuracy) locationAccuracy = L.circle(point, { className: 'location-accuracy', interactive: false, color: '#27658b', weight: 1, fillColor: '#358cc1', fillOpacity: .12, radius }).addTo(map);
+      else locationAccuracy.setLatLng(point).setRadius(radius);
+      if (!locationDot) locationDot = L.circleMarker(point, { className: 'location-dot', interactive: false, radius: 7, color: '#fff', weight: 3, fillColor: '#27658b', fillOpacity: 1 }).addTo(map);
+      else locationDot.setLatLng(point);
+      map.panTo(point, { animate: false });
+    },
+    clearLocation() {
+      locationDot?.remove(); locationAccuracy?.remove();
+      locationDot = locationAccuracy = null;
+    },
     destroy() { resize.disconnect(); map.remove(); }
   };
 }

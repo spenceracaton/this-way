@@ -35,7 +35,8 @@ export function mergePublicFeeds(feeds) {
   return [...records.values()];
 }
 
-export function imageBoundsFromConfig({ bounds: b, projection: p }) {
+export function imageBoundsFromConfig({ bounds, artworkBounds, projection: p }) {
+  const b = artworkBounds || bounds;
   return [
     [p.latOrigin - (b.bottom - p.yOrigin) / p.yScale, p.lngOrigin + (b.left - p.xOrigin) / p.xScale],
     [p.latOrigin - (b.top - p.yOrigin) / p.yScale, p.lngOrigin + (b.right - p.xOrigin) / p.xScale]

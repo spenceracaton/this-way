@@ -2,8 +2,9 @@ import { createSubmission } from './submission.mjs';
 import { initCommunityForms } from './community-forms.mjs';
 import { initPhotoContribution } from './photo-contribution.mjs';
 import { createNeighborhoodPicker } from './neighborhood-picker.mjs';
+import { createMapTools } from './map-tools.mjs';
 import { createDetail } from './detail.mjs';
-import { createMap, createLocationPicker } from './map-view.mjs';
+import { createMap, createLocationPicker, neighborhoodOpeningCamera } from './map-view.mjs';
 import { neighborhoodFor } from './neighborhoods.mjs';
 import { loadService, api, toPin } from './service-client.mjs';
 import { activeSeasonId, seasonFor } from './season-config.mjs';
@@ -119,7 +120,7 @@ async function start() {
     ? `This Way · ${neighborhood.name} · ${selectedSeason.name}${historical ? ' · Past season' : ''}`
     : `This Way · ${neighborhood.name}`;
   $('#map-title').textContent = neighborhood.name;
-  createNeighborhoodPicker(neighborhood);
+  const picker = createNeighborhoodPicker(neighborhood, { service: service && !demoSample ? service : null, season: selectedSeasonId, currentCount: pins.length });
   $('#sample-count').textContent = service && !demoSample ? `${pins.length} ${historical ? `${selectedSeason.name} displays` : `live ${pins.length === 1 ? 'display' : 'displays'}`}` : (pins.length ? `${pins.length} sample addresses` : 'Map only');
   if (fromAtlas) $('#sample-count').textContent = `${historical?'Past season · ':''}${selectedSeason.name}`;
   $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} map${pins.length ? ` with ${service && !demoSample ? historical ? 'past-season displays' : 'live displays' : 'sample addresses'}` : ''}. Arrow keys pan, plus and minus zoom, Home resets.`);
@@ -210,15 +211,8 @@ async function start() {
   renderDetail = createDetail({ close: () => view.select(null), neighborhood: neighborhood.id, season: selectedSeason, historical });
   view = createMap({ leaflet: window.L, element: $('#map'), area, pins, artwork,
     preferNearestPin: fromAtlas || neighborhoodExperience,
-    // FTW's original Old Northeast resetCamera framing, in the same artwork
-    // coordinates. Other maps retain their existing authored overview bounds.
-    openingCamera: neighborhoodExperience && neighborhood.id === 'old-northeast' ? (width, height) => {
-      const mobile = matchMedia('(max-width:720px)').matches;
-      const scale = Math.max(Math.max(width / 680, height / 965) * 1.12, height / 595);
-      const tx = Math.max(width - 775 * scale, Math.min(-95 * scale, width / 2 - 385 * scale));
-      const ty = Math.max(height - 1045 * scale, Math.min(-80 * scale, height / 2 - (mobile ? 570 : 600) * scale));
-      return { x: (width / 2 - tx) / scale, y: (height / 2 - ty) / scale, zoom: Math.log2(scale) };
-    } : undefined,
+    openingCamera: neighborhoodExperience ? (width, height) =>
+      neighborhoodOpeningCamera(area, width, height, matchMedia('(max-width:720px)').matches) : undefined,
     onSelect: selectionChanged,
     overviewInsets() {
       if (!neighborhoodExperience && (!matchMedia('(max-width:720px)').matches || !$('.canvas').classList.contains('map-only'))) return;
@@ -269,11 +263,28 @@ async function start() {
   toolbarResize.observe($('.map-toolbar'));
   window.addEventListener('resize', positionZoomControl);
   matchMedia('(max-width:720px)').addEventListener('change', positionZoomControl);
+  const mapTools = neighborhoodExperience ? createMapTools({
+    mount: $('.canvas'), neighborhood, seasonId: selectedSeasonId,
+    getPins: () => pins, sharedListingId: query.get('listing'),
+    onFilterOpen: () => view.select(null),
+    onFilterChange(items, filters) {
+      view.setPins(items);
+      renderList(items, pins.length ? 'No displays match these filters.' : historical
+        ? `No ${selectedSeason.name} displays in this neighborhood.` : 'No live displays here yet.');
+      const count = filters.themed || filters.photos ? `${items.length} of ${pins.length}` : String(pins.length);
+      $('#sample-count').textContent = `${count} ${historical ? `${selectedSeason.name} displays` : `live ${pins.length === 1 ? 'display' : 'displays'}`}`;
+    },
+    onChooseNeighborhood: () => $('#neighborhood-select').click(),
+    onLocate: position => { view.select(null); view.showLocation(position); }
+  }) : null;
   if (service && !demoSample && !historical) {
     createSubmission({ service, neighborhood, chooseLocation: element => createLocationPicker({ leaflet: window.L, element, area, artwork }),
       onPublished(listing) {
         const pin = toPin(listing, pins.length);
-        pins = [...pins, pin]; view.setPins(pins); renderList(pins);
+        pins = [...pins, pin];
+        if (mapTools) { mapTools.revealSharedListing(pin.id); mapTools.refresh(); }
+        else { view.setPins(pins); renderList(pins); }
+        picker.refreshCounts({ force: true });
         if (pins.length === 1) {
           $('.canvas').insertBefore($('.references'), $('#selection'));
           $('.canvas').classList.remove('map-only');
@@ -282,12 +293,12 @@ async function start() {
           $('.references-heading > span').hidden = true;
           $('#map').setAttribute('aria-label', `Interactive ${neighborhood.name} map with live displays. Arrow keys pan, plus and minus zoom, Home resets.`);
         }
-        $('#sample-count').textContent = `${pins.length} live ${pins.length === 1 ? 'display' : 'displays'}`;
+        if (!mapTools) $('#sample-count').textContent = `${pins.length} live ${pins.length === 1 ? 'display' : 'displays'}`;
         view.select(pin.id);
       }
     });
   } else if (!historical) createSubmission();
-  initCommunityForms({ getSelected: () => selectedPin });
+  initCommunityForms({ getSelected: () => selectedPin, service: service && !demoSample ? service : null, seasonId: selectedSeasonId });
   $('[data-open-feedback]').disabled = false;
   initPhotoContribution({ getSelected: () => selectedPin, service: service && !demoSample ? service : null });
   if (!samplePins.length) {

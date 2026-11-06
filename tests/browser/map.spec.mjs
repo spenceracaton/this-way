@@ -13,8 +13,8 @@ const oldNortheast = {
   ]
 };
 const crescentLake = {
-  bounds: { left: 20, right: 980, top: 20, bottom: 1040 },
-  raster: [3840, 4080],
+  bounds: { left: -79, right: 1079, top: -97, bottom: 1157 },
+  raster: [2837, 3072],
   anchors: [
     { label: 'A', x: 212.664369, y: 345.589749 },
     { label: 'B', x: 477.209655, y: 295.294091 },
@@ -205,6 +205,46 @@ test('Crescent Lake uses its own raster, coordinates and selectable reference po
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
   await expect(page.getByRole('heading', { name: 'Old Northeast', exact: true })).toBeVisible();
   await checkAlignment(page);
+});
+
+test('the expanded Crescent Lake SVG crop keeps the independent marker anchors after zoom and reset', async ({ page }, testInfo) => {
+  await page.goto('/?neighborhood=crescent-lake&diagnostic=1&artwork=full');
+  await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
+  await expect(page.locator('svg#neighborhood-artwork')).toHaveAttribute('viewBox', '-79 -97 1158 1254');
+  await checkAlignment(page, crescentLake);
+  await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await checkAlignment(page, crescentLake);
+  await page.getByRole('button', { name: 'Reset view' }).click();
+  await checkAlignment(page, crescentLake);
+  await testInfo.attach('expanded-crescent-lake-svg', { body: await page.locator('.map-panel').screenshot(), contentType: 'image/png' });
+});
+
+test('Crescent Lake overview road labels remain readable without overlapping on small phones', async ({ page }) => {
+  for (const [width, height] of [[390, 650], [320, 568]]) {
+    await page.setViewportSize({ width, height });
+    await page.goto('/?neighborhood=crescent-lake&diagnostic=1&artwork=full');
+    await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
+    const result = await page.locator('svg#neighborhood-artwork').evaluate(svg => {
+      const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+      const labels = [...svg.querySelectorAll('.road-label')];
+      const boxes = labels.map(label => {
+        const [x, y, degrees] = label.getAttribute('transform').match(/[-\d.]+/g).map(Number);
+        const angle = degrees * Math.PI / 180, b = label.getBBox();
+        const points = [b.x, b.x + b.width].flatMap(bx => [b.y, b.y + b.height].map(by => [
+          x + bx * Math.cos(angle) - by * Math.sin(angle),
+          y + bx * Math.sin(angle) + by * Math.cos(angle)
+        ]));
+        return { name: label.textContent, left: Math.min(...points.map(p => p[0])), right: Math.max(...points.map(p => p[0])),
+          top: Math.min(...points.map(p => p[1])), bottom: Math.max(...points.map(p => p[1])) };
+      });
+      const overlaps = boxes.flatMap((a, i) => boxes.slice(i + 1).filter(b =>
+        Math.max(a.left, b.left) < Math.min(a.right, b.right) && Math.max(a.top, b.top) < Math.min(a.bottom, b.bottom)
+      ).map(b => [a.name, b.name]));
+      return { minimumFontPixels: Math.min(...labels.map(label => +label.getAttribute('font-size') * scale)), overlaps };
+    });
+    expect(result.minimumFontPixels).toBeGreaterThanOrEqual(9);
+    expect(result.overlaps).toEqual([]);
+  }
 });
 
 test('a drag can start immediately after zoom without waiting for an animation', async ({ page }) => {

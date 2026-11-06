@@ -1,0 +1,51 @@
+import { test, expect } from '@playwright/test';
+import { randomUUID } from 'node:crypto';
+
+test('visitor report and feedback reach the private owner inbox and dismiss/reopen leave the display published', async ({ page }) => {
+  await page.goto('/');
+  const address = `123 ${randomUUID().slice(0, 8)} Community Test Street`;
+  const created = await page.evaluate(async address => {
+    const config = await fetch('/api/config').then(response => response.json());
+    const response = await fetch('/api/listings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ clientRequestId: crypto.randomUUID(), seasonId: config.season.id, neighborhoodId: 'old-northeast', address, title: 'Community journey display', tags: ['Lights'], latitude: 27.7923, longitude: -82.631 }) });
+    return response.json();
+  }, address);
+  expect(created.listing.status).toBe('published');
+  await page.goto(`/?listing=${encodeURIComponent(created.listing.id)}`);
+  await page.locator('#detail-report').click();
+  await page.locator('#community-reason').selectOption('incorrect-address');
+  const untrusted = `<img src=x onerror=alert(1)> ${randomUUID()}`;
+  await page.locator('#community-details').fill(untrusted);
+  await page.getByRole('button', { name: 'Send report', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Report sent', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Done', exact: true }).click();
+  await expect(page.locator('#detail-report')).toBeFocused();
+  await page.locator('#detail-close').click();
+  await page.locator('[data-open-feedback]').click();
+  const message = `Feedback from ${randomUUID()} <script>unsafe()</script>`;
+  await page.locator('#community-message').fill(message);
+  await page.locator('#community-email').fill('private-journey@example.test');
+  await page.getByRole('button', { name: 'Send feedback', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Feedback sent', exact: true })).toBeVisible();
+
+  expect((await page.request.get('/api/admin/reports')).status()).toBe(401);
+  await page.goto('/review.html');
+  await page.getByLabel('Owner passphrase').fill(process.env.SERVICE_BROWSER_OWNER_PASSWORD);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.getByRole('tab', { name: /Reports & feedback/ }).click();
+  const back = page.getByRole('button', { name: '← All messages', exact: true });
+  if (await back.isVisible()) await back.click();
+  await page.locator('[data-report]').filter({ hasText: address }).click();
+  await expect(page.locator('.inbox-detail')).toContainText(untrusted);
+  await expect(page.locator('.inbox-detail img, .inbox-detail script')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Dismiss message', exact: true }).click();
+  await expect(page.locator('.inbox-detail .status-pill')).toHaveText('dismissed');
+  await page.getByRole('button', { name: 'Reopen message', exact: true }).click();
+  await expect(page.locator('.inbox-detail .status-pill')).toHaveText('open');
+  if (await back.isVisible()) await back.click();
+  await page.locator('[data-report]').filter({ hasText: message }).click();
+  await expect(page.locator('.inbox-detail')).toContainText('private-journey@example.test');
+  await expect(page.locator('.inbox-detail script')).toHaveCount(0);
+  const publicData = await page.request.get(`/api/listings?season=${created.listing.seasonId}&neighborhood=old-northeast`).then(response => response.json());
+  expect(publicData.listings.find(item => item.id === created.listing.id).status).toBe('published');
+  expect(JSON.stringify(publicData)).not.toContain('private-journey@example.test');
+});

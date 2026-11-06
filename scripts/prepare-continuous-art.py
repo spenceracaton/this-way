@@ -37,7 +37,7 @@ def sha256(path: Path) -> str:
 
 
 def geographic_bounds(area: dict) -> list[list[float]]:
-    p, b = area["projection"], area["bounds"]
+    p, b = area["projection"], area.get("artworkBounds", area["bounds"])
     west = p["lngOrigin"] + (b["left"] - p["xOrigin"]) / p["xScale"]
     east = p["lngOrigin"] + (b["right"] - p["xOrigin"]) / p["xScale"]
     north = p["latOrigin"] - (b["top"] - p["yOrigin"]) / p["yScale"]

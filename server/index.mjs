@@ -157,6 +157,54 @@ async function login(request, env) {
   return json({ authenticated: true }, 200, { 'set-cookie': sessionCookie(request, env, value) });
 }
 function version(value) { if (!Number.isInteger(value) || value < 1) throw problem(400, 'version_required', 'Refresh the record before making a decision.'); return value; }
+const reportReasons = ['incorrect-address', 'not-displayed', 'inappropriate', 'other'];
+function reportDto(row) {
+  return { id: row.id, kind: row.kind, listingId: row.listing_id, seasonId: row.season_id,
+    reason: row.reason, message: row.message, email: row.contact_email, createdAt: row.created_at,
+    dismissedAt: row.dismissed_at, status: row.dismissed_at == null ? 'open' : 'dismissed', version: row.version,
+    ...(row.address == null ? {} : { listing: { address: row.address, title: row.title, neighborhoodId: row.neighborhood_id, status: row.listing_status } }) };
+}
+async function createReport(request, env, kind) {
+  const input = await readJson(request);
+  const fields = kind === 'report' ? ['clientRequestId', 'listingId', 'seasonId', 'reason', 'details'] : ['clientRequestId', 'seasonId', 'message', 'email'];
+  if (Object.keys(input).some(key => !fields.includes(key))) throw problem(400, 'invalid_field', 'Send only the fields in this form.');
+  const selectedSeason = seasonFor(input.seasonId);
+  if (!selectedSeason || selectedSeason.id !== input.seasonId) throw problem(400, 'season_unavailable', 'Choose a supported season.');
+  const normalized = { kind, clientRequestId: clientId(input.clientRequestId), seasonId: selectedSeason.id,
+    listingId: kind === 'report' ? text(input.listingId, 100, 'display', true) : null,
+    reason: kind === 'report' ? input.reason : '',
+    message: kind === 'report' ? text(input.details, 500, 'additional details') : text(input.message, 1000, 'message', true),
+    email: kind === 'feedback' ? text(input.email, 254, 'contact email') : '' };
+  if ([normalized.message, normalized.email].some(value => /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(value))) throw problem(400, 'invalid_field', 'Remove unsupported control characters from your message.');
+  if (kind === 'report' && (!idPattern.test(normalized.listingId) || !reportReasons.includes(normalized.reason))) throw problem(400, 'invalid_report', 'Choose a display and report reason.');
+  if (normalized.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized.email)) throw problem(400, 'invalid_email', 'Enter a valid contact email, or leave it blank.');
+  const checksum = await hash(JSON.stringify(normalized));
+  const prior = () => env.DB.prepare('SELECT id,payload_hash FROM reports WHERE client_request_id=?').bind(normalized.clientRequestId).first();
+  const receipt = row => {
+    if (row.payload_hash !== checksum) throw problem(409, 'request_conflict', 'This message was already saved with different details. Start a new message.');
+    return json({ recorded: true, id: row.id });
+  };
+  const existing = await prior();
+  if (existing) return receipt(existing);
+  if (kind === 'report') {
+    const listing = await listingById(env, normalized.listingId);
+    if (!listing || listing.status !== 'published' || listing.season_id !== normalized.seasonId) throw problem(404, 'not_found', 'This display is not available for reports.');
+  }
+  await rateLimit(request, env, 'community-create', 12);
+  if (kind === 'report') await rateLimit(request, env, 'display-reports', 50, 3600000, normalized.listingId);
+  const id = uuid(kind), stamp = now();
+  try {
+    await env.DB.batch([
+      env.DB.prepare('INSERT INTO seasons(id,kind,year,name,config_json) VALUES(?,?,?,?,?) ON CONFLICT(id) DO NOTHING').bind(selectedSeason.id, selectedSeason.kind, selectedSeason.year, selectedSeason.name, JSON.stringify(selectedSeason)),
+      env.DB.prepare('INSERT INTO reports(id,kind,listing_id,season_id,reason,message,contact_email,client_request_id,payload_hash,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(id, kind, normalized.listingId, normalized.seasonId, normalized.reason, normalized.message, normalized.email, normalized.clientRequestId, checksum, stamp)
+    ]);
+  } catch (error) {
+    const saved = await prior();
+    if (saved) return receipt(saved);
+    throw error;
+  }
+  return json({ recorded: true, id }, 201);
+}
 async function route(request, env) {
   const url = new URL(request.url), path = url.pathname, method = request.method;
   if (method === 'GET' && path === '/api/config') return json({ available: ready(env), season: season(env), limits: { photos: 3, maxPhotoBytes } });
@@ -174,6 +222,15 @@ async function route(request, env) {
   if (path === '/api/listings' && method === 'POST') {
     await rateLimit(request, env, 'listing-create', 30);
     return createListing(request, env);
+  }
+  if (method === 'POST' && (path === '/api/reports' || path === '/api/feedback')) return createReport(request, env, path === '/api/reports' ? 'report' : 'feedback');
+  if (path === '/api/neighborhood-counts' && method === 'GET') {
+    const requestedSeason = url.searchParams.get('season') || season(env).id;
+    if (seasonFor(requestedSeason)?.id !== requestedSeason) throw problem(400, 'season_unavailable', 'Choose a supported season.');
+    const counts = Object.fromEntries(Object.keys(geography).map(id => [id, 0]));
+    const rows = await all(env.DB.prepare("SELECT p.neighborhood_id,COUNT(*) AS count FROM listings l JOIN locations p ON p.id=l.location_id WHERE l.status='published' AND l.season_id=? GROUP BY p.neighborhood_id").bind(requestedSeason));
+    for (const row of rows) if (Object.hasOwn(counts, row.neighborhood_id)) counts[row.neighborhood_id] = row.count;
+    return json({ season: requestedSeason, counts });
   }
   if ((path === '/api/listings' || path === '/api/admin/listings') && method === 'GET') {
     const admin = path.startsWith('/api/admin/'), requestedSeason = url.searchParams.get('season') || season(env).id;
@@ -237,6 +294,23 @@ async function route(request, env) {
     if (!row) row = await env.DB.prepare('SELECT id FROM listings WHERE id=? AND version=? AND status=?').bind(match[1], expectedVersion, input.status).first();
     if (!row) throw problem(409, 'stale_review', 'This display changed. Refresh it before changing visibility.');
     return json({ listing: await publicListing(env, await listingById(env, row.id)) });
+  }
+  if (path === '/api/admin/reports' && method === 'GET') {
+    const status = url.searchParams.get('status') || 'open';
+    if (!['open', 'dismissed'].includes(status)) throw problem(400, 'invalid_status', 'Choose open or dismissed messages.');
+    const before = url.searchParams.get('before') || '';
+    if (before && !idPattern.test(before)) throw problem(400, 'invalid_cursor', 'Refresh the inbox and try again.');
+    const rows = await all(env.DB.prepare(`SELECT r.*,p.address,p.neighborhood_id,l.title,l.status AS listing_status FROM reports r LEFT JOIN listings l ON l.id=r.listing_id LEFT JOIN locations p ON p.id=l.location_id WHERE r.dismissed_at IS ${status === 'open' ? '' : 'NOT '}NULL AND (?='' OR (r.created_at,r.id) < (SELECT created_at,id FROM reports WHERE id=?)) ORDER BY r.created_at DESC,r.id DESC LIMIT 101`).bind(before, before));
+    return json({ reports: rows.slice(0, 100).map(reportDto), nextCursor: rows.length > 100 ? rows[99].id : null });
+  }
+  match = path.match(/^\/api\/admin\/reports\/([^/]+)\/decision$/);
+  if (match && method === 'POST' && idPattern.test(match[1])) {
+    const input = await readJson(request);
+    if (!['open', 'dismissed'].includes(input.status)) throw problem(400, 'invalid_status', 'Choose dismiss or reopen.');
+    const expectedVersion = version(input.expectedVersion), dismissed = input.status === 'dismissed';
+    const row = await env.DB.prepare(`UPDATE reports SET dismissed_at=?,reviewed_by='owner',version=version+1 WHERE id=? AND version=? AND dismissed_at IS ${dismissed ? '' : 'NOT '}NULL RETURNING *`).bind(dismissed ? now() : null, match[1], expectedVersion).first();
+    if (!row) throw problem(409, 'stale_review', 'This message changed. Refresh it before reviewing again.');
+    return json({ report: reportDto(row) });
   }
   throw problem(404, 'not_found', 'This service endpoint was not found.');
 }

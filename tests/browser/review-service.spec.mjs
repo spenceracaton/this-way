@@ -46,6 +46,7 @@ async function installService(page, { conflictOnce = false } = {}) {
       return json({ listing });
     }
     if (path === '/api/admin/listings') return json({ listings: state.listings });
+    if (path === '/api/admin/reports') return json({ reports: [], nextCursor: null });
     if (path === '/api/admin/photos') return json({ photos: state.photos[url.searchParams.get('status')] || [] });
     if (/^\/api\/admin\/photos\/[^/]+\/content$/.test(path)) { state.contentRequested = true; return route.fulfill({ status: 200, contentType: 'image/png', body: Buffer.from('not-a-real-image') }); }
     return json({ error: { code: 'not_found', message: `Unexpected test request: ${path}` } }, 404);
@@ -132,4 +133,32 @@ test('a configuration error shows a retry rather than a fictional queue or owner
   await expect(page.locator('.owner-badge')).toHaveCount(0);
   await expect(page.locator('.demo-banner')).toHaveCount(0);
   await expect(page.locator('[data-record]')).toHaveCount(0);
+});
+
+test('switching inbox filters during pagination keeps each cursor with its requested stream', async ({ page }) => {
+  await installService(page);
+  let pendingOpen;
+  const cursors = [];
+  await page.route('**/api/admin/reports?**', async route => {
+    const url = new URL(route.request().url()), status = url.searchParams.get('status'), before = url.searchParams.get('before');
+    if (!before) return route.fulfill({ json: { reports: [{ id: `${status}-one`, kind: 'feedback', message: `${status} message`, status, version: 1 }], nextCursor: `${status}-100` } });
+    cursors.push({ status, before });
+    if (status === 'open') { pendingOpen = route; return; }
+    return route.fulfill({ json: { reports: [], nextCursor: null } });
+  });
+  await page.goto('/review.html');
+  await page.getByLabel('Owner passphrase').fill(password);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.getByRole('tab', { name: /Reports & feedback/ }).click();
+  const back = page.getByRole('button', { name: '← All messages', exact: true });
+  if (await back.isVisible()) await back.click();
+  await page.getByRole('button', { name: 'Load more messages', exact: true }).click();
+  await expect.poll(() => Boolean(pendingOpen)).toBe(true);
+  await page.getByRole('button', { name: 'Dismissed', exact: true }).click();
+  await pendingOpen.fulfill({ json: { reports: [{ id: 'open-two', kind: 'feedback', message: 'Older open message', status: 'open', version: 1 }], nextCursor: 'open-200' } });
+  if (await back.isVisible()) await back.click();
+  await expect(page.getByRole('button', { name: 'Load more messages', exact: true })).toBeEnabled();
+  await page.getByRole('button', { name: 'Load more messages', exact: true }).click();
+  await expect.poll(() => cursors.length).toBe(2);
+  expect(cursors).toEqual([{ status: 'open', before: 'open-100' }, { status: 'dismissed', before: 'dismissed-100' }]);
 });

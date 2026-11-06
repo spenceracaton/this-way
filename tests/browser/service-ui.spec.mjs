@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
+import { neighborhoods } from '../../public/neighborhoods.mjs';
 
 test('pin placement keeps the address, exact center marker, and confirmation usable on short screens', async ({ page }) => {
   await enableService(page);
@@ -56,6 +57,10 @@ async function enableService(page, { listings = [], failListingFetch = false, lo
     if (url.pathname === '/api/listings' && request.method() === 'GET') {
       if (failListingFetch) return route.fulfill({ status: 503, json: { error: { code: 'unavailable', message: 'Live displays could not load.' } } });
       return route.fulfill({ json: { listings } });
+    }
+    if (url.pathname === '/api/neighborhood-counts') {
+      const counts = Object.fromEntries(Object.keys(neighborhoods).map(id => [id, listings.filter(listing => listing.neighborhoodId === id).length]));
+      return route.fulfill({ json: { season: url.searchParams.get('season'), counts } });
     }
     if (url.pathname === '/api/listings' && request.method() === 'POST') {
       const body = request.postDataJSON();
@@ -115,7 +120,9 @@ test('community map fills the phone, keeps its controls clear, and selects displ
     await page.locator('#detail-close').click();
     await expect(page.locator('#selection')).toBeHidden();
     await page.locator('#neighborhood-select').click();
-    await expect(page.locator('.neighborhood-count:visible')).toHaveCount(0);
+    await expect(page.locator('[data-neighborhood="old-northeast"] .neighborhood-count')).toHaveText('3 displays');
+    await expect(page.locator('[data-neighborhood="old-northeast"] .neighborhood-count')).toBeVisible();
+    await expect(page.locator('#neighborhood-options [role="option"]').first()).toHaveAttribute('data-neighborhood', 'old-northeast');
     await page.locator('#neighborhood-picker-close').click();
   }
 });
