@@ -114,6 +114,9 @@ test('community map fills the phone, keeps its controls clear, and selects displ
     }
     await page.locator('#detail-close').click();
     await expect(page.locator('#selection')).toBeHidden();
+    await page.locator('#neighborhood-select').click();
+    await expect(page.locator('.neighborhood-count:visible')).toHaveCount(0);
+    await page.locator('#neighborhood-picker-close').click();
   }
 });
 
