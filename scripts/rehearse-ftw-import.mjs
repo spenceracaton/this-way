@@ -148,7 +148,7 @@ async function inspectDensePins(page, listings, locations, path) {
   if (!separated(await boxes())) throw new Error('Closest imported pins remain overlapped at maximum zoom; manual review required');
   const toolbar=await page.locator('.map-toolbar').boundingBox();
   const references=await page.locator('.references').boundingBox();
-  const target={x:map.x+map.width*.45,y:(toolbar.y+toolbar.height+references.y)/2};
+  const target={x:map.x+map.width*.45,y:(toolbar.y+toolbar.height+(references?.y ?? map.y+map.height-40))/2};
   await centerPair(target);
   await page.screenshot({path});
   for(const row of pair){
@@ -183,10 +183,10 @@ async function capture(service, plan, output, origin) {
         for (const [kind, listing] of [['photo',photoListing],['address',noPhoto]]) {
           if (!listing) continue;
           const button = page.locator(`.map-pin[data-pin="${listing.id}"]`);
-          // A reference-list selection is a normal UI path even for a pin
-          // initially outside the camera; avoid bypassing card rendering.
-          const reference = page.locator(`#reference-list button[data-id="${listing.id}"]`);
-          if (await reference.count()) await reference.click(); else await button.click();
+          // Keyboard selection reaches an existing map target even if its
+          // artwork begins outside the camera; the production map has no list.
+          await button.focus();
+          await page.keyboard.press('Enter');
           await page.locator('#selection:not([hidden])').waitFor();
           const title = await page.locator('#detail-title').textContent();
           if (title !== (listing.title || locations.get(listing.location_id).address)) throw new Error('Imported detail title differs from planned content');

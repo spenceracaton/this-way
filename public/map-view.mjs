@@ -25,7 +25,7 @@ export async function createLocationPicker({ leaflet: L, element, area, artwork 
 }
 
 // The complete renderer boundary. No data fetching, forms, storage, or detail-card DOM.
-export function createMap({ leaflet: L, element, area, pins: initialPins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets, overviewInsets, preferNearestPin = false }) {
+export function createMap({ leaflet: L, element, area, pins: initialPins, artwork, onSelect, onViewChange, onAnchorChange, selectionInsets, overviewInsets, preferNearestPin = false, openingCamera }) {
   let pins = [...initialPins];
   const bounds = L.latLngBounds(mapBounds(area.bounds));
   const overviewBounds = area.overviewBounds ? L.latLngBounds(mapBounds(area.overviewBounds)) : bounds;
@@ -128,6 +128,8 @@ export function createMap({ leaflet: L, element, area, pins: initialPins, artwor
     const insets = overviewInsets?.();
     map.fitBounds(overviewBounds, { paddingTopLeft: [insets?.left ?? 28, insets?.top ?? 28],
       paddingBottomRight: [insets?.right ?? 28, insets?.bottom ?? 28], animate: false, reset: true });
+    const camera = openingCamera?.(element.clientWidth, element.clientHeight);
+    if (camera) map.setView([-camera.y, camera.x], camera.zoom, { animate: false });
   }
   function reportView() {
     onViewChange?.({ zoom: map.getZoom(), selected });
