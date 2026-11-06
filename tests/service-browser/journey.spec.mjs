@@ -7,7 +7,7 @@ const photoFixture = fileURLToPath(new URL('../fixtures/metadata-test.jpg', impo
 const metadataMarker = Buffer.from('SYNTHETIC_SERVICE_BROWSER_METADATA_MARKER');
 
 test('a display publishes immediately, photos stay private until approval, and the approved photo appears on the public map', async ({ page }) => {
-  const neighborhoodSeason = new URLSearchParams({ neighborhood: 'old-northeast', season: 'christmas-2026' });
+  const neighborhoodSeason = new URLSearchParams({ neighborhood: 'old-northeast', season: 'halloween-2026' });
   const before = await page.request.get(`/api/listings?${neighborhoodSeason}`).then(response => response.json());
   const startingListings = before.listings;
   await page.goto('/');

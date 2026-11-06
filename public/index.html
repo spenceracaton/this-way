@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="display-season" content="halloween-2026">
   <meta name="description" content="A clean, illustrated neighborhood map for finding seasonal displays.">
   <title>This Way · Old Northeast</title>
   <link rel="icon" href="data:,">
@@ -26,6 +27,7 @@
     <nav class="primary-nav" aria-label="Main navigation">
       <a href="./" aria-current="page">Map</a>
     </nav>
+    <span id="site-season" class="site-season" hidden></span>
     <button id="add-display" class="future-action" type="button" aria-haspopup="dialog" aria-controls="submission-dialog" disabled><span aria-hidden="true">＋</span> <span id="add-display-label">Add a display</span></button>
   </header>
 
@@ -38,10 +40,9 @@
           <span id="neighborhood-name">Old Northeast</span>
           <svg class="neighborhood-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <label class="season-control" for="season-select">
+        <label class="season-control" for="season-select" hidden>
           <span>Season</span>
           <select id="season-select" aria-label="Choose a display season">
-            <option value="christmas-2026">Christmas 2026</option>
             <option value="halloween-2026">Halloween 2026</option>
           </select>
         </label>
