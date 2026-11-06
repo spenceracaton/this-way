@@ -1,5 +1,32 @@
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { test, expect } from '@playwright/test';
+
+// Deploys compare against the already verified frozen artifact. Rollbacks have
+// no local target artifact, so use the restored release's published provenance.
+// Check the actual image bytes too: dimensions alone cannot identify an asset.
+async function expectRaster(page, request, receipt, provenancePath, assetPath) {
+  let provenance;
+  if (receipt.operation === 'deploy') {
+    provenance = JSON.parse(await readFile(`release/public${provenancePath}`, 'utf8'));
+  } else {
+    expect(receipt.operation).toBe('rollback');
+    const response = await request.get(provenancePath);
+    expect(response.ok()).toBe(true);
+    provenance = await response.json();
+  }
+  const raster = provenance.rasterArtwork;
+  expect(Number.isSafeInteger(raster?.width) && raster.width > 0).toBe(true);
+  expect(Number.isSafeInteger(raster?.height) && raster.height > 0).toBe(true);
+  expect(raster?.sha256).toMatch(/^[a-f0-9]{64}$/);
+  const image = page.locator('img#neighborhood-artwork');
+  expect(new URL(await image.getAttribute('src'), page.url()).pathname).toBe(assetPath);
+  expect(await image.evaluate(image => [image.naturalWidth, image.naturalHeight]))
+    .toEqual([raster.width, raster.height]);
+  const response = await request.get(assetPath);
+  expect(response.ok()).toBe(true);
+  expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(raster.sha256);
+}
 
 // Rollback can serve a release from before the searchable picker was added.
 async function chooseNeighborhood(page, id, name) {
@@ -77,8 +104,7 @@ test('the expected release serves live service routes and the default map', asyn
   const expectedCrescentIds = crescent.listings.map(listing => listing.id).sort();
   expect(await page.locator('.map-pin').evaluateAll(markers => markers.map(marker => marker.dataset.pin).sort())).toEqual(expectedCrescentIds);
   expect(await page.locator('#reference-list button').evaluateAll(buttons => buttons.map(button => button.dataset.id).sort())).toEqual(expectedCrescentIds);
-  expect(await page.locator('img#neighborhood-artwork').evaluate(image => [image.naturalWidth, image.naturalHeight]))
-    .toEqual([3840, 4080]);
+  await expectRaster(page, request, receipt, '/data/crescent-lake/provenance.json', '/assets/crescent-lake.webp');
 });
 
 test('explicit sample mode still shows the two original map studies', async ({ page, request }) => {
