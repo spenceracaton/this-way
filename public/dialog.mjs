@@ -2,7 +2,7 @@
 // and focus containment; this helper owns scroll lock and explicit focus return.
 const active = new Set();
 let originalOverflow = '', originalPadding = '';
-export function bindDialog(dialog, { initialFocus = () => dialog.querySelector('h2, button, input') } = {}) {
+export function bindDialog(dialog, { initialFocus = () => dialog.querySelector('h2, button, input'), canClose = () => true } = {}) {
   let opener, backdropPointer;
   const scrollers = [...dialog.querySelectorAll('.submission-scroll, .community-form, .community-preview, .photo-contribution-scroll')];
   const scrollState = () => scrollers.forEach(el => {
@@ -31,7 +31,8 @@ export function bindDialog(dialog, { initialFocus = () => dialog.querySelector('
     scrollState();
     initialFocus()?.focus({ preventScroll: true });
   }
-  function close() { if (dialog.open) dialog.close(); }
+  function close() { if (dialog.open && canClose()) dialog.close(); }
+  dialog.addEventListener('cancel', event => { if (!canClose()) event.preventDefault(); });
   dialog.addEventListener('close', () => {
     backdropPointer = null;
     active.delete(dialog);

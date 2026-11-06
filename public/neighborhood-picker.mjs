@@ -1,8 +1,11 @@
 import { neighborhoods } from './neighborhoods.mjs';
+import { api } from './service-client.mjs';
+import { activeSeasonId } from './season-config.mjs';
+import { neighborhoodMatches } from './neighborhood-search.mjs';
 
 // The QA reference's native dialog keeps desktop anchoring and phone sheets
 // consistent without importing FTW's listings or application state.
-export function createNeighborhoodPicker(current) {
+export function createNeighborhoodPicker(current, { service = null, season = activeSeasonId, currentCount } = {}) {
   const trigger = document.getElementById('neighborhood-select');
   const dialog = document.getElementById('neighborhood-dialog');
   const title = document.getElementById('neighborhood-picker-title');
@@ -24,7 +27,8 @@ export function createNeighborhoodPicker(current) {
     name.textContent = neighborhood.name;
     const count = document.createElement('span');
     count.className = 'neighborhood-count';
-    count.textContent = neighborhood.pins.length ? `${neighborhood.pins.length} sample addresses` : 'Map only';
+    count.textContent = service ? '' : neighborhood.pins.length ? `${neighborhood.pins.length} sample addresses` : 'Map only';
+    if (service) count.setAttribute('aria-hidden', 'true');
     const check = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     check.setAttribute('viewBox', '0 0 24 24');
     check.setAttribute('aria-hidden', 'true');
@@ -40,18 +44,51 @@ export function createNeighborhoodPicker(current) {
       if (id === 'old-northeast') url.searchParams.delete('neighborhood');
       else url.searchParams.set('neighborhood', id);
       url.searchParams.delete('sample');
+      url.searchParams.delete('listing');
       location.assign(url.pathname + url.search + url.hash);
     });
     list.append(row);
   }
   const rows = [...list.querySelectorAll('[role="option"]')];
   const visible = () => rows.filter(row => !row.hidden);
-  const normalize = value => value.toLocaleLowerCase().replace(/[^a-z0-9]/g, '');
   function filter() {
-    const query = normalize(search.value);
-    rows.forEach(row => { row.hidden = !normalize(neighborhoods[row.dataset.neighborhood].name).includes(query); });
+    rows.forEach(row => { row.hidden = !neighborhoodMatches(row.dataset.neighborhood, neighborhoods[row.dataset.neighborhood].name, search.value); });
     empty.textContent = visible().length ? '' : 'No matching neighborhoods.';
   }
+  const counts = new Map();
+  function applyCounts(next) {
+    for (const [id, count] of Object.entries(next)) counts.set(id, count);
+    const focused = document.activeElement;
+    rows.forEach(row => {
+      const count = counts.get(row.dataset.neighborhood);
+      const label = row.querySelector('.neighborhood-count');
+      label.textContent = count === undefined ? '' : `${count.toLocaleString('en-US')} ${count === 1 ? 'display' : 'displays'}`;
+      label.setAttribute('aria-hidden', String(count === undefined));
+    });
+    const rank = row => { const count = counts.get(row.dataset.neighborhood); return count > 0 ? 0 : count === 0 ? 2 : 1; };
+    rows.sort((a, b) => rank(a) - rank(b) || neighborhoods[a.dataset.neighborhood].name.localeCompare(neighborhoods[b.dataset.neighborhood].name));
+    rows.forEach(row => list.append(row));
+    // Reordering the existing nodes can drop focus in native dialogs.
+    if (rows.includes(focused) && !focused.hidden && (!document.activeElement || document.activeElement === document.body)) focused.focus({ preventScroll: true });
+    filter();
+  }
+  if (service && Number.isSafeInteger(currentCount) && currentCount >= 0) applyCounts({ [current.id]: currentCount });
+  let lastAttempt = -Infinity, pending = false;
+  async function refreshCounts({ force = false } = {}) {
+    if (!service || pending || (!force && Date.now() - lastAttempt < 30_000)) return;
+    pending = true;
+    lastAttempt = Date.now();
+    try {
+      const result = await api(`/api/neighborhood-counts?${new URLSearchParams({ season })}`);
+      if (result?.season !== season || !result.counts || Object.keys(neighborhoods).some(id => !Number.isSafeInteger(result.counts[id]) || result.counts[id] < 0)) throw new Error('Invalid neighborhood totals');
+      applyCounts(result.counts);
+    } catch {
+      // Keep known totals and unknown labels as they are. An unavailable count
+      // never becomes zero or an illustrative sample count.
+    } finally { pending = false; }
+  }
+  refreshCounts();
+  window.addEventListener('focus', refreshCounts);
   function position() {
     if (!dialog.open) return;
     if (mobile.matches) {
@@ -75,6 +112,7 @@ export function createNeighborhoodPicker(current) {
     }
   }
   trigger.addEventListener('click', () => {
+    refreshCounts();
     if (dialog.open) { dialog.close(); return; }
     search.value = '';
     filter();
@@ -124,4 +162,5 @@ export function createNeighborhoodPicker(current) {
   });
   window.addEventListener('resize', position);
   window.visualViewport?.addEventListener('resize', position);
+  return { refreshCounts };
 }

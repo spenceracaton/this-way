@@ -14,19 +14,19 @@
     ],
     "crescent-lake": [
       [
-        27.782905056097565,
-        -82.64806374862282
+        27.781733600731712,
+        -82.64918419115128
       ],
       [
-        27.79311774390244,
-        -82.63719885137719
+        27.79428919926829,
+        -82.63607840884873
       ]
     ]
   },
   "unionBounds": [
     [
       27.774824675324677,
-      -82.64806374862282
+      -82.64918419115128
     ],
     [
       27.802279220779223,
@@ -36,17 +36,17 @@
   "overlap": {
     "rectangularBoundsOverlap": [
       [
-        27.782905056097565,
+        27.781733600731712,
         -82.64182352941177
       ],
       [
-        27.79311774390244,
-        -82.63719885137719
+        27.79428919926829,
+        -82.63607840884873
       ]
     ],
     "overlapPercent": {
-      "overlapPercentOfOldNortheastRect": 7.27,
-      "overlapPercentOfCrescentLakeRect": 42.57
+      "overlapPercentOfOldNortheastRect": 11.1,
+      "overlapPercentOfCrescentLakeRect": 43.84
     },
     "meaning": "Rectangle intersection only; not proof that rendered roads, labels, or landmarks agree."
   },
@@ -68,15 +68,15 @@
     "crescent-lake": {
       "svg": {
         "path": "public/assets/crescent-lake.svg",
-        "sha256": "611325def3a0949c8dc1840c79acc078c4753a27ac2b7587e7d6432be9de2a72",
-        "bytes": 43723
+        "sha256": "4c6ca2fd02b6a8130a51969132a1eb1eddc9e595d545fdf14d57615721f0942f",
+        "bytes": 43706
       },
       "raster": {
         "path": "public/assets/crescent-lake.webp",
-        "sha256": "10cbacf4911e6377b64a1b068b93fa1b370c9d03a16278fd171e5736179e62bc",
-        "width": 3840,
-        "height": 4080,
-        "bytes": 289486
+        "sha256": "6856453e35f2a6f84b372714592ed9186dfefa3760db10aa6ca07bb0ab1018bc",
+        "width": 2837,
+        "height": 3072,
+        "bytes": 348112
       }
     }
   },

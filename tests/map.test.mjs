@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { project, mapPoint, mapBounds } from '../public/coordinates.mjs';
 import { samplePins } from '../public/sample-pins.mjs';
 import { neighborhoods, neighborhoodFor } from '../public/neighborhoods.mjs';
+import { neighborhoodOpeningCamera } from '../public/map-view.mjs';
 
 const read = path => readFile(new URL('../' + path, import.meta.url), 'utf8');
 const area = JSON.parse(await read('public/data/neighborhood.json'));
@@ -104,8 +105,11 @@ for (const pin of crescentRoadReferences) {
 
 test('Crescent Lake keeps its independent extent, core mask, lake and raster source', () => {
   assert.deepEqual(mapBounds(crescentArea.bounds), [[-1040, 20], [-20, 980]]);
-  assert.match(crescentSvg, /viewBox="20 20 960 1020"/);
+  assert.deepEqual(mapBounds(crescentArea.artworkBounds), [[-1157, -79], [97, 1079]]);
+  assert.match(crescentSvg, /viewBox="-79 -97 1158 1254"/);
   assert.equal(crescentArea.rasterArtwork, './assets/crescent-lake.webp');
+  assert.ok(Math.max(crescentProvenance.rasterArtwork.width, crescentProvenance.rasterArtwork.height) <= 3072,
+    'the expanded visual crop must retain the standard mobile bitmap memory limit');
   const mask = crescentSvg.match(/<mask\b[^>]*id="spotlight"[^>]*>([\s\S]*?)<\/mask>/)[1];
   const maskPath = mask.match(/<path\b[^>]*d="([^"]+)"/)[1];
   assert.equal(createHash('sha256').update(maskPath).digest('hex'), crescentProvenance.coreMaskPathSha256);
@@ -113,6 +117,24 @@ test('Crescent Lake keeps its independent extent, core mask, lake and raster sou
   const lakePath = lakeTag.match(/d="([^"]+)"/)[1];
   assert.equal(createHash('sha256').update(lakePath).digest('hex'), crescentProvenance.lakePathSha256);
   assert.doesNotMatch(crescentSvg, /feGaussianBlur|filter=|<script|onload=|id="(?:ghost|pumpkin|trees|markers|routeLayer)"/);
+});
+
+test('the mobile opening camera shows the reference street scale in the taller map', () => {
+  const mobile = neighborhoodOpeningCamera(area, 390, 586, true);
+  assert.ok(Math.abs(2 ** mobile.zoom - 493 / 595) < 1e-10);
+  assert.equal(mobile.x, 385);
+  assert.equal(mobile.y, 570);
+  const desktop = neighborhoodOpeningCamera(area, 1280, 822, false);
+  assert.ok(Math.abs(2 ** desktop.zoom - Math.max(1280 / 680, 822 / 965) * 1.12) < 1e-10);
+});
+
+test('the Crescent Lake camera contains its recorded core with the reference insets', () => {
+  const camera = neighborhoodOpeningCamera(crescentArea, 390, 598, true);
+  const scale = 2 ** camera.zoom, b = crescentArea.overviewBounds;
+  const left = 195 + (b.left - camera.x) * scale, right = 195 + (b.right - camera.x) * scale;
+  const top = 299 + (b.top - camera.y) * scale, bottom = 299 + (b.bottom - camera.y) * scale;
+  assert.ok(left >= 32 - 1e-6 && right <= 358 + 1e-6);
+  assert.ok(top >= 48 - 1e-6 && bottom <= 566 + 1e-6);
 });
 
 test('neighborhood selection is explicit and rejects unknown map IDs', () => {

@@ -7,9 +7,11 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
 async function applyMigrations(db) {
+  await db.prepare('CREATE TABLE IF NOT EXISTS test_schema_migrations(name TEXT PRIMARY KEY NOT NULL)').run();
   const names = (await readdir(resolve(root, 'migrations')))
     .filter(name => /^\d+.*\.sql$/.test(name)).sort();
   for (const name of names) {
+    if (await db.prepare('SELECT name FROM test_schema_migrations WHERE name=?').bind(name).first()) continue;
     const sql = (await readFile(resolve(root, 'migrations', name), 'utf8'))
       .replace(/^PRAGMA foreign_keys = ON;\s*/m, '');
     const triggers = [];
@@ -19,7 +21,7 @@ async function applyMigrations(db) {
       const match = part.match(/__TEST_TRIGGER_(\d+)__/);
       return match ? triggers[Number(match[1])] : part;
     });
-    for (const statement of statements) await db.prepare(statement).run();
+    await db.batch([...statements.map(statement => db.prepare(statement)), db.prepare('INSERT INTO test_schema_migrations(name) VALUES(?)').bind(name)]);
   }
 }
 

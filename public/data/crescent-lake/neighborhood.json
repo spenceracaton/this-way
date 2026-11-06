@@ -18,5 +18,17 @@
   "width": 1000,
   "height": 1060,
   "artwork": "./assets/crescent-lake.svg",
-  "rasterArtwork": "./assets/crescent-lake.webp"
+  "rasterArtwork": "./assets/crescent-lake.webp",
+  "overviewBounds": {
+    "left": 138.34209278205634,
+    "right": 861.6579072191993,
+    "top": 120.00000000017741,
+    "bottom": 940.0000000001774
+  },
+  "artworkBounds": {
+    "left": -79,
+    "right": 1079,
+    "top": -97,
+    "bottom": 1157
+  }
 }

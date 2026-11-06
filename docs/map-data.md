@@ -97,6 +97,19 @@ packaging are documented in [the county preparation log](county-map-preparation.
 The acquisition snapshot additionally retains raw response metadata and file
 hashes outside the public tree; the compact package is the committed rebuild input.
 
+Raster outputs use the visual `artworkBounds` when supplied, otherwise `bounds`,
+and cap their longest side at 3072 pixels. To rebuild only Crescent Lake, including
+its raster checksum and dimensions in provenance, run:
+
+```sh
+node scripts/rasterize-neighborhoods.mjs crescent-lake
+python3 scripts/prepare-continuous-art.py
+```
+
+The raster command also accepts `old-northeast` and other configured map IDs.
+The second command refreshes the bounded prototype derivatives and their placement
+metadata after a source raster changes. Neither command changes geographic paths.
+
 These maps use dated Census CDP or incorporated-place reference areas, which may
 differ from neighborhood association definitions. Each package records its exact
 coverage kind, and the packager rejects conflicting Census classifications. County/USGS/Census credit and terms

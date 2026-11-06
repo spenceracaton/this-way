@@ -38,31 +38,31 @@
     "url": "./art/crescent-lake.webp",
     "bounds": [
       [
-        27.782905056097565,
-        -82.64806374862282
+        27.781733600731712,
+        -82.64918419115128
       ],
       [
-        27.79311774390244,
-        -82.63719885137719
+        27.79428919926829,
+        -82.63607840884873
       ]
     ],
-    "width": 1928,
+    "width": 1891,
     "height": 2048,
-    "bytes": 112054,
-    "decodedBytes": 15794176,
-    "sourceSha256": "611325def3a0949c8dc1840c79acc078c4753a27ac2b7587e7d6432be9de2a72",
-    "sourceRasterSha256": "10cbacf4911e6377b64a1b068b93fa1b370c9d03a16278fd171e5736179e62bc",
+    "bytes": 141152,
+    "decodedBytes": 15491072,
+    "sourceSha256": "4c6ca2fd02b6a8130a51969132a1eb1eddc9e595d545fdf14d57615721f0942f",
+    "sourceRasterSha256": "6856453e35f2a6f84b372714592ed9186dfefa3760db10aa6ca07bb0ab1018bc",
     "spotlightUrl": "./art/crescent-lake-spotlight.webp",
-    "maskBytes": 85720,
-    "maskDecodedBytes": 15794176,
+    "maskBytes": 92734,
+    "maskDecodedBytes": 15491072,
     "maskStatus": {
       "status": "source-spotlight-extracted",
       "sourceSvgId": "spotlight",
       "meaning": "Authored visual emphasis mask only; not a service-eligibility or official neighborhood boundary."
     },
     "original": {
-      "width": 3840,
-      "height": 4080
+      "width": 2837,
+      "height": 3072
     }
   }
 ]

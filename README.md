@@ -156,7 +156,20 @@ the original samples remain available only through explicit `?sample=a`, `c`, or
 with fictional records. Public listing DTOs omit object keys, private source
 snapshots, upload capabilities, and review notes.
 
-## Core component previews
+## Neighborhood tools and community forms
+
+The live neighborhood picker shows published listing counts for the displayed
+season, lists populated neighborhoods first, and recognizes regional aliases.
+An unavailable count stays unknown rather than becoming zero. **Filters** offers
+themed displays and displays with approved photos; selections apply together and
+are remembered for that season. Opening a shared listing keeps it visible.
+
+**Near me** requests location only after a tap. Coordinates stay in the browser;
+the lookup requires the reported accuracy circle to fit within one reviewed
+neighborhood boundary. Denied, uncertain, outside-coverage and unavailable
+locations offer the neighborhood picker. Artwork bounds do not establish
+location membership. Regenerate the public boundary metadata with
+`node scripts/build-near-me-coverage.mjs` after a geography change.
 
 The header's **Add a display** button collects an address, a confirmed map pin,
 optional theme/description, photos, and season-configured tags. In service mode,
@@ -164,12 +177,14 @@ the text listing is saved and appears immediately. Up to three JPEG/PNG/WebP
 photos are resized in the browser, validated and stripped of metadata on the
 server, and stored privately pending review. An upload failure keeps the saved
 listing and offers a photo retry. **Add photos** on a live listing uses the same
-private review flow. **Report** and **Feedback** remain clearly labeled previews.
-On the static development server, submission/photo forms also remain previews.
+private review flow. **Report** and **Feedback** save private messages to the
+owner inbox, with confirmation only after the service accepts the message.
+On the static development server, these forms remain clearly labeled previews.
 
 `review.html` uses a single-owner sign-in when the service is enabled. Photo
 approval/rejection is independent of text listing visibility; the owner can also
-hide or restore a text listing. Private images require the owner session. Review
+hide or restore a text listing, and dismiss or reopen reports and feedback.
+Private images and the inbox require the owner session. Review
 decisions use record versions to catch stale actions and write transactional
 audit events. In static mode the page retains the fictional **Review demo**;
 those decisions stay in memory and reset on reload.

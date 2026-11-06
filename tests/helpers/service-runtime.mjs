@@ -25,7 +25,7 @@ export async function createTestService({ persistPath, activeSeason } = {}) {
   });
   const worker = bundled.outputFiles[0].text;
   const migrationNames = (await readdir(resolve(root, 'migrations'))).filter(name => /^\d+.*\.sql$/.test(name)).sort();
-  const migration = (await Promise.all(migrationNames.map(name => readFile(resolve(root, 'migrations', name), 'utf8')))).join('\n');
+  const migrations = await Promise.all(migrationNames.map(async name => ({ name, sql: await readFile(resolve(root, 'migrations', name), 'utf8') })));
   const runtime = new Miniflare({
     workers: [{ config: {
       name: 'this-way-service-test',
@@ -45,14 +45,20 @@ export async function createTestService({ persistPath, activeSeason } = {}) {
   try {
     const db = await runtime.getD1Database('DB');
     const bucket = await runtime.getR2Bucket('PHOTOS');
-    const sql = migration.replace(/^PRAGMA foreign_keys = ON;\s*/m, '');
-    const triggers = [];
-    const held = sql.replace(/CREATE TRIGGER[\s\S]*?\bEND;/gi, statement => `__TEST_TRIGGER_${triggers.push(statement) - 1}__;`);
-    const statements = held.split(';').map(part => part.trim()).filter(Boolean).map(part => {
-      const match = part.match(/__TEST_TRIGGER_(\d+)__/);
-      return match ? triggers[Number(match[1])] : part;
-    });
-    for (const statement of statements) await db.prepare(statement).run();
+    // Match Wrangler's once-per-database migration behavior on restart. Replaying
+    // schema transformations against an already migrated database is unsafe.
+    await db.prepare('CREATE TABLE IF NOT EXISTS test_schema_migrations(name TEXT PRIMARY KEY NOT NULL)').run();
+    for (const migration of migrations) {
+      if (await db.prepare('SELECT name FROM test_schema_migrations WHERE name=?').bind(migration.name).first()) continue;
+      const sql = migration.sql.replace(/^PRAGMA foreign_keys = ON;\s*/m, '');
+      const triggers = [];
+      const held = sql.replace(/CREATE TRIGGER[\s\S]*?\bEND;/gi, statement => `__TEST_TRIGGER_${triggers.push(statement) - 1}__;`);
+      const statements = held.split(';').map(part => part.trim()).filter(Boolean).map(part => {
+        const match = part.match(/__TEST_TRIGGER_(\d+)__/);
+        return match ? triggers[Number(match[1])] : part;
+      });
+      await db.batch([...statements.map(statement => db.prepare(statement)), db.prepare('INSERT INTO test_schema_migrations(name) VALUES(?)').bind(migration.name)]);
+    }
     async function request(path, init = {}) {
       const headers = new Headers(init.headers || {});
       if (init.origin !== false && !headers.has('origin')) headers.set('origin', new URL(init.url || TEST_ORIGIN).origin);

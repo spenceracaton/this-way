@@ -8,18 +8,25 @@
   "assetChanges": [
     "Retained source road, park, lake and core-mask paths and street labels.",
     "Removed blur filter and unused water pattern; no Halloween symbols or application code imported.",
-    "Set viewBox to the retained bounds; kept the original dim nearby geography."
+    "Set viewBox to the retained bounds; kept the original dim nearby geography.",
+    "Expanded the crop to the live FTW buffered bounds without transforming the retained road, lake, or core-mask paths.",
+    "Recorded the expanded visual crop as artworkBounds; retained the existing map bounds and submission validation footprint.",
+    "Raised retained road-label font size from 11.2 to 28 artwork units for readable phone overview labels; retained label anchors and rotations."
   ],
   "coreMaskPathSha256": "f33abb01f087ac1eced6b460aa9168e832585595f666e7fbe2248eebef3c65cc",
   "lakePathSha256": "b86f5daec45144be49d8a30f7efbc4dd6abf73599d53a35afc9d2d9de0a0f8e9",
   "referenceAnchors": "Expected points were recorded from original SVG road path vertices; geographic coordinates are retained from the corresponding OSM ways.",
   "geographySubset": "Retained the four reference road ways, Crescent Lake water polygon, attribution and original service-coverage description; no address or listing data.",
   "rasterArtwork": {
-    "path": "public/assets/crescent-lake.webp",
+    "path": "./assets/crescent-lake.webp",
     "source": "public/assets/crescent-lake.svg",
-    "width": 3840,
-    "height": 4080,
+    "width": 2837,
+    "height": 3072,
     "encoding": "lossless WebP",
-    "sha256": "10cbacf4911e6377b64a1b068b93fa1b370c9d03a16278fd171e5736179e62bc"
+    "sha256": "6856453e35f2a6f84b372714592ed9186dfefa3760db10aa6ca07bb0ab1018bc",
+    "sourceSha256": "4c6ca2fd02b6a8130a51969132a1eb1eddc9e595d545fdf14d57615721f0942f",
+    "renderer": "154.0.8037.57",
+    "bytes": 348112,
+    "pillowVersion": "12.3.0"
   }
 }
