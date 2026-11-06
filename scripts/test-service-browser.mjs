@@ -70,6 +70,7 @@ async function makeCredentials(directory) {
     `OWNER_PASSWORD_HASH='${envPasswordHash}'`,
     `SERVICE_SECRET=${randomBytes(32).toString('hex')}`,
     'LOCAL_DEVELOPMENT=1',
+    'ACTIVE_SEASON=halloween-2026',
     ''
   ].join('\n'), { mode: 0o600 });
   await chmod(environmentFile, 0o600);

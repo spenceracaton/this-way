@@ -28,7 +28,7 @@ listings['halloween-2026'].push(
 
 async function expectMobileMapControlsClear(page) {
   await expect.poll(async () => {
-    const seasonBox = await page.locator('#season-select').boundingBox();
+    const seasonBox = await page.locator('#site-season').boundingBox();
     const zoomBox = await page.locator('#map .leaflet-control-zoom').boundingBox();
     const attributionBox = await page.locator('#map .leaflet-control-attribution').boundingBox();
     const pinBox = await page.locator('#map .map-pin.is-selected').boundingBox();
@@ -83,20 +83,18 @@ test('season links load their own listings and history actions keep the selected
   await page.locator('#detail-share').click();
   await expect(page.locator('#share-url')).toHaveValue(/season=halloween-2026/);
   await expect(page.locator('#share-url')).toHaveValue(/listing=halloween-fixture/);
-  const switchSeason = page.getByRole('button', { name: 'Switch to Christmas 2026 to add a display' });
-  await expect(switchSeason).toBeEnabled();
+  await expect(page.locator('#add-display')).toBeHidden();
+  await expect(page.locator('.season-control')).toBeHidden();
+  await expect(page.locator('body')).not.toContainText('Switch to Christmas');
   for (const id of ['halloween-left-edge', 'halloween-right-edge']) {
     await page.setViewportSize({ width: 320, height: 568 });
     await page.goto(`/?season=halloween-2026&listing=${id}`);
     await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
     await expectMobileMapControlsClear(page);
   }
-  await switchSeason.click();
-  await expect(page).toHaveURL(/season=christmas-2026/);
-  await expect(page.locator('#references-title')).toHaveText('Live displays');
 });
 
-test('season selection and neighborhood navigation preserve the chosen season', async ({ page }) => {
+test('neighborhood navigation preserves the site holiday', async ({ page }) => {
   const requested = await mockSeasonService(page);
   await page.goto('/?season=halloween-2026');
   await page.getByRole('button', { name: 'Explore a neighborhood' }).click();
@@ -108,11 +106,9 @@ test('season selection and neighborhood navigation preserve the chosen season', 
   await expect(page).toHaveTitle(/Crescent Lake · Halloween 2026 · Past season/);
   await expect(page.locator('#reference-list')).toHaveText('No Halloween 2026 displays in this neighborhood.');
 
-  await page.locator('#season-select').selectOption('christmas-2026');
-  await expect(page).toHaveURL(/season=christmas-2026/);
-  await expect(page).toHaveURL(/neighborhood=crescent-lake/);
-  await expect(page.getByRole('button', { name: 'Add a display', exact: true })).toBeEnabled();
-  expect(requested.at(-1)).toEqual({ season: 'christmas-2026', neighborhood: 'crescent-lake' });
+  await expect(page.locator('#season-select')).toBeHidden();
+  await expect(page.locator('#site-season')).toContainText('Halloween 2026');
+  await expect(page.locator('#add-display')).toBeHidden();
 });
 
 test('unknown seasons fail clearly without requesting listings or showing sample addresses', async ({ page }) => {
@@ -127,3 +123,21 @@ test('unknown seasons fail clearly without requesting listings or showing sample
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
 });
 
+
+test('the default site shows Halloween and old Christmas links stay within this holiday', async ({ page }) => {
+  const requested = await mockSeasonService(page);
+  await page.goto('/');
+  await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
+  expect(requested.at(-1).season).toBe('halloween-2026');
+  await expect(page.locator('#sample-count')).toHaveText('3 Halloween 2026 displays');
+  await expect(page.locator('#site-season')).toHaveText('Halloween 2026 · Past season');
+  await expect(page.locator('#season-select')).toBeHidden();
+  await expect(page.locator('#add-display')).toBeHidden();
+  await page.goto('/?season=christmas-2026&listing=christmas-fixture');
+  await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
+  await expect(page).toHaveURL(/season=halloween-2026/);
+  expect(new URL(page.url()).searchParams.has('listing')).toBe(false);
+  expect(requested.every(request => request.season === 'halloween-2026')).toBe(true);
+  await expect(page.locator('#selection')).toBeHidden();
+  await expect(page).toHaveTitle(/Halloween 2026/);
+});

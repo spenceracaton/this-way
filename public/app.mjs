@@ -49,7 +49,21 @@ async function start() {
     document.body.dataset.experience = 'neighborhood';
     $('.primary-nav').append($('.season-control'));
   }
-  const selectedSeasonId = requestedSeason || service?.season?.id || activeSeasonId;
+  // This deployment presents one holiday. Storage can still retain other seasons
+  // for separate sites; displaying an archive must not reopen its submissions.
+  const siteSeasonId = service && !demoSample ? $('meta[name="display-season"]')?.content : null;
+  if (siteSeasonId && !seasonFor(siteSeasonId)) throw new Error('This site has an unsupported display season.');
+  if (siteSeasonId) {
+    document.body.dataset.siteSeason = siteSeasonId;
+    if (requestedSeason && requestedSeason !== siteSeasonId) {
+      const url = new URL(location.href);
+      url.searchParams.set('season', siteSeasonId);
+      url.searchParams.delete('listing');
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+      query.delete('listing');
+    }
+  }
+  const selectedSeasonId = siteSeasonId || requestedSeason || service?.season?.id || activeSeasonId;
   const selectedSeason = seasonFor(selectedSeasonId) || (!requestedSeason ? service?.season : null);
   if (!selectedSeason) throw new Error(`The listing service returned an unsupported season “${selectedSeasonId}”.`);
   if (requestedSeason && !service && !demoSample) throw new Error('Season listings are unavailable right now. Reload when the listing service is available.');
@@ -60,6 +74,7 @@ async function start() {
     $('.wordmark').href=atlasReturn.pathname+atlasReturn.search;
   }
   const seasonSelect = $('#season-select');
+  seasonSelect.closest('.season-control').hidden = Boolean(siteSeasonId);
   if (![...seasonSelect.options].some(option => option.value === selectedSeasonId)) {
     const option = document.createElement('option');
     option.value = selectedSeasonId;
@@ -74,7 +89,11 @@ async function start() {
     url.searchParams.delete('listing');
     location.assign(url.pathname + url.search + url.hash);
   });
-  if (historical) {
+  if (historical && siteSeasonId) {
+    $('#add-display').hidden = true;
+    $('#site-season').textContent = `${selectedSeason.name} · Past season`;
+    $('#site-season').hidden = fromAtlas;
+  } else if (historical) {
     $('#add-display').disabled = false;
     $('#add-display').setAttribute('aria-label', `Switch to ${service.season.name} to add a display`);
     $('#add-display').removeAttribute('aria-haspopup');

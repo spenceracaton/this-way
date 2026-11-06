@@ -257,3 +257,21 @@ body[data-experience=neighborhood] footer {height:auto;min-height:44px;backgroun
 }
 
 @media(max-width:720px) and (min-width:560px) and (max-height:480px){body[data-experience=neighborhood] .canvas .reset-button{left:auto;right:12px;top:12px}}
+
+/* A holiday-specific site has no cross-holiday navigation. */
+body[data-site-season] .season-control,
+.season-control[hidden],
+body[data-site-season] #add-display[hidden],
+.site-season[hidden] {display:none}
+.site-season {justify-self:end;max-width:175px;color:var(--muted);font-size:12px;line-height:1.5;text-align:right}
+body[data-experience=neighborhood][data-site-season] .primary-nav {display:none}
+body[data-experience=neighborhood][data-site-season] .site-header {grid-template-columns:1fr auto}
+@media(max-width:720px){
+ body[data-experience=neighborhood][data-site-season] {--header-height:64px}
+ body[data-experience=neighborhood][data-site-season] .site-header {grid-template-rows:64px}
+ .site-season {max-width:155px;font-size:11px}
+}
+@media(max-width:720px) and (min-width:560px) and (max-height:480px){
+ body[data-experience=neighborhood][data-site-season] {--header-height:56px}
+ body[data-experience=neighborhood][data-site-season] .site-header {justify-content:space-between}
+}

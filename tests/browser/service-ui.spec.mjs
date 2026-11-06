@@ -32,7 +32,7 @@ test('pin placement keeps the address, exact center marker, and confirmation usa
 });
 
 const season = {
-  id: 'christmas-2026', kind: 'christmas', year: 2026, name: 'Christmas 2026',
+  id: 'halloween-2026', kind: 'halloween', year: 2026, name: 'Halloween 2026',
   submissionTitle: 'Add a display', themePlaceholder: 'For example: A winter wonderland',
   tags: ['Lights', 'Music', 'Winter wonderland']
 };
@@ -94,7 +94,7 @@ test('community map fills the phone, keeps its controls clear, and selects displ
     await expect(page.locator('body')).toHaveAttribute('data-experience','neighborhood');
     await expect(page.locator('.references')).toBeHidden();
     await expect(page.locator('#sample-count')).toHaveText('3 live displays');
-    for (const selector of ['#add-display','#neighborhood-select','#season-select','.leaflet-control-zoom','.leaflet-control-attribution']) {
+    for (const selector of ['#add-display','#neighborhood-select','.leaflet-control-zoom','.leaflet-control-attribution']) {
       await expect(page.locator(selector)).toBeInViewport({ratio:1});
     }
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -109,7 +109,7 @@ test('community map fills the phone, keeps its controls clear, and selects displ
     await page.locator('[data-pin="fixture-3"]').focus();
     await page.keyboard.press('Enter');
     await expect(page.locator('#selected-name')).toHaveText(displays[2].address);
-    for (const selector of ['#add-display','#season-select','#neighborhood-select']) {
+    for (const selector of ['#add-display','#neighborhood-select']) {
       await expect(page.locator(selector)).toBeInViewport({ratio:1});
     }
     await page.locator('#detail-close').click();

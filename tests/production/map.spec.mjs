@@ -38,7 +38,17 @@ test('the expected release serves live service routes and the default map', asyn
   const config = await configResponse.json();
   expect(config.available).toBe(true);
   expect(config.season.id).toBeTruthy();
-  const listingsResponse = await request.get(`/api/listings?neighborhood=old-northeast&season=${encodeURIComponent(config.season.id)}`);
+  const response = await page.goto(`/?smoke=${Date.now()}`);
+  expect(response.ok()).toBe(true);
+  const siteSetting = page.locator('meta[name="display-season"]');
+  const visibleSeasonId = await siteSetting.count() ? await siteSetting.getAttribute('content') : config.season.id;
+  const historical = visibleSeasonId !== config.season.id;
+  if (await siteSetting.count()) {
+    await expect(page.locator('#season-select')).toBeHidden();
+    if (historical) await expect(page.locator('#add-display')).toBeHidden();
+  }
+  const countText = count => historical ? `${count} Halloween 2026 displays` : `${count} live ${count === 1 ? 'display' : 'displays'}`;
+  const listingsResponse = await request.get(`/api/listings?neighborhood=old-northeast&season=${encodeURIComponent(visibleSeasonId)}`);
   expect(listingsResponse.ok()).toBe(true);
   const { listings } = await listingsResponse.json();
   expect(Array.isArray(listings)).toBe(true);
@@ -47,10 +57,8 @@ test('the expected release serves live service routes and the default map', asyn
   }
   expect((await request.get('/api/admin/listings')).status()).toBe(401);
 
-  const response = await page.goto(`/?smoke=${Date.now()}`);
-  expect(response.ok()).toBe(true);
   await expect(page.getByRole('navigation', { name: 'Artwork comparison' })).toBeHidden();
-  await expect(page.locator('#sample-count')).toHaveText(`${listings.length} live ${listings.length === 1 ? 'display' : 'displays'}`);
+  await expect(page.locator('#sample-count')).toHaveText(countText(listings.length));
   await expect(page.locator('.map-pin')).toHaveCount(listings.length);
   const expectedOldNortheastIds = listings.map(listing => listing.id).sort();
   const displayedOldNortheastIds = await page.locator('.map-pin').evaluateAll(markers => markers.map(marker => marker.dataset.pin).sort());
@@ -63,8 +71,8 @@ test('the expected release serves live service routes and the default map', asyn
   await chooseNeighborhood(page, 'crescent-lake', 'Crescent Lake');
   await expect(page.locator('#map')).toHaveAttribute('aria-busy', 'false');
   await expect(page.getByRole('heading', { name: 'Crescent Lake', exact: true })).toBeVisible();
-  const crescent = await request.get(`/api/listings?neighborhood=crescent-lake&season=${encodeURIComponent(config.season.id)}`).then(response => response.json());
-  await expect(page.locator('#sample-count')).toHaveText(`${crescent.listings.length} live ${crescent.listings.length === 1 ? 'display' : 'displays'}`);
+  const crescent = await request.get(`/api/listings?neighborhood=crescent-lake&season=${encodeURIComponent(visibleSeasonId)}`).then(response => response.json());
+  await expect(page.locator('#sample-count')).toHaveText(countText(crescent.listings.length));
   await expect(page.locator('.map-pin')).toHaveCount(crescent.listings.length);
   const expectedCrescentIds = crescent.listings.map(listing => listing.id).sort();
   expect(await page.locator('.map-pin').evaluateAll(markers => markers.map(marker => marker.dataset.pin).sort())).toEqual(expectedCrescentIds);

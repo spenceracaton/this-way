@@ -62,7 +62,7 @@ test('phone local navigation and art stay visible without a below-map panel',asy
 });
 test('atlas chrome is opt in and invalid return coordinates cannot change its destination',async({page})=>{
   await service(page);await page.goto('/?neighborhood=old-northeast&season=halloween-2026');await localReady(page,'Old Northeast');
-  await expect(page.locator('body')).not.toHaveAttribute('data-atlas');await expect(page.locator('#add-display')).toBeVisible();
+  await expect(page.locator('body')).not.toHaveAttribute('data-atlas');await expect(page.locator('#add-display')).toBeHidden();
   await page.goto('/?neighborhood=old-northeast&season=halloween-2026&atlas=1&atlas_lat=bad&atlas_lng=-82.6&atlas_z=999');await localReady(page,'Old Northeast');
   await expect(page.getByRole('link',{name:'← Explore nearby',exact:true})).toHaveAttribute('href','/prototypes/neighborhood-atlas/index.html?season=halloween-2026');
 });
